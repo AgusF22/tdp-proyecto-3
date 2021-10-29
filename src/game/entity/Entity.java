@@ -12,13 +12,9 @@ public abstract class Entity {
 		//TODO imp
 	}
 	
-	public void move() {
-		//TODO imp
-	}
+	public abstract void move();
 	
-	protected void accept(Visitor visitor) {
-		//TODO imp
-	}
+	protected abstract void accept(Visitor visitor);
 	
 	public float getX() {
 		return x;

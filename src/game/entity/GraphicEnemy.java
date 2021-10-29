@@ -3,6 +3,10 @@ package game.entity;
 import javax.swing.ImageIcon;
 
 public class GraphicEnemy extends GraphicCharacter{
+	/**
+	 * Serial Por defecto.
+	 */
+	private static final long serialVersionUID = 1L;
 	//TODO aca no se si hereda los atributos de GraphicCharacter
 	protected boolean fleeing;
 	

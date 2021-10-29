@@ -22,10 +22,7 @@ public abstract class Labyrinth {
 		//TODO imp
 	}
 	
-	public Labyrinth nextLabyrinth() {
-		//TODO imp
-		return null;
-	}
+	public abstract Labyrinth nextLabyrinth();
 	
 	public void addPoints(int p) {
 		//TODO imp

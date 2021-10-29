@@ -1,5 +1,7 @@
 package game.entity.enemy;
 
+import game.entity.Visitor;
+
 public class RedEnemy extends Enemy {
 
 	public RedEnemy(EnemyState initialState) {
@@ -13,5 +15,10 @@ public class RedEnemy extends Enemy {
 	
 	public void chase() {
 		//TODO imp
+	}
+
+	protected void accept(Visitor visitor) {
+		// TODO imp
+		
 	}
 }
