@@ -16,7 +16,8 @@ public class EndGamePublisher {
 	 * @return
 	 */
 	public EndGamePublisher getInstance() {
-		return instance != null? instance : new EndGamePublisher();
+		//TODO imp
+		return null;
 	}
 	
 	public void subscribe(Subscriber s) {
