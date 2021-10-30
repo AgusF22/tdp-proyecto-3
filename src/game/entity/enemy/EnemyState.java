@@ -4,7 +4,7 @@ public abstract class EnemyState {
 	protected Enemy context;
 	
 	protected EnemyState(Enemy enemy) {
-		//TODO imp
+		this.context = enemy;
 	}
 	
 	public abstract void move();

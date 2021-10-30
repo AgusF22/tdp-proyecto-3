@@ -26,6 +26,6 @@ public abstract class Enemy extends Entity{
 	}
 	
 	protected void changeState(EnemyState state) {
-		//TODO imp
+		this.state = state; 
 	}
 }

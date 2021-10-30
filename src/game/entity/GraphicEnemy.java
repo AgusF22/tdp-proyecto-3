@@ -9,6 +9,10 @@ public class GraphicEnemy extends GraphicCharacter{
 	private static final long serialVersionUID = 1L;
 	//TODO aca no se si hereda los atributos de GraphicCharacter
 	protected boolean fleeing;
+	protected ImageIcon fleeingUpImage;
+	protected ImageIcon fleeingDownImage;
+	protected ImageIcon fleeingLeftImage;
+	protected ImageIcon fleeingRightImage;
 	
 	public GraphicEnemy(ImageIcon[] images) {
 		super(null);

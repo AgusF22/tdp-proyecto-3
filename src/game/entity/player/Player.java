@@ -5,15 +5,16 @@ import game.entity.Visitor;
 
 public class Player extends Entity{
 	protected MovementDirection movementDirection;
-	protected Player instance;
+	protected static Player instance;
 	
 	private Player() {
-		//TODO imp
+		
 	}
 	
-	public Player getInstance() {
-		//TODO imp
-		return null;
+	public static Player getInstance() {
+		if(instance == null) 
+			instance = new Player();
+		return instance;
 	}
 	
 	public void move() {
