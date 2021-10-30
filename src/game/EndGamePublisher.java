@@ -1,15 +1,16 @@
 package game;
 
-import game.entity.player.Player;
+import java.util.Set;
+import java.util.HashSet;
 
 public class EndGamePublisher {
 	//TODO documentar
 	
 	private static EndGamePublisher instance;
-	protected Subscriber[] subscribers; //TODO definir coleccion
+	protected Set<Subscriber> subscribers;
 	
 	private EndGamePublisher() {
-		//TODO implementar
+		subscribers = new HashSet<>();
 	}
 	
 	/**
@@ -22,16 +23,26 @@ public class EndGamePublisher {
 		return instance;
 	}
 	
+	/**
+	 * Agrega el subscriber s a la lista subscribers.
+	 * @param s Subscriber que se desea agregar.
+	 */
 	public void subscribe(Subscriber s) {
-		//TODO implementar
-		
+		subscribers.add(s);
 	}
 	
+	/**
+	 * remueve el Subscriber s de la lista subscribers.
+	 * @param s Subscriber que se desea remover.
+	 */
 	public void unsubscribe(Subscriber s) {
-		//TODO implementar
+		subscribers.remove(s);
 	}
 	
+	/**
+	 * TODO
+	 */
 	public void notifySubscribers() {
-		//TODO implementar
+		subscribers.forEach((s) -> s.update());
 	}
 }
