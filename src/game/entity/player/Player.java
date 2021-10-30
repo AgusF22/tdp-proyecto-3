@@ -4,7 +4,7 @@ import game.entity.Entity;
 import game.entity.Visitor;
 
 public class Player extends Entity{
-	protected MovementDirection movementDirection;
+	protected Direction movementDirection;
 	protected static Player instance;
 	
 	private Player() {

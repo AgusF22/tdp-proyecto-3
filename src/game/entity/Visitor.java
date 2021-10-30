@@ -5,15 +5,17 @@ import game.entity.player.Player;
 import game.entity.prize.Prize;
 
 public abstract class Visitor {
+	
 	public void visit(Player player) {
-		//TODO imp
+		// metodo vacio
 	}
 	
 	public void visit(Enemy enemy) {
-		//TODO imp
+		// metodo vacio
 	}
 	
 	public void visit(Prize prize) {
-		//TODO imp
+		// metodo vacio
 	}
+	
 }

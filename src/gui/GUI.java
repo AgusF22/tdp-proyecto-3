@@ -10,6 +10,7 @@ public class GUI extends JFrame{
 	 * Serial por defecto
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	protected Game game;
 
 	public GUI() {
