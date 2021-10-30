@@ -13,9 +13,12 @@ public abstract class Labyrinth {
 		//TODO implementar
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean dotsRemain() {
-		//TODO imp
-		return false;
+		return doCount != 0;
 	}
 	
 	public void endGame() {
@@ -32,7 +35,7 @@ public abstract class Labyrinth {
 	 * Devuelve un iterable con todas las entidades.
 	 * @return un iterable.
 	 */
-	public Iterable getEntities() {
+	public Iterable entities() {
 		//TODO imp
 		return null;
 	}

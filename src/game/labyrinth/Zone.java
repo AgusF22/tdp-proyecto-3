@@ -2,12 +2,15 @@ package game.labyrinth;
 
 import game.entity.Entity;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Zone {
 	//TODO documentar
 	
 	protected Labyrinth labyrinth;
 	protected ZoneType type;
-	protected Entity[] entities; //TODO cambiar coleccion
+	protected List<Entity> entities; //TODO cambiar coleccion
 	protected int x;
 	protected int y;
 	
@@ -15,6 +18,7 @@ public class Zone {
 		this.x = x;
 		this.y = y;
 		this.type = type;
+		entities = new LinkedList<>();
 	}
 	
 	public ZoneType getType() {
@@ -31,5 +35,13 @@ public class Zone {
 	
 	public void removeDot() {
 		//TODO imp
+	}
+	
+	public Iterable zoneEntities() {
+		return entities;
+	}
+	
+	public void removeEntity(Entity entities) {
+		
 	}
 }
