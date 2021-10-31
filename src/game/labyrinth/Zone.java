@@ -1,6 +1,7 @@
 package game.labyrinth;
 
 import game.entity.Entity;
+import imageFactories.ImageFactory;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +15,8 @@ public class Zone {
 	protected int x;
 	protected int y;
 	
-	public Zone(int x, int y, ZoneType type) {
+	public Zone(Labyrinth lab, int x, int y, ZoneType type) {
+		labyrinth = lab; 
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -34,19 +36,19 @@ public class Zone {
 	}
 	
 	public void removeDot() {
-		//TODO imp
+		labyrinth.doCount--;
 	}
 	
-	public Iterable zoneEntities() {
+	public Iterable<Entity> zoneEntities() {
 		return entities;
 	}
 	
-	public void removeEntity(Entity entities) {
-		
+	public void removeEntity(Entity entity) { //Excepcion?
+		this.entities.remove(entity);
 	}
 	
-	public void addEntity(Entity entity) {
-		
+	public void addEntity(Entity entity) { //Excepcion?
+		this.entities.add(entity);
 	}
 	
 	/**
@@ -55,8 +57,28 @@ public class Zone {
 	 * @param y Float
 	 * @return Zone
 	 */
-	public Zone getZone(Float x, Float y) {
-		//TODO imp , recordar que tiene que redondear los numeros es su responsabilidad.
+	public Zone getZoneIn(Float x, Float y) {
+		Zone zone;												// Si la parte decimal del número es menor que la mitad,
+		int xInt = Math.round(x);								// redondear hacia abajo. En caso de que sea la mitad o mayor,
+		int yInt = Math.round(y);								// redondea hacia arriba.
+		
+		if ((this.getX() == xInt) && (this.getY() == yInt)) {
+			zone = this;
+		}
+		else {
+			zone = labyrinth.getZone(xInt, yInt);
+		}
+			
+		//TODO excepción si la zona no es valida.
+		
+		return zone;
+	}
+	
+	public void addPoints(int p) {
+		labyrinth.addPoints(p);
+	}
+	
+	public ImageFactory getImageFactory() {
 		return null;
 	}
 }
