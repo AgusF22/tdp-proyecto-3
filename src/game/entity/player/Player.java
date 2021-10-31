@@ -38,7 +38,34 @@ public class Player extends Entity{
 
 	
 	public void move() {
-		//TODO imp
+		if (attemptMovement != null && x == Math.round(x) && y == Math.round(y)) {			//Chequeamos que se intenta mover a otro lado y que este en el centro de una zona
+			switch (attemptMovement) {														//Notese que sabemos que no es igual a movementDirection porque sino seria nula
+			case UP:
+				if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			case RIGHT:
+				if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			case DOWN:
+				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			case LEFT:
+				if (zone.getZoneIn(x - 1,y).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			}
+		}
 		switch (movementDirection) {
 		case UP:
 			if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
