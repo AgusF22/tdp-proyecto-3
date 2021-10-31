@@ -60,7 +60,7 @@ public class Player extends Entity{
 				}
 				break;
 			case LEFT:
-				if (zone.getZoneIn(x - 1,y).getType() == ZoneType.PATH) {
+				if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
 					movementDirection = attemptMovement;
 					attemptMovement = null;
 				}
@@ -74,7 +74,7 @@ public class Player extends Entity{
 				y += 0.1f;
 				graphic.update(x,y);				// Actualizamos la grafica
 				if (isWhole(y)) {					// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
-					zone = zone.getZoneIn(x, y - 1);
+					zone = zone.getZoneIn(x, y + 1);
 				}	
 				//TODO medir colision en la nueva zona
 			}
@@ -85,7 +85,7 @@ public class Player extends Entity{
 				x += 0.1f;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone = zone.getZoneIn(x, y - 1);
+					zone = zone.getZoneIn(x + 1, y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
@@ -107,7 +107,7 @@ public class Player extends Entity{
 				x -= 0.1f;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone = zone.getZoneIn(x, y - 1);
+					zone = zone.getZoneIn(x - 1, y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
