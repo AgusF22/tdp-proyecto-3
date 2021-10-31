@@ -11,6 +11,24 @@ public interface ImageFactory {
 	public ImageIcon getLabyrinth1Image();
 	
 	/**
+	 * Devuelve la imagen correspondiente al laberinto 2.
+	 * @return Una imagen.
+	 */
+	public ImageIcon getLabyrinth2Image();
+	
+	/**
+	 * Devuelve la imagen correspondiente al laberinto 3.
+	 * @return Una imagen.
+	 */
+	public ImageIcon getLabyrinth3Image();
+	
+	/**
+	 * Devuelve un arreglo con las imagenes correspondientes al player.
+	 * @return Un arreglo con imagenes.
+	 */
+	public ImageIcon[] getPlayerImages();
+	
+	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rosa.
 	 * @return Un arreglo con imagenes.
 	 */
@@ -53,8 +71,20 @@ public interface ImageFactory {
 	public ImageIcon getPowerPelletImage();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la fruta.
+	 * Devuelve la imagen correspondiente a la fruta 1.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getFruitImage();
+	public ImageIcon getFruit1Image();
+	
+	/**
+	 * Devuelve la imagen correspondiente a la fruta 2.
+	 * @return Una imagen.
+	 */
+	public ImageIcon getFruit2Image();
+	
+	/**
+	 * Devuelve la imagen correspondiente a la fruta 3.
+	 * @return Una imagen.
+	 */
+	public ImageIcon getFruit3Image();
 }
