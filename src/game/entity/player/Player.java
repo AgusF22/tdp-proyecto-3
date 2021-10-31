@@ -69,55 +69,55 @@ public class Player extends Entity{
 			}
 		}
 		
-		switch (movementDirection) {
+		switch (movementDirection) { //TODO revisar como pide las zonas porque hay error al pasar la mitad, puede cambiarse el redondeo por truncamiento
 		case UP:
-			if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {						// Solo se puede mover a caminos
+			if (zone.getZoneIn(x, y + 0.5f).getType() == ZoneType.PATH) {						// Solo se puede mover a caminos
 				((GraphicCharacter) graphic).setMovingUp();
 				y += 0.1f;
 				graphic.update(x,y);														// Actualizamos la grafica
 				if (isWhole(y)) {															// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
-					zone.getZoneIn(x, y + 1).addEntity(this);								// Se agrega a la zona que sigue
+					zone.getZoneIn(x, y + 0.4f).addEntity(this);								// Se agrega a la zona que sigue
 					zone.removeEntity(this);												// Se remueve de la que estaba
-					zone = zone.getZoneIn(x, y + 1);										// Cambia en que zona se encuentra
+					zone = zone.getZoneIn(x, y + 0.4f);										// Cambia en que zona se encuentra
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case RIGHT:
-			if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x + 0.5f, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingRight();
 				x += 0.1f;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x + 1, y).addEntity(this);
+					zone.getZoneIn(x + 0.4f, y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x + 1, y);
+					zone = zone.getZoneIn(x + 0.4f, y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case DOWN:
-			if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x, y - 0.5f).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingDown();
 				y -= 0.1f;
 				graphic.update(x,y);
 				if (isWhole(y)) {
-					zone.getZoneIn(x, y - 1).addEntity(this);
+					zone.getZoneIn(x, y - 0.4f).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x, y - 1);
+					zone = zone.getZoneIn(x, y - 0.4f);
 				}			
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case LEFT:
-			if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x - 0.5f, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingLeft();
 				x -= 0.1f;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x - 1, y).addEntity(this);
+					zone.getZoneIn(x - 0.4f, y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x - 1, y);
+					zone = zone.getZoneIn(x - 0.4f, y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
