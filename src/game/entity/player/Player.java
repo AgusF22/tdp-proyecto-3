@@ -53,6 +53,7 @@ public class Player extends Entity{
 				}
 				break;
 			case DOWN:
+
 				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
 					//TODO setear que imagen se mueva para abajo
 					while (y < y + 1) {
