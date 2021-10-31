@@ -4,6 +4,7 @@ public enum ZoneType {
 	
 	WALL,
 	PATH,
-	SPAWN;
+	SPAWN,
+	DUNGEON;
 	
 }
