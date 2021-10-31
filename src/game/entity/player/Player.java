@@ -28,7 +28,7 @@ public class Player extends Entity{
 	 */
 	public void setZone(Zone zone) {
 		this.zone = zone;
-		this.setCoordinates(zone.getX(), zone.getX());
+		this.setCoordinates(zone.getX(), zone.getY());
 		setGraphic();
 	}
 	
@@ -115,6 +115,12 @@ public class Player extends Entity{
 		}
 		
 	}
+	
+	/**
+	 * Chequea si el numero pasado por parametro es entero
+	 * @param x Float 
+	 * @return True si es entero , false sino.
+	 */
 	private boolean isWhole (float x) {
 		return (x == Math.round(x));
 	}
