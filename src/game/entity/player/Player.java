@@ -27,7 +27,7 @@ public class Player extends Entity{
 		switch (movementDirection) {
 			case UP:
 				if (zone.getZone(x, y + 1).getType() == ZoneType.PATH) {
-					//TODO setear que imagen se mueva para arriba
+					graphic.setMovingUp();
 					while (y < y + 1) {						// Aumentamos progresivamente la posiciones hasta llegar a la parte entera
 						y += 0.1f;
 						graphic.update(x,y);				// Actualizamos la grafica
@@ -38,7 +38,7 @@ public class Player extends Entity{
 				break;
 			case RIGHT:
 				if (zone.getZone(x + 1, y).getType() == ZoneType.PATH) {
-					//TODO setear que imagen se mueva para derecha
+					graphic.setMovingRight();
 					while (y < y + 1) {
 						y += 0.1f;
 						graphic.update(x,y);
@@ -48,8 +48,8 @@ public class Player extends Entity{
 				}
 				break;
 			case DOWN:
-				if (zone.getZone(x, y - 1).getType() == ZoneType.PATH) {
-					//TODO setear que imagen se mueva para abajo
+				if (zone.getZone(x, y - 1).getType() == ZoneType.PATH) {	
+					graphic.setMovingDown();
 					while (y < y + 1) {
 						y += 0.1f;
 						graphic.update(x,y);
@@ -60,7 +60,7 @@ public class Player extends Entity{
 				break;
 			case LEFT:
 				if (zone.getZone(x - 1, y).getType() == ZoneType.PATH) {
-					//TODO setear que imagen se mueva para izquierda
+					graphic.setMovingLeft();
 					while (y < y + 1) {
 						y += 0.1f;
 						graphic.update(x,y);

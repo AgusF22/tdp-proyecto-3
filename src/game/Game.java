@@ -83,6 +83,14 @@ public class Game implements Subscriber{
 	}
 	
 	/**
+	 * Retorna el constructor del dominio grafico que se utiliza en el juego
+	 * @return ImageFactory
+	 */
+	public ImageFactory getImageFactory() {
+		return imageFactory;
+	}
+	
+	/**
 	 * Updatea TODO mejorar
 	 */
 	public void update() {
