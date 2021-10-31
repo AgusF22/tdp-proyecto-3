@@ -9,11 +9,11 @@ public class StatsData {
 		
 	}
 	
-	public Map load() {
+	public Map<String, Integer> load() {
 		return null;
 	}
 	
-	public void save(Map stats) {
+	public void save(Map<String, Integer> stats) {
 		
 	}
 }
