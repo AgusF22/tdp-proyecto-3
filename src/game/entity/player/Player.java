@@ -67,6 +67,7 @@ public class Player extends Entity{
 				break;
 			}
 		}
+		
 		switch (movementDirection) {
 		case UP:
 			if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
@@ -111,9 +112,6 @@ public class Player extends Entity{
 				}	
 				//TODO medir colision en la nueva zona
 			}
-			zone = zone.getZoneIn(x,y);						
-			//TODO medir colision en la nueva zona
-			break;
 		}
 		
 	}
