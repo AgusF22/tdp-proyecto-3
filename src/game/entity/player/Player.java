@@ -8,9 +8,11 @@ import game.entity.Visitor;
 
 public class Player extends Entity{
 	protected Direction movementDirection;
+	protected Direction attemptMovement;
 	protected static Player instance;
 	
 	private Player(Zone zone) {
+		super();
 		movementDirection = Direction.LEFT;
 	}
 	
@@ -26,8 +28,8 @@ public class Player extends Entity{
 	 */
 	public void setZone(Zone zone) {
 		this.zone = zone;
-		setGraphic();
 		this.setCoordinates(zone.getX(), zone.getX());
+		setGraphic();
 	}
 	
 	private void setGraphic() {
@@ -40,7 +42,7 @@ public class Player extends Entity{
 		switch (movementDirection) {
 		case UP:
 			if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para arriba
+				((GraphicCharacter) graphic).setMovingUp();
 				while (y < y + 1) {						// Aumentamos progresivamente la posiciones hasta llegar a la parte entera
 					y += 0.1f;
 					graphic.update(x,y);				// Actualizamos la grafica
@@ -51,7 +53,7 @@ public class Player extends Entity{
 			break;
 		case RIGHT:
 			if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para derecha
+				((GraphicCharacter) graphic).setMovingRight();
 				while (y < y + 1) {
 					y += 0.1f;
 					graphic.update(x,y);
@@ -61,9 +63,8 @@ public class Player extends Entity{
 			}
 			break;
 		case DOWN:
-
 			if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para abajo
+				((GraphicCharacter) graphic).setMovingDown();
 				while (y < y + 1) {
 					y += 0.1f;
 					graphic.update(x,y);
@@ -74,7 +75,7 @@ public class Player extends Entity{
 			break;
 		case LEFT:
 			if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para izquierda
+				((GraphicCharacter) graphic).setMovingLeft();
 				while (y < y + 1) {
 					y += 0.1f;
 					graphic.update(x,y);
@@ -96,28 +97,7 @@ public class Player extends Entity{
 	 * @param dir Direction 
 	 */
 	public void attemptMovement(Direction dir) {
-		switch (dir) {
-			case UP:
-				if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
-					movementDirection = Direction.UP;
-				}
-				break;
-			case RIGHT:
-				if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
-					movementDirection = Direction.RIGHT;
-				}
-				break;
-			case DOWN:
-				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
-					movementDirection = Direction.DOWN;
-				}
-				break;
-			case LEFT:
-				if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
-					movementDirection = Direction.LEFT;
-				}
-				break;
-		}
+		attemptMovement = dir;
 	}
 	
 	public void collide() {
