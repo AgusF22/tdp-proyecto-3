@@ -3,7 +3,7 @@ package game;
 import game.entity.enemy.EnemyBrain;
 import game.entity.player.Direction;
 import game.entity.player.Player;
-import game.labyrinth.ConcreteLabyrinth;
+import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
 import gui.GUI;
 import imageFactories.ImageFactory;
@@ -18,7 +18,7 @@ public class Game implements Subscriber{
 	public Game(ImageFactory factory) {
 		//TODO setear gui y subscripcion
 		points = 0;
-		labyrinth = new ConcreteLabyrinth();
+		labyrinth = new ConcreteLabyrinth1(this);
 		imageFactory = factory;
 		enemyBrain = new EnemyBrain();
 	}
@@ -80,6 +80,14 @@ public class Game implements Subscriber{
 	public void winLevel() {
 		//TODO implementar
 		labyrinth.nextLabyrinth();
+	}
+	
+	/**
+	 * Retorna el constructor del dominio grafico que se utiliza en el juego
+	 * @return ImageFactory
+	 */
+	public ImageFactory getImageFactory() {
+		return imageFactory;
 	}
 	
 	/**
