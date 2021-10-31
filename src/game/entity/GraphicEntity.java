@@ -11,4 +11,12 @@ public abstract class GraphicEntity extends JLabel{
 	protected GraphicEntity() {
 		//TODO imp
 	}
+	
+	public void update(float x, float y) {
+		//TODO imp
+	}
+	
+	public void delete() {
+		//TODO imp
+	}
 }

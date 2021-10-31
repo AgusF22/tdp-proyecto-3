@@ -44,4 +44,19 @@ public class Zone {
 	public void removeEntity(Entity entities) {
 		
 	}
+	
+	public void addEntity(Entity entity) {
+		
+	}
+	
+	/**
+	 * Consulta la zona correspondiente a las coordenadas
+	 * @param x Float
+	 * @param y Float
+	 * @return Zone
+	 */
+	public Zone getZone(Float x, Float y) {
+		//TODO imp , recordar que tiene que redondear los numeros es su responsabilidad.
+		return null;
+	}
 }
