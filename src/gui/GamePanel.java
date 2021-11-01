@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel(ImageFactory factory) {
 		
-		this.game = new Game(factory);
+		//this.game = new Game(factory);
 		labels = new ArrayList<JLabel>();
 		labyrinthImage = factory.getLabyrinth1Image();
 		
@@ -46,7 +46,8 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void crearPanel() {
-		setSize(870-290, 935-312);
+		setSize(870, 935);
+		//setSize(580, 623);
 		setBackground(Color.BLACK);
 		setLayout(new BorderLayout(0, 0));
 	}
@@ -54,7 +55,8 @@ public class GamePanel extends JPanel {
 	private void crearFondo() {
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setSize(870-290, 935-312);
+		lblNewLabel.setSize(870, 935);
+		//lblNewLabel.setSize(580, 623);
 		ImageIcon imgIcon = labyrinthImage;
 		Image imgEscalada = imgIcon.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH);
 		Icon iconoEscalado = new ImageIcon(imgEscalada);
