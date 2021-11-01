@@ -28,14 +28,14 @@ public class GamePanel extends JPanel {
 	
 	protected Game game;
 	protected ImageIcon labyrinthImage;
-	protected List<JLabel> labels;
+	//protected List<JLabel> labels;
 
 	private JLabel lblNewLabel;
 	
 	public GamePanel(ImageFactory factory) {
 		
 		game = new Game(factory);
-		labels = new ArrayList<JLabel>();
+		//labels = new ArrayList<JLabel>();
 		labyrinthImage = factory.getLabyrinth1Image();
 		
 		crearPanel();
@@ -152,7 +152,19 @@ public class GamePanel extends JPanel {
 		//TODO imp
 	}
 	
+	public void addLabel(JLabel label) {
+		this.add(label);
+	}
+	
+	public void removeLabel(JLabel label) {
+		this.remove(label);
+	}
+	
 	public void updateLabel(JLabel label, float x, float y) {
+		if (label.getParent() != this) {
+			//tirar exception
+		}
 		
+		label.setLocation(1, 1);
 	}
 }
