@@ -11,12 +11,16 @@ import imageFactories.ImageFactory;
 public abstract class Labyrinth {
 	//TODO documentar
 	
+	public final static int WIDTH = 29;
+	public final static int HEIGHT = 31;
+	
 	protected int doCount;
 	protected Game game;
-	protected Set<Zone> zones;
+	protected Zone[][] zones;
 	
 	protected Labyrinth(Game game) {
 		this.game = game;
+		zones = new Zone[HEIGHT][WIDTH];
 	}
 	
 	/**
@@ -25,7 +29,6 @@ public abstract class Labyrinth {
 	public boolean dotsRemain() {
 		return doCount != 0;
 	}
-	
 	
 	public void endGame() {
 		game.endGame();
@@ -47,14 +50,14 @@ public abstract class Labyrinth {
 	 */
 	public Iterable<Entity> entities() {
 		Set<Entity> entities = new HashSet<>();
-		
-		Iterator<Zone> itZones = zones.iterator();
 		Iterator<Entity> itEntities;
 		
-		while (itZones.hasNext()) {													// Recorre todas las zonas del laberinto
-			itEntities = itZones.next().zoneEntities().iterator();					// Le pide a la zona todas sus entidades
-			while (itEntities.hasNext()) {											// Agrega las entidades de la zona en 
-				entities.add(itEntities.next()); 									// el set entities.
+		for (int i = 0; i < zones.length; i++) {											// Recorre todas las zonas del laberinto
+			for (int j = 0; j < zones[0].length; j++) {
+				itEntities = zones[i][j].zoneEntities().iterator();						// Le pide a la zona todas sus entidades
+				while (itEntities.hasNext()) {											// Agrega las entidades de la zona en 
+					entities.add(itEntities.next()); 									// el set entities.
+				}
 			}
 		}
 		return entities;
@@ -67,18 +70,18 @@ public abstract class Labyrinth {
 	 */
 	public Zone getZone(float x, float y) {
 		
-		Iterator<Zone> itZones = zones.iterator();
 		Zone zone = null;
 		boolean exit = false;
 		int xInt = Math.round(x);									// Si la parte decimal del número es menor que la mitad,
 		int yInt = Math.round(y);									// redondear hacia abajo. En caso de que sea la mitad o mayor,
 																	// redondea hacia arriba.
-		while (itZones.hasNext() && !exit) {										
-			zone = itZones.next();	
-			if((zone.getX() == xInt) && (zone.getY() == yInt))
-				exit = true;
+		for (int i = 0; i < zones.length && !exit; i++) {
+			for (int j = 0; j < zones[0].length; j++) {
+				zone = zones[i][j];	
+				if((zone.getX() == xInt) && (zone.getY() == yInt))
+					exit = true;
+			}
 		}
-		
 		// TODO if(zone == null) excepcion zona invalida 
 		
 		return zone;

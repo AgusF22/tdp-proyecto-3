@@ -1,17 +1,18 @@
 package game.labyrinth;
 
 import game.Game;
+import game.entity.Entity;
+import game.entity.player.Player;
+import game.entity.prize.Dot;
 
 public class ConcreteLabyrinth1 extends Labyrinth {
 	
-	ZoneMatrixBuilder matrix;
-	
 	public ConcreteLabyrinth1(Game game) {
 		super(game);
-		matrix = new ZoneMatrixBuilder();
 		
-		matrix.setSpawn(14, 15)									// Set zona SPAWN.
+		ZoneType matrix[][] = new ZoneMatrixBuilder()
 		
+		.setSpawn(14, 15)									// Set zona SPAWN.
 		
 		.setDungeon(11, 13, 17, 13)								// Set zonas DUNGEON.
 		.setDungeon(11, 14, 17, 14)
@@ -50,15 +51,51 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		.setPath(9, 12, 9, 16)
 		.setPath(19, 12, 19, 16)
 		
-		.setPath(14, 6, 14, 9)//
+		.setPath(14, 6, 14, 9)
 		.setPath(14, 18, 23, 16) 
 		
-		.setPath(2, 29, 26, 29);
+		.setPath(2, 29, 26, 29)
 		
+		.build();
+		
+		
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; i++) {
+				zones[i][j] = new Zone(this, i, j, matrix[i][j]);
+			}
+		}
+		
+		this.setEntity();
+		
+		
+	}
+	
+	private void setEntity() {
+		
+		zones[1][1].addEntity(Player.getInstance());				// TODO Set Player
+		
+		//TODO enemies
+											
+																// ***Set Prize***
+		//TODO  Set Fruits
+		//TODO  Set PowerPellet
+		//TODO  Set Potions
+		
+		for (int i = 0; i < zones.length; i++) {					//	  Set dots
+			for(int j = 0; j < zones[0].length; j++) {
+				Entity dot = new Dot();
+				if ((zones[i][j].getType() == ZoneType.PATH) && (zones[i][j].entities.isEmpty())) { // Si es camino y no hay entidades, add dot
+					zones[i][j].addEntity(dot);
+					doCount++;
+				}
+			}
+		}
+		
+																
 	}
 	
 	public Labyrinth nextLabyrinth() {
 		return new ConcreteLabyrinth2(game);
 	}
 }
-
