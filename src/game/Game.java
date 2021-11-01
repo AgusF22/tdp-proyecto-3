@@ -20,8 +20,8 @@ public class Game implements Subscriber{
 		//TODO setear gui y subscripcion
 		this.gui = gui;
 		points = 0;
-		labyrinth = new ConcreteLabyrinth1(this);
 		imageFactory = factory;
+		labyrinth = new ConcreteLabyrinth1(this);
 		enemyBrain = new EnemyBrain();
 	}
 	
