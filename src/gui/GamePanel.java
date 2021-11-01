@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel(ImageFactory factory) {
 		
-		game = new Game(factory);
+		game = new Game(this, factory);
 		//labels = new ArrayList<JLabel>();
 		labyrinthImage = factory.getLabyrinth1Image();
 		
