@@ -6,6 +6,7 @@ import java.util.Set;
 
 import game.Game;
 import game.entity.Entity;
+import imageFactories.ImageFactory;
 
 public abstract class Labyrinth {
 	//TODO documentar
@@ -62,22 +63,32 @@ public abstract class Labyrinth {
 	/**
 	 * @param x coordenada eje x.
 	 * @param y coordenada eje y.
-	 * @return la zona cuyas cordenadas son iguales a las pasadas por parametro.
+	 * @return la zona cuyas cordenadas a las pasadas por parametro.
 	 */
-	public Zone getZone(int x, int y) {
+	public Zone getZone(float x, float y) {
 		
 		Iterator<Zone> itZones = zones.iterator();
 		Zone zone = null;
 		boolean exit = false;
-		
+		int xInt = Math.round(x);									// Si la parte decimal del número es menor que la mitad,
+		int yInt = Math.round(y);									// redondear hacia abajo. En caso de que sea la mitad o mayor,
+																	// redondea hacia arriba.
 		while (itZones.hasNext() && !exit) {										
 			zone = itZones.next();	
-			if((zone.getX() == x) && (zone.getY() == y))
+			if((zone.getX() == xInt) && (zone.getY() == yInt))
 				exit = true;
 		}
 		
 		// TODO if(zone == null) excepcion zona invalida 
 		
 		return zone;
+	}
+	
+	public void removeDot() {
+		doCount--;
+	}
+	
+	public ImageFactory getImageFactory() {
+		return game.getImageFactory();
 	}
 }
