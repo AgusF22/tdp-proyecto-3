@@ -82,17 +82,16 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		//TODO  Set PowerPellet
 		//TODO  Set Potions
 		
+		@SuppressWarnings("unused")
+		Entity dot = null;
 		for (int i = 0; i < zones.length; i++) {					//	  Set dots
-			for(int j = 0; j < zones[0].length; j++) {
-				Entity dot = new Dot(zones[i][j]);
-				if ((zones[i][j].getType() == ZoneType.PATH) && (zones[i][j].entities.isEmpty())) { // Si es camino y no hay entidades, add dot
-					zones[i][j].addEntity(dot);
+			for(int j = 0; j < zones[0].length; j++) {				// Si es camino y no hay entidades, add dot
+				if ((zones[i][j].getType() == ZoneType.PATH) && (zones[i][j].entities.isEmpty())) {
+					dot = new Dot(zones[i][j]);
 					doCount++;
 				}
 			}
-		}
-		
-																
+		}														
 	}
 	
 	public Labyrinth nextLabyrinth() {
