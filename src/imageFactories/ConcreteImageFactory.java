@@ -61,37 +61,35 @@ public class ConcreteImageFactory implements ImageFactory{
 
 	@Override
 	public ImageIcon getDotImage() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/dot.png"));
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/dot.png"));
 	}
 
 	@Override
 	public ImageIcon getPowerPelletImage() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/powerpellet.png"));
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/powerpellet.png"));
 	}
 
 	@Override
 	public ImageIcon getFruit1Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/fruit1.png"));
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit1.png"));
 	}
 	
 	@Override
 	public ImageIcon getFruit2Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/fruit2.png"));
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
 	}
 	
 	@Override
 	public ImageIcon getFruit3Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/fruit2.png"));
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
 	}
 	
 	public ImageIcon getPotion1() {
-		// TODO asignar resource
-		return null;
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion1.png"));
 	}
 	
 	public ImageIcon getPotion2() {
-		// TODO asignar resource
-		return null;
+		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion2.png"));
 	}
 	
 
