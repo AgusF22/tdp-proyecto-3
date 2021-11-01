@@ -59,6 +59,7 @@ public class GamePanel extends JPanel {
 		Image imgEscalada = imgIcon.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH);
 		Icon iconoEscalado = new ImageIcon(imgEscalada);
 		lblNewLabel.setIcon(iconoEscalado);
+		
 		add(lblNewLabel);
 		
 	}
