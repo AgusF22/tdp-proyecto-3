@@ -8,10 +8,13 @@ import game.entity.Visitor;
 
 public class Player extends Entity{
 	protected Direction movementDirection;
+	protected Direction attemptMovement;
 	protected static Player instance;
 	
 	private Player(Zone zone) {
+		super();
 		movementDirection = Direction.LEFT;
+		attemptMovement = null;
 	}
 	
 	public static Player getInstance() {
@@ -26,8 +29,8 @@ public class Player extends Entity{
 	 */
 	public void setZone(Zone zone) {
 		this.zone = zone;
+		this.setCoordinates(zone.getX(), zone.getY());
 		setGraphic();
-		this.setCoordinates(zone.getX(), zone.getX());
 	}
 	
 	private void setGraphic() {
@@ -36,59 +39,100 @@ public class Player extends Entity{
 
 	
 	public void move() {
-		//TODO imp
-		switch (movementDirection) {
-		case UP:
-			if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para arriba
-				while (y < y + 1) {						// Aumentamos progresivamente la posiciones hasta llegar a la parte entera
-					y += 0.1f;
-					graphic.update(x,y);				// Actualizamos la grafica
+		
+		if (attemptMovement != null && isWhole(x) && isWhole(y)) {							// Chequeamos que se intenta mover a otro lado y que este en el centro de una zona
+			switch (attemptMovement) {														// Notese que sabemos que no es igual a movementDirection porque sino seria nula
+			case UP:
+				if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
 				}
-				zone = zone.getZoneIn(x,y);				
+				break;
+			case RIGHT:
+				if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			case DOWN:
+				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			case LEFT:
+				if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
+					movementDirection = attemptMovement;
+					attemptMovement = null;
+				}
+				break;
+			}
+		}
+		
+		switch (movementDirection) { //TODO revisar como pide las zonas porque hay error al pasar la mitad, puede cambiarse el redondeo por truncamiento
+		case UP:
+			if (zone.getZoneIn(x, y + 0.5f).getType() == ZoneType.PATH) {						// Solo se puede mover a caminos
+				((GraphicCharacter) graphic).setMovingUp();
+				y += 0.1f;
+				graphic.update(x,y);														// Actualizamos la grafica
+				if (isWhole(y)) {															// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
+					zone.getZoneIn(x, y + 0.4f).addEntity(this);								// Se agrega a la zona que sigue
+					zone.removeEntity(this);												// Se remueve de la que estaba
+					zone = zone.getZoneIn(x, y + 0.4f);										// Cambia en que zona se encuentra
+				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case RIGHT:
-			if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para derecha
-				while (y < y + 1) {
-					y += 0.1f;
-					graphic.update(x,y);
-				}
-				zone = zone.getZoneIn(x,y);					
+			if (zone.getZoneIn(x + 0.5f, y).getType() == ZoneType.PATH) {
+				((GraphicCharacter) graphic).setMovingRight();
+				x += 0.1f;
+				graphic.update(x,y);
+				if (isWhole(x)) {
+					zone.getZoneIn(x + 0.4f, y).addEntity(this);
+					zone.removeEntity(this);
+					zone = zone.getZoneIn(x + 0.4f, y);
+				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case DOWN:
-
-			if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para abajo
-				while (y < y + 1) {
-					y += 0.1f;
-					graphic.update(x,y);
-				}
-				zone = zone.getZoneIn(x,y);					
+			if (zone.getZoneIn(x, y - 0.5f).getType() == ZoneType.PATH) {
+				((GraphicCharacter) graphic).setMovingDown();
+				y -= 0.1f;
+				graphic.update(x,y);
+				if (isWhole(y)) {
+					zone.getZoneIn(x, y - 0.4f).addEntity(this);
+					zone.removeEntity(this);
+					zone = zone.getZoneIn(x, y - 0.4f);
+				}			
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case LEFT:
-			if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
-				//TODO setear que imagen se mueva para izquierda
-				while (y < y + 1) {
-					y += 0.1f;
-					graphic.update(x,y);
-				}
-				zone = zone.getZoneIn(x,y);						
+			if (zone.getZoneIn(x - 0.5f, y).getType() == ZoneType.PATH) {
+				((GraphicCharacter) graphic).setMovingLeft();
+				x -= 0.1f;
+				graphic.update(x,y);
+				if (isWhole(x)) {
+					zone.getZoneIn(x - 0.4f, y).addEntity(this);
+					zone.removeEntity(this);
+					zone = zone.getZoneIn(x - 0.4f, y);
+				}	
 				//TODO medir colision en la nueva zona
 			}
-			zone = zone.getZoneIn(x,y);						
-			//TODO medir colision en la nueva zona
-			break;
 		}
 		
 	}
 	
+	/**
+	 * Chequea si el numero pasado por parametro es entero
+	 * @param x Float 
+	 * @return True si es entero , false sino.
+	 */
+	private boolean isWhole (float x) {
+		return (x == Math.round(x));
+	}
 	
 	/**
 	 * Evalua si el jugador puede moverse en la direccion pasada, si puede se la asigna
@@ -96,28 +140,7 @@ public class Player extends Entity{
 	 * @param dir Direction 
 	 */
 	public void attemptMovement(Direction dir) {
-		switch (dir) {
-			case UP:
-				if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
-					movementDirection = Direction.UP;
-				}
-				break;
-			case RIGHT:
-				if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
-					movementDirection = Direction.RIGHT;
-				}
-				break;
-			case DOWN:
-				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
-					movementDirection = Direction.DOWN;
-				}
-				break;
-			case LEFT:
-				if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
-					movementDirection = Direction.LEFT;
-				}
-				break;
-		}
+		attemptMovement = dir;
 	}
 	
 	public void collide() {
