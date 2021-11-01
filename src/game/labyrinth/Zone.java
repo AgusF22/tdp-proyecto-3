@@ -1,7 +1,6 @@
 package game.labyrinth;
 
 import game.entity.Entity;
-import imageFactories.ImageFactory;
 
 import java.util.LinkedList;
 import java.util.List;
