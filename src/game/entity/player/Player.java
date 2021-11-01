@@ -7,6 +7,10 @@ import game.entity.GraphicCharacter;
 import game.entity.Visitor;
 
 public class Player extends Entity{
+	
+	private static final float MOVEMENT_LENGTH = 0.1f; //Distancia que puede recorrer el persona en un movimiento
+	private static final float DISTANCE_ZONE = 0.5f; //Distancia hasta la proxima zona
+	
 	protected Direction movementDirection;
 	protected Direction attemptMovement;
 	protected static Player instance;
@@ -33,91 +37,101 @@ public class Player extends Entity{
 		setGraphic();
 	}
 	
+	/**
+	 * Crea y asigna la entidad grafica del personaje
+	 */
 	private void setGraphic() {
 		graphic = new GraphicCharacter(zone.getImageFactory().getPlayerImages());
 	}
 
 	
+	/**
+	 * Mueve el personaje hacia una direccion
+	 */
 	public void move() {
-		
-		if (attemptMovement != null && isWhole(x) && isWhole(y)) {							// Chequeamos que se intenta mover a otro lado y que este en el centro de una zona
-			switch (attemptMovement) {														// Notese que sabemos que no es igual a movementDirection porque sino seria nula
-			case UP:
-				if (zone.getZoneIn(x, y + 1).getType() == ZoneType.PATH) {
-					movementDirection = attemptMovement;
-					attemptMovement = null;
+		if (attemptMovement != movementDirection && attemptMovement != null) {											// Chequeamos que se intenta mover a otro lado
+			if (attemptMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
+				movementDirection = attemptMovement;			
+			}
+			else if (isWhole(x) && isWhole(y)){																			// Si se quiere mover a otra posicion necesita esta en el centro de una zona
+				switch (attemptMovement) {														
+				case UP:
+					if (zone.getZoneIn(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {
+						movementDirection = attemptMovement;
+						attemptMovement = null;
+					}
+					break;
+				case RIGHT:
+					if (zone.getZoneIn(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+						movementDirection = attemptMovement;
+						attemptMovement = null;
+					}
+					break;
+				case DOWN:
+					if (zone.getZoneIn(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
+						movementDirection = attemptMovement;
+						attemptMovement = null;
+					}
+					break;
+				case LEFT:
+					if (zone.getZoneIn(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+						movementDirection = attemptMovement;
+						attemptMovement = null;
+					}
+					break;
 				}
-				break;
-			case RIGHT:
-				if (zone.getZoneIn(x + 1, y).getType() == ZoneType.PATH) {
-					movementDirection = attemptMovement;
-					attemptMovement = null;
-				}
-				break;
-			case DOWN:
-				if (zone.getZoneIn(x, y - 1).getType() == ZoneType.PATH) {
-					movementDirection = attemptMovement;
-					attemptMovement = null;
-				}
-				break;
-			case LEFT:
-				if (zone.getZoneIn(x - 1, y).getType() == ZoneType.PATH) {
-					movementDirection = attemptMovement;
-					attemptMovement = null;
-				}
-				break;
 			}
 		}
 		
 		switch (movementDirection) { //TODO revisar como pide las zonas porque hay error al pasar la mitad, puede cambiarse el redondeo por truncamiento
 		case UP:
-			if (zone.getZoneIn(x, y + 0.5f).getType() == ZoneType.PATH) {						// Solo se puede mover a caminos
+			if (zone.getZoneIn(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {										// Solo se puede mover a caminos
 				((GraphicCharacter) graphic).setMovingUp();
-				y += 0.1f;
-				graphic.update(x,y);														// Actualizamos la grafica
-				if (isWhole(y)) {															// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
-					zone.getZoneIn(x, y + 0.4f).addEntity(this);								// Se agrega a la zona que sigue
-					zone.removeEntity(this);												// Se remueve de la que estaba
-					zone = zone.getZoneIn(x, y + 0.4f);										// Cambia en que zona se encuentra
+				y += MOVEMENT_LENGTH;
+				graphic.update(x,y);																					// Actualizamos la grafica
+				if (isWhole(y)) {																						// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
+					zone.getZoneIn(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);							// Se agrega a la zona que sigue
+					zone.removeEntity(this);																			// Se remueve de la que estaba
+					zone = zone.getZoneIn(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH));									// Cambia en que zona se encuentra
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case RIGHT:
-			if (zone.getZoneIn(x + 0.5f, y).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingRight();
-				x += 0.1f;
+				x += MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x + 0.4f, y).addEntity(this);
+					zone.getZoneIn(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x + 0.4f, y);
+					zone = zone.getZoneIn(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case DOWN:
-			if (zone.getZoneIn(x, y - 0.5f).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingDown();
-				y -= 0.1f;
+				y -= MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(y)) {
-					zone.getZoneIn(x, y - 0.4f).addEntity(this);
+					zone.getZoneIn(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x, y - 0.4f);
+					zone = zone.getZoneIn(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH));
 				}			
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case LEFT:
-			if (zone.getZoneIn(x - 0.5f, y).getType() == ZoneType.PATH) {
+			if (zone.getZoneIn(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingLeft();
-				x -= 0.1f;
+				x -= MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x - 0.4f, y).addEntity(this);
+					zone.getZoneIn(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x - 0.4f, y);
+					zone = zone.getZoneIn(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
@@ -132,6 +146,26 @@ public class Player extends Entity{
 	 */
 	private boolean isWhole (float x) {
 		return (x == Math.round(x));
+	}
+	
+	private Direction oppositeDirection(Direction dir) {
+		Direction opposite = null;
+		switch (dir) {
+		case UP:
+			opposite = Direction.DOWN;
+			break;
+		case RIGHT:
+			opposite = Direction.LEFT;
+			break;
+		case DOWN:
+			opposite = Direction.UP;
+			break;
+		case LEFT:
+			opposite = Direction.RIGHT;
+			break;
+		}
+		
+		return opposite;
 	}
 	
 	/**

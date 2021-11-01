@@ -79,7 +79,7 @@ public class Game implements Subscriber{
 	 */
 	public void winLevel() {
 		//TODO implementar
-		labyrinth.nextLabyrinth();
+		labyrinth = labyrinth.nextLabyrinth();
 	}
 	
 	/**
