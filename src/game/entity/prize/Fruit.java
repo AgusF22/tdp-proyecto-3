@@ -7,7 +7,7 @@ public class Fruit extends Prize {
 		//TODO imp
 	}
 	
-	public void affect(Player player) {
+	public void triggerEffect() {
 		//TODO imp
 	}
 }

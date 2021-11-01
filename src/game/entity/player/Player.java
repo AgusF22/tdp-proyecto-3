@@ -51,7 +51,7 @@ public class Player extends Entity{
 	public void move() {
 		if (attemptMovement != movementDirection && attemptMovement != null) {											// Chequeamos que se intenta mover a otro lado
 			if (attemptMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptMovement;			
+				movementDirection = attemptMovement;	//TODO ?Deberia tambien setear attempt en nulo		
 			}
 			else if (isWhole(x) && isWhole(y)){																			// Si se quiere mover a otra posicion necesita esta en el centro de una zona
 				switch (attemptMovement) {														
