@@ -15,8 +15,6 @@ public class GUI extends JFrame{
 	 * Serial por defecto
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	protected Game game;
 
 	private ImageFactory factory;
 	
@@ -24,16 +22,15 @@ public class GUI extends JFrame{
 
 	public GUI() {
 		factory = new ConcreteImageFactory();
-		//game = new Game(factory);
 		createFrame();
 		play();
 		setVisible(true);
 	}
 	
 	private void createFrame() {
-		setSize(1920, 1080);
-		//setSize(1280, 720);
-		setUndecorated(true);
+		//setSize(1920, 1080);
+		setSize(1280, 720);
+		//setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
