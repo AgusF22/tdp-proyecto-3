@@ -87,4 +87,16 @@ public interface ImageFactory {
 	 * @return Una imagen.
 	 */
 	public ImageIcon getFruit3Image();
+	
+	/**
+	 * Devuelve la imagen correspondiente a la pocion 1.
+	 * @return
+	 */
+	public ImageIcon getPotion1();
+	
+	/**
+	 * Devuelve la imagen correspondiente a la pocion 1.
+	 * @return
+	 */
+	public ImageIcon getPotion2();
 }

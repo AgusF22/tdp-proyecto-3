@@ -83,7 +83,16 @@ public class ConcreteImageFactory implements ImageFactory{
 	public ImageIcon getFruit3Image() {
 		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/prize/fruit2.png"));
 	}
-
+	
+	public ImageIcon getPotion1() {
+		// TODO asignar resource
+		return null;
+	}
+	
+	public ImageIcon getPotion2() {
+		// TODO asignar resource
+		return null;
+	}
 	
 
 }
