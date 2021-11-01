@@ -121,7 +121,7 @@ public class GamePanel extends JPanel {
 	 */
 	public void moveRight() {
 		System.out.println("D o RIGHT");
-		//game.moveRight();
+		game.moveRight();
 	}
 	
 	/**
@@ -137,7 +137,7 @@ public class GamePanel extends JPanel {
 	 */
 	public void moveLeft() {
 		System.out.println("A o LEFT");
-		//game.moveLeft();
+		game.moveLeft();
 	}
 	
 	public void updatePoints() {
