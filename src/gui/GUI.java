@@ -1,8 +1,13 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import data.StatsData;
 import game.Game;
+import imageFactories.ConcreteImageFactory;
+import java.awt.BorderLayout;
+import imageFactories.ImageFactory;
 
 public class GUI extends JFrame{
 	
@@ -13,35 +18,42 @@ public class GUI extends JFrame{
 	
 	protected Game game;
 
+	private ImageFactory factory;
+	
+	private JPanel panelPrincipal;
+
 	public GUI() {
-		//TODO implementar
+		factory = new ConcreteImageFactory();
+		game = new Game(factory);
+		createFrame();
+		play();
+		setVisible(true);
 	}
 	
-	/**
-	 * Mueve al personaje principal a arriba.
-	 */
-	public void moveUp() {
-		//TODO implementar
+	private void createFrame() {
+		setSize(1920-640, 1080-360);
+		//setUndecorated(true);
+		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	/**
-	 * Mueve al personaje principal a abajo.
-	 */
-	public void moveDown() {
-		//TODO implementar
+	private void play() {
+		panelPrincipal = new GamePanel(factory);
+		
+		int posW = (int) (getSize().getWidth() - panelPrincipal.getSize().getWidth()) / 2;
+		int posH = (int) (getSize().getHeight() - panelPrincipal.getSize().getHeight()) / 2;
+		
+		panelPrincipal.setLocation(posW, posH);
+		getContentPane().add(panelPrincipal);
+		
 	}
 	
-	/**
-	 * Mueve al personaje principal a la derecha.
-	 */
-	public void moveRight() {
-		//TODO implementar
+	public void setPanel(JPanel panel) {
+		
 	}
 	
-	/**
-	 * Mueve al personaje principal a la izquierda.
-	 */
-	public void moveLeft() {
-		//TODO implementar
+	public StatsData getStatsData() {
+		return null;
 	}
 }
