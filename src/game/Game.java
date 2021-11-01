@@ -6,17 +6,19 @@ import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
 import gui.GUI;
+import gui.GamePanel;
 import imageFactories.ImageFactory;
 
 public class Game implements Subscriber{
 	protected int points;
-	protected GUI gui;
+	protected GamePanel gui;
 	protected ImageFactory imageFactory;
 	protected Labyrinth labyrinth;
 	protected EnemyBrain enemyBrain;
 	
-	public Game(ImageFactory factory) {
+	public Game(GamePanel gui,ImageFactory factory) {
 		//TODO setear gui y subscripcion
+		this.gui = gui;
 		points = 0;
 		labyrinth = new ConcreteLabyrinth1(this);
 		imageFactory = factory;
@@ -65,6 +67,7 @@ public class Game implements Subscriber{
 	 */
 	public void addPoints(int p) {
 		this.points += p;
+		gui.updatePoints();
 	}
 	
 	/**
@@ -72,6 +75,7 @@ public class Game implements Subscriber{
 	 */
 	public void endGame() {
 		//TODO implementar
+		gui.loseGame();
 	}
 	
 	/**

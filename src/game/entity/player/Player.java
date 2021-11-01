@@ -41,7 +41,7 @@ public class Player extends Entity{
 	 * Crea y asigna la entidad grafica del personaje
 	 */
 	private void setGraphic() {
-		graphic = new GraphicCharacter(zone.getImageFactory().getPlayerImages());
+		graphic = new GraphicCharacter(zone.getLabyrinth().getImageFactory().getPlayerImages());
 	}
 
 	
@@ -51,30 +51,30 @@ public class Player extends Entity{
 	public void move() {
 		if (attemptMovement != movementDirection && attemptMovement != null) {											// Chequeamos que se intenta mover a otro lado
 			if (attemptMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptMovement;			
+				movementDirection = attemptMovement;	//TODO ?Deberia tambien setear attempt en nulo		
 			}
 			else if (isWhole(x) && isWhole(y)){																			// Si se quiere mover a otra posicion necesita esta en el centro de una zona
 				switch (attemptMovement) {														
 				case UP:
-					if (zone.getZoneIn(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {
+					if (zone.getLabyrinth().getZone(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {
 						movementDirection = attemptMovement;
 						attemptMovement = null;
 					}
 					break;
 				case RIGHT:
-					if (zone.getZoneIn(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+					if (zone.getLabyrinth().getZone(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 						movementDirection = attemptMovement;
 						attemptMovement = null;
 					}
 					break;
 				case DOWN:
-					if (zone.getZoneIn(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
+					if (zone.getLabyrinth().getZone(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
 						movementDirection = attemptMovement;
 						attemptMovement = null;
 					}
 					break;
 				case LEFT:
-					if (zone.getZoneIn(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+					if (zone.getLabyrinth().getZone(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 						movementDirection = attemptMovement;
 						attemptMovement = null;
 					}
@@ -85,53 +85,53 @@ public class Player extends Entity{
 		
 		switch (movementDirection) { //TODO revisar como pide las zonas porque hay error al pasar la mitad, puede cambiarse el redondeo por truncamiento
 		case UP:
-			if (zone.getZoneIn(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {										// Solo se puede mover a caminos
+			if (zone.getLabyrinth().getZone(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {										// Solo se puede mover a caminos
 				((GraphicCharacter) graphic).setMovingUp();
 				y += MOVEMENT_LENGTH;
 				graphic.update(x,y);																					// Actualizamos la grafica
 				if (isWhole(y)) {																						// Si la posicion luego de moverse es entera entonces se encuentra en el centro de una nueva zona.
-					zone.getZoneIn(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);							// Se agrega a la zona que sigue
+					zone.getLabyrinth().getZone(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);							// Se agrega a la zona que sigue
 					zone.removeEntity(this);																			// Se remueve de la que estaba
-					zone = zone.getZoneIn(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH));									// Cambia en que zona se encuentra
+					zone.getLabyrinth().getZone(x, y + (DISTANCE_ZONE - MOVEMENT_LENGTH));									// Cambia en que zona se encuentra
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case RIGHT:
-			if (zone.getZoneIn(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+			if (zone.getLabyrinth().getZone(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingRight();
 				x += MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
+					zone.getLabyrinth().getZone(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
+					zone.getLabyrinth().getZone(x + (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
 				}	
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case DOWN:
-			if (zone.getZoneIn(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
+			if (zone.getLabyrinth().getZone(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingDown();
 				y -= MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(y)) {
-					zone.getZoneIn(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);
+					zone.getLabyrinth().getZone(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH)).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH));
+					zone.getLabyrinth().getZone(x, y - (DISTANCE_ZONE - MOVEMENT_LENGTH));
 				}			
 				//TODO medir colision en la nueva zona
 			}
 			break;
 		case LEFT:
-			if (zone.getZoneIn(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
+			if (zone.getLabyrinth().getZone(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
 				((GraphicCharacter) graphic).setMovingLeft();
 				x -= MOVEMENT_LENGTH;
 				graphic.update(x,y);
 				if (isWhole(x)) {
-					zone.getZoneIn(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
+					zone.getLabyrinth().getZone(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y).addEntity(this);
 					zone.removeEntity(this);
-					zone = zone.getZoneIn(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
+					zone.getLabyrinth().getZone(x - (DISTANCE_ZONE - MOVEMENT_LENGTH), y);
 				}	
 				//TODO medir colision en la nueva zona
 			}

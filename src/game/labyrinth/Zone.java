@@ -35,50 +35,19 @@ public class Zone {
 		return y;
 	}
 	
-	public void removeDot() {
-		labyrinth.doCount--;
-	}
-	
 	public Iterable<Entity> zoneEntities() {
 		return entities;
 	}
 	
-	public void removeEntity(Entity entity) { //Excepcion?
+	public void removeEntity(Entity entity) { //TODO Excepcion?
 		this.entities.remove(entity);
 	}
 	
-	public void addEntity(Entity entity) { //Excepcion?
+	public void addEntity(Entity entity) {	 //TODO Excepcion?
 		this.entities.add(entity);
 	}
 	
-	/**
-	 * Consulta la zona correspondiente a las coordenadas
-	 * @param x Float
-	 * @param y Float
-	 * @return Zone
-	 */
-	public Zone getZoneIn(Float x, Float y) {
-		Zone zone;												// Si la parte decimal del número es menor que la mitad,
-		int xInt = Math.round(x);								// redondear hacia abajo. En caso de que sea la mitad o mayor,
-		int yInt = Math.round(y);								// redondea hacia arriba.
-		
-		if ((this.getX() == xInt) && (this.getY() == yInt)) {
-			zone = this;
-		}
-		else {
-			zone = labyrinth.getZone(xInt, yInt);
-		}
-			
-		//TODO excepción si la zona no es valida.
-		
-		return zone;
-	}
-	
-	public void addPoints(int p) {
-		labyrinth.addPoints(p);
-	}
-	
-	public ImageFactory getImageFactory() {
-		return null;
+	public Labyrinth getLabyrinth() {
+		return labyrinth;
 	}
 }

@@ -18,11 +18,7 @@ public abstract class Prize extends Entity{
 		//TODO imp
 	}
 	
-	public void affect(Enemy enemy) {
-		//TODO imp
-	}
-	
-	public void affect(Player player) {
+	public void triggerEffect() {
 		//TODO imp
 	}
 }
