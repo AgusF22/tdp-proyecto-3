@@ -61,7 +61,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		
 		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
 				zones[i][j] = new Zone(this, i, j, matrix[i][j]);
 			}
 		}
@@ -84,7 +84,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		for (int i = 0; i < zones.length; i++) {					//	  Set dots
 			for(int j = 0; j < zones[0].length; j++) {
-				Entity dot = new Dot();
+				Entity dot = new Dot(zones[i][j]);
 				if ((zones[i][j].getType() == ZoneType.PATH) && (zones[i][j].entities.isEmpty())) { // Si es camino y no hay entidades, add dot
 					zones[i][j].addEntity(dot);
 					doCount++;
