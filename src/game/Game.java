@@ -1,11 +1,9 @@
 package game;
 
 import game.entity.enemy.EnemyBrain;
-import game.entity.player.Direction;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
-import gui.GUI;
 import gui.GamePanel;
 import imageFactories.ImageFactory;
 

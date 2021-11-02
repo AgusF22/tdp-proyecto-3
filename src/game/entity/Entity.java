@@ -1,5 +1,6 @@
 package game.entity;
 
+import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
 public abstract class Entity {
