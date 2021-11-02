@@ -5,7 +5,7 @@ import game.labyrinth.Zone;
 public abstract class Entity {
 	
 	protected Zone zone;
-	protected GraphicEntity graphic; // TODO create GraphicEntity
+	protected GraphicEntity graphic;
 	protected float x;
 	protected float y;
 	
@@ -15,8 +15,8 @@ public abstract class Entity {
 	 */
 	protected Entity(Zone zone) {
 		this.zone = zone;
-		x = 0;
-		y = 0;
+		x = 0f;
+		y = 0f;
 	}
 	
 	/**
