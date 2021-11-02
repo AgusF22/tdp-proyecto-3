@@ -7,25 +7,23 @@ import game.entity.prize.Dot;
 
 public class ConcreteLabyrinth2  extends Labyrinth {
 	
-	ZoneMatrixBuilder matrix;
-	
 	public ConcreteLabyrinth2(Game game) {
 		super(game);
 		
 		ZoneType matrix[][] = new ZoneMatrixBuilder()
 		
-		.setSpawn(16, 14)									// Set zona SPAWN.
+		.setSpawn(16, 14)										// Set zona SPAWN.
 		
 		.setDungeon(12, 10, 12, 18)								// Set zonas DUNGEON.
 		.setDungeon(13, 10, 13, 18)
-		.setDungeon(14, 10, 14, 18)								// Set zonas DUNGEON.
+		.setDungeon(14, 10, 14, 18)
 		.setDungeon(15, 10, 15, 18)
 		
 		.setDungeon(16, 10, 16, 13)
 		.setDungeon(16, 15, 16, 18)
 		
 		
-		.setPath(1, 1, 1, 12)
+		.setPath(1, 1, 1, 12)									// Set PATH
 		.setPath(1, 16, 1, 27)
 		
 		.setPath(2, 1, 7, 1)
@@ -108,9 +106,7 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 		
 		.build();
 		
-		
-		
-		for (int i = 0; i < matrix.length; i++) {
+		for (int i = 0; i < matrix.length; i++) {					// Inicializo todas las zonas con sus coordenadas y ZoneType
 			for (int j = 0; j < matrix[0].length; j++) {
 				zones[i][j] = new Zone(this, i, j, matrix[i][j]);
 			}

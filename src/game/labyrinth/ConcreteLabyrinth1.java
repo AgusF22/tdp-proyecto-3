@@ -25,48 +25,46 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		.setPath(1, 1, 1, 12)									// Set zonas PATH.
 		.setPath(1, 16, 1, 27)
-		//
+		
 		.setPath(2, 12, 4, 12)									// Set zonas PATH.
 		.setPath(2, 16, 4, 16)
-		//
+		
 		.setPath(2, 1, 14, 1)
 		.setPath(2, 27, 14, 27)
-		//
+		
 		.setPath(14, 2, 14, 8)
 		.setPath(20, 14, 26, 14)
-		//
+		
 		.setPath(5, 6, 5, 22)
 		.setPath(23, 6, 23, 22)
-		//
+		
 		.setPath(6, 6, 13, 6)
 		.setPath(15, 6, 22, 6)
-		//
+		
 		.setPath(6, 22, 13, 22)
 		.setPath(15, 22, 22, 22)
-		//
+		
 		.setPath(20, 1, 20, 5)
 		.setPath(20, 23, 20, 27)
-		//
+		
 		.setPath(21, 1, 29, 1)
 		.setPath(21, 27, 29, 27)
-		//
+		
 		.setPath(24, 12, 28, 12)
 		.setPath(24, 16, 28, 16)
-		//
+		
 		.setPath(11, 9, 11, 19)
 		.setPath(17, 9, 17, 19)
-		//
+		
 		.setPath(12, 9, 16, 9)
 		.setPath(12, 19, 16, 19)
-		//
+		
 		.setPath(6, 14, 10, 14)
 		.setPath(18, 14, 22, 14) 
-		//
+		
 		.setPath(29, 2, 29, 26)
 		
 		.build();
-		
-		
 		
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
