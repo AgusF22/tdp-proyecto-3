@@ -4,6 +4,7 @@ import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 import game.entity.Entity;
 import game.entity.GraphicCharacter;
+import game.entity.PlayerVisitor;
 import game.entity.Visitor;
 
 public class Player extends Entity{
@@ -12,18 +13,25 @@ public class Player extends Entity{
 	private static final float DISTANCE_ZONE = 0.5f; //Distancia hasta la proxima zona
 	
 	protected Direction movementDirection;
-	protected Direction attemptMovement;
+	protected Direction attemptingMovement;
 	protected static Player instance;
 	
-	private Player(Zone zone) {
-		super();
+	/**
+	 * Crea una nueva instancia de Player.
+	 */
+	private Player() {
+		super(null);
 		movementDirection = Direction.LEFT;
-		attemptMovement = null;
+		attemptingMovement = null;
 	}
 	
+	/**
+	 * Retorna la intancia de player.
+	 * @return La intancia de player.
+	 */
 	public static Player getInstance() {
 		if(instance == null) 
-			instance = new Player(null);
+			instance = new Player();
 		return instance;
 	}
 	
@@ -49,34 +57,34 @@ public class Player extends Entity{
 	 * Mueve el personaje hacia una direccion
 	 */
 	public void move() {
-		if (attemptMovement != movementDirection && attemptMovement != null) {											// Chequeamos que se intenta mover a otro lado
-			if (attemptMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptMovement;	//TODO ?Deberia tambien setear attempt en nulo		
+		if (attemptingMovement != movementDirection && attemptingMovement != null) {											// Chequeamos que se intenta mover a otro lado
+			if (attemptingMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
+				movementDirection = attemptingMovement;	//TODO ?Deberia tambien setear attempt en nulo		
 			}
 			else if (isWhole(x) && isWhole(y)){																			// Si se quiere mover a otra posicion necesita esta en el centro de una zona
-				switch (attemptMovement) {														
+				switch (attemptingMovement) {														
 				case UP:
 					if (zone.getLabyrinth().getZone(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {
-						movementDirection = attemptMovement;
-						attemptMovement = null;
+						movementDirection = attemptingMovement;
+						attemptingMovement = null;
 					}
 					break;
 				case RIGHT:
 					if (zone.getLabyrinth().getZone(x + DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
-						movementDirection = attemptMovement;
-						attemptMovement = null;
+						movementDirection = attemptingMovement;
+						attemptingMovement = null;
 					}
 					break;
 				case DOWN:
 					if (zone.getLabyrinth().getZone(x, y - DISTANCE_ZONE).getType() == ZoneType.PATH) {
-						movementDirection = attemptMovement;
-						attemptMovement = null;
+						movementDirection = attemptingMovement;
+						attemptingMovement = null;
 					}
 					break;
 				case LEFT:
 					if (zone.getLabyrinth().getZone(x - DISTANCE_ZONE, y).getType() == ZoneType.PATH) {
-						movementDirection = attemptMovement;
-						attemptMovement = null;
+						movementDirection = attemptingMovement;
+						attemptingMovement = null;
 					}
 					break;
 				}
@@ -174,14 +182,23 @@ public class Player extends Entity{
 	 * @param dir Direction 
 	 */
 	public void attemptMovement(Direction dir) {
-		attemptMovement = dir;
+		attemptingMovement = dir;
 	}
 	
+	/**
+	 * Colisiona al jugador con todas las entidades que se encuantran en su zona.
+	 */
 	public void collide() {
-		//TODO imp
+		Visitor v = new PlayerVisitor();
+		for (Entity e : zone.zoneEntities()) {
+			e.accept(v);								// TODO cambiar condicion de colision a distancia (y actualizar javadoc posteriormente) -AF
+		}
 	}
 	
+	/**
+	 * Acepta un visitor.
+	 */
 	public void accept(Visitor visitor) {
-		//TODO imp
+		visitor.visit(this);
 	}
 }
