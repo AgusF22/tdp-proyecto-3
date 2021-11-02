@@ -158,7 +158,7 @@ public class Player extends Entity{
 		return (x == Math.round(x));
 	}
 	
-	private Direction oppositeDirection(Direction dir) {
+	private Direction oppositeDirection(Direction dir) {		// FIXME obsoleto, usar getOpposite del enum Direction -AF
 		Direction opposite = null;
 		switch (dir) {
 		case UP:
