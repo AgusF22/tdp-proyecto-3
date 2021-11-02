@@ -52,7 +52,7 @@ public class GUI extends JFrame{
 	private void play() {
 		panelPrincipal = new GamePanel(factory);
 		
-		int posW = (int) Math.round((getSize().getWidth() - panelPrincipal.getSize().getWidth()) / 2);
+		int posW = (int) Math.round((getSize().getWidth() - panelPrincipal.getSize().getWidth()) / 2 -7);
 		int posH = (int) Math.round((getSize().getHeight() - panelPrincipal.getSize().getHeight()) -38);
 		
 		panelPrincipal.setLocation(posW, posH);
