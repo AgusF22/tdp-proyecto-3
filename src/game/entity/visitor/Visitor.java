@@ -1,4 +1,4 @@
-package game.entity;
+package game.entity.visitor;
 
 import game.entity.enemy.Enemy;
 import game.entity.player.Player;

@@ -1,16 +1,17 @@
 package game.labyrinth;
 
+import game.Direction;
 import game.entity.Entity;
 
+import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Zone {
 	//TODO documentar
 	
 	protected Labyrinth labyrinth;
 	protected ZoneType type;
-	protected List<Entity> entities; //TODO cambiar coleccion
+	protected Collection<Entity> entities;
 	protected int x;
 	protected int y;
 	
@@ -38,15 +39,36 @@ public class Zone {
 		return entities;
 	}
 	
-	public void removeEntity(Entity entity) { //TODO Excepcion?
+	public void removeEntity(Entity entity) { //TODO Excepcion? ::: No, si la entidad no esta remove de list no hace nada y no hay problema -AF
 		this.entities.remove(entity);
 	}
 	
-	public void addEntity(Entity entity) {	 //TODO Excepcion?
+	public void addEntity(Entity entity) {	 //TODO Excepcion? 
 		this.entities.add(entity);
 	}
 	
 	public Labyrinth getLabyrinth() {
 		return labyrinth;
 	}
+	
+	public Zone getAdjacent(Direction direction) {
+		int x = this.x;
+		int y = this.y;
+		switch(direction) {
+		case DOWN:
+			y++;
+			break;
+		case LEFT:
+			x--;
+			break;
+		case RIGHT:
+			x++;
+			break;
+		case UP:
+			y--;
+			break;
+		}
+		return labyrinth.getZone(x, y);
+	}
+	
 }
