@@ -2,23 +2,28 @@ package game.entity.prize;
 
 import game.entity.Entity;
 import game.entity.Visitor;
-import game.entity.enemy.Enemy;
-import game.entity.player.Player;
+import game.labyrinth.Zone;
 
 public abstract class Prize extends Entity{
-	protected Prize() {
-		//TODO imp
+	
+	/**
+	 * Crea un nuevo premio.
+	 * @param zone La zona en la que se encontrara el nuevo premio.
+	 */
+	protected Prize(Zone zone) {
+		super(zone);
 	}
 	
-	public void move() {
-		//TODO imp
-	}
-	
+	/**
+	 * Acepta un visitor
+	 */
 	public void accept(Visitor visitor) {
-		//TODO imp
+		visitor.visit(this);
 	}
 	
-	public void triggerEffect() {
-		//TODO imp
-	}
+	/**
+	 * Dispara el efecto de este premio.
+	 */
+	public abstract void triggerEffect();
+	
 }

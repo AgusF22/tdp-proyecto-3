@@ -1,7 +1,11 @@
 package game.entity.prize;
 
+import game.labyrinth.Zone;
+
 public abstract class Potion extends Prize {
-	protected Potion() {
-		//TODO imp
+	
+	protected Potion(Zone zone) {
+		super(zone);
 	}
+	
 }

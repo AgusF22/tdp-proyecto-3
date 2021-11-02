@@ -9,5 +9,5 @@ public abstract class EnemyState {
 	
 	public abstract void move();
 	
-	public abstract void beCollidedByPlayer();
+	public abstract void CollideWithPlayer();
 }

@@ -1,28 +1,47 @@
 package game.entity.enemy;
 
 import game.entity.Entity;
+import game.entity.Visitor;
+import game.labyrinth.Zone;
 
 public abstract class Enemy extends Entity{
+	
 	protected EnemyState state;
 	
-	protected Enemy(EnemyState initialState) {
-		//TODO imp
+	/**
+	 * Construye un nuevo enemigo.
+	 * @param zone La zona en la que se encontrara el nuevo enemigo.
+	 */
+	protected Enemy(Zone zone) {
+		super(zone);
+		state = new ChasingState(this);
 	}
 	
-	public abstract void move();
+	/**
+	 * Ejecuta el movimiento de este enemigo.
+	 */
+	public void move() {
+		state.move();
+	}
 	
-	public abstract void chase();
+	/**
+	 * Ordena a este enemigo calcular el camino hacia su objetivo.
+	 */
+	public abstract void calculateChasePath();
 	
-	public void accept() {
-		//TODO imp
+	/**
+	 * Acepta un visitor.
+	 */
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 	
 	public void setFleeing() {
-		//TODO imp
+		state = new FleeingState(this);
 	}
 	
-	public void beCollidedByPlayer() {
-		//TODO imp
+	public void CollideWithPlayer() {
+		state.CollideWithPlayer();
 	}
 	
 	protected void changeState(EnemyState state) {

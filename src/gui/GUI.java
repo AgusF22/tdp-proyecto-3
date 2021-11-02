@@ -28,8 +28,8 @@ public class GUI extends JFrame{
 	}
 	
 	private void createFrame() {
-		//setSize(1920, 1080);
-		setSize(1280, 720);
+		//setSize(1920, 1080);			//TODO size del frame 1080p
+		setSize(1280, 720);				//TODO size del frame 720p
 		//setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -39,8 +39,8 @@ public class GUI extends JFrame{
 	private void play() {
 		panelPrincipal = new GamePanel(factory);
 		
-		int posW = (int) (getSize().getWidth() - panelPrincipal.getSize().getWidth()) / 2;
-		int posH = (int) (getSize().getHeight() - panelPrincipal.getSize().getHeight()) / 2;
+		int posW = (int) Math.round((getSize().getWidth() - panelPrincipal.getSize().getWidth()) / 2);
+		int posH = (int) Math.round((getSize().getHeight() - panelPrincipal.getSize().getHeight()) -38);
 		
 		panelPrincipal.setLocation(posW, posH);
 		getContentPane().add(panelPrincipal);
