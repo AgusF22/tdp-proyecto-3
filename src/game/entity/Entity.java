@@ -3,29 +3,53 @@ package game.entity;
 import game.labyrinth.Zone;
 
 public abstract class Entity {
+	
 	protected Zone zone;
-	protected GraphicEntity graphic;
+	protected GraphicEntity graphic; // TODO create GraphicEntity
 	protected float x;
 	protected float y;
 	
-	protected Entity() {
-		//TODO imp
+	/**
+	 * Construye una nueva entidad ubicada en la coordenada (0, 0), asignandole una zona pasada como parametro.
+	 * @param zone Una zona.
+	 */
+	protected Entity(Zone zone) {
+		this.zone = zone;
+		x = 0;
+		y = 0;
 	}
 	
-	public abstract void move();
+	/**
+	 * Acepta un visitor.
+	 * @param visitor Un visitor.
+	 */
+	public abstract void accept(Visitor visitor);
 	
-	protected abstract void accept(Visitor visitor);
-	
+	/**
+	 * Retorna la coordenada x de esta entidad.
+	 * @return La coordenada x de esta entidad.
+	 */
 	public float getX() {
 		return x;
 	}
 	
+	/**
+	 * Retorna la coordenada y de esta entidad.
+	 * @return La coordenada y de esta entidad.
+	 */
 	public float getY() {
 		return y;
 	}
 	
+	/**
+	 * Setea las coordenadas de esta entidad, cambiando de zona en caso de ser necesario.
+	 * @param x Nueva coordenada x.
+	 * @param y Nueva coordenada y.
+	 */
 	public void setCoordinates(float x, float y) {
 		this.x = x;
 		this.y = y;
+		zone = zone.getLabyrinth().getZone(x, y);
 	}
+	
 }
