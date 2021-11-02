@@ -104,7 +104,7 @@ public class ConcreteImageFactory extends ImageFactory{
 	
 	@Override
 	public Icon getFruit3Image() {
-		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit3.png"));
 		return scale(imgIcon);
 	}
 	

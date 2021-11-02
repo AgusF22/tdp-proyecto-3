@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import game.Game;
+import game.labyrinth.Labyrinth;
 import imageFactories.ImageFactory;
 import java.awt.BorderLayout;
 
@@ -30,12 +31,9 @@ public class GamePanel extends JPanel {
 	protected Icon labyrinthImage;
 	private JLabel lblNewLabel;
 	
-	
-	
 	public GamePanel(ImageFactory factory) {
 		game = new Game(this, factory);
 		labyrinthImage = factory.getLabyrinth1Image();
-		
 		crearPanel();
 		crearFondo();
 		agregarControles();
@@ -44,17 +42,14 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void crearPanel() {
-		//setSize(870, 935);			//TODO size de panel para 1080p
-		setSize(580, 623);				//TODO size de panel para 720p
+		setSize(labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		setBackground(Color.BLACK);
 		setLayout(null);
 	}
 	
 	private void crearFondo() {
-		
 		lblNewLabel = new JLabel("");
-		//lblNewLabel.setBounds(0, 0, 870, 935);	//TODO bounds de label para 1080p
-		lblNewLabel.setBounds(0, 0, 580, 623);		//TODO bounds de label para 720p
+		lblNewLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		
 		lblNewLabel.setIcon(labyrinthImage);
 		add(lblNewLabel);
@@ -161,9 +156,15 @@ public class GamePanel extends JPanel {
 			//tirar exception
 		}
 		
-		int posX = (int) Math.round(label.getSize().getWidth() + (x * 20) / 30);
-		int posY = (int) Math.round(label.getSize().getHeight() + (y * 20) / 30);
+		float zoneWidth = getWidth() / Labyrinth.WIDTH;
+		float zoneHeight = getHeight() / Labyrinth.HEIGHT;
 		
-		label.setLocation(posX, posY);
+		float posX = x * zoneWidth + zoneWidth / 2;
+		float posY = y * zoneHeight + zoneHeight / 2;
+		
+		posX -= label.getWidth() / 2;
+		posY -= label.getHeight();
+		
+		label.setLocation(Math.round(posX), Math.round(posY));
 	}
 }
