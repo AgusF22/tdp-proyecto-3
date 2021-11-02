@@ -50,14 +50,12 @@ public abstract class Labyrinth {
 	 */
 	public Iterable<Entity> entities() {
 		Set<Entity> entities = new HashSet<>();
-		Iterator<Entity> itEntities;
+		Iterable<Entity> listEntities;
 		
-		for (int i = 0; i < zones.length; i++) {											// Recorre todas las zonas del laberinto
+		for (int i = 0; i < zones.length; i++) {										// Recorre todas las zonas del laberinto
 			for (int j = 0; j < zones[0].length; j++) {
-				itEntities = zones[i][j].zoneEntities().iterator();						// Le pide a la zona todas sus entidades
-				while (itEntities.hasNext()) {											// Agrega las entidades de la zona en 
-					entities.add(itEntities.next()); 									// el set entities.
-				}										// FIXME usar for each -AF
+				listEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
+				listEntities.forEach((e) -> entities.add(e));							// Agrega las entidades de la zona en la Set entities
 			}
 		}
 		return entities;
@@ -68,23 +66,13 @@ public abstract class Labyrinth {
 	 * @param y coordenada eje y.
 	 * @return la zona cuyas cordenadas a las pasadas por parametro.
 	 */
-	public Zone getZone(float x, float y) {							// FIXME no hace falta recorrer para encontrar la zona, usar matriz -AF
-		
-		Zone zone = null;
-		boolean exit = false;
+	public Zone getZone(float x, float y) {
 		int xInt = Math.round(x);									// Si la parte decimal del número es menor que la mitad,
 		int yInt = Math.round(y);									// redondear hacia abajo. En caso de que sea la mitad o mayor,
 																	// redondea hacia arriba.
-		for (int i = 0; i < zones.length && !exit; i++) {
-			for (int j = 0; j < zones[0].length; j++) {
-				zone = zones[i][j];	
-				if((zone.getX() == xInt) && (zone.getY() == yInt))
-					exit = true;
-			}
-		}
-		// TODO if(zone == null) excepcion zona invalida 
 		
-		return zone;
+		// TODO if(zones[xInt][yInt] == null) excepcion zona invalida 
+		return zones[xInt][yInt];
 	}
 	
 	public void removeDot() {
