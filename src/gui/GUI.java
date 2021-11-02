@@ -7,6 +7,9 @@ import data.StatsData;
 import game.Game;
 import imageFactories.ConcreteImageFactory;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import imageFactories.ImageFactory;
 
 public class GUI extends JFrame{
@@ -15,15 +18,27 @@ public class GUI extends JFrame{
 	 * Serial por defecto
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final int DEFAULT_SCREEN_WIDTH = 1920;
+	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
+	protected final int CURRENT_SCREEN_WIDTH;
+	protected final int CURRENT_SCREEN_HEIGHT;
 
 	private ImageFactory factory;
 	
 	private JPanel panelPrincipal;
 
 	public GUI() {
-		factory = new ConcreteImageFactory();
+		// TODO Descomentar en ver FINAL
+		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//CURRENT_SCREEN_WIDTH = Math.toIntExact(Math.round(screenSize.getWidth()));
+		//CURRENT_SCREEN_HEIGHT = Math.toIntExact(Math.round(screenSize.getHeight()));
+		
+		CURRENT_SCREEN_WIDTH = 1280;
+		CURRENT_SCREEN_HEIGHT = 720;
+		
+		factory = new ConcreteImageFactory(CURRENT_SCREEN_WIDTH, CURRENT_SCREEN_HEIGHT);
 		createFrame();
-		play();
+		//play();
 		setVisible(true);
 	}
 	
@@ -48,10 +63,11 @@ public class GUI extends JFrame{
 	}
 	
 	public void setPanel(JPanel panel) {
-		
+		//TODO imp
 	}
 	
 	public StatsData getStatsData() {
+		//TODO imp
 		return null;
 	}
 }

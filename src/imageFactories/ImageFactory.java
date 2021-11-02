@@ -1,102 +1,122 @@
 package imageFactories;
 
+
+import java.awt.Image;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public interface ImageFactory {
+import gui.GUI;
+
+public abstract class ImageFactory {
+	
+	protected int currentScreenWidth;
+	protected int currentScreenHeight;
+	
+	protected ImageFactory(int currentScreenWidth, int currentScreenHeight) {
+		this.currentScreenWidth = currentScreenWidth;
+		this.currentScreenHeight = currentScreenHeight;
+	}
 	
 	/**
-	 * Devuelve la imagen correspondiente al laberinto 1.
+	 * Devuelve el icono correspondiente al laberinto 1.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getLabyrinth1Image();
+	public abstract Icon getLabyrinth1Image();
 	
 	/**
-	 * Devuelve la imagen correspondiente al laberinto 2.
+	 * Devuelve el icono correspondiente al laberinto 2.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getLabyrinth2Image();
+	public abstract Icon getLabyrinth2Image();
 	
 	/**
-	 * Devuelve la imagen correspondiente al laberinto 3.
+	 * Devuelve el icono correspondiente al laberinto 3.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getLabyrinth3Image();
+	public abstract Icon getLabyrinth3Image();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al player.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getPlayerImages();
+	public abstract Icon[] getPlayerImages();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rosa.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getPinkEnemyImages();
+	public abstract Icon[] getPinkEnemyImages();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rojo.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getRedEnemyImages();
+	public abstract Icon[] getRedEnemyImages();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo naranja.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getOrangeEnemyImages();
+	public abstract Icon[] getOrangeEnemyImages();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo azul.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getBlueEnemyImages();
+	public abstract Icon[] getBlueEnemyImages();
 	
 	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo que huye.
 	 * @return Un arreglo con imagenes.
 	 */
-	public ImageIcon[] getFleeingEnemyImages();
+	public abstract Icon[] getFleeingEnemyImages();
 	
 	/**
-	 * Devuelve la imagen correspondiente al punto.
+	 * Devuelve el icono correspondiente al punto.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getDotImage();
+	public abstract Icon getDotImage();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la perla de poder.
+	 * Devuelve el icono correspondiente a la perla de poder.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getPowerPelletImage();
+	public abstract Icon getPowerPelletImage();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la fruta 1.
+	 * Devuelve el icono correspondiente a la fruta 1.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getFruit1Image();
+	public abstract Icon getFruit1Image();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la fruta 2.
+	 * Devuelve el icono correspondiente a la fruta 2.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getFruit2Image();
+	public abstract Icon getFruit2Image();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la fruta 3.
+	 * Devuelve el icono correspondiente a la fruta 3.
 	 * @return Una imagen.
 	 */
-	public ImageIcon getFruit3Image();
+	public abstract Icon getFruit3Image();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la pocion 1.
+	 * Devuelve el icono correspondiente a la pocion 1.
 	 * @return
 	 */
-	public ImageIcon getPotion1();
+	public abstract Icon getPotion1();
 	
 	/**
-	 * Devuelve la imagen correspondiente a la pocion 1.
+	 * Devuelve el icono correspondiente a la pocion 1.
 	 * @return
 	 */
-	public ImageIcon getPotion2();
+	public abstract Icon getPotion2();
+	
+	protected ImageIcon scale(ImageIcon imageIcon) {
+		int width = currentScreenWidth * imageIcon.getIconWidth() / GUI.DEFAULT_SCREEN_WIDTH;
+		int height = currentScreenHeight * imageIcon.getIconWidth() / GUI.DEFAULT_SCREEN_HEIGHT;
+		return new ImageIcon(imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+	}
 }

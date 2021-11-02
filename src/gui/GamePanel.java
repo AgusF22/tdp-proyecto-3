@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	protected Game game;
-	protected ImageIcon labyrinthImage;
+	protected Icon labyrinthImage;
 	private JLabel lblNewLabel;
 	
 	
@@ -55,13 +55,9 @@ public class GamePanel extends JPanel {
 		lblNewLabel = new JLabel("");
 		//lblNewLabel.setBounds(0, 0, 870, 935);	//TODO bounds de label para 1080p
 		lblNewLabel.setBounds(0, 0, 580, 623);		//TODO bounds de label para 720p
-		ImageIcon imgIcon = labyrinthImage;
-		Image imgEscalada = imgIcon.getImage().getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH);
-		Icon iconoEscalado = new ImageIcon(imgEscalada);
-		lblNewLabel.setIcon(iconoEscalado);
 		
+		lblNewLabel.setIcon(labyrinthImage);
 		add(lblNewLabel);
-		
 	}
 	
 	private void agregarControles() {
