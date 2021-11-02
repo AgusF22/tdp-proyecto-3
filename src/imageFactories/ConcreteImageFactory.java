@@ -1,96 +1,121 @@
 package imageFactories;
 
+import java.awt.Image;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class ConcreteImageFactory implements ImageFactory{
+import gui.GUI;
+
+public class ConcreteImageFactory extends ImageFactory{
+	
+	public ConcreteImageFactory(int currentScreenWidth, int currentScreenHeight) {
+		super(currentScreenWidth, currentScreenHeight);
+	}
 
 	@Override
-	public ImageIcon getLabyrinth1Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth1.png"));
+	public Icon getLabyrinth1Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth1.png"));
+		return scale(imgIcon);
 	}
 	
 	@Override
-	public ImageIcon getLabyrinth2Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth2.png"));
+	public Icon getLabyrinth2Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth2.png"));
+		return scale(imgIcon);
 	}
 	
 	@Override
-	public ImageIcon getLabyrinth3Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth3.png"));
+	public Icon getLabyrinth3Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth3.png"));
+		return scale(imgIcon);
 	}
 	
 	@Override
-	public ImageIcon[] getPlayerImages() {
-		ImageIcon[] rta = new ImageIcon[4];
-		rta[0] = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveB.gif"));
-		rta[1] = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveR.gif"));
-		rta[2] = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveF.gif"));
-		rta[3] = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveL.gif"));
+	public Icon[] getPlayerImages() {
+		
+		ImageIcon imgIcon0 = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveB.gif"));
+		ImageIcon imgIcon1 = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveR.gif"));
+		ImageIcon imgIcon2 = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveF.gif"));
+		ImageIcon imgIcon3 = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveL.gif"));
+		
+		Icon[] rta = new Icon[4];
+		rta[0] = scale(imgIcon0);
+		rta[1] = scale(imgIcon1);
+		rta[2] = scale(imgIcon2);
+		rta[3] = scale(imgIcon3);
+		
 		return rta;
 	}
 
 	@Override
-	public ImageIcon[] getPinkEnemyImages() {
+	public Icon[] getPinkEnemyImages() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImageIcon[] getRedEnemyImages() {
+	public Icon[] getRedEnemyImages() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImageIcon[] getOrangeEnemyImages() {
+	public Icon[] getOrangeEnemyImages() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImageIcon[] getBlueEnemyImages() {
+	public Icon[] getBlueEnemyImages() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImageIcon[] getFleeingEnemyImages() {
+	public Icon[] getFleeingEnemyImages() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImageIcon getDotImage() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/dot.png"));
+	public Icon getDotImage() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/dot.png"));
+		return scale(imgIcon);
 	}
 
 	@Override
-	public ImageIcon getPowerPelletImage() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/powerpellet.png"));
+	public Icon getPowerPelletImage() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/powerpellet.png"));
+		return scale(imgIcon);
 	}
 
 	@Override
-	public ImageIcon getFruit1Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit1.png"));
+	public Icon getFruit1Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit1.png"));
+		return scale(imgIcon);
 	}
 	
 	@Override
-	public ImageIcon getFruit2Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
+	public Icon getFruit2Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
+		return scale(imgIcon);
 	}
 	
 	@Override
-	public ImageIcon getFruit3Image() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit2.png"));
+	public Icon getFruit3Image() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/fruit3.png"));
+		return scale(imgIcon);
 	}
 	
-	public ImageIcon getPotion1() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion1.png"));
+	public Icon getPotion1() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion1.png"));
+		return scale(imgIcon);
 	}
 	
-	public ImageIcon getPotion2() {
-		return new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion2.png"));
+	public Icon getPotion2() {
+		ImageIcon imgIcon = new ImageIcon(imageFactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion2.png"));
+		return scale(imgIcon);
 	}
-	
 
 }
