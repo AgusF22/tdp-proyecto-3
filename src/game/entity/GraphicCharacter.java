@@ -14,21 +14,29 @@ public class GraphicCharacter extends GraphicEntity{
 	
 	public GraphicCharacter(ImageIcon[] images) {
 		//TODO imp
+		movingUpImage 		= images[0];
+		movingRightImage 	= images[1];
+		movingDownImage 	= images[2];
+		movingLeftImage 	= images[3];
 	}
 
 	public void setMovingUp() {
-		//TODO imp
+		this.setIcon(movingUpImage);
+		this.repaint();
 	}
 
 	public void setMovingDown() {
-		//TODO imp
+		this.setIcon(movingDownImage);
+		this.repaint();
 	}
 
 	public void setMovingLeft() {
-		//TODO imp
+		this.setIcon(movingLeftImage);
+		this.repaint();
 	}
 
 	public void setMovingRight() {
-		//TODO imp
+		this.setIcon(movingRightImage);
+		this.repaint();
 	}
 }

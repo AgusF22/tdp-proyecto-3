@@ -3,36 +3,58 @@ package game.entity;
 import javax.swing.ImageIcon;
 
 public class GraphicEnemy extends GraphicCharacter{
-	/**
-	 * Serial Por defecto.
-	 */
+
 	private static final long serialVersionUID = 1L;
-	//TODO aca no se si hereda los atributos de GraphicCharacter
-	protected boolean fleeing;
+
 	protected ImageIcon fleeingUpImage;
 	protected ImageIcon fleeingDownImage;
 	protected ImageIcon fleeingLeftImage;
 	protected ImageIcon fleeingRightImage;
+
+	protected boolean fleeing;
 	
 	public GraphicEnemy(ImageIcon[] images) {
-		super(null);
-		// TODO imp
+		super(images);
+		fleeingUpImage 		= images[4];
+		fleeingRightImage 	= images[5];
+		fleeingDownImage 	= images[6];
+		fleeingLeftImage 	= images[7];
 	}
 	
 	public void setMovingUp() {
-		//TODO imp
+		if (fleeing) {
+			this.setIcon(fleeingUpImage);
+		} else {
+			this.setIcon(movingUpImage);
+		}
+		this.repaint();
 	}
 
 	public void setMovingDown() {
-		//TODO imp
+		if (fleeing) {
+			this.setIcon(fleeingDownImage);
+		} else {
+			this.setIcon(movingDownImage);
+		}
+		this.repaint();
 	}
 
 	public void setMovingLeft() {
-		//TODO imp
+		if (fleeing) {
+			this.setIcon(fleeingLeftImage);
+		} else {
+			this.setIcon(movingLeftImage);
+		}
+		this.repaint();
 	}
 
 	public void setMovingRight() {
-		//TODO imp
+		if (fleeing) {
+			this.setIcon(fleeingRightImage);
+		} else {
+			this.setIcon(movingRightImage);
+		}
+		this.repaint();
 	}
 	
 	public void setFleeing(boolean fleeing) {
