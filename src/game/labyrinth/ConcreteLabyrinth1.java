@@ -12,53 +12,59 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		ZoneType matrix[][] = new ZoneMatrixBuilder()
 		
-		.setSpawn(14, 15)									// Set zona SPAWN.
+		.setSpawn(16, 14)										// Set zona SPAWN.
 		
-		.setDungeon(11, 13, 17, 13)								// Set zonas DUNGEON.
-		.setDungeon(11, 14, 17, 14)
+		.setDungeon(10, 12, 18, 12)
+		.setDungeon(10, 13, 18, 13)								// Set zonas DUNGEON.
+		.setDungeon(10, 14, 18, 14)
+		.setDungeon(11, 15, 18, 15)
 		
-		.setDungeon(11, 15, 13, 15)
-		.setDungeon(15, 15, 17, 15)
+		.setDungeon(11, 16, 13, 16)
+		.setDungeon(13, 16, 18, 16)
 		
 		
-		.setPath(1, 1, 12, 1)									// Set zonas PATH.
-		.setPath(16, 1, 27, 1)
+		.setPath(1, 1, 1, 12)									// Set zonas PATH.
+		.setPath(1, 16, 1, 27)
 		
-		.setPath(2, 14, 8, 14)
+		.setPath(2, 12, 4, 12)									// Set zonas PATH.
+		.setPath(2, 16, 4, 16)
+		
+		.setPath(2, 1, 14, 1)
+		.setPath(2, 27, 14, 27)
+		
+		.setPath(14, 2, 14, 8)
 		.setPath(20, 14, 26, 14)
 		
-		.setPath(6, 5, 18, 5)
-		.setPath(6, 23, 18, 23)
+		.setPath(5, 6, 5, 22)
+		.setPath(23, 6, 23, 22)
 		
-		.setPath(6, 6, 6, 22)
-		.setPath(18, 6, 18, 22)
+		.setPath(6, 6, 13, 6)
+		.setPath(15, 6, 22, 6)
 		
-		.setPath(2, 2, 2, 14)
-		.setPath(28, 1, 28, 14)
+		.setPath(6, 22, 13, 22)
+		.setPath(15, 22, 22, 22)
 		
-		.setPath(1, 20, 6, 20)
-		.setPath(22, 20, 27, 20)
+		.setPath(20, 1, 20, 5)
+		.setPath(20, 23, 20, 27)
 		
-		.setPath(1, 21, 1, 29)
-		.setPath(27, 21, 27, 29)
+		.setPath(21, 1, 29, 1)
+		.setPath(21, 27, 29, 27)
 		
-		.setPath(12, 24, 12, 28)
-		.setPath(16, 24, 16, 28)
+		.setPath(24, 12, 28, 12)
+		.setPath(24, 16, 28, 16)
 		
-		.setPath(9, 11, 19, 11)
-		.setPath(9, 17, 19, 17)
+		.setPath(11, 9, 11, 19)
+		.setPath(17, 9, 17, 19)
 		
-		.setPath(9, 12, 9, 16)
-		.setPath(19, 12, 19, 16)
+		.setPath(12, 9, 16, 9)
+		.setPath(12, 19, 16, 19)
 		
-		.setPath(14, 6, 14, 9)
-		.setPath(14, 18, 23, 16) 
+		.setPath(6, 14, 10, 14)
+		.setPath(18, 14, 22, 14) 
 		
-		.setPath(2, 29, 26, 29)
+		.setPath(29, 2, 29, 26)
 		
 		.build();
-		
-		
 		
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -67,17 +73,15 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		}
 		
 		this.setEntity();
-		
-		
 	}
 	
 	private void setEntity() {
 		
-		zones[1][1].addEntity(Player.getInstance());				// TODO Set Player
+		zones[23][14].addEntity(Player.getInstance());				// TODO Set Player
 		
 		//TODO enemies
 											
-																// ***Set Prize***
+																	// ***Set Prize***
 		//TODO  Set Fruits
 		//TODO  Set PowerPellet
 		//TODO  Set Potions
