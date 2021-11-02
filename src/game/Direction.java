@@ -1,4 +1,4 @@
-package game.entity.player;
+package game;
 
 public enum Direction {
 	

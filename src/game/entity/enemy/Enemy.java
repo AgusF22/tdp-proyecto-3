@@ -1,7 +1,7 @@
 package game.entity.enemy;
 
 import game.entity.Entity;
-import game.entity.Visitor;
+import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
 public abstract class Enemy extends Entity{

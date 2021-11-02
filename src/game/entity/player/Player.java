@@ -2,10 +2,11 @@ package game.entity.player;
 
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
+import game.Direction;
 import game.entity.Entity;
 import game.entity.GraphicCharacter;
-import game.entity.PlayerVisitor;
-import game.entity.Visitor;
+import game.entity.visitor.PlayerVisitor;
+import game.entity.visitor.Visitor;
 
 public class Player extends Entity{
 	
