@@ -1,19 +1,19 @@
 package game.entity;
 
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 public class GraphicEnemy extends GraphicCharacter{
 
 	private static final long serialVersionUID = 1L;
 
-	protected ImageIcon fleeingUpImage;
-	protected ImageIcon fleeingDownImage;
-	protected ImageIcon fleeingLeftImage;
-	protected ImageIcon fleeingRightImage;
+	protected Icon fleeingUpImage;
+	protected Icon fleeingDownImage;
+	protected Icon fleeingLeftImage;
+	protected Icon fleeingRightImage;
 
 	protected boolean fleeing;
 	
-	public GraphicEnemy(ImageIcon[] images) {
+	public GraphicEnemy(Icon[] images) {
 		super(images);
 		fleeingUpImage 		= images[4];
 		fleeingRightImage 	= images[5];

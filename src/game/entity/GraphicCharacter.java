@@ -1,18 +1,18 @@
 package game.entity;
 
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 public class GraphicCharacter extends GraphicEntity{
 	/**
 	 * Serial por defecto.
 	 */
 	private static final long serialVersionUID = 1L;
-	protected ImageIcon movingUpImage;
-	protected ImageIcon movingDownImage;
-	protected ImageIcon movingLeftImage;
-	protected ImageIcon movingRightImage;
+	protected Icon movingUpImage;
+	protected Icon movingDownImage;
+	protected Icon movingLeftImage;
+	protected Icon movingRightImage;
 	
-	public GraphicCharacter(ImageIcon[] images) {
+	public GraphicCharacter(Icon[] images) {
 		//TODO imp
 		movingUpImage 		= images[0];
 		movingRightImage 	= images[1];
