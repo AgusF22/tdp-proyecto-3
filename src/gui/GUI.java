@@ -24,7 +24,6 @@ public class GUI extends JFrame{
 	protected final int CURRENT_SCREEN_HEIGHT;
 
 	private ImageFactory factory;
-	
 	private JPanel panelPrincipal;
 
 	public GUI() {
@@ -38,13 +37,12 @@ public class GUI extends JFrame{
 		
 		factory = new ConcreteImageFactory(CURRENT_SCREEN_WIDTH, CURRENT_SCREEN_HEIGHT);
 		createFrame();
-		//play();
+		play();
 		setVisible(true);
 	}
 	
 	private void createFrame() {
-		//setSize(1920, 1080);			//TODO size del frame 1080p
-		setSize(1280, 720);				//TODO size del frame 720p
+		setSize(CURRENT_SCREEN_WIDTH, CURRENT_SCREEN_HEIGHT);
 		//setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);

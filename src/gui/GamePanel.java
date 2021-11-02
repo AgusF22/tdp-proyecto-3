@@ -30,12 +30,9 @@ public class GamePanel extends JPanel {
 	protected Icon labyrinthImage;
 	private JLabel lblNewLabel;
 	
-	
-	
 	public GamePanel(ImageFactory factory) {
 		game = new Game(this, factory);
 		labyrinthImage = factory.getLabyrinth1Image();
-		
 		crearPanel();
 		crearFondo();
 		agregarControles();
@@ -44,17 +41,14 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void crearPanel() {
-		//setSize(870, 935);			//TODO size de panel para 1080p
-		setSize(580, 623);				//TODO size de panel para 720p
+		setSize(labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		setBackground(Color.BLACK);
 		setLayout(null);
 	}
 	
 	private void crearFondo() {
-		
 		lblNewLabel = new JLabel("");
-		//lblNewLabel.setBounds(0, 0, 870, 935);	//TODO bounds de label para 1080p
-		lblNewLabel.setBounds(0, 0, 580, 623);		//TODO bounds de label para 720p
+		lblNewLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		
 		lblNewLabel.setIcon(labyrinthImage);
 		add(lblNewLabel);
