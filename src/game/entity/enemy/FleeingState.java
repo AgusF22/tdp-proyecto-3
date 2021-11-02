@@ -10,7 +10,7 @@ public class FleeingState extends EnemyState {
 		//TODO imp
 	}
 	
-	public void beCollidedByPlayer() {
+	public void CollideWithPlayer() {
 		//TODO imp
 	}
 }
