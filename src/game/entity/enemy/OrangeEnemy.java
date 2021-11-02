@@ -1,17 +1,17 @@
 package game.entity.enemy;
 
+import game.entity.GraphicEnemy;
+import game.labyrinth.Zone;
+
 public class OrangeEnemy extends Enemy {
 
-	public OrangeEnemy(EnemyState initialState) {
-		//TODO imp
-		super (null);
+	public OrangeEnemy(Zone zone) {
+		super (zone);
+		this.graphic = new GraphicEnemy(zone.getLabyrinth().getImageFactory().getOrangeEnemyImages());
 	}
 	
+	@Override
 	public void move() {
-		//TODO imp
-	}
-	
-	public void chase() {
 		//TODO imp
 	}
 

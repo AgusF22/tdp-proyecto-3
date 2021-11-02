@@ -142,8 +142,7 @@ public class GamePanel extends JPanel {
 		//TODO imp
 	}
 	
-	public void addLabel(JLabel label, float x, float y) {
-		label.setLocation(Math.round(x), Math.round(y));
+	public void addLabel(JLabel label) {
 		this.add(label);
 	}
 	

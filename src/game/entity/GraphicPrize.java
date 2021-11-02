@@ -1,6 +1,6 @@
 package game.entity;
 
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 
 public class GraphicPrize extends GraphicEntity{
 	/**
@@ -8,7 +8,7 @@ public class GraphicPrize extends GraphicEntity{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GraphicPrize(ImageIcon Image) {
+	public GraphicPrize(Icon Image) {
 		//TODO imp
 	}
 }

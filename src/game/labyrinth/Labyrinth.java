@@ -57,7 +57,7 @@ public abstract class Labyrinth {
 				itEntities = zones[i][j].zoneEntities().iterator();						// Le pide a la zona todas sus entidades
 				while (itEntities.hasNext()) {											// Agrega las entidades de la zona en 
 					entities.add(itEntities.next()); 									// el set entities.
-				}
+				}										// FIXME usar for each -AF
 			}
 		}
 		return entities;
@@ -68,7 +68,7 @@ public abstract class Labyrinth {
 	 * @param y coordenada eje y.
 	 * @return la zona cuyas cordenadas a las pasadas por parametro.
 	 */
-	public Zone getZone(float x, float y) {
+	public Zone getZone(float x, float y) {							// FIXME no hace falta recorrer para encontrar la zona, usar matriz -AF
 		
 		Zone zone = null;
 		boolean exit = false;

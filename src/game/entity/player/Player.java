@@ -9,8 +9,8 @@ import game.entity.Visitor;
 
 public class Player extends Entity{
 	
-	private static final float MOVEMENT_LENGTH = 0.1f; //Distancia que puede recorrer el persona en un movimiento
-	private static final float DISTANCE_ZONE = 0.5f; //Distancia hasta la proxima zona
+	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
+	private static final float DISTANCE_ZONE = 0.5f;		// Distancia hasta la proxima zona
 	
 	protected Direction movementDirection;
 	protected Direction attemptingMovement;
@@ -51,17 +51,18 @@ public class Player extends Entity{
 	private void setGraphic() {
 		graphic = new GraphicCharacter(zone.getLabyrinth().getImageFactory().getPlayerImages());
 	}
-
 	
+	
+	// FIXME REVISAR!!! complejidad ciclomatica MUY alta, dividir en metodos auxiliares -AF 
 	/**
 	 * Mueve el personaje hacia una direccion
 	 */
 	public void move() {
 		if (attemptingMovement != movementDirection && attemptingMovement != null) {											// Chequeamos que se intenta mover a otro lado
-			if (attemptingMovement == oppositeDirection(movementDirection)) {												// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptingMovement;	//TODO ?Deberia tambien setear attempt en nulo		
+			if (attemptingMovement == oppositeDirection(movementDirection)) {													// Si se quiere mover en la posicion contraria se puede en cualquier caso
+				movementDirection = attemptingMovement;							//TODO ?Deberia tambien setear attempt en nulo		
 			}
-			else if (isWhole(x) && isWhole(y)){																			// Si se quiere mover a otra posicion necesita esta en el centro de una zona
+			else if (isWhole(x) && isWhole(y)){																					// Si se quiere mover a otra posicion necesita esta en el centro de una zona
 				switch (attemptingMovement) {														
 				case UP:
 					if (zone.getLabyrinth().getZone(x, y + DISTANCE_ZONE).getType() == ZoneType.PATH) {
