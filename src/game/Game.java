@@ -17,12 +17,12 @@ public class Game implements Subscriber{
 	protected EnemyBrain enemyBrain;
 	
 	public Game(GamePanel gui,ImageFactory factory) {
-		//TODO setear gui y subscripcion
 		this.gui = gui;
 		points = 0;
 		imageFactory = factory;
 		labyrinth = new ConcreteLabyrinth1(this);
 		enemyBrain = new EnemyBrain();
+		EndGamePublisher.getInstance().subscribe(this);
 	}
 	
 	/**
@@ -99,5 +99,6 @@ public class Game implements Subscriber{
 	 */
 	public void update() {
 		//TODO implementar
+		endGame(); // TODO el observer solo notifica cuando un enemigo toco a un jugador?
 	}
 }
