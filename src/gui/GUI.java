@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 import data.StatsData;
 import data.TopPlayers;
 import game.Game;
-import imageFactories.ImageFactory;
-import imageFactories.ConcreteImageFactory;
+import imagefactories.ImageFactory;
+import imagefactories.ConcreteImageFactory;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

@@ -14,7 +14,7 @@ import javax.swing.KeyStroke;
 
 import game.Game;
 import game.labyrinth.Labyrinth;
-import imageFactories.ImageFactory;
+import imagefactories.ImageFactory;
 
 import java.awt.BorderLayout;
 

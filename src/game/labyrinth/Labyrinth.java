@@ -5,7 +5,7 @@ import java.util.Set;
 
 import game.Game;
 import game.entity.Entity;
-import imageFactories.ImageFactory;
+import imagefactories.ImageFactory;
 
 public abstract class Labyrinth {
 	//TODO documentar

@@ -1,4 +1,4 @@
-package imageFactories;
+package imagefactories;
 
 
 import java.awt.Image;
