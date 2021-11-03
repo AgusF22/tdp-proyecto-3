@@ -120,7 +120,6 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 		//TODO  Set PowerPellet
 		//TODO  Set Potions
 
-		@SuppressWarnings("unused")
 		Entity dot = null;
 		for (int i = 0; i < zones.length; i++) {					//	  Set dots
 			for(int j = 0; j < zones[0].length; j++) {				// Si es camino y no hay entidades, add dot
