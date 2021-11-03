@@ -11,11 +11,11 @@ import game.entity.visitor.Visitor;
 public class Player extends Entity{
 	
 	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
-	private static final float DISTANCE_ZONE = 0.5f;		// Distancia hasta la proxima zona	FIXME revisar, no se usa nunca -AF
 	
 	protected Direction movementDirection;
 	protected Direction attemptingMovement;
 	protected static Player instance;
+	private Zone objectiveZone;
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -61,25 +61,39 @@ public class Player extends Entity{
 	/**
 	 * Mueve el personaje hacia una direccion
 	 */
-	public void move() {
+	public synchronized void move() {
+		
 		//Intento de cambio de direccion
-		if (attemptingMovement != movementDirection && attemptingMovement != null) {										// Chequeamos que se intenta mover a otro lado
-			if (attemptingMovement == movementDirection.getOpposite()) {													// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptingMovement;																		//TODO ?Deberia tambien setear attempt en nulo		
-			}
-			else if (isInZoneCenter() && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH){					// Si quiere cambiar a una direccion perpendicular a la actual debe haber camino donde se quiere mover y estar en el centro de una zona
+		if (attemptingMovement != movementDirection && attemptingMovement != null && isInZoneCenter()) {										// Chequeamos que se intenta mover a otro lado
+			if (zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH){					// Si quiere cambiar a una direccion perpendicular a la actual debe haber camino donde se quiere mover y estar en el centro de una zona
 				movementDirection = attemptingMovement;
 				updateMovementDirection();																					// Cambiamos la direccion de la grafica
 				attemptingMovement = null;			
 			}
-		}	
-		
-		//Moverse en la direccion asignada
-		if (zone.getAdjacent(movementDirection).getType() == ZoneType.PATH) {												// Solo se puede mover hacia un camino
-			updateCoords();																									// Actualizamos la grafica al moverse
-			if (isInZoneCenter()) {																							// Si esta en el centro al terminar de moverse
-				setNewZone(zone.getAdjacent(movementDirection));
-				//TODO medir colision en nueva zona
+		} else {
+			if (attemptingMovement == movementDirection.getOpposite()) {													// Si se quiere mover en la posicion contraria se puede en cualquier caso
+				movementDirection = attemptingMovement;																		//TODO ?Deberia tambien setear attempt en nulo		
+				updateMovementDirection();	
+				attemptingMovement = null;
+				if (objectiveZone == null) {
+					objectiveZone = zone;					
+				} else {
+					objectiveZone = null;
+				}
+			}
+		}
+		if (zone == objectiveZone) {
+				 updateCoords();
+			if (isInZoneCenter()) {
+				objectiveZone = null;
+			}
+		} else {
+			//Moverse en la direccion asignada
+			if (zone.getAdjacent(movementDirection).getType() == ZoneType.PATH) {												// Solo se puede mover hacia un camino
+				updateCoords();																									// Actualizamos la grafica al moverse
+				if (isInZoneCenter()) {																							// Si esta en el centro al terminar de moverse
+					setNewZone(zone.getAdjacent(movementDirection));
+				}
 			}
 		}
 		
@@ -111,18 +125,20 @@ public class Player extends Entity{
 	private void updateCoords() {
 		switch (movementDirection){
 			case UP:
-				y += MOVEMENT_LENGTH;
+				y -= MOVEMENT_LENGTH;
 				break;
 			case RIGHT:
 				x += MOVEMENT_LENGTH;
 				break;
 			case DOWN:
-				y -= MOVEMENT_LENGTH;
+				y += MOVEMENT_LENGTH;
 				break;
 			case LEFT:
 				x -= MOVEMENT_LENGTH;
 				break;
 		}
+		x = Math.round(x * 10f) / 10f;
+		y = Math.round(y * 10f) / 10f;
 		graphic.update(x,y);
 	}
 	
@@ -136,6 +152,8 @@ public class Player extends Entity{
 			zone.removeEntity(this);
 			zone = newZone;
 			zone.addEntity(this);
+			//TODO medir colision en nueva zona
+			collide();
 		}
 	}
 	
@@ -144,7 +162,7 @@ public class Player extends Entity{
 	 * @return true si esta en el centro, false sino
 	 */
 	private boolean isInZoneCenter () {
-		return (x == Math.round(x) && y == Math.round(y));							//Si los numeros son enteros esta en el centro de una zona
+		return (x == (int) x && y == (int) y);							//Si los numeros son enteros esta en el centro de una zona
 	}
 	
 	
