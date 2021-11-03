@@ -23,10 +23,10 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 		
 		
 		.setPath(1, 1, 12, 1)									// Set PATH
-		.setPath(16, 1, 27, 2)
+		.setPath(16, 1, 27, 1)
 		
 		.setPath(1, 2, 1, 7)
-		.setPath(27, 2, 27, 2)
+		.setPath(27, 2, 27, 7)
 		
 		.setPath(1, 8, 5, 8)
 		.setPath(23, 8, 27, 8)
