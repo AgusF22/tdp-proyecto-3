@@ -23,11 +23,13 @@ public class ScorePlayer implements Serializable, Comparable<ScorePlayer> {
 		return score;
 	}
 	
-	// FIXME sobreescribir tambien el metodo equals para cumplir el contrato de la interfaz Comparable
-	
 	@Override
 	public int compareTo(ScorePlayer arg0) {
 		return this.score.compareTo(arg0.getScore());
+	}
+	
+	public boolean equals(ScorePlayer arg0) {
+		return this.score == arg0.getScore();
 	}
 	
 	public String toString() {

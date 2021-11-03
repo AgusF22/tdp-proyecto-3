@@ -1,6 +1,7 @@
 package data;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,13 +17,25 @@ public class StatsData implements Serializable {
 	protected TopPlayers topPlayers;
 	
 	
-	public TopPlayers load()  throws IOException, ClassNotFoundException {
+	public TopPlayers load() {
 		topPlayers = new TopPlayers();
-		FileInputStream file = new FileInputStream(fileName);		// FIXME si se lanza la excepcion este recurso no se cierra, usar try-with-resources, o 
-		ObjectInputStream in = new ObjectInputStream(file);			// usar try catch, cerrar el recurso y relanzar la excepcion -AF
-		topPlayers = (TopPlayers)in.readObject();
-		in.close();
-		file.close();
+		FileInputStream file = null;
+		ObjectInputStream in = null;
+		try {
+			file = new FileInputStream(fileName);		// FIXME si se lanza la excepcion este recurso no se cierra, usar try-with-resources, o 
+			in = new ObjectInputStream(file);			// usar try catch, cerrar el recurso y relanzar la excepcion -AF
+			topPlayers = (TopPlayers)in.readObject();
+			in.close();
+			file.close();
+		} catch (IOException | ClassNotFoundException e) {
+			try {
+				in.close();
+				file.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}			
+			e.printStackTrace();
+		}
 		
 		return topPlayers;
 	}
