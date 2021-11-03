@@ -4,11 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import data.StatsData;
+import data.TopPlayers;
 import game.Game;
 import imageFactories.ConcreteImageFactory;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import imageFactories.ImageFactory;
 
@@ -65,7 +67,6 @@ public class GUI extends JFrame{
 	}
 	
 	public StatsData getStatsData() {
-		//TODO imp
-		return null;
+		return new StatsData();
 	}
 }
