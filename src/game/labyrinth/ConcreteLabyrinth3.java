@@ -10,99 +10,95 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	public ConcreteLabyrinth3(Game game) {
 		super(game);
 		
-		ZoneType matrix[][] = new ZoneMatrixBuilder()
-				
-		.setSpawn(16, 14)										// Set zona SPAWN.
+		ZoneType[][] matrix = new ZoneMatrixBuilder()
+
+		.setSpawn(14, 16)										// Set zona SPAWN.
+
+		.setDungeon(10, 12, 18, 12)								// Set zonas DUNGEON.
+		.setDungeon(10, 13, 18, 13)
+		.setDungeon(10, 14, 18, 14)
+		.setDungeon(10, 15, 18, 15)
 		
-		.setDungeon(12, 10, 12, 18)								// Set zonas DUNGEON.
-		.setDungeon(13, 10, 13, 18)
-		.setDungeon(14, 10, 14, 18)
-		.setDungeon(15, 10, 15, 18)
+		.setDungeon(10, 16, 13, 16)
+		.setDungeon(15, 16, 18, 16)
 		
-		.setDungeon(16, 10, 16, 13)
-		.setDungeon(16, 15, 16, 18)
+		.setPath(1, 1, 27, 1)									// Set PATH
 		
+		.setPath(1, 2, 1, 8)
+		.setPath(27, 2, 27, 8)
 		
-		.setPath(1, 1, 1, 27)									// Set PATH
+		.setPath(6, 2, 6, 26)
+		.setPath(22, 2, 22, 26)
+
+		.setPath(2, 5, 5, 5)
+		.setPath(23, 5, 26, 5)
 		
-		.setPath(2, 1, 8, 1)
-		.setPath(2, 27, 8, 27)
+		.setPath(2, 8, 5, 8)
+		.setPath(23, 8, 26, 8)
 		
-		.setPath(2, 6, 26, 6)
-		.setPath(2, 22, 26, 22)
+		.setPath(14, 2, 14, 5)
 		
-		.setPath(5, 2, 5, 5)
-		.setPath(5, 23, 5, 26)
+		.setPath(7, 5, 21, 5)
 		
-		.setPath(8, 2, 8, 5)
-		.setPath(8, 23, 8, 26)
+		.setPath(9, 6, 9, 8)
+		.setPath(19, 6, 19, 8)
 		
-		.setPath(2, 14, 5, 14)
+		.setPath(10, 8, 18, 8)
 		
-		.setPath(5, 7, 5, 21)
+		.setPath(1, 14, 5, 14)
+		.setPath(23, 14, 27, 14)
 		
-		.setPath(6, 9, 8, 9)
-		.setPath(6, 19, 8, 19)
+		.setPath(7, 14, 8, 14)
+		.setPath(20, 14, 21, 14)
 		
-		.setPath(8, 10, 8, 18)
+		.setPath(9, 11, 19, 11)
+		.setPath(10, 17, 18, 17)
 		
-		.setPath(14, 1, 14, 5)
-		.setPath(14, 23, 14, 27)
+		.setPath(9, 12, 9, 17)
+		.setPath(19, 12, 19, 17)
 		
-		.setPath(14, 7, 14, 8)
-		.setPath(14, 20, 14, 21)
+		.setPath(12, 18, 12, 22)
+		.setPath(16, 18, 16, 22)
 		
-		.setPath(11, 9, 11, 19)
-		.setPath(17, 10, 17, 18)
+		.setPath(1, 15, 1, 16)
+		.setPath(27, 15, 27, 16)
 		
-		.setPath(12, 9, 17, 9)
-		.setPath(12, 19, 17, 19)
+		.setPath(2, 16, 3, 16)
+		.setPath(25, 16, 26, 16)
 		
-		.setPath(18, 12, 22, 12)
-		.setPath(18, 16, 22, 16)
+		.setPath(3, 17, 3, 19)
+		.setPath(25, 17, 25, 19)
 		
-		.setPath(15, 1, 16, 1)
-		.setPath(15, 27, 16, 27)
+		.setPath(2, 20, 5, 20)
+		.setPath(23, 20, 26, 20)
 		
-		.setPath(16, 2, 16, 3)
-		.setPath(16, 25, 16, 26)
+		.setPath(1, 21, 2, 21)
+		.setPath(26, 21, 27, 21)
 		
-		.setPath(17, 3, 19, 3)
-		.setPath(17, 25, 19, 25)
+		.setPath(1, 22, 1, 29)
+		.setPath(27, 22, 27, 29)
 		
-		.setPath(20, 2, 20, 5)
-		.setPath(20, 23, 20, 26)
+		.setPath(2, 23, 5, 23)
+		.setPath(23, 23, 26, 23)
 		
-		.setPath(21, 1, 21, 2)
-		.setPath(21, 26, 21, 27)
+		.setPath(2, 26, 5, 26)
+		.setPath(23, 26, 26, 26)
 		
-		.setPath(22, 1, 29, 1)
-		.setPath(22, 27, 29, 27)
+		.setPath(7, 23, 21, 23)
+
+		.setPath(2, 29, 8, 29)
+		.setPath(20, 29, 26, 29)
 		
-		.setPath(23, 2, 23, 5)
-		.setPath(23, 23, 23, 26)
+		.setPath(9, 24, 9, 28)
+		.setPath(19, 24, 19, 28)
 		
-		.setPath(26, 2, 26, 5)
-		.setPath(26, 23, 26, 26)
-		
-		.setPath(1, 1, 1, 1)
-		.setPath(1, 1, 1, 1)
-		
-		.setPath(23, 7, 23, 21)
-		
-		.setPath(29, 2, 29, 8)
-		.setPath(29, 20, 29, 26)
-		
-		.setPath(24, 9, 28, 9)
-		.setPath(24, 19, 28, 19)
-		
-		.setPath(26, 10, 26, 18)
+		.setPath(10, 26, 18, 26)
 		
 		.build();
 		
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
-				zones[i][j] = new Zone(this, i, j, matrix[i][j]);
+		for (int x = 0; x < matrix.length; x++) {
+			for (int y = 0; y < matrix[0].length; y++) {
+				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
 			}
 		}
 		
@@ -111,7 +107,7 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	
 	private void setEntity() {
 
-		zones[23][14].addEntity(Player.getInstance());				// TODO Set Player
+		zones[14][23].addEntity(Player.getInstance());				// TODO Set Player
 
 		//TODO enemies
 
@@ -120,17 +116,15 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 		//TODO  Set PowerPellet
 		//TODO  Set Potions
 
-		Entity dot = null;
-		for (int i = 0; i < zones.length; i++) {					//	  Set dots
-			for(int j = 0; j < zones[0].length; j++) {				// Si es camino y no hay entidades, add dot
-				if ((zones[i][j].getType() == ZoneType.PATH) && (zones[i][j].entities.isEmpty())) {
-					dot = new Dot(zones[i][j]);
+		for (int x = 0; x < zones.length; x++) {					//	  Set dots
+			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
+				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
+					new Dot(zones[x][y]);
 					doCount++;
 				}
 			}
-		}														
+		}
 	}
-	
 	
 	public Labyrinth nextLabyrinth() {
 		return null;
