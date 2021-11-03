@@ -99,4 +99,8 @@ public class Game implements Subscriber{
 		//TODO implementar
 		endGame(); // TODO el observer solo notifica cuando un enemigo toco a un jugador?
 	}
+	
+	public GamePanel getGUI() {
+		return gui;
+	}
 }

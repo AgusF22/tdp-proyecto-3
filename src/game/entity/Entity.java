@@ -53,4 +53,11 @@ public abstract class Entity {
 		zone = zone.getLabyrinth().getZone(x, y);
 	}
 	
+	/**
+	 * Retorna la grafica asociada a la entidad
+	 * @return Entidad grafica asociada
+	 */
+	public GraphicEntity getGraphic() {
+		return graphic;
+	}
 }
