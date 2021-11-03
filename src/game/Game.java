@@ -5,7 +5,7 @@ import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
 import gui.GamePanel;
-import imagefactories.ImageFactory;
+import imageFactories.ImageFactory;
 
 public class Game implements Subscriber{
 	protected int points;
