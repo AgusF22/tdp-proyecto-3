@@ -89,12 +89,10 @@ public abstract class Enemy extends Entity{
 	
 	/**
 	 * Calcula el mejor camino para alejarse de una zona destino.
-	 * @param zone La zona actual del enemigo.
-	 * @param direction La direccion de movimiento actual del enemigo.
 	 * @param destZone La zona destino.
 	 * @return La mejor direccion para alejarse de una zona destino.
 	 */
-	protected Direction bestFleePath(Zone zone, Direction direction, Zone destZone) {
+	protected Direction bestFleePath(Zone destZone) {
 		Direction bestDirection = movementDirection;;
 		double bestValue = Double.MAX_VALUE;
 		double value;
