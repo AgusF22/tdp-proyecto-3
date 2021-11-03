@@ -31,7 +31,7 @@ public class GamePanel extends JPanel {
 	protected Icon labyrinthImage;
 	private JLabel lblNewLabel;
 	
-	public GamePanel(ImageFactory factory) {
+	public GamePanel(ImageFactory factory) { 
 		game = new Game(this, factory);
 		labyrinthImage = factory.getLabyrinth1Image();
 		crearPanel();
@@ -39,6 +39,8 @@ public class GamePanel extends JPanel {
 		agregarControles();
 		
 		repaint();
+		
+		System.out.println("Creado panel de juego");
 	}
 	
 	private void crearPanel() {
@@ -50,7 +52,6 @@ public class GamePanel extends JPanel {
 	private void crearFondo() {
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
-		
 		lblNewLabel.setIcon(labyrinthImage);
 		add(lblNewLabel);
 	}
@@ -102,7 +103,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Mueve al personaje principal a arriba.
 	 */
-	public void moveUp() {
+	public void moveUp() { //TODO sacar
 		System.out.println("W o UP");
 		game.moveUp();
 	}
@@ -110,7 +111,7 @@ public class GamePanel extends JPanel {
 	/**
 	 * Mueve al personaje principal a la derecha.
 	 */
-	public void moveRight() {
+	public void moveRight() { //TODO sacar
 		System.out.println("D o RIGHT");
 		game.moveRight();
 	}
@@ -119,7 +120,7 @@ public class GamePanel extends JPanel {
 	 * Mueve al personaje principal a abajo.
 	 */
 	public void moveDown() {
-		System.out.println("S o DOWN");
+		System.out.println("S o DOWN"); //TODO sacar
 		game.moveDown();
 	}
 	
@@ -127,7 +128,7 @@ public class GamePanel extends JPanel {
 	 * Mueve al personaje principal a la izquierda.
 	 */
 	public void moveLeft() {
-		System.out.println("A o LEFT");
+		System.out.println("A o LEFT"); //TODO sacar
 		game.moveLeft();
 	}
 	
@@ -145,6 +146,8 @@ public class GamePanel extends JPanel {
 	
 	public void addLabel(JLabel label) {
 		this.add(label);
+		setComponentZOrder(label, 0);
+		System.out.println("Agregada label"); //TODO sacar
 	}
 	
 	public void removeLabel(JLabel label) {
