@@ -28,7 +28,7 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 		return this.score.compareTo(arg0.getScore());
 	}
 	
-	public boolean equals(ScorePlayer arg0) {
+	public boolean equals(PlayerScore arg0) {
 		return this.score == arg0.getScore();
 	}
 	
