@@ -76,17 +76,19 @@ public abstract class Enemy extends Entity{
 		Cursor cursor = new Cursor(zone, movementDirection);
 		Set<Direction> directions = EnumSet.complementOf(
 				EnumSet.of(movementDirection.getOpposite()));
-		
+
 		for (Direction d : directions) {
-			value = pathValue(cursor.sendCloneTo(d), destZone, 10);
-			if (value > bestValue) {
-				bestValue = value;
-				bestDirection = d;
+			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
+				value = pathValue(cursor.sendCloneTo(d), destZone, 10);
+				if (value > bestValue) {
+					bestValue = value;
+					bestDirection = d;
+				}
 			}
 		}
 		return bestDirection;
 	}
-	
+
 	/**
 	 * Calcula el mejor camino para alejarse de una zona destino.
 	 * @param destZone La zona destino.
@@ -99,17 +101,19 @@ public abstract class Enemy extends Entity{
 		Cursor cursor = new Cursor(zone, movementDirection);
 		Set<Direction> directions = EnumSet.complementOf(
 				EnumSet.of(movementDirection.getOpposite()));
-		
+
 		for (Direction d : directions) {
-			value = pathValue(cursor.sendCloneTo(d), destZone, 10);
-			if (value < bestValue) {
-				bestValue = value;
-				bestDirection = d;
+			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
+				value = pathValue(cursor.sendCloneTo(d), destZone, 10);
+				if (value < bestValue) {
+					bestValue = value;
+					bestDirection = d;
+				}
 			}
 		}
 		return bestDirection;
 	}
-	
+
 	/**
 	 * Calcula el valor de un camino.
 	 * @param cursor Un cursor.
@@ -173,11 +177,11 @@ public abstract class Enemy extends Entity{
 		 * Mueve este cursor para que apunte a la siguiente zona, de acuerdo a la direccion actual.
 		 */
 		private void nextZone() {
-			if(zone.getAdjacent(direction).getType() == ZoneType.PATH) {
+			if(zone.getAdjacent(direction).getType() != ZoneType.WALL) {
 				zone = zone.getAdjacent(direction);
 			} else {
 				if(zone.getAdjacent(direction.getCWDirection())
-						.getType() == ZoneType.PATH) {
+						.getType() != ZoneType.WALL) {
 					zone = zone.getAdjacent(direction.getCWDirection());
 					direction = direction.getCWDirection();
 				} else {
@@ -206,7 +210,7 @@ public abstract class Enemy extends Entity{
 			int connections = 0;
 			EnumSet<Direction> directions = EnumSet.complementOf(EnumSet.of(direction));
 			for(Direction d : directions) {
-				if(zone.getAdjacent(d).getType() == ZoneType.PATH) {
+				if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
 					connections++;
 				}
 			}
