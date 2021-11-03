@@ -1,7 +1,6 @@
 package game.labyrinth;
 
 import game.Game;
-import game.entity.Entity;
 import game.entity.player.Player;
 import game.entity.prize.Dot;
 
@@ -108,7 +107,8 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	private void setEntity() {
 
 		zones[14][23].addEntity(Player.getInstance());				// TODO Set Player
-
+		Player.getInstance().setZone(zones[14][23]);
+        Player.getInstance().getGraphic().addToGUI(game.getGUI());
 		//TODO enemies
 
 		// ***Set Prize***
