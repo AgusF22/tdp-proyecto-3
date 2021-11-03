@@ -121,20 +121,24 @@ public class GamePanel extends JPanel {
 		};
 		
 		// FIXME los string arriba, abajo, izquierda, y derecha se repiten 3 veces, cambiar a constantes -AF
+		String arriba = "arriba";
+		String abajo = "abajo";
+		String derecha = "deracha";
+		String izquierda = "izquierda";
 		
-		getInputMap().put(KeyStroke.getKeyStroke("UP"), "arriba");
-		getInputMap().put(KeyStroke.getKeyStroke("W"), "arriba");
-		getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "abajo");
-		getInputMap().put(KeyStroke.getKeyStroke("S"), "abajo");
-		getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "derecha");
-		getInputMap().put(KeyStroke.getKeyStroke("D"), "derecha");
-		getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "izquierda");
-		getInputMap().put(KeyStroke.getKeyStroke("A"), "izquierda");
+		getInputMap().put(KeyStroke.getKeyStroke("UP"), arriba);
+		getInputMap().put(KeyStroke.getKeyStroke("W"), arriba);
+		getInputMap().put(KeyStroke.getKeyStroke("DOWN"), abajo);
+		getInputMap().put(KeyStroke.getKeyStroke("S"), abajo);
+		getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), derecha);
+		getInputMap().put(KeyStroke.getKeyStroke("D"), derecha);
+		getInputMap().put(KeyStroke.getKeyStroke("LEFT"), izquierda);
+		getInputMap().put(KeyStroke.getKeyStroke("A"), izquierda);
 		
-		getActionMap().put("arriba", moveUp);
-		getActionMap().put("abajo", moveDown);
-		getActionMap().put("derecha", moveRight);
-		getActionMap().put("izquierda", moveLeft);
+		getActionMap().put(arriba, moveUp);
+		getActionMap().put(abajo, moveDown);
+		getActionMap().put(derecha, moveRight);
+		getActionMap().put(izquierda, moveLeft);
 	}
 	
 	/**
@@ -197,14 +201,14 @@ public class GamePanel extends JPanel {
 			//tirar exception
 		}
 		
-		float zoneWidth = getWidth() / Labyrinth.WIDTH;			// FIXME castear uno de los operandos a float -AF
-		float zoneHeight = getHeight() / Labyrinth.HEIGHT;		// FIXME castear uno de los operandos a float -AF
+		float zoneWidth = (float) getWidth() / Labyrinth.WIDTH;			// FIXME castear uno de los operandos a float -AF
+		float zoneHeight = (float) getHeight() / Labyrinth.HEIGHT;		// FIXME castear uno de los operandos a float -AF
 		
 		float posX = x * zoneWidth + zoneWidth / 2;
 		float posY = y * zoneHeight + zoneHeight / 2;
 		
-		posX -= label.getWidth() / 2;							// FIXME castear uno de los operandos a float -AF
-		posY -= label.getHeight();
+		posX -= (float) label.getWidth() / 2;							// FIXME castear uno de los operandos a float -AF
+		posY -= (float) label.getHeight();
 		
 		label.setLocation(Math.round(posX), Math.round(posY));
 	}
