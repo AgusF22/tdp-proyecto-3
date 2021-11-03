@@ -2,7 +2,7 @@ package data;
 
 import java.io.Serializable;
 
-public class ScorePlayer implements Serializable, Comparable<ScorePlayer> {
+public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 	/**
 	 * 
 	 */
@@ -10,7 +10,7 @@ public class ScorePlayer implements Serializable, Comparable<ScorePlayer> {
 	private String name;
 	private Integer score;
 	
-	public ScorePlayer(String name, Integer score) {
+	public PlayerScore(String name, Integer score) {
 		this.name = name;
 		this.score = score;
 	}
@@ -24,11 +24,11 @@ public class ScorePlayer implements Serializable, Comparable<ScorePlayer> {
 	}
 	
 	@Override
-	public int compareTo(ScorePlayer arg0) {
+	public int compareTo(PlayerScore arg0) {
 		return this.score.compareTo(arg0.getScore());
 	}
 	
-	public boolean equals(ScorePlayer arg0) {
+	public boolean equals(PlayerScore arg0) {
 		return this.score == arg0.getScore();
 	}
 	
