@@ -2,11 +2,13 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
@@ -30,6 +32,7 @@ public class GamePanel extends JPanel {
 	protected Game game;
 	protected Icon labyrinthImage;
 	private JLabel lblNewLabel;
+	private JLayeredPane panelCapas;
 	
 	public GamePanel(ImageFactory factory) { 
 		game = new Game(this, factory);
@@ -39,21 +42,52 @@ public class GamePanel extends JPanel {
 		agregarControles();
 		
 		repaint();
-		
 		System.out.println("Creado panel de juego");
+		
+		
+//		JLabel a = new JLabel("AAAA");
+//		a.setBackground(Color.yellow);
+//		a.setOpaque(true);
+//		a.setBounds(0, 0, 50, 50);
+//		
+//		JLabel b = new JLabel("BBBB");
+//		b.setBackground(Color.red);
+//		b.setOpaque(true);
+//		b.setBounds(0, 50, 50, 50);
+//		
+//		JLabel c = new JLabel("CCCC");
+//		c.setBackground(Color.green);
+//		c.setOpaque(true);
+//		c.setBounds(25,25, 50, 50);
+//		
+//			
+//		
+//		panelCapas.add(a, JLayeredPane.PALETTE_LAYER);
+//		
+//		panelCapas.add(b, JLayeredPane.PALETTE_LAYER);
+//		
+//		panelCapas.add(c, JLayeredPane.PALETTE_LAYER);
 	}
 	
 	private void crearPanel() {
 		setSize(labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		setBackground(Color.BLACK);
 		setLayout(null);
+		
+		//TODO probando capas con JLayerPane
+		panelCapas = new JLayeredPane();
+		panelCapas.setBounds(0, 0, this.getWidth(), this.getHeight());
+		add(panelCapas);
+		
 	}
 	
 	private void crearFondo() {
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
 		lblNewLabel.setIcon(labyrinthImage);
-		add(lblNewLabel);
+		//add(lblNewLabel); TODO PROBANDO CAPAS
+		
+		panelCapas.add(lblNewLabel, JLayeredPane.DEFAULT_LAYER);
 	}
 	
 	private void agregarControles() {
@@ -103,16 +137,16 @@ public class GamePanel extends JPanel {
 	/**
 	 * Mueve al personaje principal a arriba.
 	 */
-	public void moveUp() { //TODO sacar
+	public void moveUp() {
 		System.out.println("W o UP");
-		game.moveUp();
+		game.moveUp(); //TODO sacar
 	}
 	
 	/**
 	 * Mueve al personaje principal a la derecha.
 	 */
-	public void moveRight() { //TODO sacar
-		System.out.println("D o RIGHT");
+	public void moveRight() {
+		System.out.println("D o RIGHT"); //TODO sacar
 		game.moveRight();
 	}
 	
@@ -145,16 +179,17 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void addLabel(JLabel label) {
-		this.add(label);
-		setComponentZOrder(label, 0);
+		//this.add(label);  TODO PROBANDO CAPAS
+		panelCapas.add(label, JLayeredPane.PALETTE_LAYER);
 		System.out.println("Agregada label"); //TODO sacar
 	}
 	
 	public void removeLabel(JLabel label) {
-		this.remove(label);
+		//this.remove(label);  TODO PROBANDO CAPAS
+		panelCapas.remove(label);
 	}
 	
-	public void updateLabel(JLabel label, float x, float y) {
+	public void updateLabel(JLabel label, float x, float y) {		
 		if (label.getParent() != this) {
 			//tirar exception
 		}
