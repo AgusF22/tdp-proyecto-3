@@ -55,8 +55,9 @@ public class Player extends Entity{
 	}
 	
 	
-	// FIXME REVISAR!!! complejidad ciclomatica MUY alta, dividir en metodos auxiliares -AF
-	// TODO separe en submetodos , solo se quedo evaluar si se peude cambiar la direccion y moverse a de posicion -NF
+	// separe en submetodos , solo se quedo evaluar si se peude cambiar la direccion y moverse a de posicion -NF
+	// FIXME sigue siendo alta (8) -AF
+	
 	/**
 	 * Mueve el personaje hacia una direccion
 	 */
