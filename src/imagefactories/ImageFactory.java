@@ -117,6 +117,6 @@ public abstract class ImageFactory {
 	protected ImageIcon scale(ImageIcon imageIcon) {
 		int width = currentScreenWidth * imageIcon.getIconWidth() / GUI.DEFAULT_SCREEN_WIDTH;
 		int height = currentScreenHeight * imageIcon.getIconHeight() / GUI.DEFAULT_SCREEN_HEIGHT;
-		return new ImageIcon(imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
+		return new ImageIcon(imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
 }

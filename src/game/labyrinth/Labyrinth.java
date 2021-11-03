@@ -19,7 +19,7 @@ public abstract class Labyrinth {
 	
 	protected Labyrinth(Game game) {
 		this.game = game;
-		zones = new Zone[HEIGHT][WIDTH];
+		zones = new Zone[WIDTH][HEIGHT];		//TODO revisar
 	}
 	
 	/**
