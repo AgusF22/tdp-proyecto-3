@@ -114,7 +114,8 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 	private void setEntity() {
 
 		zones[14][23].addEntity(Player.getInstance());				// TODO Set Player
-
+		Player.getInstance().setZone(zones[14][23]);
+        Player.getInstance().getGraphic().addToGUI(game.getGUI());
 		//TODO enemies
 
 		// ***Set Prize***

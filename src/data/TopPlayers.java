@@ -10,7 +10,7 @@ public class TopPlayers implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected List<ScorePlayer> ranking;				// FIXME esto tiene que ser privado o transient -AF
+	private List<ScorePlayer> ranking;
 	
 	public TopPlayers() {
 		ranking = new ArrayList<>();
