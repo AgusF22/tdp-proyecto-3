@@ -43,6 +43,6 @@ public class EndGamePublisher {
 	 * TODO
 	 */
 	public void notifySubscribers() {
-		subscribers.forEach((s) -> s.update());
+		subscribers.forEach(s -> s.update());
 	}
 }

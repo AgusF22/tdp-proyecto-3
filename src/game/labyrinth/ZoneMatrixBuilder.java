@@ -2,7 +2,7 @@ package game.labyrinth;
 
 public class ZoneMatrixBuilder {
 	
-	private ZoneType matrix[][];
+	private ZoneType[][] matrix;
 	
 	/**
 	 * Crea un nuevo builder de matriz de tipos de zona.
@@ -99,7 +99,7 @@ public class ZoneMatrixBuilder {
 				toReturn[x][y] = matrix[x][y];
 			}
 		}
-		return matrix;
+		return matrix;		// TODO cambiar copia
 	}
 	
 }

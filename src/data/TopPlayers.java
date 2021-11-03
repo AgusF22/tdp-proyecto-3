@@ -10,10 +10,10 @@ public class TopPlayers implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected List<ScorePlayer> ranking;
+	protected List<ScorePlayer> ranking;				// FIXME esto tiene que ser privado o transient -AF
 	
 	public TopPlayers() {
-		ranking = new ArrayList<ScorePlayer>();
+		ranking = new ArrayList<>();
 	}
 	
 	public void addPlayer(ScorePlayer p) {
@@ -22,7 +22,7 @@ public class TopPlayers implements Serializable {
 	
 	public List<ScorePlayer> listPlayers() {
 		Collections.sort(this.ranking, Collections.reverseOrder());
-		List<ScorePlayer> top = new ArrayList<ScorePlayer>();
+		List<ScorePlayer> top = new ArrayList<>();
 		int i = 0;
 		
 		for (ScorePlayer p: this.ranking) {

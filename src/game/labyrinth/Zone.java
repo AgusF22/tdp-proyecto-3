@@ -52,23 +52,23 @@ public class Zone {
 	}
 	
 	public Zone getAdjacent(Direction direction) {
-		int x = this.x;
-		int y = this.y;
+		int adjacentX = this.x;
+		int adjacentY = this.y;
 		switch(direction) {
 		case DOWN:
-			y++;
+			adjacentY++;
 			break;
 		case LEFT:
-			x--;
+			adjacentX--;
 			break;
 		case RIGHT:
-			x++;
+			adjacentX++;
 			break;
 		case UP:
-			y--;
+			adjacentY--;
 			break;
 		}
-		return labyrinth.getZone(x, y);
+		return labyrinth.getZone(adjacentX, adjacentY);
 	}
 	
 }

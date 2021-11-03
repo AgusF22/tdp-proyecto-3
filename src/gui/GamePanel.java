@@ -14,7 +14,8 @@ import javax.swing.KeyStroke;
 
 import game.Game;
 import game.labyrinth.Labyrinth;
-import imageFactories.ImageFactory;
+import imagefactories.ImageFactory;
+
 import java.awt.BorderLayout;
 
 import javax.swing.AbstractAction;
@@ -29,8 +30,8 @@ public class GamePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	protected Game game;
-	protected Icon labyrinthImage;
+	protected transient Game game;
+	protected transient Icon labyrinthImage;
 	private JLabel lblNewLabel;
 	private JLayeredPane panelCapas;
 	
@@ -119,6 +120,8 @@ public class GamePanel extends JPanel {
 			}
 		};
 		
+		// FIXME los string arriba, abajo, izquierda, y derecha se repiten 3 veces, cambiar a constantes -AF
+		
 		getInputMap().put(KeyStroke.getKeyStroke("UP"), "arriba");
 		getInputMap().put(KeyStroke.getKeyStroke("W"), "arriba");
 		getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "abajo");
@@ -194,13 +197,13 @@ public class GamePanel extends JPanel {
 			//tirar exception
 		}
 		
-		float zoneWidth = getWidth() / Labyrinth.WIDTH;
-		float zoneHeight = getHeight() / Labyrinth.HEIGHT;
+		float zoneWidth = getWidth() / Labyrinth.WIDTH;			// FIXME castear uno de los operandos a float -AF
+		float zoneHeight = getHeight() / Labyrinth.HEIGHT;		// FIXME castear uno de los operandos a float -AF
 		
 		float posX = x * zoneWidth + zoneWidth / 2;
 		float posY = y * zoneHeight + zoneHeight / 2;
 		
-		posX -= label.getWidth() / 2;
+		posX -= label.getWidth() / 2;							// FIXME castear uno de los operandos a float -AF
 		posY -= label.getHeight();
 		
 		label.setLocation(Math.round(posX), Math.round(posY));

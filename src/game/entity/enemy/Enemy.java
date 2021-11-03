@@ -40,7 +40,7 @@ public abstract class Enemy extends Entity{
 	/**
 	 * Colisiona este enemigo con el jugador.
 	 */
-	public void CollideWithPlayer() {
+	public void collideWithPlayer() {
 		state.CollideWithPlayer();
 	}
 	
@@ -70,7 +70,7 @@ public abstract class Enemy extends Entity{
 	 * @return La mejor direccion para acercarse a una zona destino.
 	 */
 	protected Direction bestAproachPath(Zone destZone) {
-		Direction bestDirection = movementDirection;;
+		Direction bestDirection = movementDirection;
 		double bestValue = Double.MIN_VALUE;
 		double value;
 		Cursor cursor = new Cursor(zone, movementDirection);
@@ -95,7 +95,7 @@ public abstract class Enemy extends Entity{
 	 * @return La mejor direccion para alejarse de una zona destino.
 	 */
 	protected Direction bestFleePath(Zone destZone) {
-		Direction bestDirection = movementDirection;;
+		Direction bestDirection = movementDirection;
 		double bestValue = Double.MAX_VALUE;
 		double value;
 		Cursor cursor = new Cursor(zone, movementDirection);
@@ -149,8 +149,8 @@ public abstract class Enemy extends Entity{
 	 */
 	private double zoneValue(Zone zone1, Zone zone2) {
 		double distance = Math.sqrt(
-								Math.pow(this.zone.getX() - zone.getX(), 2) +
-								Math.pow(this.zone.getY() - zone.getY(), 2));
+								Math.pow((double) zone1.getX() - zone2.getX(), 2) +
+								Math.pow((double) zone1.getY() - zone2.getY(), 2));
 		
 		return distance == 0 ? Double.MAX_VALUE : 1 / distance;
 	}

@@ -18,8 +18,8 @@ public class StatsData implements Serializable {
 	
 	public TopPlayers load()  throws IOException, ClassNotFoundException {
 		topPlayers = new TopPlayers();
-		FileInputStream file = new FileInputStream(fileName);
-		ObjectInputStream in = new ObjectInputStream(file);
+		FileInputStream file = new FileInputStream(fileName);		// FIXME si se lanza la excepcion este recurso no se cierra, usar try-with-resources, o 
+		ObjectInputStream in = new ObjectInputStream(file);			// usar try catch, cerrar el recurso y relanzar la excepcion -AF
 		topPlayers = (TopPlayers)in.readObject();
 		in.close();
 		file.close();

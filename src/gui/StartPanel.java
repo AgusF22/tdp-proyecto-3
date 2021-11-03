@@ -13,6 +13,8 @@ public class StartPanel extends JPanel{
 		setBackground(Color.PINK);
 		setLayout(null);
 		
+		// FIXME no repetir strings, usar constantes -AF
+		
 		JButton btnPlay = new JButton("PLAY");
 		btnPlay.setFont(new Font("SansSerif", Font.BOLD, 40));
 		btnPlay.setBounds(125, 50, 250, 50);

@@ -6,10 +6,10 @@ public class GraphicEnemy extends GraphicCharacter{
 
 	private static final long serialVersionUID = 1L;
 
-	protected Icon fleeingUpImage;
-	protected Icon fleeingDownImage;
-	protected Icon fleeingLeftImage;
-	protected Icon fleeingRightImage;
+	protected transient Icon fleeingUpImage;
+	protected transient Icon fleeingDownImage;
+	protected transient Icon fleeingLeftImage;
+	protected transient Icon fleeingRightImage;
 
 	protected boolean fleeing;
 	
@@ -21,6 +21,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		fleeingLeftImage 	= images[7];
 	}
 	
+	@Override
 	public void setMovingUp() {
 		if (fleeing) {
 			this.setIcon(fleeingUpImage);
@@ -30,6 +31,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		this.repaint();
 	}
 
+	@Override
 	public void setMovingDown() {
 		if (fleeing) {
 			this.setIcon(fleeingDownImage);
@@ -39,6 +41,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		this.repaint();
 	}
 
+	@Override
 	public void setMovingLeft() {
 		if (fleeing) {
 			this.setIcon(fleeingLeftImage);
@@ -48,6 +51,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		this.repaint();
 	}
 
+	@Override
 	public void setMovingRight() {
 		if (fleeing) {
 			this.setIcon(fleeingRightImage);

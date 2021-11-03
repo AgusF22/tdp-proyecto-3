@@ -11,7 +11,7 @@ import game.entity.visitor.Visitor;
 public class Player extends Entity{
 	
 	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
-	private static final float DISTANCE_ZONE = 0.5f;		// Distancia hasta la proxima zona
+	private static final float DISTANCE_ZONE = 0.5f;		// Distancia hasta la proxima zona	FIXME revisar, no se usa nunca -AF
 	
 	protected Direction movementDirection;
 	protected Direction attemptingMovement;

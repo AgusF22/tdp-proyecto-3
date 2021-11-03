@@ -7,10 +7,10 @@ public class GraphicCharacter extends GraphicEntity{
 	 * Serial por defecto.
 	 */
 	private static final long serialVersionUID = 1L;
-	protected Icon movingUpImage;
-	protected Icon movingDownImage;
-	protected Icon movingLeftImage;
-	protected Icon movingRightImage;
+	protected transient Icon movingUpImage;
+	protected transient Icon movingDownImage;
+	protected transient Icon movingLeftImage;
+	protected transient Icon movingRightImage;
 	
 	public GraphicCharacter(Icon[] images) {
 		//TODO imp

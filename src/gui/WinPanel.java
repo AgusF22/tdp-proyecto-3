@@ -13,6 +13,8 @@ public class WinPanel extends GameOverPanel {
 		setBackground(Color.GREEN);
 		setLayout(null);
 		
+		// FIXME no repetir strings, usar constantes -AF
+		
 		JLabel lblWin = new JLabel("YOU WIN");
 		lblWin.setFont(new Font("SansSerif", Font.BOLD, 60));
 		lblWin.setHorizontalAlignment(SwingConstants.CENTER);

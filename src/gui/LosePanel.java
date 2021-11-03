@@ -12,6 +12,8 @@ public class LosePanel extends GameOverPanel {
 		setBackground(Color.RED);
 		setLayout(null);
 		
+		// FIXME no repetir strings, usar constantes -AF
+		
 		JLabel lblLose = new JLabel("YOU LOSE");
 		lblLose.setFont(new Font("SansSerif", Font.BOLD, 60));
 		lblLose.setHorizontalAlignment(SwingConstants.CENTER);

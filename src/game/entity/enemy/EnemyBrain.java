@@ -13,7 +13,7 @@ public class EnemyBrain {
 	
 	public EnemyBrain() {
 		//TODO imp
-		enemies = new LinkedList<Enemy>();
+		enemies = new LinkedList<>();
 	}
 	
 	

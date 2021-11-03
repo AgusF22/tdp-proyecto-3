@@ -5,12 +5,12 @@ import java.util.Set;
 
 import game.Game;
 import game.entity.Entity;
-import imageFactories.ImageFactory;
+import imagefactories.ImageFactory;
 
 public abstract class Labyrinth {
 	//TODO documentar
 	
-	public final static int WIDTH = 29;
+	public final static int WIDTH = 29;		// FIXME revisar orden de modificadores -AF
 	public final static int HEIGHT = 31;
 	
 	protected int doCount;
@@ -54,7 +54,7 @@ public abstract class Labyrinth {
 		for (int i = 0; i < zones.length; i++) {										// Recorre todas las zonas del laberinto
 			for (int j = 0; j < zones[0].length; j++) {
 				listEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
-				listEntities.forEach((e) -> entities.add(e));							// Agrega las entidades de la zona en la Set entities
+				listEntities.forEach(e -> entities.add(e));							// Agrega las entidades de la zona en la Set entities
 			}
 		}
 		return entities;

@@ -6,13 +6,13 @@ import javax.swing.JPanel;
 import data.StatsData;
 import data.TopPlayers;
 import game.Game;
-import imageFactories.ConcreteImageFactory;
+import imagefactories.ConcreteImageFactory;
+import imagefactories.ImageFactory;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
-
-import imageFactories.ImageFactory;
 
 public class GUI extends JFrame{
 	
@@ -25,7 +25,7 @@ public class GUI extends JFrame{
 	protected final int CURRENT_SCREEN_WIDTH;
 	protected final int CURRENT_SCREEN_HEIGHT;
 
-	private ImageFactory factory;
+	private transient ImageFactory factory;
 	private JPanel panelPrincipal;
 
 	public GUI() {

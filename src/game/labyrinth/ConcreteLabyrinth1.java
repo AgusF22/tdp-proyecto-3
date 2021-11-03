@@ -10,7 +10,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	public ConcreteLabyrinth1(Game game) {
 		super(game);
 		
-		ZoneType matrix[][] = new ZoneMatrixBuilder()
+		ZoneType matrix[][] = new ZoneMatrixBuilder()		// FIXME mover los corchetes a la declaracion de tipo -AF
 		
 		.setSpawn(16, 14)										// Set zona SPAWN.
 		
@@ -86,7 +86,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		//TODO  Set PowerPellet
 		//TODO  Set Potions
 		
-		@SuppressWarnings("unused")
+		@SuppressWarnings("unused")			// FIXME WHY?!?!?! revisar -AF
 		Entity dot = null;
 		for (int i = 0; i < zones.length; i++) {					//	  Set dots
 			for(int j = 0; j < zones[0].length; j++) {				// Si es camino y no hay entidades, add dot
