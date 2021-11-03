@@ -6,31 +6,32 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Map;
-
 
 public class StatsData implements Serializable {
-	protected String fileName = "SCORE";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String fileName = "SCORE.txt";
+	protected TopPlayers topPlayers;
 	
-	public StatsData() {
-
-	}
 	
-	@SuppressWarnings("unchecked")
-	public Map<String, Integer> load()  throws IOException, ClassNotFoundException {
-		Map<String, Integer> input = null;
+	public TopPlayers load()  throws IOException, ClassNotFoundException {
+		topPlayers = new TopPlayers();
 		FileInputStream file = new FileInputStream(fileName);
 		ObjectInputStream in = new ObjectInputStream(file);
-		input = (Map<String, Integer>)in.readObject();
+		topPlayers = (TopPlayers)in.readObject();
 		in.close();
 		file.close();
-		return input;
+		
+		return topPlayers;
 	}
 	
-	public void save(Map<String, Integer> stats) throws IOException {
+	public void save() throws IOException {
 		FileOutputStream file = new FileOutputStream(fileName);
 		ObjectOutputStream out = new ObjectOutputStream(file);
-		out.writeObject(stats);
+		out.writeObject(topPlayers);
+		out.flush();
 		out.close();
 		file.close();
 	}
