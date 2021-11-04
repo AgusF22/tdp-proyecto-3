@@ -13,8 +13,8 @@ public class GraphicEnemy extends GraphicCharacter{
 
 	protected boolean fleeing;
 	
-	public GraphicEnemy(Icon[] images) {
-		super(images);
+	public GraphicEnemy(Entity entity, Icon[] images) {
+		super(entity, images);
 		fleeingUpImage 		= images[4];
 		fleeingRightImage 	= images[5];
 		fleeingDownImage 	= images[6];

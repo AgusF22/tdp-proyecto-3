@@ -8,7 +8,8 @@ public class GraphicPrize extends GraphicEntity{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GraphicPrize(Icon image) {
-		//TODO imp
+	public GraphicPrize(Entity entity, Icon image) {
+		super(entity);
+		this.setIcon(image);
 	}
 }

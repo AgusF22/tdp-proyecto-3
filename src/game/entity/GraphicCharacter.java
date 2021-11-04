@@ -12,12 +12,13 @@ public class GraphicCharacter extends GraphicEntity{
 	protected transient Icon movingLeftImage;
 	protected transient Icon movingRightImage;
 	
-	public GraphicCharacter(Icon[] images) {
-		//TODO imp
+	public GraphicCharacter(Entity entity, Icon[] images) {
+		super(entity);
 		movingUpImage 		= images[0];
 		movingRightImage 	= images[1];
 		movingDownImage 	= images[2];
 		movingLeftImage 	= images[3];
+		this.setIcon(movingDownImage);
 	}
 
 	public void setMovingUp() {

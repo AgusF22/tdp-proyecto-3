@@ -7,7 +7,7 @@ public class Dot extends Prize {
 	
 	public Dot(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(zone.getLabyrinth().getImageFactory().getDotImage());
+		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getDotImage());
 	}
 	
 	public void triggerEffect() {

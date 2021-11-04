@@ -8,10 +8,12 @@ public abstract class GraphicEntity extends JLabel{
 	
 	private static final long serialVersionUID = 1L;
 	
+	protected Entity entity;
 	protected GamePanel panel;
 
-	protected GraphicEntity() {
+	protected GraphicEntity(Entity entity) {
 		super();
+		this.entity = entity;
 	}
 	
 	public void update(float x, float y) {
