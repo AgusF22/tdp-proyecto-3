@@ -16,8 +16,9 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		.setSpawn(14, 16)										// Set zona SPAWN.
 		
+		.setDungeon(14, 11, 14, 11)								// Set zonas DUNGEON.
 		.setDungeon(12, 10, 12, 18)
-		.setDungeon(13, 10, 13, 18)								// Set zonas DUNGEON.
+		.setDungeon(13, 10, 13, 18)
 		.setDungeon(14, 10, 14, 18)
 		.setDungeon(15, 11, 15, 18)
 		
