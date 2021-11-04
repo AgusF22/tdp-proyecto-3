@@ -15,7 +15,8 @@ public class Player extends Entity{
 	protected Direction movementDirection;
 	protected Direction attemptingMovement;
 	protected static Player instance;
-	private Zone objectiveZone;
+	
+	private Zone previousZone;								//Zona por al que acaba de pasear, util para move()
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -55,48 +56,69 @@ public class Player extends Entity{
 	}
 	
 	
-	// separe en submetodos , solo se quedo evaluar si se peude cambiar la direccion y moverse a de posicion -NF
-	// FIXME sigue siendo alta (8) -AF
+	// FIXME sigue siendo alta (8) -AF  
+	// Actualizado nuevamente el metodo, la funcionalidad sigue estado igual hasta donde testee -NF
 	
 	/**
 	 * Mueve el personaje hacia una direccion
 	 */
 	public synchronized void move() {
-		
-		//Intento de cambio de direccion
-		if (attemptingMovement != movementDirection && attemptingMovement != null && isInZoneCenter()) {										// Chequeamos que se intenta mover a otro lado
-			if (zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH){					// Si quiere cambiar a una direccion perpendicular a la actual debe haber camino donde se quiere mover y estar en el centro de una zona
-				movementDirection = attemptingMovement;
-				updateMovementDirection();																					// Cambiamos la direccion de la grafica
-				attemptingMovement = null;			
-			}
-		} else {
-			if (attemptingMovement == movementDirection.getOpposite()) {													// Si se quiere mover en la posicion contraria se puede en cualquier caso
-				movementDirection = attemptingMovement;																		//TODO ?Deberia tambien setear attempt en nulo		
-				updateMovementDirection();	
-				attemptingMovement = null;
-				if (objectiveZone == null) {
-					objectiveZone = zone;					
-				} else {
-					objectiveZone = null;
-				}
-			}
+		if (canChangeDirection()) {
+			changeDirection();
 		}
-		if (zone == objectiveZone) {
-				 updateCoords();
+		if (comingBack() || zone.getAdjacent(movementDirection).getType() == ZoneType.PATH) {
+			updateCoords();
 			if (isInZoneCenter()) {
-				objectiveZone = null;
+				changeZones();
 			}
+		}
+	}
+	
+	/**
+	 * Cambia zonas dependiendo si esta volviendo a donde estaba o quiere ir a otra zona
+	 */
+	private void changeZones() {
+		if (previousZone == zone) {																					//No cambia su zona si estaba volviendo
+			previousZone = null;																							
 		} else {
-			//Moverse en la direccion asignada
-			if (zone.getAdjacent(movementDirection).getType() == ZoneType.PATH) {												// Solo se puede mover hacia un camino
-				updateCoords();																									// Actualizamos la grafica al moverse
-				if (isInZoneCenter()) {																							// Si esta en el centro al terminar de moverse
-					setNewZone(zone.getAdjacent(movementDirection));
+			setNewZone(zone.getAdjacent(movementDirection));														// Cambia su zona si no estaba volviendo
+		}
+	}
+	
+	/**
+	 * Consulta si esta volviendo el personaje
+	 * @return True si esta regresando a su zona, false sino
+	 */
+	private boolean comingBack() {
+		return (zone == previousZone);
+	}
+	
+	/**
+	 * Evalua si el personaje esta en posicion de poder cambiar de direccion
+	 * @return True si se puede, false sino
+	 */
+	private boolean canChangeDirection() {
+		boolean toReturn = false;
+		if (attemptingMovement != movementDirection && attemptingMovement!= null) {									// Evalua si quiere cambiarse de direccion
+			if (isInZoneCenter() && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {				// Puede en una interseccion
+				toReturn = true;
+			} else {
+				if ((attemptingMovement == movementDirection.getOpposite())) {										// Puede volver donde estaba
+					toReturn = true;
+					previousZone = (previousZone == null) ? zone : null;
 				}
 			}
 		}
-		
+		return toReturn;
+	}
+	
+	/**
+	 * Cambia la direccion del personaje
+	 */
+	private void changeDirection() {
+		movementDirection = attemptingMovement;
+		attemptingMovement = null;
+		updateMovementDirection();
 	}
 	
 	/**
