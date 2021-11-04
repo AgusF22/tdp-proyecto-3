@@ -74,7 +74,8 @@ public class Player extends Entity{
 	}
 	
 	/**
-	 * TODO documentar
+	 * FIXME asume que la distancia sera siempre menor a 1 pero se setea antes de llegar al centro de la zona
+	 * 		 entonces no llego al centro de donde queria ir que ya esta preguntando por el que sigue.
 	 * @param n
 	 */
 	private void move (float n) {
