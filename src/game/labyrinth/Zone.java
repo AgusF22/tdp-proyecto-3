@@ -39,7 +39,7 @@ public class Zone {
 		return entities;
 	}
 	
-	public void removeEntity(Entity entity) { //TODO Excepcion? ::: No, si la entidad no esta remove de list no hace nada y no hay problema -AF
+	public void removeEntity(Entity entity) {
 		this.entities.remove(entity);
 	}
 	
