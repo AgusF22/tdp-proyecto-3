@@ -70,10 +70,19 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		for (int x = 0; x < matrix.length; x++) {
 			for (int y = 0; y < matrix[0].length; y++) {
 				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
-				System.out.print(zones[x][y].getType()+" ");	//TODO borrar
+			}
+			
+		}
+		
+		//************************************
+		// TODO 　　　　　　　　　　BORRAR!!!!
+		for (int y = 0; y < matrix[0].length; y++) {
+			for (int x = 0; x < matrix.length; x++) {
+				System.out.print("[ "+zones[x][y].getType().toString().charAt(0)+" ] ");
 			}
 			System.out.println();
 		}
+		//************************************
 		
 		this.setEntity();
 	}

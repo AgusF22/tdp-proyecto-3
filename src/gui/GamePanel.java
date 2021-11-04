@@ -36,9 +36,9 @@ public class GamePanel extends JPanel {
 	private JLayeredPane panelCapas;
 	
 	public GamePanel(ImageFactory factory) { 
-		game = new Game(this, factory);
 		labyrinthImage = factory.getLabyrinth1Image();
 		crearPanel();
+		game = new Game(this, factory);
 		crearFondo();
 		agregarControles();
 		

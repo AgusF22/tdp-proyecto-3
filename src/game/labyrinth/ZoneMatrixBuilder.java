@@ -8,7 +8,7 @@ public class ZoneMatrixBuilder {
 	 * Crea un nuevo builder de matriz de tipos de zona.
 	 */
 	protected ZoneMatrixBuilder() {
-		matrix = new ZoneType[Labyrinth.HEIGHT][Labyrinth.WIDTH];
+		matrix = new ZoneType[Labyrinth.WIDTH][Labyrinth.HEIGHT];
 		
 		for (int x = 0; x < matrix.length; x++) {
 			for (int y = 0; y < matrix[0].length; y++) {
@@ -39,8 +39,8 @@ public class ZoneMatrixBuilder {
 	protected ZoneMatrixBuilder setPath(int x1, int y1, int x2, int y2) {
 		int[] coords = {x1, y1, x2, y2};
 		reorder(coords);
-		for (int x = coords[0]; x < coords[2]; x++) {
-			for (int y = coords[1]; y < coords[3]; y++) {
+		for (int x = coords[0]; x <= coords[2]; x++) {
+			for (int y = coords[1]; y <= coords[3]; y++) {
 				if (matrix[x][y] == ZoneType.WALL) {
 					matrix[x][y] = ZoneType.PATH;
 				}
@@ -60,8 +60,8 @@ public class ZoneMatrixBuilder {
 	protected ZoneMatrixBuilder setDungeon(int x1, int y1, int x2, int y2) {
 		int[] coords = {x1, y1, x2, y2};
 		reorder(coords);
-		for (int x = coords[0]; x < coords[2]; x++) {
-			for (int y = coords[1]; y < coords[3]; y++) {
+		for (int x = coords[0]; x <= coords[2]; x++) {
+			for (int y = coords[1]; y <= coords[3]; y++) {
 				if (matrix[x][y] == ZoneType.WALL) {
 					matrix[x][y] = ZoneType.DUNGEON;
 				}
