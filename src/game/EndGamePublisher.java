@@ -39,9 +39,6 @@ public class EndGamePublisher {
 		subscribers.remove(s);
 	}
 	
-	/**
-	 * TODO
-	 */
 	public void notifySubscribers() {
 		subscribers.forEach(s -> s.update());
 	}

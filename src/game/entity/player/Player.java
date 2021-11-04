@@ -50,8 +50,7 @@ public class Player extends Entity{
 	 * Crea y asigna la entidad grafica del personaje
 	 */
 	private void setGraphic() {
-		graphic = new GraphicCharacter(zone.getLabyrinth().getImageFactory().getPlayerImages());
-		((GraphicCharacter) graphic).setMovingLeft();
+		graphic = new GraphicCharacter(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
 	}
 	
 	/**

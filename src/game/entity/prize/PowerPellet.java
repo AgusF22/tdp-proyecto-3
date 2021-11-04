@@ -10,7 +10,7 @@ public class PowerPellet extends Prize {
 	
 	public PowerPellet(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(zone.getLabyrinth().getImageFactory().getPowerPelletImage());
+		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPowerPelletImage());
 	}
 	
 	public void triggerEffect() {
