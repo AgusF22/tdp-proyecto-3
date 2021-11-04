@@ -8,6 +8,8 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	
 	public ConcreteLabyrinth3(Game game) {
 		super(game);
+
+		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth3Image());
 		
 		ZoneType[][] matrix = new ZoneMatrixBuilder()
 

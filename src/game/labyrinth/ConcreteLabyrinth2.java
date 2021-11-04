@@ -9,6 +9,8 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 	public ConcreteLabyrinth2(Game game) {
 		super(game);
 		
+		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth2Image());
+		
 		ZoneType[][] matrix = new ZoneMatrixBuilder()
 		
 		.setSpawn(14, 16)										// Set zona SPAWN.

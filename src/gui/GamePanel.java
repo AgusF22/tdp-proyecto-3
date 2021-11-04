@@ -32,7 +32,7 @@ public class GamePanel extends JPanel {
 	
 	protected transient Game game;
 	protected transient Icon labyrinthImage;
-	private JLabel lblNewLabel;
+	private JLabel lblLabyrinthLabel;
 	private JLayeredPane panelCapas;
 	
 	public GamePanel(ImageFactory factory) { 
@@ -83,12 +83,12 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void crearFondo() {
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
-		lblNewLabel.setIcon(labyrinthImage);
+		lblLabyrinthLabel = new JLabel("");
+		lblLabyrinthLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
+		lblLabyrinthLabel.setIcon(labyrinthImage);
 		//add(lblNewLabel); TODO PROBANDO CAPAS
 		
-		panelCapas.add(lblNewLabel, JLayeredPane.DEFAULT_LAYER);
+		panelCapas.add(lblLabyrinthLabel, JLayeredPane.DEFAULT_LAYER);
 	}
 	
 	private void agregarControles() {
@@ -211,5 +211,14 @@ public class GamePanel extends JPanel {
 		posY -= (float) label.getHeight();
 		
 		label.setLocation(Math.round(posX), Math.round(posY));
+	}
+	
+	/**
+	 * Cambia la imagen del laberinto
+	 * @param lab Icon nuevo imagen del laberinto
+	 */
+	public void setLabyrinthImage(Icon lab) {
+		labyrinthImage = lab;
+		lblLabyrinthLabel.setIcon(labyrinthImage);
 	}
 }
