@@ -2,8 +2,9 @@ package gui;
 
 import javax.swing.JPanel;
 
-public class StatsPanel extends JPanel{
-	public StatsPanel() {
+public class StatsPanel extends GUIPanel{
+	public StatsPanel(GUI gui) {
+		super(gui);
 		//TODO imp
 	}
 	

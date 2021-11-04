@@ -26,7 +26,7 @@ public class GUI extends JFrame{
 	protected final int CURRENT_SCREEN_HEIGHT;
 
 	private transient ImageFactory factory;
-	private JPanel panelPrincipal;
+	private GUIPanel panel;
 
 	public GUI() {
 		// TODO Descomentar en ver FINAL
@@ -41,6 +41,10 @@ public class GUI extends JFrame{
 		createFrame();
 		play();
 		setVisible(true);
+		
+//		panel = new LosePanel(this);
+//		add(panel);
+		repaint();
 	}
 	
 	private void createFrame() {
@@ -52,8 +56,8 @@ public class GUI extends JFrame{
 	}
 	
 	private void play() {
-		panelPrincipal = new GamePanel(factory);
-		getContentPane().add(panelPrincipal);
+		panel = new GamePanel(this);
+		getContentPane().add(panel);
 		
 	}
 	
@@ -63,5 +67,9 @@ public class GUI extends JFrame{
 	
 	public StatsData getStatsData() {
 		return new StatsData();
+	}
+	
+	public ImageFactory getImageFactory() {
+		return factory;
 	}
 }

@@ -55,6 +55,12 @@ public abstract class ImageFactory {
 	public abstract Icon getLabyrinth3bgImage();
 	
 	/**
+	 * Devuelve el icono correspondiente al fondo de fin de juego.
+	 * @return Una imagen.
+	 */
+	public abstract Icon getGameOverBgImage();
+	
+	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al player.
 	 * @return Un arreglo con imagenes.
 	 */

@@ -49,6 +49,11 @@ public class ConcreteImageFactory extends ImageFactory{
 		return scale(imgIcon);
 	}
 
+	@Override
+	public Icon getGameOverBgImage() {
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/gui/gameOverBg.png"));
+		return scale(imgIcon);
+	}
 	
 	@Override
 	public Icon[] getPlayerImages() {

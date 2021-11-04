@@ -24,7 +24,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends GUIPanel {
 	
 	/**
 	 * Serial por defecto.
@@ -36,11 +36,13 @@ public class GamePanel extends JPanel {
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
 	
-	public GamePanel(ImageFactory factory) { 
+	public GamePanel(GUI gui) { 
+		super(gui);
+		
 		crearPanel();
 		agregarControles();
 		
-		game = new Game(this, factory);
+		game = new Game(this);
 		repaint();
 		System.out.println("Creado panel de juego");
 		
@@ -221,6 +223,10 @@ public class GamePanel extends JPanel {
 		fondo.setSize(width, height);
 		fondo.setIcon(lab);
 		centrar(width, height);
+	}
+	
+	public ImageFactory getImageFactory() {
+		return frame.getImageFactory();
 	}
 	
 	private void centrar(int w, int h) {
