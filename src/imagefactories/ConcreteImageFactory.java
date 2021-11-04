@@ -32,6 +32,25 @@ public class ConcreteImageFactory extends ImageFactory{
 	}
 	
 	@Override
+	public Icon getLabyrinth1bgImage() {
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth1bg.png"));
+		return scale(imgIcon);
+	}
+
+	@Override
+	public Icon getLabyrinth2bgImage() {
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth2bg.png"));
+		return scale(imgIcon);
+	}
+
+	@Override
+	public Icon getLabyrinth3bgImage() {
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/maps/labyrinth3bg.png"));
+		return scale(imgIcon);
+	}
+
+	
+	@Override
 	public Icon[] getPlayerImages() {
 		
 		ImageIcon imgIcon0 = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/character/player/steveB.gif"));
