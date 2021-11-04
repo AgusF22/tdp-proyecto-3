@@ -6,7 +6,7 @@ public class PowerPelletVisitor extends Visitor{
 	
 	@Override
 	public void visit(Enemy enemy) {
-		//TODO imp
+		enemy.setFleeing();
 	}
 	
 }
