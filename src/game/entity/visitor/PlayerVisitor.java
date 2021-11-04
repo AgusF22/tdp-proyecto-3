@@ -7,12 +7,12 @@ public class PlayerVisitor extends Visitor{
 	
 	@Override
 	public void visit(Enemy enemy) {
-		//TODO imp
+		enemy.collideWithPlayer();
 	}
 	
 	@Override
 	public void visit(Prize prize) {
-		//TODO imp
+		prize.triggerEffect();
 	}
 	
 }

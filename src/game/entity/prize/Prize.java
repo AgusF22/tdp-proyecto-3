@@ -4,7 +4,7 @@ import game.entity.Entity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
-public abstract class Prize extends Entity{
+public abstract class Prize extends Entity {
 	
 	/**
 	 * Crea un nuevo premio.
