@@ -7,13 +7,12 @@ public class ConcreteFruit1 extends Fruit {
 	
 	public ConcreteFruit1(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(zone.getLabyrinth().getImageFactory().getFruit1Image());
+		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getFruit1Image());
 	}
 	
 	public void triggerEffect() {
 		zone.getLabyrinth().addPoints(100);
-		graphic.delete();
-		zone.removeEntity(this);
+		beConsumed();
 	}
 	
 }

@@ -7,7 +7,7 @@ public class OrangeEnemy extends Enemy {
 
 	public OrangeEnemy(Zone zone) {
 		super (zone);
-		this.graphic = new GraphicEnemy(zone.getLabyrinth().getImageFactory().getOrangeEnemyImages());
+		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getOrangeEnemyImages());
 	}
 	
 	@Override

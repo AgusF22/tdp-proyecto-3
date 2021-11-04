@@ -64,6 +64,8 @@ public class GamePanel extends JPanel {
 	
 	private void agregarControles() {
 		Action moveUp = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				moveUp();
@@ -71,6 +73,8 @@ public class GamePanel extends JPanel {
 		};
 		
 		Action moveDown = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				moveDown();
@@ -78,6 +82,8 @@ public class GamePanel extends JPanel {
 		};
 		
 		Action moveRight = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				moveRight();
@@ -85,17 +91,18 @@ public class GamePanel extends JPanel {
 		};
 		
 		Action moveLeft = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				moveLeft();
 			}
 		};
 		
-		// FIXME los string arriba, abajo, izquierda, y derecha se repiten 3 veces, cambiar a constantes -AF
-		String arriba = "arriba";
-		String abajo = "abajo";
-		String derecha = "deracha";
-		String izquierda = "izquierda";
+		final String arriba = "arriba";
+		final String abajo = "abajo";
+		final String derecha = "deracha";
+		final String izquierda = "izquierda";
 		
 		getInputMap().put(KeyStroke.getKeyStroke("UP"), arriba);
 		getInputMap().put(KeyStroke.getKeyStroke("W"), arriba);
