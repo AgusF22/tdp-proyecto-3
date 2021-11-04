@@ -12,8 +12,7 @@ public class ConcreteFruit2 extends Fruit {
 	
 	public void triggerEffect() {
 		zone.getLabyrinth().addPoints(1000);
-		graphic.delete();
-		zone.removeEntity(this);
+		beConsumed();
 	}
 	
 }

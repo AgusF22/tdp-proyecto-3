@@ -27,4 +27,11 @@ public abstract class Prize extends Entity{
 	 */
 	public abstract void triggerEffect();
 	
+	/**
+	 * Remueve la grafica y se remueve de la lista de entidades
+	 */
+	protected void beConsumed() {
+		zone.removeEntity(this);
+		graphic.delete();
+	}
 }

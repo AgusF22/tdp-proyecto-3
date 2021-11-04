@@ -11,7 +11,8 @@ public class Dot extends Prize {
 	}
 	
 	public void triggerEffect() {
-		//TODO imp
+		zone.getLabyrinth().addPoints(10);
+		beConsumed();
 	}
 	
 }
