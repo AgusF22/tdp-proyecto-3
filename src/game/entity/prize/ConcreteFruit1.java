@@ -11,7 +11,8 @@ public class ConcreteFruit1 extends Fruit {
 	}
 	
 	public void triggerEffect() {
-		//TODO imp
+		zone.getLabyrinth().addPoints(100);
+		beConsumed();
 	}
 	
 }

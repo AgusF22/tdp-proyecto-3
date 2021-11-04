@@ -10,12 +10,15 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	public ConcreteLabyrinth1(Game game) {
 		super(game);
 		
+		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image());
+		
 		ZoneType[][] matrix = new ZoneMatrixBuilder()		// FIXME mover los corchetes a la declaracion de tipo -AF
 		
 		.setSpawn(14, 16)										// Set zona SPAWN.
 		
+		.setDungeon(14, 11, 14, 11)								// Set zonas DUNGEON.
 		.setDungeon(12, 10, 12, 18)
-		.setDungeon(13, 10, 13, 18)								// Set zonas DUNGEON.
+		.setDungeon(13, 10, 13, 18)
 		.setDungeon(14, 10, 14, 18)
 		.setDungeon(15, 11, 15, 18)
 		
