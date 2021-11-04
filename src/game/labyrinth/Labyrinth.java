@@ -10,7 +10,7 @@ import imagefactories.ImageFactory;
 public abstract class Labyrinth {
 	//TODO documentar
 	
-	public final static int WIDTH = 29;		// FIXME revisar orden de modificadores -AF
+	public final static int WIDTH = 29;
 	public final static int HEIGHT = 31;
 	
 	protected int doCount;

@@ -12,7 +12,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image());
 		
-		ZoneType[][] matrix = new ZoneMatrixBuilder()		// FIXME mover los corchetes a la declaracion de tipo -AF
+		ZoneType[][] matrix = new ZoneMatrixBuilder()
 		
 		.setSpawn(14, 16)										// Set zona SPAWN.
 		
