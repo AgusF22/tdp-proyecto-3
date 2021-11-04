@@ -14,6 +14,7 @@ import javax.swing.KeyStroke;
 
 import game.Game;
 import game.labyrinth.Labyrinth;
+import imagefactories.ConcreteImageFactory;
 import imagefactories.ImageFactory;
 
 import java.awt.BorderLayout;
@@ -31,64 +32,34 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	protected transient Game game;
-	protected transient Icon labyrinthImage;
-	private JLabel lblLabyrinthLabel;
+	private JLabel LabyrinthLabel;
 	private JLayeredPane panelCapas;
+	private JLabel fondo;
 	
 	public GamePanel(ImageFactory factory) { 
-		labyrinthImage = factory.getLabyrinth1Image();
 		crearPanel();
-		game = new Game(this, factory);
-		crearFondo();
 		agregarControles();
 		
+		game = new Game(this, factory);
 		repaint();
 		System.out.println("Creado panel de juego");
 		
-		
-//		JLabel a = new JLabel("AAAA");
-//		a.setBackground(Color.yellow);
-//		a.setOpaque(true);
-//		a.setBounds(0, 0, 50, 50);
-//		
-//		JLabel b = new JLabel("BBBB");
-//		b.setBackground(Color.red);
-//		b.setOpaque(true);
-//		b.setBounds(0, 50, 50, 50);
-//		
-//		JLabel c = new JLabel("CCCC");
-//		c.setBackground(Color.green);
-//		c.setOpaque(true);
-//		c.setBounds(25,25, 50, 50);
-//		
-//			
-//		
-//		panelCapas.add(a, JLayeredPane.PALETTE_LAYER);
-//		
-//		panelCapas.add(b, JLayeredPane.PALETTE_LAYER);
-//		
-//		panelCapas.add(c, JLayeredPane.PALETTE_LAYER);
 	}
 	
 	private void crearPanel() {
-		setSize(labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
-		setBackground(Color.BLACK);
 		setLayout(null);
+		setLocation(0, 0);
 		
-		//TODO probando capas con JLayerPane
 		panelCapas = new JLayeredPane();
-		panelCapas.setBounds(0, 0, this.getWidth(), this.getHeight());
 		add(panelCapas);
 		
-	}
-	
-	private void crearFondo() {
-		lblLabyrinthLabel = new JLabel("");
-		lblLabyrinthLabel.setBounds(0, 0, labyrinthImage.getIconWidth(), labyrinthImage.getIconHeight());
-		lblLabyrinthLabel.setIcon(labyrinthImage);
-		//add(lblNewLabel); TODO PROBANDO CAPAS
+		fondo = new JLabel("");
+		fondo.setLocation(0, 0);
+		add(fondo);
 		
-		panelCapas.add(lblLabyrinthLabel, JLayeredPane.DEFAULT_LAYER);
+		LabyrinthLabel = new JLabel("");
+		LabyrinthLabel.setLocation(0, 0);
+		panelCapas.add(LabyrinthLabel, 0);
 	}
 	
 	private void agregarControles() {
@@ -193,13 +164,11 @@ public class GamePanel extends JPanel {
 	}
 	
 	public void addLabel(JLabel label) {
-		//this.add(label);  TODO PROBANDO CAPAS
-		panelCapas.add(label, JLayeredPane.PALETTE_LAYER);
-		System.out.println("Agregada label"); //TODO sacar
+		panelCapas.add(label, 100);
+		System.out.print("Agregada label"); //TODO sacar
 	}
 	
 	public void removeLabel(JLabel label) {
-		//this.remove(label);  TODO PROBANDO CAPAS
 		panelCapas.remove(label);
 	}
 	
@@ -225,7 +194,38 @@ public class GamePanel extends JPanel {
 	 * @param lab Icon nuevo imagen del laberinto
 	 */
 	public void setLabyrinthImage(Icon lab) {
-		labyrinthImage = lab;
-		lblLabyrinthLabel.setIcon(labyrinthImage);
+		int width = lab.getIconWidth();
+		int height = lab.getIconHeight();
+		
+		panelCapas.setSize(width, height);
+		
+		LabyrinthLabel.setSize(width, height);
+		LabyrinthLabel.setIcon(lab);
+		
+		//TODO sacar las dos siguientes 
+		ImageFactory f = new ConcreteImageFactory(1280, 720);
+		setLabyrinthBgImage(f.getLabyrinth1bgImage());
+		// -------------------------------------------------
+		
+	}
+	
+	/**
+	 * Cambia la imagen del fondo del laberinto
+	 * @param lab Icon nuevo imagen del fondo del laberinto
+	 */
+	public void setLabyrinthBgImage(Icon lab) {
+		int width = lab.getIconWidth();
+		int height = lab.getIconHeight();
+		
+		setSize(width, height);
+		fondo.setSize(width, height);
+		fondo.setIcon(lab);
+		centrar(width, height);
+	}
+	
+	private void centrar(int w, int h) {
+		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7);
+		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38);
+		panelCapas.setLocation(posW, posH);
 	}
 }

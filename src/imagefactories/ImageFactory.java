@@ -37,6 +37,24 @@ public abstract class ImageFactory {
 	public abstract Icon getLabyrinth3Image();
 	
 	/**
+	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 1.
+	 * @return Una imagen.
+	 */
+	public abstract Icon getLabyrinth1bgImage();
+	
+	/**
+	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 2.
+	 * @return Una imagen.
+	 */
+	public abstract Icon getLabyrinth2bgImage();
+	
+	/**
+	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 3.
+	 * @return Una imagen.
+	 */
+	public abstract Icon getLabyrinth3bgImage();
+	
+	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al player.
 	 * @return Un arreglo con imagenes.
 	 */
