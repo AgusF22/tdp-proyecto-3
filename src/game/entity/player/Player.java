@@ -12,11 +12,10 @@ public class Player extends Entity{
 	
 	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
 	
+	protected float movementSpeed;
 	protected Direction movementDirection;
 	protected Direction attemptingMovement;
 	protected static Player instance;
-	
-	private Zone previousZone;								//Zona por al que acaba de pasear, util para move()
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -55,70 +54,116 @@ public class Player extends Entity{
 		((GraphicCharacter) graphic).setMovingLeft();
 	}
 	
-	
-	// FIXME sigue siendo alta (8) -AF  
-	// Actualizado nuevamente el metodo, la funcionalidad sigue estado igual hasta donde testee -NF
-	
 	/**
-	 * Mueve el personaje hacia una direccion
+	 * Asigna la velocidad de movimiento
+	 * @param speed Float multiplo de velocidad
 	 */
-	public synchronized void move() {
-		if (canChangeDirection()) {
-			changeDirection();
-		}
-		if (comingBack() || zone.getAdjacent(movementDirection).getType() == ZoneType.PATH) {
-			updateCoords();
-			if (isInZoneCenter()) {
-				changeZones();
-			}
-		}
+	public void setMovementSpeed(float speed) {
+		movementSpeed = speed;
 	}
 	
 	/**
-	 * Cambia zonas dependiendo si esta volviendo a donde estaba o quiere ir a otra zona
+	 * Intena mover al personaje por cada invocacion
 	 */
-	private void changeZones() {
-		if (previousZone == zone) {																					//No cambia su zona si estaba volviendo
-			previousZone = null;																							
-		} else {
-			setNewZone(zone.getAdjacent(movementDirection));														// Cambia su zona si no estaba volviendo
+	public void move() {
+		if (attemptingMovement == movementDirection.getOpposite()) {
+			movementDirection = attemptingMovement;
+			updateMovementDirection();				//TODO quitar cuando existar char
 		}
+		move(MOVEMENT_LENGTH * movementSpeed);
+		//graphic.update();						//TODO setear con update() cuando este implementado
 	}
 	
 	/**
-	 * Consulta si esta volviendo el personaje
-	 * @return True si esta regresando a su zona, false sino
+	 * TODO documentar
+	 * @param n
 	 */
-	private boolean comingBack() {
-		return (zone == previousZone);
-	}
-	
-	/**
-	 * Evalua si el personaje esta en posicion de poder cambiar de direccion
-	 * @return True si se puede, false sino
-	 */
-	private boolean canChangeDirection() {
-		boolean toReturn = false;
-		if (attemptingMovement != movementDirection && attemptingMovement!= null) {									// Evalua si quiere cambiarse de direccion
-			if (isInZoneCenter() && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {				// Puede en una interseccion
-				toReturn = true;
+	private void move (float n) {
+		
+		float d = nextCenterDistance();
+		System.out.println("Distancia "+d);
+		boolean canMove = true;
+		if (n < 0) {
+			n = 0;
+		}
+		if (d == 1) {
+			updateDir();
+			canMove = canMove();
+		}
+		if (canMove) {
+			if (d >= n) {
+				//mover
+				updateLocation(n);
+				//return
 			} else {
-				if ((attemptingMovement == movementDirection.getOpposite())) {										// Puede volver donde estaba
-					toReturn = true;
-					previousZone = (previousZone == null) ? zone : null;
-				}
+				//mover distancia d
+				updateLocation(d);
+				//move (n - distancia)
+				move(n - d);
 			}
+		}
+	}
+	
+	/**
+	 * Actualiza las coordenadas y la zona con respecto a la direccion y parametro
+	 * @param float Unidades a moverse en la direccion actual
+	 */
+	private void updateLocation(float n) {
+		switch (movementDirection){
+			case UP:
+				y -= n;
+				break;
+			case RIGHT:
+				x += n;
+				break;
+			case DOWN:
+				y += n;
+				break;
+			case LEFT:
+				x -= n;
+				break;
+		}
+		x = Math.round(x * 10f) / 10f;
+		y = Math.round(y * 10f) / 10f;
+		
+		this.setCoordinates(x, y);
+	}
+	
+	/**
+	 * Actualiza de ser necesario la direccion del personaje
+	 */
+	private void updateDir() {
+		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {
+			movementDirection = attemptingMovement;
+			updateMovementDirection();					//TODO quitar cuando existar char
+		}
+	}
+	
+	/**
+	 * Consulta cuando esta en el centro de una zona si puede moverse
+	 * @return True si puede, false sino
+	 */
+	private boolean canMove() {
+		return zone.getAdjacent(movementDirection).getType() == ZoneType.PATH;
+	}
+	
+	/**
+	 * Calcula la distancia entre el proximo centro desde la posicion actual
+	 * @return float distancia entre posicion y centro proximo en direccion actual
+	 */
+	private float nextCenterDistance() {
+		float toReturn;
+		Zone adjacent = zone.getAdjacent(movementDirection);
+		if (x == adjacent.getX()) {
+			toReturn = Math.abs(y - adjacent.getY());
+		} else {
+			toReturn = Math.abs(x - adjacent.getX());
+		}
+		toReturn = Math.round(toReturn * 10f) / 10f;
+		if (toReturn == 0) {
+			toReturn = 1;
 		}
 		return toReturn;
-	}
-	
-	/**
-	 * Cambia la direccion del personaje
-	 */
-	private void changeDirection() {
-		movementDirection = attemptingMovement;
-		attemptingMovement = null;
-		updateMovementDirection();
 	}
 	
 	/**
@@ -140,53 +185,6 @@ public class Player extends Entity{
 			break;
 		}
 	}
-	
-	/**
-	 * Actualiza las coordeandas del persona y de la grafica dependiendo de la direccion actual
-	 */
-	private void updateCoords() {
-		switch (movementDirection){
-			case UP:
-				y -= MOVEMENT_LENGTH;
-				break;
-			case RIGHT:
-				x += MOVEMENT_LENGTH;
-				break;
-			case DOWN:
-				y += MOVEMENT_LENGTH;
-				break;
-			case LEFT:
-				x -= MOVEMENT_LENGTH;
-				break;
-		}
-		x = Math.round(x * 10f) / 10f;
-		y = Math.round(y * 10f) / 10f;
-		graphic.update(x,y);
-	}
-	
-	/**
-	 * Setea al player en una nueva zona
-	 * 
-	 * @param newZone Zone
-	 */
-	private void setNewZone(Zone newZone) {
-		if (newZone != null) {
-			zone.removeEntity(this);
-			zone = newZone;
-			zone.addEntity(this);
-			//TODO medir colision en nueva zona
-			collide();
-		}
-	}
-	
-	/**
-	 * Evalua si el personaje se encuentra en el centro de una zona
-	 * @return true si esta en el centro, false sino
-	 */
-	private boolean isInZoneCenter () {
-		return (x == (int) x && y == (int) y);							//Si los numeros son enteros esta en el centro de una zona
-	}
-	
 	
 	/**
 	 * Asigna una nueva direccion a la que intentar mover al jguador

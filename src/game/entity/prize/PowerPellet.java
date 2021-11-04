@@ -1,6 +1,9 @@
 package game.entity.prize;
 
+import game.entity.Entity;
 import game.entity.GraphicPrize;
+import game.entity.visitor.PowerPelletVisitor;
+import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
 public class PowerPellet extends Prize {
@@ -11,7 +14,11 @@ public class PowerPellet extends Prize {
 	}
 	
 	public void triggerEffect() {
-		//TODO imp
+		Visitor v = new PowerPelletVisitor();
+		for (Entity e: zone.getLabyrinth().entities()) {
+			e.accept(v);
+		}
+		beConsumed();
 	}
 	
 }
