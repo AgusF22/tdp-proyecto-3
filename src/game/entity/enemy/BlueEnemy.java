@@ -7,7 +7,7 @@ public class BlueEnemy extends Enemy {
 
 	public BlueEnemy(Zone zone) {
 		super (zone);
-		this.graphic = new GraphicEnemy(zone.getLabyrinth().getImageFactory().getBlueEnemyImages());
+		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getBlueEnemyImages());
 	}
 	
 	@Override

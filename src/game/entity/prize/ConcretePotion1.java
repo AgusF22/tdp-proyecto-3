@@ -7,7 +7,7 @@ public class ConcretePotion1 extends Potion {
 	
 	public ConcretePotion1(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(zone.getLabyrinth().getImageFactory().getPotion1());
+		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion1());
 	}
 	
 	public void triggerEffect() {
