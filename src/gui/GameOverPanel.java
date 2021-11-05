@@ -15,10 +15,7 @@ import imagefactories.ImageFactory;
 
 public abstract class GameOverPanel extends GUIPanel{
 	protected int finalScore;
-	protected JLabel fondo = new JLabel("");
-	protected int width;
-	protected int height;
-	protected String fuente;
+	protected JLabel fondo;
 	protected JLabel winLose;
 	protected JLabel score;
 	private JTextField name;
@@ -26,16 +23,9 @@ public abstract class GameOverPanel extends GUIPanel{
 	protected GameOverPanel(GUI gui, int finalScore) {
 		super(gui);
 		this.finalScore = finalScore;
-		fuente = "SansSerif";
-		
-		width = gui.CURRENT_SCREEN_WIDTH;
-		height = gui.CURRENT_SCREEN_HEIGHT;
 		
 		setLayout(null);
 		setSize(width, height);
-		
-		fondo.setBounds(0, 0, width, height);
-		fondo.setIcon(gui.getImageFactory().getGameOverBgImage());
 		
 		int scaleWidth= width/4;
 		int scaleHeight = height/15;
@@ -43,8 +33,15 @@ public abstract class GameOverPanel extends GUIPanel{
 		crearBotones(scaleWidth, scaleHeight);
 		crearLabels(scaleWidth, scaleHeight);
 		crearCampoDeTexto(scaleWidth, scaleHeight);
-		add(fondo);
+		crearFondo();
 		
+	}
+	
+	private void crearFondo() {
+		fondo = new JLabel("");
+		fondo.setBounds(0, 0, width, height);
+		fondo.setIcon(frame.getImageFactory().getGameOverBgImage());
+		add(fondo);
 	}
 	
 	private void crearCampoDeTexto(int scaleWidth, int scaleHeight) {

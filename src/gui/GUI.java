@@ -24,6 +24,7 @@ public class GUI extends JFrame{
 	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
 	protected final int CURRENT_SCREEN_WIDTH;
 	protected final int CURRENT_SCREEN_HEIGHT;
+	protected final String FUENTE;
 
 	private transient ImageFactory factory;
 	private GUIPanel panel;
@@ -36,6 +37,7 @@ public class GUI extends JFrame{
 		
 		CURRENT_SCREEN_WIDTH = 1280;
 		CURRENT_SCREEN_HEIGHT = 720;
+		FUENTE = "SansSerif";
 		
 		factory = new ConcreteImageFactory(CURRENT_SCREEN_WIDTH, CURRENT_SCREEN_HEIGHT);
 		createFrame();
@@ -43,7 +45,8 @@ public class GUI extends JFrame{
 		setVisible(true);
 		
 		//panel = new LosePanel(this, 0);
-		//add(panel);
+		//panel = new StartPanel(this);
+		add(panel);
 		repaint();
 	}
 	

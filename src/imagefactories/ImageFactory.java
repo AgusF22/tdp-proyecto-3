@@ -20,130 +20,141 @@ public abstract class ImageFactory {
 	
 	/**
 	 * Devuelve el icono correspondiente al laberinto 1.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth1Image();
 	
 	/**
 	 * Devuelve el icono correspondiente al laberinto 2.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth2Image();
 	
 	/**
 	 * Devuelve el icono correspondiente al laberinto 3.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth3Image();
 	
 	/**
 	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 1.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth1bgImage();
 	
 	/**
 	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 2.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth2bgImage();
 	
 	/**
 	 * Devuelve el icono correspondiente a la imagen de fondo del laberinto 3.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getLabyrinth3bgImage();
 	
 	/**
-	 * Devuelve el icono correspondiente al fondo de fin de juego.
-	 * @return Una imagen.
+	 * Devuelve el icono correspondiente a la imagen de fondo de fin de juego.
+	 * @return Un icono.
 	 */
 	public abstract Icon getGameOverBgImage();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al player.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve el icono correspondiente a la imagen de fondo del inicio juego.
+	 * @return Un icono.
+	 */
+	public abstract Icon getStartBgImage();
+	
+	/**
+	 * Devuelve un arreglo con los iconos correspondientes al player.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getPlayerImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al los efectos de pociones.
-	 * @return
+	 * Devuelve un arreglo con los iconos correspondientes al los efectos de pociones.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getEffectImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rosa.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve un arreglo con los iconos correspondientes al enemigo rosa.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getPinkEnemyImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rojo.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve un arreglo con los iconos correspondientes al enemigo rojo.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getRedEnemyImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al enemigo naranja.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve un arreglo con los iconos correspondientes al enemigo naranja.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getOrangeEnemyImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al enemigo azul.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve un arreglo con los iconos correspondientes al enemigo azul.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getBlueEnemyImages();
 	
 	/**
-	 * Devuelve un arreglo con las imagenes correspondientes al enemigo que huye.
-	 * @return Un arreglo con imagenes.
+	 * Devuelve un arreglo con los iconos correspondientes al enemigo que huye.
+	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getFleeingEnemyImages();
 	
 	/**
 	 * Devuelve el icono correspondiente al punto.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getDotImage();
 	
 	/**
 	 * Devuelve el icono correspondiente a la perla de poder.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getPowerPelletImage();
 	
 	/**
 	 * Devuelve el icono correspondiente a la fruta 1.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getFruit1Image();
 	
 	/**
 	 * Devuelve el icono correspondiente a la fruta 2.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getFruit2Image();
 	
 	/**
 	 * Devuelve el icono correspondiente a la fruta 3.
-	 * @return Una imagen.
+	 * @return Un icono.
 	 */
 	public abstract Icon getFruit3Image();
 	
 	/**
 	 * Devuelve el icono correspondiente a la pocion 1.
-	 * @return
+	 * @return Un icono.
 	 */
 	public abstract Icon getPotion1();
 	
 	/**
 	 * Devuelve el icono correspondiente a la pocion 1.
-	 * @return
+	 * @return Un icono.
 	 */
 	public abstract Icon getPotion2();
 	
+	/**
+	 * Devuelve un ImageIcono escalado para mantener proporciones.
+	 * @param imageIcon un IageIcon a escalar.
+	 * @return Un nuevo ImageIcon escalado.
+	 */
 	protected ImageIcon scale(ImageIcon imageIcon) {
 		int width = currentScreenWidth * imageIcon.getIconWidth() / GUI.DEFAULT_SCREEN_WIDTH;
 		int height = currentScreenHeight * imageIcon.getIconHeight() / GUI.DEFAULT_SCREEN_HEIGHT;
