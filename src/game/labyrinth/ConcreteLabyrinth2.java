@@ -1,8 +1,13 @@
 package game.labyrinth;
 
 import game.Game;
+import game.entity.Entity;
 import game.entity.player.Player;
+import game.entity.prize.ConcreteFruit1;
+import game.entity.prize.ConcretePotion1;
+import game.entity.prize.ConcretePotion2;
 import game.entity.prize.Dot;
+import game.entity.prize.PowerPellet;
 
 public class ConcreteLabyrinth2  extends Labyrinth {
 	
@@ -116,15 +121,30 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 	
 	private void setEntity() {
 
-		zones[14][23].addEntity(Player.getInstance());
-		Player.getInstance().setZone(zones[14][23]);
-        Player.getInstance().getGraphic().addToGUI(game.getGUI());
-		//TODO enemies
-
 		// ***Set Prize***
-		//TODO  Set Fruits
-		//TODO  Set PowerPellet
-		//TODO  Set Potions
+        zones[14][23].addEntity(Player.getInstance());				// ***Set Player***
+		Player.getInstance().setZone(zones[14][23]);
+		Player.getInstance().getGraphic().addToGUI(game.getGUI());
+		
+		//TODO enemies
+									
+
+        Entity fruit = new ConcreteFruit1(zones[14][17]);			// ***Set Prize***
+        fruit.getGraphic().addToGUI(game.getGUI());
+        
+        Entity powerPellet1 = new PowerPellet(zones[1][1]);
+        powerPellet1.getGraphic().addToGUI(game.getGUI());
+        Entity powerPellet2 = new PowerPellet(zones[27][1]);
+        powerPellet2.getGraphic().addToGUI(game.getGUI());
+        Entity powerPellet3 = new PowerPellet(zones[1][29]);
+        powerPellet3.getGraphic().addToGUI(game.getGUI());
+        Entity powerPellet4 = new PowerPellet(zones[27][29]);
+        powerPellet4.getGraphic().addToGUI(game.getGUI());
+        
+        Entity potion1 = new ConcretePotion1(zones[6][14]);
+        potion1.getGraphic().addToGUI(game.getGUI());
+        Entity potion2 = new ConcretePotion2(zones[22][14]);
+        potion2.getGraphic().addToGUI(game.getGUI());
 
 		for (int x = 0; x < zones.length; x++) {					//	  Set dots
 			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
