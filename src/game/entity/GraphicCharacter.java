@@ -3,14 +3,13 @@ package game.entity;
 import javax.swing.Icon;
 
 public class GraphicCharacter extends GraphicEntity{
-	/**
-	 * Serial por defecto.
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	protected transient Icon movingUpImage;
-	protected transient Icon movingDownImage;
-	protected transient Icon movingLeftImage;
-	protected transient Icon movingRightImage;
+	
+	protected final transient Icon movingUpImage;
+	protected final transient Icon movingDownImage;
+	protected final transient Icon movingLeftImage;
+	protected final transient Icon movingRightImage;
 	
 	public GraphicCharacter(Entity entity, Icon[] images) {
 		super(entity);

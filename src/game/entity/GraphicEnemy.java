@@ -10,15 +10,19 @@ public class GraphicEnemy extends GraphicCharacter{
 	protected transient Icon fleeingDownImage;
 	protected transient Icon fleeingLeftImage;
 	protected transient Icon fleeingRightImage;
+	protected transient Icon stunEffect;
 
 	protected boolean fleeing;
 	
 	public GraphicEnemy(Entity entity, Icon[] images) {
 		super(entity, images);
+		
 		fleeingUpImage 		= images[4];
 		fleeingRightImage 	= images[5];
 		fleeingDownImage 	= images[6];
 		fleeingLeftImage 	= images[7];
+		
+		stunEffect			= images[8];
 	}
 	
 	@Override
@@ -64,4 +68,17 @@ public class GraphicEnemy extends GraphicCharacter{
 	public void setFleeing(boolean fleeing) {
 		this.fleeing = fleeing;
 	}
+	
+	public void setVisible(boolean visible) {
+		// TODO imp
+	}
+	
+	public void addStunEffect() {
+		// TODO imp
+	}
+	
+	public void removeStunEffect() {
+		// TODO imp
+	}
+	
 }
