@@ -4,7 +4,7 @@ public class ChasingState extends EnemyState {
 
 	public ChasingState(Enemy enemy) {
 		//TODO imp
-		super(null);
+		super(enemy);
 	}
 	
 	public void move() {

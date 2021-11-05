@@ -10,8 +10,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 public class LosePanel extends GameOverPanel {
-	public LosePanel(GUI gui) {
-		super(gui);
+	public LosePanel(GUI gui, int finalScore) {
+		super(gui, finalScore);
 		winLose.setText("YOU LOSE");
 	}
 }
