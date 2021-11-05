@@ -102,7 +102,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		//TODO enemies
 									
 																	// ***Set Prize***
-        Entity fruit = new ConcreteFruit1(zones[17][14]);
+        Entity fruit = new ConcreteFruit1(zones[14][17]);
         fruit.getGraphic().addToGUI(game.getGUI());
         
         Entity powerPellet1 = new PowerPellet(zones[1][1]);
