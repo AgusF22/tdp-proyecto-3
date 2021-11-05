@@ -1,15 +1,17 @@
 package game.entity;
 
+import game.Direction;
 import game.labyrinth.Zone;
 
 public abstract class Character extends Entity {
 
-	protected final float MOVEMENT_SPEED;
+	protected final float MOVEMENT_SPEED = 0.1f;
 	protected float speedMultiplier;
+	protected Direction movementDirection;
 	
-	protected Character(Zone zone, float movSpeed) {
+	protected Character(Zone zone) {
 		super(zone);
-		this.MOVEMENT_SPEED = movSpeed;
+		movementDirection = Direction.LEFT;
 	}
 	
 	public abstract void move();

@@ -4,15 +4,14 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import game.Direction;
-import game.entity.Entity;
+import game.entity.Character;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 
-public abstract class Enemy extends Entity{
+public abstract class Enemy extends Character{
 	
 	protected EnemyState state;
-	protected Direction movementDirection;
 	
 	/**
 	 * Construye un nuevo enemigo.
@@ -28,6 +27,13 @@ public abstract class Enemy extends Entity{
 	 */
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
+	}
+	
+	/**
+	 * Aturde a este enemigo, haciendo que no pueda moverse ni interactuar por un tiempo.
+	 */
+	public void stun() {
+		state = new StunedState(this);
 	}
 	
 	/**

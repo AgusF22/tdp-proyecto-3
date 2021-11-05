@@ -4,16 +4,16 @@ import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 import game.Direction;
 import game.entity.Entity;
+import game.entity.Character;
 import game.entity.GraphicCharacter;
 import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
-public class Player extends Entity{
+public class Player extends Character{
 	
 	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
 	
 	protected float movementSpeed;
-	protected Direction movementDirection;
 	protected Direction attemptingMovement;
 	protected static Player instance;
 	
@@ -22,7 +22,6 @@ public class Player extends Entity{
 	 */
 	private Player() {
 		super(null);
-		movementDirection = Direction.LEFT;
 		attemptingMovement = null;
 	}
 	
@@ -78,7 +77,7 @@ public class Player extends Entity{
 	 * 		 entonces no llego al centro de donde queria ir que ya esta preguntando por el que sigue.
 	 * @param n
 	 */
-	private void move (float n) {
+	private void move(float n) {
 		
 		float d = nextCenterDistance();
 		System.out.println("Distancia "+d);
