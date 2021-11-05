@@ -11,6 +11,10 @@ import game.entity.prize.PowerPellet;
 
 public class ConcreteLabyrinth3  extends Labyrinth {
 	
+	/**
+	 * Crea una instancia concreta del laberinto 3.
+	 * @param game asociado a este laberinto.
+	 */
 	public ConcreteLabyrinth3(Game game) {
 		super(game);
 
@@ -112,6 +116,9 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 		this.setEntity();
 	}
 	
+	/**
+	 * Crea y setea en el mapa a todas las entidades del laberinto 3.
+	 */
 	private void setEntity() {
 
 		zones[14][23].addEntity(Player.getInstance());
@@ -147,6 +154,9 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 		}
 	}
 	
+	/**
+	 * @return el siguiente laberinto concreto, si no existe retorna null.
+	 */
 	public Labyrinth nextLabyrinth() {
 		return null;
 	}

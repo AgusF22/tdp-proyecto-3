@@ -24,6 +24,10 @@ public class Game implements Subscriber{
 		EndGamePublisher.getInstance().subscribe(this);
 	}
 	
+	/**
+	 * Construye una nueva instancia de Game, con los argumentos pasados por parametro.
+	 * @param gui interfaz grafica asociada al juego.
+	 */
 	public Game(GamePanel gui) { //TODO constructor nuevo, ver como sacar el otro
 		this.gui = gui;
 		points = 0;

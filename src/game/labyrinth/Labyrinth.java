@@ -2,7 +2,6 @@ package game.labyrinth;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import game.Game;
 import game.entity.Entity;
 import imagefactories.ImageFactory;
@@ -17,6 +16,10 @@ public abstract class Labyrinth {
 	protected Game game;
 	protected Zone[][] zones;
 	
+	/**
+	 * Crear un nuevo labyrinth.
+	 * @param game asociado a este laberinto.
+	 */
 	protected Labyrinth(Game game) {
 		this.game = game;
 		zones = new Zone[WIDTH][HEIGHT];
@@ -29,10 +32,16 @@ public abstract class Labyrinth {
 		return doCount != 0;
 	}
 	
+	/**
+	 * Finaliza el juego.
+	 */
 	public void endGame() {
 		game.endGame();
 	}
 	
+	/**
+	 * @return el siguiente laberinto.
+	 */
 	public abstract Labyrinth nextLabyrinth();
 	
 	/**
@@ -74,10 +83,17 @@ public abstract class Labyrinth {
 		return zones[xInt][yInt];
 	}
 	
+	/**
+	 * Decrementa en uno los dots actuales del laberinto. 
+	 */
 	public void removeDot() {
 		doCount--;
 	}
 	
+	/**
+	 * Retorna el constructor del dominio grafico que se utiliza en el juego
+	 * @return ImageFactory.
+	 */
 	public ImageFactory getImageFactory() {
 		return game.getImageFactory();
 	}
