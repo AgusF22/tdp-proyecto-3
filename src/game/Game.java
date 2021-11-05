@@ -4,6 +4,7 @@ import game.entity.enemy.EnemyBrain;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
+import gui.GUI;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
@@ -18,6 +19,15 @@ public class Game implements Subscriber{
 		this.gui = gui;
 		points = 0;
 		imageFactory = factory;
+		labyrinth = new ConcreteLabyrinth1(this);
+		enemyBrain = new EnemyBrain();
+		EndGamePublisher.getInstance().subscribe(this);
+	}
+	
+	public Game(GamePanel gui) { //TODO constructor nuevo, ver como sacar el otro
+		this.gui = gui;
+		points = 0;
+		imageFactory = gui.getImageFactory();
 		labyrinth = new ConcreteLabyrinth1(this);
 		enemyBrain = new EnemyBrain();
 		EndGamePublisher.getInstance().subscribe(this);

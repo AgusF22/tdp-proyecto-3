@@ -6,9 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Font;
 
-public class StartPanel extends JPanel{
+public class StartPanel extends GUIPanel{
 	
-	public StartPanel() {
+	public StartPanel(GUI gui) {
+		super(gui);
 		setSize(500, 500);
 		setBackground(Color.PINK);
 		setLayout(null);

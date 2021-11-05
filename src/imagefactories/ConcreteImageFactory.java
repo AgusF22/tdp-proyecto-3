@@ -49,6 +49,11 @@ public class ConcreteImageFactory extends ImageFactory{
 		return scale(imgIcon);
 	}
 
+	@Override
+	public Icon getGameOverBgImage() {
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/gui/gameOverBg.png"));
+		return scale(imgIcon);
+	}
 	
 	@Override
 	public Icon[] getPlayerImages() {
@@ -128,12 +133,12 @@ public class ConcreteImageFactory extends ImageFactory{
 	}
 	
 	public Icon getPotion1() {
-		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion1.png"));
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion1.gif"));
 		return scale(imgIcon);
 	}
 	
 	public Icon getPotion2() {
-		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion2.png"));
+		ImageIcon imgIcon = new ImageIcon(imagefactories.ConcreteImageFactory.class.getResource("/res/minecraft/entity/prize/potion2.gif"));
 		return scale(imgIcon);
 	}
 
