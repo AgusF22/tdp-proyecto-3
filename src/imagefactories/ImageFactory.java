@@ -67,6 +67,12 @@ public abstract class ImageFactory {
 	public abstract Icon[] getPlayerImages();
 	
 	/**
+	 * Devuelve un arreglo con las imagenes correspondientes al los efectos de pociones.
+	 * @return
+	 */
+	public abstract Icon[] getEffectImages();
+	
+	/**
 	 * Devuelve un arreglo con las imagenes correspondientes al enemigo rosa.
 	 * @return Un arreglo con imagenes.
 	 */

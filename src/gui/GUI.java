@@ -42,8 +42,8 @@ public class GUI extends JFrame{
 		play();
 		setVisible(true);
 		
-//		panel = new LosePanel(this);
-//		add(panel);
+		//panel = new LosePanel(this, 0);
+		//add(panel);
 		repaint();
 	}
 	

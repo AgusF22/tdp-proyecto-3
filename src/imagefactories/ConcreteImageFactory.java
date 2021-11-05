@@ -71,6 +71,10 @@ public class ConcreteImageFactory extends ImageFactory{
 		
 		return rta;
 	}
+	
+	public Icon[] getEffectImages() { // TODO 0) velocidad 1) escudo
+		return null;
+	}
 
 	@Override
 	public Icon[] getPinkEnemyImages() {
