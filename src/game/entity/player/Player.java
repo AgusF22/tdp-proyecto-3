@@ -11,7 +11,7 @@ import game.entity.visitor.Visitor;
 
 public class Player extends Character{
 	
-	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento
+	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento // FIXME reemplazar por constante en Character -AF
 	
 	protected float movementSpeed;
 	protected Direction attemptingMovement;
@@ -21,7 +21,7 @@ public class Player extends Character{
 	 * Crea una nueva instancia de Player.
 	 */
 	private Player() {
-		super(null);
+		super(null, 0.1f);
 		attemptingMovement = null;
 	}
 	

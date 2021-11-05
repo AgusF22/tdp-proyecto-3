@@ -18,7 +18,7 @@ public abstract class Enemy extends Character{
 	 * @param zone La zona en la que se encontrara el nuevo enemigo.
 	 */
 	protected Enemy(Zone zone) {
-		super(zone);
+		super(zone, 0.15f);
 		state = new ChasingState(this);
 	}
 	

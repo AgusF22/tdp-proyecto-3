@@ -5,12 +5,13 @@ import game.labyrinth.Zone;
 
 public abstract class Character extends Entity {
 
-	protected final float MOVEMENT_SPEED = 0.1f;
+	protected final float movementSpeed;
 	protected float speedMultiplier;
 	protected Direction movementDirection;
 	
-	protected Character(Zone zone) {
+	protected Character(Zone zone, float movementSpeed) {
 		super(zone);
+		this.movementSpeed = movementSpeed;
 		movementDirection = Direction.LEFT;
 	}
 	
