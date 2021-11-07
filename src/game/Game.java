@@ -4,7 +4,6 @@ import game.entity.enemy.EnemyBrain;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
 import game.labyrinth.Labyrinth;
-import gui.GUI;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
@@ -15,20 +14,11 @@ public class Game implements Subscriber{
 	protected Labyrinth labyrinth;
 	protected EnemyBrain enemyBrain;
 	
-	public Game(GamePanel gui,ImageFactory factory) {
-		this.gui = gui;
-		points = 0;
-		imageFactory = factory;
-		labyrinth = new ConcreteLabyrinth1(this);
-		enemyBrain = new EnemyBrain();
-		EndGamePublisher.getInstance().subscribe(this);
-	}
-	
 	/**
-	 * Construye una nueva instancia de Game, con los argumentos pasados por parametro.
+	 * Construye una nueva instancia de Game.
 	 * @param gui interfaz grafica asociada al juego.
 	 */
-	public Game(GamePanel gui) { //TODO constructor nuevo, ver como sacar el otro
+	public Game(GamePanel gui) {
 		this.gui = gui;
 		points = 0;
 		imageFactory = gui.getImageFactory();
@@ -38,28 +28,28 @@ public class Game implements Subscriber{
 	}
 	
 	/**
-	 * Mueve al personaje principal a arriba.
+	 * Mueve al personaje principal hacia arriba.
 	 */
 	public void moveUp() {
 		Player.getInstance().attemptMovement(Direction.UP);
 	}
 	
 	/**
-	 * Mueve al personaje principal a la derecha.
+	 * Mueve al personaje principal hacia la derecha.
 	 */
 	public void moveRight() {
 		Player.getInstance().attemptMovement(Direction.RIGHT);
 	}
 	
 	/**
-	 * Mueve al personaje principal a abajo.
+	 * Mueve al personaje principal hacia abajo.
 	 */
 	public void moveDown() {
 		Player.getInstance().attemptMovement(Direction.DOWN);
 	}
 	
 	/**
-	 * Mueve al personaje principal a la izquierda.
+	 * Mueve al personaje principal hacia la izquierda.
 	 */
 	public void moveLeft() {
 		Player.getInstance().attemptMovement(Direction.LEFT);
@@ -99,19 +89,16 @@ public class Game implements Subscriber{
 	}
 	
 	/**
-	 * Retorna el constructor del dominio grafico que se utiliza en el juego
-	 * @return ImageFactory
+	 * Retorna la fabrica de imagenes que se utiliza en el juego.
+	 * @return Una fabrica de imagenes.
 	 */
 	public ImageFactory getImageFactory() {
-		return imageFactory;
+		return gui.getImageFactory();
 	}
 	
-	/**
-	 * Updatea TODO mejorar
-	 */
+	@Override
 	public void update() {
-		//TODO implementar
-		endGame(); // TODO el observer solo notifica cuando un enemigo toco a un jugador?
+		endGame();
 	}
 	
 	public GamePanel getGUI() {
