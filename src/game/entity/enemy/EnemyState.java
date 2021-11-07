@@ -20,6 +20,6 @@ public abstract class EnemyState {
 	/**
 	 * Hace que el enemigo que se encuantra en este estado colisione con el jugador.
 	 */
-	public abstract void CollideWithPlayer();
+	public abstract void collideWithPlayer();
 	
 }

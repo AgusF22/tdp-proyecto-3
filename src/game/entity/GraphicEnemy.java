@@ -69,6 +69,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		this.fleeing = fleeing;
 	}
 	
+	@Override
 	public void setVisible(boolean visible) {
 		// TODO imp
 	}

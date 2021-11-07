@@ -17,8 +17,8 @@ public abstract class Entity {
 	protected Entity(Zone zone) {
 		this.zone = zone;
 		if(zone != null) {			
-			x = (float) zone.getX();
-			y = (float) zone.getY();
+			x = zone.getX();
+			y = zone.getY();
 		}
 	}
 	

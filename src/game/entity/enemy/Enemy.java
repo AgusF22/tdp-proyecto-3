@@ -47,7 +47,7 @@ public abstract class Enemy extends Character{
 	 * Colisiona este enemigo con el jugador.
 	 */
 	public void collideWithPlayer() {
-		state.CollideWithPlayer();
+		state.collideWithPlayer();
 	}
 	
 	/**

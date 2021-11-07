@@ -18,11 +18,11 @@ public abstract class GUIPanel extends JPanel{
 	 * Crea un nuevo panel de gui.
 	 * @param gui La gui en la que se encontrara este panel.
 	 */
-	public GUIPanel(GUI gui) {
+	protected GUIPanel(GUI gui) {
 		frame = gui;
-		fuente = frame.FUENTE;
-		width = frame.CURRENT_SCREEN_WIDTH;
-		height = frame.CURRENT_SCREEN_HEIGHT;
+		fuente = frame.fuente;
+		width = frame.currentScreenWidth;
+		height = frame.currentScreenHeight;
 	}
 	
 	/**

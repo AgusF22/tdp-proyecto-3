@@ -84,7 +84,10 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanR.gif");
 		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanF.gif");
 		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");
+		
+		// FIXME no repetir literales!!! usar constantes, o un metodo para obtener los 4 iconos -AF
+		
+		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");	
 		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/enemy/bee/beeR.gif");
 		ImageIcon imgIcon6 = getIcon("/res/minecraft/entity/character/enemy/bee/beeF.gif");
 		ImageIcon imgIcon7 = getIcon("/res/minecraft/entity/character/enemy/bee/beeL.gif");

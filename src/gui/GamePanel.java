@@ -20,7 +20,7 @@ public class GamePanel extends GUIPanel {
 	private static final long serialVersionUID = 1L;
 	
 	protected transient Game game;
-	private JLabel LabyrinthLabel;
+	private JLabel labyrinthLabel;
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
 	
@@ -49,9 +49,9 @@ public class GamePanel extends GUIPanel {
 		fondo.setLocation(0, 0);
 		add(fondo);
 		
-		LabyrinthLabel = new JLabel("");
-		LabyrinthLabel.setLocation(0, 0);
-		panelCapas.add(LabyrinthLabel, 0);
+		labyrinthLabel = new JLabel("");
+		labyrinthLabel.setLocation(0, 0);
+		panelCapas.add(labyrinthLabel, 0);
 	}
 	
 	private void agregarControles() {
@@ -176,7 +176,7 @@ public class GamePanel extends GUIPanel {
 		float posY = y * zoneHeight + zoneHeight / 2;
 		
 		posX -= (float) label.getWidth() / 2;
-		posY -= (float) label.getHeight();
+		posY -= label.getHeight();
 		
 		label.setLocation(Math.round(posX), Math.round(posY));
 	}
@@ -191,8 +191,8 @@ public class GamePanel extends GUIPanel {
 		
 		panelCapas.setSize(width, height);
 		
-		LabyrinthLabel.setSize(width, height);
-		LabyrinthLabel.setIcon(lab);
+		labyrinthLabel.setSize(width, height);
+		labyrinthLabel.setIcon(lab);
 		
 		//TODO sacar las dos siguientes 
 		ImageFactory f = new ConcreteImageFactory(1280, 720);
@@ -223,8 +223,8 @@ public class GamePanel extends GUIPanel {
 		return frame.getImageFactory();
 	}
 	
-	private void centrar(int w, int h) {
-		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7);
+	private void centrar(int w, int h) {		// TODO revisar, los parametros no se usan
+		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7);	// FIXME castear algun operando a flotante, se le esta pasando un int a round -AF
 		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38);
 		panelCapas.setLocation(posW, posH);
 	}

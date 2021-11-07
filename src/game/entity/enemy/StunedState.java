@@ -14,7 +14,7 @@ public class StunedState extends EnemyState{
 	}
 
 	@Override
-	public void CollideWithPlayer() {
+	public void collideWithPlayer() {
 		// TODO Auto-generated method stub
 		
 	}

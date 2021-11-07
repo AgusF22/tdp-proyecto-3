@@ -27,7 +27,7 @@ public class StatsData implements Serializable {
 	}
 	
 	public void save() throws IOException {
-		FileOutputStream file = new FileOutputStream(fileName);
+		FileOutputStream file = new FileOutputStream(fileName);		// FIXME cambiar a try with resources -AF
 		ObjectOutputStream out = new ObjectOutputStream(file);
 		out.writeObject(topPlayers);
 		out.flush();

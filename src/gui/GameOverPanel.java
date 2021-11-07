@@ -42,7 +42,7 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearCampoDeTexto(int scaleWidth, int scaleHeight) {
+	private void crearCampoDeTexto(int scaleWidth, int scaleHeight) {	// TODO revisar, scaleWidth no se usa -AF
 		name = new JTextField();
 		name.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		name.setBounds(width/3, 4*scaleHeight, width/3, scaleHeight);
@@ -51,7 +51,7 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(name);
 	}
 	
-	private void crearLabels(int scaleWidth, int scaleHeight) {
+	private void crearLabels(int scaleWidth, int scaleHeight) {	// TODO revisar, scaleWidth no se usa -AF
 		
 		winLose = new JLabel("");
 		winLose.setFont(new Font(fuente, Font.BOLD, 2*scaleHeight));
