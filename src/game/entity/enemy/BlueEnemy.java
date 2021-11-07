@@ -4,10 +4,13 @@ import game.entity.GraphicEnemy;
 import game.labyrinth.Zone;
 
 public class BlueEnemy extends Enemy {
+	
+	protected RedEnemy red;
 
-	public BlueEnemy(Zone zone) {
+	public BlueEnemy(Zone zone, RedEnemy red) {
 		super (zone);
 		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getBlueEnemyImages());
+		this.red = red;
 	}
 	
 	@Override

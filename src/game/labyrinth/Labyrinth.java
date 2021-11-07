@@ -63,7 +63,7 @@ public abstract class Labyrinth {
 		for (int i = 0; i < zones.length; i++) {										// Recorre todas las zonas del laberinto
 			for (int j = 0; j < zones[0].length; j++) {
 				listEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
-				listEntities.forEach(e -> entities.add(e));							// Agrega las entidades de la zona en la Set entities
+				listEntities.forEach(entities::add);							// Agrega las entidades de la zona en la Set entities
 			}
 		}
 		return entities;
