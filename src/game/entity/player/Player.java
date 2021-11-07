@@ -152,19 +152,27 @@ public class Player extends Character{
 	 */
 	private float nextCenterDistance() {
 		float toReturn;
-		Zone adjacent = zone.getAdjacent(movementDirection);
-		if (x == adjacent.getX()) {
-			toReturn = Math.abs(y - adjacent.getY());
-		} else {
-			toReturn = Math.abs(x - adjacent.getX());
+		switch(movementDirection){
+		case RIGHT:
+			toReturn = (float) Math.abs(x - Math.ceil(x));
+			break;
+		case LEFT:
+			toReturn = (float) Math.abs(x - Math.floor(x));
+			break;
+		case DOWN:
+			toReturn = (float) Math.abs(y - Math.ceil(y));
+			break;
+		case UP:
+			toReturn = (float) Math.abs(y - Math.floor(y));
+			break;
+		default:
+			toReturn = 0f;
 		}
-		toReturn = Math.round(toReturn * 10f) / 10f;
-		if (toReturn == 0) {
-			toReturn = 1;
-		}
+		if(toReturn == 0f)
+			toReturn = 1f;
 		return toReturn;
 	}
-	
+
 	/**
 	 * Actualiza la direccion de movimiento de la grafica
 	 */
