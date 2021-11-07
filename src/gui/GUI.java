@@ -1,27 +1,18 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import data.StatsData;
-import data.TopPlayers;
-import game.Game;
 import imagefactories.ImageFactory;
 import imagefactories.ConcreteImageFactory;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.io.IOException;
-
 public class GUI extends JFrame{
 	
-	/**
-	 * Serial por defecto
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	public static final int DEFAULT_SCREEN_WIDTH = 1920;
 	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
+	
 	protected final int CURRENT_SCREEN_WIDTH;
 	protected final int CURRENT_SCREEN_HEIGHT;
 	protected final String FUENTE;
@@ -58,20 +49,29 @@ public class GUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	private void play() {
+	private void play() {					// TODO remover, usar setPanel -AF
 		panel = new GamePanel(this);
-		getContentPane().add(panel);
-		
+		getContentPane().add(panel);	
 	}
 	
-	public void setPanel(JPanel panel) {
-		//TODO imp
+	/**
+	 * Cambia el panel actual de esta gui.
+	 * @param panel El panel para mostrar en la gui.
+	 */
+	public void setPanel(GUIPanel panel) {
+		getContentPane().removeAll();
+		this.panel = panel;
+		getContentPane().add(panel);			// TODO revisar si esto es correcto -AF
 	}
 	
 	public StatsData getStatsData() {
 		return new StatsData();
 	}
 	
+	/**
+	 * Retorna la fabrica de imagenes de esta gui.
+	 * @return La fabrica de imagenes de esta gui.
+	 */
 	public ImageFactory getImageFactory() {
 		return factory;
 	}

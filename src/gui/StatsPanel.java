@@ -1,8 +1,9 @@
 package gui;
 
-import javax.swing.JPanel;
-
 public class StatsPanel extends GUIPanel{
+	
+	private static final long serialVersionUID = 1L;
+
 	public StatsPanel(GUI gui) {
 		super(gui);
 		//TODO imp
@@ -11,4 +12,5 @@ public class StatsPanel extends GUIPanel{
 	public void backToMenu() {
 		//TODO imp
 	}
+	
 }

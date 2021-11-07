@@ -1,15 +1,9 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import game.Game;
@@ -17,24 +11,20 @@ import game.labyrinth.Labyrinth;
 import imagefactories.ConcreteImageFactory;
 import imagefactories.ImageFactory;
 
-import java.awt.BorderLayout;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 public class GamePanel extends GUIPanel {
 	
-	/**
-	 * Serial por defecto.
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	protected transient Game game;
 	private JLabel LabyrinthLabel;
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
+	
+	// TODO se necesitan componentes para mostrar el puntaje, y para poder implementar winGame, loseGame, y updatePoints -AF
 	
 	public GamePanel(GUI gui) { 
 		super(gui);
@@ -179,13 +169,13 @@ public class GamePanel extends GUIPanel {
 			//tirar exception
 		}
 		
-		float zoneWidth = (float) getWidth() / Labyrinth.WIDTH;			// FIXME castear uno de los operandos a float -AF
-		float zoneHeight = (float) getHeight() / Labyrinth.HEIGHT;		// FIXME castear uno de los operandos a float -AF
+		float zoneWidth = (float) getWidth() / Labyrinth.WIDTH;
+		float zoneHeight = (float) getHeight() / Labyrinth.HEIGHT;
 		
 		float posX = x * zoneWidth + zoneWidth / 2;
 		float posY = y * zoneHeight + zoneHeight / 2;
 		
-		posX -= (float) label.getWidth() / 2;							// FIXME castear uno de los operandos a float -AF
+		posX -= (float) label.getWidth() / 2;
 		posY -= (float) label.getHeight();
 		
 		label.setLocation(Math.round(posX), Math.round(posY));
@@ -225,6 +215,10 @@ public class GamePanel extends GUIPanel {
 		centrar(width, height);
 	}
 	
+	/**
+	 * Devuelve la fabrica de imagenes de la gui principal.
+	 * @return La fabrica de imagenes de la gui principal.
+	 */
 	public ImageFactory getImageFactory() {
 		return frame.getImageFactory();
 	}

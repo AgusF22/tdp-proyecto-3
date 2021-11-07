@@ -1,14 +1,13 @@
 package gui;
 
-import java.awt.Color;
-
-import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Font;
 
 public class StartPanel extends GUIPanel{
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected JLabel fondo;
 	
@@ -47,15 +46,24 @@ public class StartPanel extends GUIPanel{
 		add(btnExit);
 	}
 	
+	/**
+	 * Cambia la gui principal a la pantalla del juego (Inicia el juego).
+	 */
 	public void startGame() {
-		//TODO imp
+		frame.setPanel(new GamePanel(frame));
 	}
 	
+	/**
+	 * Cambia la gui principal a la pantalla de stats.
+	 */
 	public void viewStats() {
-		//TODO imp
+		frame.setPanel(new StatsPanel(frame));
 	}
 	
+	/**
+	 * Termina la ejecucion del juego.
+	 */
 	public void exitGame() {
-		//TODO imp
+		System.exit(0);
 	}
 }

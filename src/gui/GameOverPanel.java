@@ -1,23 +1,21 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import imagefactories.ImageFactory;
-
 public abstract class GameOverPanel extends GUIPanel{
+	
+	private static final long serialVersionUID = 1L;
+	
 	protected int finalScore;
 	protected JLabel fondo;
 	protected JLabel winLose;
 	protected JLabel score;
+	
 	private JTextField name;
 	
 	protected GameOverPanel(GUI gui, int finalScore) {
@@ -89,7 +87,10 @@ public abstract class GameOverPanel extends GUIPanel{
 		
 	}
 	
+	/**
+	 * Devuelve la gui a la pantalla de inicio.
+	 */
 	public void backToMenu() {
-		//TODO imp
+		frame.setPanel(new StartPanel(frame));
 	}
 }
