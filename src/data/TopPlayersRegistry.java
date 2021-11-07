@@ -5,22 +5,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TopPlayers implements Serializable {
-	/**
-	 * 
-	 */
+public class TopPlayersRegistry implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
 	protected ArrayList<PlayerScore> ranking;
 	
-	public TopPlayers() {
+	/**
+	 * Crea una nueva registro de mejores jugadores.
+	 */
+	public TopPlayersRegistry() {
 		ranking = new ArrayList<>();
 	}
 	
+	/**
+	 * Añade un puntaje de jugador a este registro.
+	 * @param p Un puntaje de jugador.
+	 */
 	public void addPlayer(PlayerScore p) {
 		ranking.add(p);
 	}
 	
-	public List<PlayerScore> listPlayers() {
+	// TODO añadir javadoc, especificando el orden de la lista retornada -AF
+	public List<PlayerScore> getScores() {
 		Collections.sort(this.ranking, Collections.reverseOrder());
 		List<PlayerScore> top = new ArrayList<>();
 		int i = 0;
@@ -33,4 +40,5 @@ public class TopPlayers implements Serializable {
 		
 		return top;
 	}
+	
 }

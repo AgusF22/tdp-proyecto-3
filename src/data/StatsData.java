@@ -8,21 +8,19 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class StatsData implements Serializable {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	protected String fileName = "SCORE.txt";
-	protected TopPlayers topPlayers;
+	protected TopPlayersRegistry topPlayers;
 	
-	
-	public TopPlayers load() throws ClassNotFoundException, IOException {
-		topPlayers = new TopPlayers();
+	public TopPlayersRegistry load() throws ClassNotFoundException, IOException {
+		topPlayers = new TopPlayersRegistry();
 		
 		try (FileInputStream file = new FileInputStream(fileName);
 			 ObjectInputStream in = new ObjectInputStream(file)) {
 			
-			topPlayers = (TopPlayers)in.readObject();
+			topPlayers = (TopPlayersRegistry)in.readObject();
 		}
 		
 		return topPlayers;
@@ -36,4 +34,5 @@ public class StatsData implements Serializable {
 		out.close();
 		file.close();
 	}
+	
 }
