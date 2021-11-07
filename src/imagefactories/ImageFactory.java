@@ -71,13 +71,7 @@ public abstract class ImageFactory {
 	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getPlayerImages();
-	
-	/**
-	 * Devuelve un arreglo con los iconos correspondientes al los efectos de pociones.
-	 * @return Un arreglo con iconos.
-	 */
-	public abstract Icon[] getEffectImages();
-	
+
 	/**
 	 * Devuelve un arreglo con los iconos correspondientes al enemigo rosa.
 	 * @return Un arreglo con iconos.
@@ -101,12 +95,6 @@ public abstract class ImageFactory {
 	 * @return Un arreglo con iconos.
 	 */
 	public abstract Icon[] getBlueEnemyImages();
-	
-	/**
-	 * Devuelve un arreglo con los iconos correspondientes al enemigo que huye.
-	 * @return Un arreglo con iconos.
-	 */
-	public abstract Icon[] getFleeingEnemyImages();
 	
 	/**
 	 * Devuelve el icono correspondiente al punto.
