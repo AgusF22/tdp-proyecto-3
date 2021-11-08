@@ -40,6 +40,7 @@ public class TopPlayersRegistry implements Serializable {
 		for (PlayerScore p: this.ranking) {
 			top.add(p);
 		}
+		
 		return top;
 	}
 }

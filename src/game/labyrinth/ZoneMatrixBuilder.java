@@ -7,7 +7,7 @@ public class ZoneMatrixBuilder {
 	/**
 	 * Crea un nuevo builder de matriz de tipos de zona.
 	 */
-	protected ZoneMatrixBuilder() {
+	public ZoneMatrixBuilder() {
 		matrix = new ZoneType[Labyrinth.WIDTH][Labyrinth.HEIGHT];
 		
 		for (int x = 0; x < matrix.length; x++) {
@@ -23,7 +23,7 @@ public class ZoneMatrixBuilder {
 	 * @param y Coordenada y.
 	 * @return Este builder.
 	 */
-	protected ZoneMatrixBuilder setSpawn(int x, int y) {
+	public ZoneMatrixBuilder setSpawn(int x, int y) {
 		matrix[x][y] = ZoneType.SPAWN;
 		return this;
 	}
@@ -36,7 +36,7 @@ public class ZoneMatrixBuilder {
 	 * @param y2 Coordenada y del segundo punto.
 	 * @return Este builder.
 	 */
-	protected ZoneMatrixBuilder setPath(int x1, int y1, int x2, int y2) {
+	public ZoneMatrixBuilder setPath(int x1, int y1, int x2, int y2) {
 		int[] coords = {x1, y1, x2, y2};
 		reorder(coords);
 		for (int x = coords[0]; x <= coords[2]; x++) {
@@ -57,7 +57,7 @@ public class ZoneMatrixBuilder {
 	 * @param y2 Coordenada y del segundo punto.
 	 * @return Este builder.
 	 */
-	protected ZoneMatrixBuilder setDungeon(int x1, int y1, int x2, int y2) {
+	public ZoneMatrixBuilder setDungeon(int x1, int y1, int x2, int y2) {
 		int[] coords = {x1, y1, x2, y2};
 		reorder(coords);
 		for (int x = coords[0]; x <= coords[2]; x++) {
@@ -74,7 +74,7 @@ public class ZoneMatrixBuilder {
 	 * Recibe un arreglo de coordenadas de la forma {x1, y1, x2, y2} y lo reordena de forma que x1 <= x2 y y1 <= y2.
 	 * @param coords Un arreglo de coordenadas de la forma {x1, y1, x2, y2}.
 	 */
-	private void reorder(int[] coords) {
+	public void reorder(int[] coords) {
 		int aux;
 		if (coords[0] > coords[2]) {
 			aux = coords[0];
@@ -92,7 +92,7 @@ public class ZoneMatrixBuilder {
 	 * Construye y devuelve la matriz de tipos de zona.
 	 * @return La matriz de tipos de zona.
 	 */
-	protected ZoneType[][] build() {
+	public ZoneType[][] build() {
 		ZoneType[][] toReturn = new ZoneType[matrix.length][matrix[0].length];
 		for (int x = 0; x < toReturn.length; x++) {
 			for (int y = 0; y < toReturn[0].length; y++) {

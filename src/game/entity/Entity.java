@@ -16,7 +16,8 @@ public abstract class Entity {
 	 */
 	protected Entity(Zone zone) {
 		this.zone = zone;
-		if(zone != null) {			
+		if (zone != null) {		
+			zone.addEntity(this);
 			x = zone.getX();
 			y = zone.getY();
 		}
@@ -50,9 +51,14 @@ public abstract class Entity {
 	 * @param y Nueva coordenada y.
 	 */
 	public void setCoordinates(float x, float y) {
+		Zone newZone = zone.getLabyrinth().getZone(x, y);
 		this.x = x;
 		this.y = y;
-		zone = zone.getLabyrinth().getZone(x, y);
+		if (zone != newZone) {
+			zone.removeEntity(this);
+			zone = newZone;
+			zone.addEntity(this);
+		}
 	}
 	
 	/**
