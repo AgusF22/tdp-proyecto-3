@@ -51,18 +51,13 @@ public class StatsPanel extends GUIPanel{
 		modelo.addColumn("SCORE");
 		
 		String[] p0 = {"NAME", "SCORE"};
-		String[] p1 = {scores.get(0).getName(), ""+scores.get(0).getScore()};
-		String[] p2 = {scores.get(1).getName(), ""+scores.get(1).getScore()};
-		String[] p3 = {scores.get(2).getName(), ""+scores.get(2).getScore()};
-		String[] p4 = {scores.get(3).getName(), ""+scores.get(3).getScore()};
-		String[] p5 = {scores.get(4).getName(), ""+scores.get(4).getScore()};
-		
 		modelo.addRow(p0);
-		modelo.addRow(p1);
-		modelo.addRow(p2);
-		modelo.addRow(p3);
-		modelo.addRow(p4);
-		modelo.addRow(p5);
+		
+		for(PlayerScore s: scores) {
+			String[] p = {s.getName(), ""+s.getScore()};
+			modelo.addRow(p);
+		}
+
 		tabla.setModel(modelo);
 		
 		tabla.setBounds((width - scaleWidth) / 2, 0, width/2, height/2);

@@ -38,8 +38,8 @@ public abstract class GameOverPanel extends GUIPanel{
 		int scaleHeight = height/15;
 		
 		crearBotones(scaleWidth, scaleHeight);
-		crearLabels(scaleWidth, scaleHeight);
-		crearCampoDeTexto(scaleWidth, scaleHeight);
+		crearLabels(scaleHeight);
+		crearCampoDeTexto(scaleHeight);
 		crearFondo();
 		
 	}
@@ -51,7 +51,7 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearCampoDeTexto(int scaleWidth, int scaleHeight) {	// TODO revisar, scaleWidth no se usa -AF
+	private void crearCampoDeTexto(int scaleHeight) {
 		name = new JTextField();
 		name.addMouseListener(new MouseAdapter() {
 			@Override
@@ -66,7 +66,7 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(name);
 	}
 	
-	private void crearLabels(int scaleWidth, int scaleHeight) {	// TODO revisar, scaleWidth no se usa -AF
+	private void crearLabels(int scaleHeight) {
 		
 		winLose = new JLabel("");
 		winLose.setFont(new Font(fuente, Font.BOLD, 2*scaleHeight));
@@ -151,6 +151,10 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Guarda el puntaje obtenido.
 	 */
 	protected void saveScore() {
+		if(name.getText().equals("")) {
+			name.setText("NONE");
+		}
+		
 		TopPlayersRegistry registro;
 		try {
 			registro = frame.getStatsData().load();
