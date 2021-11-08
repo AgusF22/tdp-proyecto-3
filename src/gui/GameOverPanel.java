@@ -7,6 +7,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import data.PlayerScore;
+import data.TopPlayersRegistry;
+
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public abstract class GameOverPanel extends GUIPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -44,6 +53,12 @@ public abstract class GameOverPanel extends GUIPanel{
 	
 	private void crearCampoDeTexto(int scaleWidth, int scaleHeight) {	// TODO revisar, scaleWidth no se usa -AF
 		name = new JTextField();
+		name.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				name.setText("");
+			}
+		});
 		name.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		name.setBounds(width/3, 4*scaleHeight, width/3, scaleHeight);
 		name.setText("PLAYER");
@@ -75,12 +90,33 @@ public abstract class GameOverPanel extends GUIPanel{
 
 	private void crearBotones(int scaleWidth, int scaleHeight) {
 		
+		JButton btnMenu = new JButton("MENU");
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backToMenu();
+			}
+		});
+		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
+		btnMenu.setBounds((width - scaleWidth) / 2, height/2 + scaleHeight + scaleHeight/5, scaleWidth, scaleHeight);
+		add(btnMenu);
+		
 		JButton btnRestart = new JButton("RESTART");
+		btnRestart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				restartGame();
+			}
+		});
 		btnRestart.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		btnRestart.setBounds((width - scaleWidth) / 2, height/2 + 2*scaleHeight + 2*scaleHeight/5, scaleWidth, scaleHeight);
 		add(btnRestart);
 		
+		
 		JButton btnExit = new JButton("EXIT");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exitGame();
+			}
+		});
 		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		btnExit.setBounds((width - scaleWidth) / 2, height/2 + 3*scaleHeight + 3*scaleHeight/5, scaleWidth, scaleHeight);
 		add(btnExit);
@@ -88,9 +124,41 @@ public abstract class GameOverPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Devuelve la gui a la pantalla de inicio.
+	 * Guarda la partida y carga en la gui un nuevo panel de juego.
 	 */
-	public void backToMenu() {
+	protected void restartGame() {
+		saveGame();
+		frame.setPanel(new GamePanel(frame));
+	}
+	
+	/**
+	 * Guarda la partida y carga en la gui una nueva pantalla de inicio
+	 */
+	protected void backToMenu() {
+		saveGame();
 		frame.setPanel(new StartPanel(frame));
+	}
+	
+	/**
+	 * Guarda la partida y termina la ejecucion del juego.
+	 */
+	protected void exitGame() {
+		saveGame();
+		System.exit(0);
+	}
+	
+	/**
+	 * Guarda el puntaje obtenido.
+	 */
+	protected void saveGame() {
+		TopPlayersRegistry registro;
+		try {
+			registro = frame.getStatsData().load();
+			registro.addPlayer(new PlayerScore(name.getText(), finalScore));
+			frame.getStatsData().save();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

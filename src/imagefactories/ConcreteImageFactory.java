@@ -58,6 +58,12 @@ public class ConcreteImageFactory extends ImageFactory{
 	}
 	
 	@Override
+	public Icon getStatsBgImage() {
+		ImageIcon imgIcon = getIcon("/res/minecraft/gui/statsBg.png");
+		return scale(imgIcon);
+	}
+	
+	@Override
 	public Icon[] getPlayerImages() {
 		
 		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/player/steveB.gif");

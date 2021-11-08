@@ -67,6 +67,12 @@ public abstract class ImageFactory {
 	public abstract Icon getStartBgImage();
 	
 	/**
+	 * Devuelve el icono correspondiente a la imagen de fondo de los stats.
+	 * @return Un icono.
+	 */
+	public abstract Icon getStatsBgImage();
+	
+	/**
 	 * Devuelve un arreglo con los iconos correspondientes al player.
 	 * @return Un arreglo con iconos.
 	 */
@@ -148,4 +154,5 @@ public abstract class ImageFactory {
 		int height = currentScreenHeight * imageIcon.getIconHeight() / GUI.DEFAULT_SCREEN_HEIGHT;
 		return new ImageIcon(imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}
+
 }

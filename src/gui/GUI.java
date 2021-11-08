@@ -25,33 +25,25 @@ public class GUI extends JFrame{
 		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		//CURRENT_SCREEN_WIDTH = Math.toIntExact(Math.round(screenSize.getWidth()));
 		//CURRENT_SCREEN_HEIGHT = Math.toIntExact(Math.round(screenSize.getHeight()));
-		
 		currentScreenWidth = 1280;
 		currentScreenHeight = 720;
 		fuente = "SansSerif";
-		
 		factory = new ConcreteImageFactory(currentScreenWidth, currentScreenHeight);
-		createFrame();
-		play();
-		setVisible(true);
 		
-		//panel = new LosePanel(this, 0);
-		//panel = new StartPanel(this);
-		add(panel);
-		repaint();
+		createFrame();
+		setPanel(new StartPanel(this));
 	}
 	
+	/**
+	 * Setea las propiedades de frame.
+	 */
 	private void createFrame() {
 		setSize(currentScreenWidth, currentScreenHeight);
 		//setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-	
-	private void play() {					// TODO remover, usar setPanel -AF
-		panel = new GamePanel(this);
-		getContentPane().add(panel);	
+		setVisible(true);
 	}
 	
 	/**
@@ -61,9 +53,14 @@ public class GUI extends JFrame{
 	public void setPanel(GUIPanel panel) {
 		getContentPane().removeAll();
 		this.panel = panel;
-		getContentPane().add(panel);			// TODO revisar si esto es correcto -AF
+		getContentPane().add(panel);
+		repaint();
 	}
 	
+	/**
+	 * Devuelve los datos de stats.
+	 * @return un StatsData.
+	 */
 	public StatsData getStatsData() {
 		return new StatsData();
 	}
