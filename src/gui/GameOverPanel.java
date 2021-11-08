@@ -34,16 +34,16 @@ public abstract class GameOverPanel extends GUIPanel{
 		setLayout(null);
 		setSize(width, height);
 		
-		int scaleWidth= width/4;
-		int scaleHeight = height/15;
-		
-		crearBotones(scaleWidth, scaleHeight);
-		crearLabels(scaleHeight);
-		crearCampoDeTexto(scaleHeight);
+		crearBotones();
+		crearLabels();
+		crearCampoDeTexto();
 		crearFondo();
 		
 	}
 	
+	/**
+	 * Crea el fondo del panel.
+	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, width, height);
@@ -51,7 +51,10 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearCampoDeTexto(int scaleHeight) {
+	/**
+	 * Crea y coloca el campo de texto del panel.
+	 */
+	private void crearCampoDeTexto() {
 		name = new JTextField();
 		name.addMouseListener(new MouseAdapter() {
 			@Override
@@ -66,7 +69,10 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(name);
 	}
 	
-	private void crearLabels(int scaleHeight) {
+	/**
+	 * Crea y coloca los labels del panel.
+	 */
+	private void crearLabels() {
 		
 		winLose = new JLabel("");
 		winLose.setFont(new Font(fuente, Font.BOLD, 2*scaleHeight));
@@ -88,7 +94,10 @@ public abstract class GameOverPanel extends GUIPanel{
 		add(yourName);
 	}
 
-	private void crearBotones(int scaleWidth, int scaleHeight) {
+	/**
+	 * Crea y coloca los botones del panel.
+	 */
+	private void crearBotones() {
 		
 		JButton btnMenu = new JButton("MENU");
 		btnMenu.addActionListener(new ActionListener() {
