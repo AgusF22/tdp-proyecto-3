@@ -127,7 +127,7 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Guarda la partida y carga en la gui un nuevo panel de juego.
 	 */
 	protected void restartGame() {
-		saveGame();
+		saveScore();
 		frame.setPanel(new GamePanel(frame));
 	}
 	
@@ -135,7 +135,7 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Guarda la partida y carga en la gui una nueva pantalla de inicio
 	 */
 	protected void backToMenu() {
-		saveGame();
+		saveScore();
 		frame.setPanel(new StartPanel(frame));
 	}
 	
@@ -143,19 +143,19 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Guarda la partida y termina la ejecucion del juego.
 	 */
 	protected void exitGame() {
-		saveGame();
+		saveScore();
 		System.exit(0);
 	}
 	
 	/**
 	 * Guarda el puntaje obtenido.
 	 */
-	protected void saveGame() {
+	protected void saveScore() {
 		TopPlayersRegistry registro;
 		try {
 			registro = frame.getStatsData().load();
 			registro.addPlayer(new PlayerScore(name.getText(), finalScore));
-			frame.getStatsData().save();
+			frame.getStatsData().save(registro);
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
