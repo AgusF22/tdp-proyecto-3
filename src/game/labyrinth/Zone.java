@@ -27,7 +27,7 @@ public class Zone {
 		this.x = x;
 		this.y = y;
 		this.type = type;
-		entities = new LinkedList<>(); //TODO ?cambiar por HashSet para que no se permita insertar entidades ya ingresadas.
+		entities = new LinkedList<>();
 	}
 	
 	/**

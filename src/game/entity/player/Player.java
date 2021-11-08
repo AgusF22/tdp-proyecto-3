@@ -40,6 +40,7 @@ public class Player extends Character{
 	 * @param zone Zone
 	 */
 	public void setZone(Zone zone) {
+		//TODO if (zone == null) excepcion 
 		this.zone = zone;
 		this.setCoordinates(zone.getX(), zone.getY());
 		setGraphic();

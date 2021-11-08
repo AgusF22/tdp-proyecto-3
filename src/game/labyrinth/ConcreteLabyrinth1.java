@@ -113,19 +113,15 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 																	
 		//TODO descomentar para setear enemigos
 //		Entity red = new RedEnemy(zones[14][16]);					// ***Set Enemy***
-//		zones[14][16].addEntity(red);
 //		red.getGraphic().addToGUI(game.getGUI());
 //
 //		Entity blue = new BlueEnemy(zones[14][16], (RedEnemy) red);
-//		zones[14][16].addEntity(blue);
 //		blue.getGraphic().addToGUI(game.getGUI());
 //		
 //		Entity orange = new OrangeEnemy(zones[14][16]);
-//		zones[14][16].addEntity(orange);
 //		orange.getGraphic().addToGUI(game.getGUI());
 //		
 //		Entity pink = new PinkEnemy(zones[14][16]);
-//		zones[14][16].addEntity(pink);
 //		pink.getGraphic().addToGUI(game.getGUI());
 		
 																	// ***Set Prize***
