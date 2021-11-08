@@ -23,22 +23,23 @@ public class TopPlayersRegistry implements Serializable {
 	 * @param p Un puntaje de jugador.
 	 */
 	public void addPlayer(PlayerScore p) {
-		ranking.add(p);
+		ranking.add(p);														// Agrega nuevo puntaje 
+		if (ranking.size() > 5) {											// Controla que solo se guarden los 5 mejores puntajes.
+			Collections.sort(this.ranking, Collections.reverseOrder());
+			ranking.remove(ranking.size() - 1);
+		}
 	}
 	
-	// TODO añadir javadoc, especificando el orden de la lista retornada -AF
+	/**
+	 * @return una lista ordenada de mayor a menor de objetos PlayerScore. 
+	 */
 	public List<PlayerScore> getScores() {
 		Collections.sort(this.ranking, Collections.reverseOrder());
 		List<PlayerScore> top = new ArrayList<>();
-		int i = 0;
-		
+
 		for (PlayerScore p: this.ranking) {
 			top.add(p);
-			if (i == 5) break;
-			i++;
 		}
-		
 		return top;
 	}
-	
 }
