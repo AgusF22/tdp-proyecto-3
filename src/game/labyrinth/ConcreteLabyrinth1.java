@@ -2,6 +2,10 @@ package game.labyrinth;
 
 import game.Game;
 import game.entity.Entity;
+import game.entity.enemy.BlueEnemy;
+import game.entity.enemy.OrangeEnemy;
+import game.entity.enemy.PinkEnemy;
+import game.entity.enemy.RedEnemy;
 import game.entity.player.Player;
 import game.entity.prize.ConcreteFruit1;
 import game.entity.prize.ConcretePotion1;
@@ -106,18 +110,37 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		Player.getInstance().setZone(zones[14][23]);
 		Player.getInstance().getGraphic().addToGUI(game.getGUI());
 		
-		//TODO enemies
-									
+																	
+		//TODO descomentar para setear enemigos
+//		Entity red = new RedEnemy(zones[14][16]);					// ***Set Enemy***
+//		zones[14][16].addEntity(red);
+//		red.getGraphic().addToGUI(game.getGUI());
+//
+//		Entity blue = new BlueEnemy(zones[14][16], (RedEnemy) red);
+//		zones[14][16].addEntity(blue);
+//		blue.getGraphic().addToGUI(game.getGUI());
+//		
+//		Entity orange = new OrangeEnemy(zones[14][16]);
+//		zones[14][16].addEntity(orange);
+//		orange.getGraphic().addToGUI(game.getGUI());
+//		
+//		Entity pink = new PinkEnemy(zones[14][16]);
+//		zones[14][16].addEntity(pink);
+//		pink.getGraphic().addToGUI(game.getGUI());
+		
 																	// ***Set Prize***
         Entity fruit = new ConcreteFruit1(zones[14][17]);
         fruit.getGraphic().addToGUI(game.getGUI());
         
         Entity powerPellet1 = new PowerPellet(zones[1][1]);
         powerPellet1.getGraphic().addToGUI(game.getGUI());
+        
         Entity powerPellet2 = new PowerPellet(zones[27][1]);
         powerPellet2.getGraphic().addToGUI(game.getGUI());
+        
         Entity powerPellet3 = new PowerPellet(zones[1][29]);
         powerPellet3.getGraphic().addToGUI(game.getGUI());
+        
         Entity powerPellet4 = new PowerPellet(zones[27][29]);
         powerPellet4.getGraphic().addToGUI(game.getGUI());
         
