@@ -32,4 +32,209 @@
 		<start x="15" y="16"></start>
 		<end x="18" y="16"></end>
 	</dangeon>
+	
+	<path>
+		<start x="1" y="1"></start>
+		<end x="12" y="1"></end>
+	</path>
+	<path>
+		<start x="16" y="1"></start>
+		<end x="27" y="1"></end>
+	</path>
+	<path>
+		<start x="1" y="2"></start>
+		<end x="1" y="7"></end>
+	</path>
+	<path>
+		<start x="27" y="2"></start>
+		<end x="27" y="7"></end>
+	</path>
+	<path>
+		<start x="1" y="8"></start>
+		<end x="5" y="8"></end>
+	</path>
+	<path>
+		<start x="23" y="8"></start>
+		<end x="27" y="8"></end>
+	</path>
+	<path>
+		<start x="6" y="2"></start>
+		<end x="6" y="4"></end>
+	</path>
+	<path>
+		<start x="22" y="2"></start>
+		<end x="22" y="4"></end>
+	</path>
+	<path>
+		<start x="12" y="2"></start>
+		<end x="12" y="4"></end>
+	</path>
+	<path>
+		<start x="16" y="2"></start>
+		<end x="16" y="4"></end>
+	</path>
+	<path>
+		<start x="2" y="5"></start>
+		<end x="26" y="5"></end>
+	</path>
+	<path>
+		<start x="6" y="6"></start>
+		<end x="6" y="26"></end>
+	</path>
+	<path>
+		<start x="22" y="6"></start>
+		<end x="22" y="26"></end>
+	</path>
+	<path>
+		<start x="9" y="6"></start>
+		<end x="9" y="8"></end>
+	</path>
+	<path>
+		<start x="19" y="6"></start>
+		<end x="19" y="8"></end>
+	</path>
+	<path>
+		<start x="10" y="8"></start>
+		<end x="12" y="8"></end>
+	</path>
+	<path>
+		<start x="16" y="8"></start>
+		<end x="18" y="8"></end>
+	</path>
+	<path>
+		<start x="12" y="9"></start>
+		<end x="12" y="10"></end>
+	</path>
+	<path>
+		<start x="16" y="9"></start>
+		<end x="16" y="10"></end>
+	</path>
+	<path>
+		<start x="1" y="14"></start>
+		<end x="5" y="14"></end>
+	</path>
+	<path>
+		<start x="23" y="14"></start>
+		<end x="5" y="14"></end>
+	</path>
+	<path>
+		<start x="7" y="14"></start>
+		<end x="8" y="14"></end>
+	</path>
+	<path>
+		<start x="20" y="14"></start>
+		<end x="21" y="14"></end>
+	</path>
+	<path>
+		<start x="9" y="11"></start>
+		<end x="19" y="11"></end>
+	</path>
+	<path>
+		<start x="9" y="18"></start>
+		<end x="18" y="17"></end>
+	</path>
+	<path>
+		<start x="9" y="12"></start>
+		<end x="9" y="19"></end>
+	</path>
+	<path>
+		<start x="19" y="12"></start>
+		<end x="19" y="19"></end>
+	</path>
+	<path>
+		<start x="1" y="20"></start>
+		<end x="5" y="20"></end>
+	</path>
+	<path>
+		<start x="23" y="20"></start>
+		<end x="27" y="20"></end>
+	</path>
+	<path>
+		<start x="7" y="20"></start>
+		<end x="12" y="20"></end>
+	</path>
+	<path>
+		<start x="16" y="20"></start>
+		<end x="21" y="20"></end>
+	</path>
+	<path>
+		<start x="1" y="21"></start>
+		<end x="1" y="23"></end>
+	</path>
+	<path>
+		<start x="27" y="21"></start>
+		<end x="27" y="23"></end>
+	</path>
+	<path>
+		<start x="2" y="23"></start>
+		<end x="3" y="23"></end>
+	</path>
+	<path>
+		<start x="25" y="23"></start>
+		<end x="26" y="23"></end>
+	</path>
+	<path>
+		<start x="3" y="24"></start>
+		<end x="3" y="25"></end>
+	</path>
+	<path>
+		<start x="25" y="24"></start>
+		<end x="25" y="25"></end>
+	</path>
+	<path>
+		<start x="1" y="26"></start>
+		<end x="5" y="26"></end>
+	</path>
+	<path>
+		<start x="23" y="26"></start>
+		<end x="27" y="26"></end>
+	</path>
+	<path>
+		<start x="1" y="27"></start>
+		<end x="1" y="29"></end>
+	</path>
+	<path>
+		<start x="27" y="27"></start>
+		<end x="27" y="29"></end>
+	</path>
+	<path>
+		<start x="12" y="21"></start>
+		<end x="12" y="22"></end>
+	</path>
+	<path>
+		<start x="16" y="21"></start>
+		<end x="16" y="22"></end>
+	</path>
+	<path>
+		<start x="7" y="23"></start>
+		<end x="21" y="23"></end>
+	</path>
+	<path>
+		<start x="9" y="24"></start>
+		<end x="9" y="26"></end>
+	</path>
+	<path>
+		<start x="19" y="24"></start>
+		<end x="19" y="26"></end>
+	</path>
+	<path>
+		<start x="10" y="26"></start>
+		<end x="12" y="26"></end>
+	</path>
+	<path>
+		<start x="16" y="26"></start>
+		<end x="18" y="26"></end>
+	</path>
+	<path>
+		<start x="12" y="27"></start>
+		<end x="12" y="28"></end>
+	</path>
+	<path>
+		<start x="16" y="27"></start>
+		<end x="16" y="28"></end>
+	</path>
+	<path>
+		<start x="2" y="29"></start>
+		<end x="26" y="29"></end>
+	</path>
 </labyrinth>
