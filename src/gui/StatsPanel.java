@@ -26,15 +26,15 @@ public class StatsPanel extends GUIPanel{
 		setLayout(null);
 		setSize(width, height);
 		
-		int scaleWidth= width/4;
-		int scaleHeight = height/15;
-		
-		crearBotones(scaleWidth, scaleHeight);
-		crearTabla(scaleWidth, scaleHeight);
+		crearBotones();
+		crearTabla();
 		crearFondo();
 	}
 	
-	private void crearTabla(int scaleWidth, int scaleHeight) {
+	/**
+	 * Crea y agrega la tabla a este panel.
+	 */
+	private void crearTabla() {
 		TopPlayersRegistry registro = null;
 		try {
 			registro = frame.getStatsData().load();
@@ -89,7 +89,10 @@ public class StatsPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearBotones(int scaleWidth, int scaleHeight) {
+	/*
+	 * Crea y agrega los botones de este panel.
+	 */
+	private void crearBotones() {
 		JButton btnMenu = new JButton("MENU");
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

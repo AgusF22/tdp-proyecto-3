@@ -13,6 +13,8 @@ public abstract class GUIPanel extends JPanel{
 	protected String fuente;
 	protected int width;
 	protected int height;
+	protected int scaleWidth = width/4;
+	protected int scaleHeight = height/15;
 	
 	/**
 	 * Crea un nuevo panel de gui.
@@ -26,6 +28,8 @@ public abstract class GUIPanel extends JPanel{
 		width = 1280;
 		//height = frame.currentScreenHeight; TODO decomentar y borrar abajo
 		height = 720;
+		scaleWidth = width/4;
+		scaleHeight = height/15;
 	}
 	
 	/**

@@ -18,15 +18,13 @@ public class StartPanel extends GUIPanel{
 		super(gui);
 		setLayout(null);
 		setSize(width, height);
-		int scaleWidth= width/4;
-		int scaleHeight = height/15;
 		
-		crearBotones(scaleWidth, scaleHeight);
-		crearBotonesBasura(scaleWidth, scaleHeight); //TODO basura borrar luego de probar cosas
+		crearBotones();
+		crearBotonesBasura(); //TODO basura borrar luego de probar cosas
 		crearFondo();
 	}
 	
-	private void crearBotonesBasura(int scaleWidth, int scaleHeight) { //TODO metodo basura, luego borrar
+	private void crearBotonesBasura() { //TODO metodo basura, luego borrar
 		Random rnd = new Random();
 		JButton btnPerder = new JButton("PERDER");
 		btnPerder.addActionListener(new ActionListener() {
@@ -56,7 +54,7 @@ public class StartPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearBotones(int scaleWidth, int scaleHeight) {
+	private void crearBotones() {
 		JButton btnPlay = new JButton("PLAY");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

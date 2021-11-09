@@ -1,10 +1,13 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 
 import game.Game;
 import game.labyrinth.Labyrinth;
@@ -14,6 +17,8 @@ import imagefactories.ImageFactory;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 
 public class GamePanel extends GUIPanel {
 	
@@ -23,6 +28,9 @@ public class GamePanel extends GUIPanel {
 	private JLabel labyrinthLabel;
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
+	private JLabel lblScore;
+	private JLabel lblScoreText;
+	private int score;
 	
 	// TODO se necesitan componentes para mostrar el puntaje, y para poder implementar winGame, loseGame, y updatePoints -AF
 	
@@ -30,14 +38,46 @@ public class GamePanel extends GUIPanel {
 		super(gui);
 		
 		crearPanel();
+		crearLabels();
 		agregarControles();
+		crearFondo();
 		
 		game = new Game(this);
+		score = game.getPoints();
+		lblScore.setText(""+score);
+		
 		repaint();
+		
+		
+		System.out.println();
 		System.out.println("Creado panel de juego");
 		
 	}
 	
+	/**
+	 * Crea los labels y los coloca en el panel.
+	 */
+	private void crearLabels() {
+		lblScoreText = new JLabel("");
+		lblScoreText.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblScoreText.setHorizontalAlignment(SwingConstants.LEFT);
+		lblScoreText.setForeground(new java.awt.Color(250, 128, 114));
+		lblScoreText.setBounds(((width - scaleWidth)*2/5), 0, scaleWidth, scaleHeight);
+		lblScoreText.setText("SCORE: ");
+		add(lblScoreText);
+		
+		lblScore = new JLabel("");
+		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
+		lblScore.setForeground(new java.awt.Color(250, 128, 114));
+		lblScore.setBounds(((width - scaleWidth)*3/5), 0, scaleWidth, scaleHeight);
+		lblScore.setText(""+score);
+		add(lblScore);
+	}
+
+	/**
+	 * Setea algunas propiedades del panel.
+	 */
 	private void crearPanel() {
 		setLayout(null);
 		setLocation(0, 0);
@@ -45,15 +85,23 @@ public class GamePanel extends GUIPanel {
 		panelCapas = new JLayeredPane();
 		add(panelCapas);
 		
-		fondo = new JLabel("");
-		fondo.setLocation(0, 0);
-		add(fondo);
-		
 		labyrinthLabel = new JLabel("");
 		labyrinthLabel.setLocation(0, 0);
 		panelCapas.add(labyrinthLabel, 0);
 	}
 	
+	/**
+	 * Crea el fondo del panel.
+	 */
+	private void crearFondo() {
+		fondo = new JLabel("");
+		fondo.setLocation(0, 0);
+		add(fondo);
+	}
+	
+	/**
+	 * Agrega los controles al panel.
+	 */
 	private void agregarControles() {
 		Action moveUp = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -96,14 +144,16 @@ public class GamePanel extends GUIPanel {
 		final String derecha = "deracha";
 		final String izquierda = "izquierda";
 		
-		getInputMap().put(KeyStroke.getKeyStroke("UP"), arriba);
-		getInputMap().put(KeyStroke.getKeyStroke("W"), arriba);
-		getInputMap().put(KeyStroke.getKeyStroke("DOWN"), abajo);
-		getInputMap().put(KeyStroke.getKeyStroke("S"), abajo);
-		getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), derecha);
-		getInputMap().put(KeyStroke.getKeyStroke("D"), derecha);
-		getInputMap().put(KeyStroke.getKeyStroke("LEFT"), izquierda);
-		getInputMap().put(KeyStroke.getKeyStroke("A"), izquierda);
+		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		iMap.put(KeyStroke.getKeyStroke("UP"), arriba);
+		iMap.put(KeyStroke.getKeyStroke("W"), arriba);
+		iMap.put(KeyStroke.getKeyStroke("DOWN"), abajo);
+		iMap.put(KeyStroke.getKeyStroke("S"), abajo);
+		iMap.put(KeyStroke.getKeyStroke("RIGHT"), derecha);
+		iMap.put(KeyStroke.getKeyStroke("D"), derecha);
+		iMap.put(KeyStroke.getKeyStroke("LEFT"), izquierda);
+		iMap.put(KeyStroke.getKeyStroke("A"), izquierda);
 		
 		getActionMap().put(arriba, moveUp);
 		getActionMap().put(abajo, moveDown);
@@ -143,27 +193,51 @@ public class GamePanel extends GUIPanel {
 		game.moveLeft();
 	}
 	
+	/**
+	 * Actualiza los puntos.
+	 */
 	public void updatePoints() {
-		//TODO imp
+		score = game.getPoints();
+		lblScore.setText(""+score);
 	}
 	
+	/**
+	 * Elimina este panel y carga un nuevo panel de juego ganado en la gui principal.
+	 */
 	public void winGame() {
-		//TODO imp
+		frame.setPanel(new WinPanel(frame, game.getPoints()));
 	}
 	
+	/**
+	 * Elimina este panel y carga un nuevo panel de juego perdido en la gui principal.
+	 */
 	public void loseGame() {
-		//TODO imp
+		frame.setPanel(new LosePanel(frame, game.getPoints()));
 	}
 	
+	/**
+	 * Agrega el label pasado por parametro al panel
+	 * @param label
+	 */
 	public void addLabel(JLabel label) {
 		panelCapas.add(label, 100);
 		System.out.print("Agregada label"); //TODO sacar
 	}
 	
+	/**
+	 * Remueve el label pasado por parametro.
+	 * @param label un label.
+	 */
 	public void removeLabel(JLabel label) {
 		panelCapas.remove(label);
 	}
 	
+	/**
+	 * Mueve el label pasado por parametro a la posicion pasada por parametro.
+	 * @param label un label.
+	 * @param x la coordenada x.
+	 * @param y la coordenada y.
+	 */
 	public void updateLabel(JLabel label, float x, float y) {		
 		if (label.getParent() != this) {
 			//tirar exception
@@ -212,7 +286,7 @@ public class GamePanel extends GUIPanel {
 		setSize(width, height);
 		fondo.setSize(width, height);
 		fondo.setIcon(lab);
-		centrar(width, height);
+		centrar();
 	}
 	
 	/**
@@ -223,9 +297,12 @@ public class GamePanel extends GUIPanel {
 		return frame.getImageFactory();
 	}
 	
-	private void centrar(int w, int h) {		// TODO revisar, los parametros no se usan
-		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7);	// FIXME castear algun operando a flotante, se le esta pasando un int a round -AF
-		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38);
+	/**
+	 * Crentra el panelCapas.
+	 */
+	private void centrar() {
+		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7f);
+		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38f);
 		panelCapas.setLocation(posW, posH);
 	}
 }

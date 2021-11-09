@@ -11,67 +11,67 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon getLabyrinth1Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth1.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth1.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getLabyrinth2Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth2.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth2.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getLabyrinth3Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth3.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth3.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getLabyrinth1bgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth1bg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth1bg.png");
 		return scale(imgIcon);
 	}
 
 	@Override
 	public Icon getLabyrinth2bgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth2bg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth2bg.png");
 		return scale(imgIcon);
 	}
 
 	@Override
 	public Icon getLabyrinth3bgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/maps/labyrinth3bg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/maps/labyrinth3bg.png");
 		return scale(imgIcon);
 	}
 
 	@Override
 	public Icon getGameOverBgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/gui/gameOverBg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/gui/gameOverBg.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getStartBgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/gui/startBg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/gui/startBg.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getStatsBgImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/gui/statsBg.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/gui/statsBg.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon[] getPlayerImages() {
 		
-		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/player/steveB.gif");
-		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/player/steveR.gif");
-		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/player/steveF.gif");
-		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/player/steveL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/player/speedEffect.gif");
-		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/player/shieldEffect.gif");
+		ImageIcon imgIcon0 = getIcon("/res/img/minecraft/entity/character/player/steveB.gif");
+		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/player/steveR.gif");
+		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/player/steveF.gif");
+		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/player/steveL.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/player/speedEffect.gif");
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/player/shieldEffect.gif");
 		
 		Icon[] rta = new Icon[6];
 		rta[0] = scale(imgIcon0);
@@ -86,18 +86,18 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon[] getPinkEnemyImages() {
-		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanB.gif");
-		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanR.gif");
-		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanF.gif");
-		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/enemy/pigman/pigmanL.gif");
+		ImageIcon imgIcon0 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanB.gif");
+		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanR.gif");
+		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanF.gif");
+		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanL.gif");
 		
 		// FIXME no repetir literales!!! usar constantes, o un metodo para obtener los 4 iconos -AF
 		
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");	
-		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/enemy/bee/beeR.gif");
-		ImageIcon imgIcon6 = getIcon("/res/minecraft/entity/character/enemy/bee/beeF.gif");
-		ImageIcon imgIcon7 = getIcon("/res/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeB.gif");	
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
+		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
+		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
 		
 		Icon[] rta = new Icon[5];
 		rta[0] = scale(imgIcon0);
@@ -115,15 +115,15 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon[] getRedEnemyImages() {
-		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/enemy/skeleton/skeletonB.gif");
-		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/enemy/skeleton/skeletonR.gif");
-		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/enemy/skeleton/skeletonF.gif");
-		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/enemy/skeleton/skeletonL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");
-		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/enemy/bee/beeR.gif");
-		ImageIcon imgIcon6 = getIcon("/res/minecraft/entity/character/enemy/bee/beeF.gif");
-		ImageIcon imgIcon7 = getIcon("/res/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon0 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonB.gif");
+		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonR.gif");
+		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonF.gif");
+		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonL.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeB.gif");
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
+		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
+		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
 		
 		Icon[] rta = new Icon[5];
 		rta[0] = scale(imgIcon0);
@@ -141,15 +141,15 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon[] getOrangeEnemyImages() {
-		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/enemy/creeper/creeperB.gif");
-		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/enemy/creeper/creeperR.gif");
-		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/enemy/creeper/creeperF.gif");
-		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/enemy/creeper/creeperL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");
-		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/enemy/bee/beeR.gif");
-		ImageIcon imgIcon6 = getIcon("/res/minecraft/entity/character/enemy/bee/beeF.gif");
-		ImageIcon imgIcon7 = getIcon("/res/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon0 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperB.gif");
+		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperR.gif");
+		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperF.gif");
+		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperL.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeB.gif");
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
+		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
+		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
 		
 		Icon[] rta = new Icon[5];
 		rta[0] = scale(imgIcon0);
@@ -167,15 +167,15 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon[] getBlueEnemyImages() {
-		ImageIcon imgIcon0 = getIcon("/res/minecraft/entity/character/enemy/zombie/zombieB.gif");
-		ImageIcon imgIcon1 = getIcon("/res/minecraft/entity/character/enemy/zombie/zombieR.gif");
-		ImageIcon imgIcon2 = getIcon("/res/minecraft/entity/character/enemy/zombie/zombieF.gif");
-		ImageIcon imgIcon3 = getIcon("/res/minecraft/entity/character/enemy/zombie/zombieL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/minecraft/entity/character/enemy/bee/beeB.gif");
-		ImageIcon imgIcon5 = getIcon("/res/minecraft/entity/character/enemy/bee/beeR.gif");
-		ImageIcon imgIcon6 = getIcon("/res/minecraft/entity/character/enemy/bee/beeF.gif");
-		ImageIcon imgIcon7 = getIcon("/res/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon0 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieB.gif");
+		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieR.gif");
+		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieF.gif");
+		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieL.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeB.gif");
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
+		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
+		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
 		
 		Icon[] rta = new Icon[9];
 		rta[0] = scale(imgIcon0);
@@ -193,43 +193,43 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon getDotImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/dot.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/dot.png");
 		return scale(imgIcon);
 	}
 
 	@Override
 	public Icon getPowerPelletImage() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/powerpellet.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/powerpellet.png");
 		return scale(imgIcon);
 	}
 
 	@Override
 	public Icon getFruit1Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/fruit1.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/fruit1.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getFruit2Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/fruit2.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/fruit2.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getFruit3Image() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/fruit3.png");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/fruit3.png");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getPotion1() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/potion1.gif");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/potion1.gif");
 		return scale(imgIcon);
 	}
 	
 	@Override
 	public Icon getPotion2() {
-		ImageIcon imgIcon = getIcon("/res/minecraft/entity/prize/potion2.gif");
+		ImageIcon imgIcon = getIcon("/res/img/minecraft/entity/prize/potion2.gif");
 		return scale(imgIcon);
 	}
 	
