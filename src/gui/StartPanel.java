@@ -2,6 +2,13 @@ package gui;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import data.PlayerScore;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -20,6 +27,7 @@ public class StartPanel extends GUIPanel{
 		setSize(width, height);
 		
 		crearBotones();
+		crearInfoControles();
 		crearBotonesBasura(); //TODO basura borrar luego de probar cosas
 		crearFondo();
 	}
@@ -52,6 +60,46 @@ public class StartPanel extends GUIPanel{
 		fondo.setBounds(0, 0, width, height);
 		fondo.setIcon(frame.getImageFactory().getStartBgImage());
 		add(fondo);
+	}
+	
+	private void crearInfoControles() {
+		JTable tabla = new JTable();
+		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("1");
+		modelo.addColumn("2");
+		modelo.addColumn("3");
+		
+		modelo.addRow(new String[] {"CONTROLS", "", ""});
+		modelo.addRow(new String[] {"MOVE UP", "W", "↑"});
+		modelo.addRow(new String[] {"MOVE DOWN", "S", "↓"});
+		modelo.addRow(new String[] {"MOVE LEFT", "A", "←"});
+		modelo.addRow(new String[] {"MOVE RIGHT", "D", "→"});
+
+		tabla.setModel(modelo);
+		
+		tabla.setBounds(width - (width*4)/14 , 0, (width*4)/14, scaleHeight*5);
+		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
+		tabla.setShowVerticalLines(false);
+		tabla.setRowHeight(scaleHeight);
+		tabla.setEnabled(false);
+		tabla.setOpaque(false);
+		
+		tabla.getColumnModel().getColumn(0).setMinWidth(width/7);
+		tabla.getColumnModel().getColumn(0).setMaxWidth(width/7);
+		
+		tabla.getColumnModel().getColumn(1).setMinWidth(width/14);
+		tabla.getColumnModel().getColumn(1).setMaxWidth(width/14);
+
+		tabla.getColumnModel().getColumn(2).setMinWidth(width/14);
+		tabla.getColumnModel().getColumn(2).setMinWidth(width/14);
+		
+		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+		renderer.setOpaque(false);
+		tabla.getColumnModel().getColumn(0).setCellRenderer( renderer );
+		tabla.getColumnModel().getColumn(1).setCellRenderer( renderer );
+		tabla.getColumnModel().getColumn(2).setCellRenderer( renderer );
+		
+		add(tabla);
 	}
 	
 	private void crearBotones() {
