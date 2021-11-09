@@ -63,7 +63,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			}
 		});
 		name.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		name.setBounds(width/3, 4*scaleHeight, width/3, scaleHeight);
+		name.setBounds((width - scaleWidth*2)/2, 4*scaleHeight, scaleWidth*2, scaleHeight);
 		name.setText("PLAYER");
 		name.setHorizontalAlignment(SwingConstants.CENTER);
 		add(name);
@@ -77,20 +77,19 @@ public abstract class GameOverPanel extends GUIPanel{
 		winLose = new JLabel("");
 		winLose.setFont(new Font(fuente, Font.BOLD, 2*scaleHeight));
 		winLose.setHorizontalAlignment(SwingConstants.CENTER);
-		winLose.setBounds(0, 0, width, 3*scaleHeight);
+		winLose.setBounds(0, 0, width, 2*scaleHeight);
 		add(winLose);
 		
 		score = new JLabel("");
 		score.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		score.setHorizontalAlignment(SwingConstants.CENTER);
-		score.setBounds(2*width/3, 4*scaleHeight, width/3, scaleHeight);
-		score.setText("SCORE: " + finalScore);
+		score.setBounds((width - scaleWidth*3), 4*scaleHeight, scaleWidth*3, scaleHeight);
+		score.setText(" SCORE: " + finalScore);
 		add(score);
 		
-		JLabel yourName = new JLabel("YOUR NAME:");
+		JLabel yourName = new JLabel("YOUR NAME: ");
 		yourName.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		yourName.setHorizontalAlignment(SwingConstants.CENTER);
-		yourName.setBounds(0, 4*scaleHeight, width/3, scaleHeight);
+		yourName.setHorizontalAlignment(SwingConstants.RIGHT);
+		yourName.setBounds(0, 4*scaleHeight, scaleWidth*3, scaleHeight);
 		add(yourName);
 	}
 
@@ -106,7 +105,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			}
 		});
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth) / 2, height/2 + scaleHeight + scaleHeight/5, scaleWidth, scaleHeight);
+		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
 		add(btnMenu);
 		
 		JButton btnRestart = new JButton("RESTART");
@@ -116,7 +115,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			}
 		});
 		btnRestart.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnRestart.setBounds((width - scaleWidth) / 2, height/2 + 2*scaleHeight + 2*scaleHeight/5, scaleWidth, scaleHeight);
+		btnRestart.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*12)/5, scaleWidth*2, scaleHeight);
 		add(btnRestart);
 		
 		
@@ -127,7 +126,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			}
 		});
 		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth) / 2, height/2 + 3*scaleHeight + 3*scaleHeight/5, scaleWidth, scaleHeight);
+		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
 		add(btnExit);
 		
 	}

@@ -77,21 +77,21 @@ public class StartPanel extends GUIPanel{
 
 		tabla.setModel(modelo);
 		
-		tabla.setBounds(width - (width*4)/14 , 0, (width*4)/14, scaleHeight*5);
+		tabla.setBounds(width - scaleWidth*2, 0, scaleWidth*2, scaleHeight*5);
 		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
 		tabla.setEnabled(false);
 		tabla.setOpaque(false);
 		
-		tabla.getColumnModel().getColumn(0).setMinWidth(width/7);
-		tabla.getColumnModel().getColumn(0).setMaxWidth(width/7);
+		tabla.getColumnModel().getColumn(0).setMinWidth(scaleWidth);
+		tabla.getColumnModel().getColumn(0).setMaxWidth(scaleWidth);
 		
-		tabla.getColumnModel().getColumn(1).setMinWidth(width/14);
-		tabla.getColumnModel().getColumn(1).setMaxWidth(width/14);
+		tabla.getColumnModel().getColumn(1).setMinWidth(scaleWidth/2);
+		tabla.getColumnModel().getColumn(1).setMaxWidth(scaleWidth/2);
 
-		tabla.getColumnModel().getColumn(2).setMinWidth(width/14);
-		tabla.getColumnModel().getColumn(2).setMinWidth(width/14);
+		tabla.getColumnModel().getColumn(2).setMinWidth(scaleWidth/2);
+		tabla.getColumnModel().getColumn(2).setMinWidth(scaleWidth/2);
 		
 		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
 		renderer.setOpaque(false);
@@ -110,7 +110,7 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnPlay.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnPlay.setBounds((width - scaleWidth) / 2, height/2 + scaleHeight + scaleHeight/5, scaleWidth, scaleHeight);
+		btnPlay.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
 		add(btnPlay);
 		
 		JButton btnScores = new JButton("SCORES");
@@ -120,7 +120,7 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnScores.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnScores.setBounds((width - scaleWidth) / 2, height/2 + 2*scaleHeight + 2*scaleHeight/5, scaleWidth, scaleHeight);
+		btnScores.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*12)/5, scaleWidth*2, scaleHeight);
 		add(btnScores);
 		
 		JButton btnExit = new JButton("EXIT");
@@ -130,7 +130,7 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth) / 2, height/2 + 3*scaleHeight + 3*scaleHeight/5, scaleWidth, scaleHeight);
+		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
 		add(btnExit);
 	}
 	

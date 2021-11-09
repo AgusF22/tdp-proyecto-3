@@ -28,8 +28,8 @@ public abstract class GUIPanel extends JPanel{
 		width = 1280;
 		//height = frame.currentScreenHeight; TODO decomentar y borrar abajo
 		height = 720;
-		scaleWidth = width/4;
-		scaleHeight = height/15;
+		scaleWidth = width/8;
+		scaleHeight = height/16;
 	}
 	
 	/**

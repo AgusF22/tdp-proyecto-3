@@ -60,17 +60,17 @@ public class StatsPanel extends GUIPanel{
 
 		tabla.setModel(modelo);
 		
-		tabla.setBounds((width - scaleWidth) / 2, 0, width/2, height/2);
+		tabla.setBounds((width - scaleWidth*2) / 2, 0, scaleWidth*2, scaleHeight*6);
 		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
 		tabla.setEnabled(false);
 		tabla.setOpaque(false);
 		
-		tabla.getColumnModel().getColumn(0).setMinWidth(width/8);
-		tabla.getColumnModel().getColumn(1).setMinWidth(width/8);
-		tabla.getColumnModel().getColumn(0).setMaxWidth(width/8);
-		tabla.getColumnModel().getColumn(1).setMaxWidth(width/8);
+		tabla.getColumnModel().getColumn(0).setMinWidth(scaleWidth);
+		tabla.getColumnModel().getColumn(1).setMinWidth(scaleWidth);
+		tabla.getColumnModel().getColumn(0).setMaxWidth(scaleWidth);
+		tabla.getColumnModel().getColumn(1).setMaxWidth(scaleWidth);
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setOpaque(false);
@@ -100,7 +100,7 @@ public class StatsPanel extends GUIPanel{
 			}
 		});
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth) / 2, height/2 + scaleHeight + scaleHeight/5, scaleWidth, scaleHeight);
+		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
 		add(btnMenu);
 	}
 	
