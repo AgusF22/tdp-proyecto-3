@@ -104,4 +104,12 @@ public class Game implements Subscriber{
 	public GamePanel getGUI() {
 		return gui;
 	}
+	
+	/**
+	 * Retorna el EnemyBrian asociado al juego
+	 * @return EnemyBrain si existe uno, null sino existe
+	 */
+	public EnemyBrain getEnemyBrain() {
+		return enemyBrain;
+	}
 }
