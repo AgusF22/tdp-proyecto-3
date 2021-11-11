@@ -4,7 +4,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class ConcreteImageFactory extends ImageFactory{
-	
+	// FIXME no repetir literales!!! usar constantes, o un metodo para obtener los 4 iconos -AF
 	public ConcreteImageFactory(int currentScreenWidth, int currentScreenHeight) {
 		super(currentScreenWidth, currentScreenHeight);
 	}
@@ -70,16 +70,28 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/player/steveR.gif");
 		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/player/steveF.gif");
 		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/player/steveL.gif");
-		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/player/speedEffect.gif");
-		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/player/shieldEffect.gif");
+		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/player/steveSpeedB.gif");
+		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/player/steveSpeedR.gif");
+		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/player/steveSpeedF.gif");
+		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/player/steveSpeedL.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/player/steveShieldB.gif");
+		ImageIcon imgIcon9 = getIcon("/res/img/minecraft/entity/character/player/steveShieldR.gif");
+		ImageIcon imgIcon10 = getIcon("/res/img/minecraft/entity/character/player/steveShieldF.gif");
+		ImageIcon imgIcon11 = getIcon("/res/img/minecraft/entity/character/player/steveShieldL.gif");
 		
-		Icon[] rta = new Icon[6];
+		Icon[] rta = new Icon[12];
 		rta[0] = scale(imgIcon0);
 		rta[1] = scale(imgIcon1);
 		rta[2] = scale(imgIcon2);
 		rta[3] = scale(imgIcon3);
 		rta[4] = scale(imgIcon4);
 		rta[5] = scale(imgIcon5);
+		rta[6] = scale(imgIcon6);
+		rta[7] = scale(imgIcon7);
+		rta[8] = scale(imgIcon8);
+		rta[9] = scale(imgIcon9);
+		rta[10] = scale(imgIcon10);
+		rta[11] = scale(imgIcon11);
 		
 		return rta;
 	}
@@ -90,16 +102,16 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon1 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanR.gif");
 		ImageIcon imgIcon2 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanF.gif");
 		ImageIcon imgIcon3 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanL.gif");
-		
-		// FIXME no repetir literales!!! usar constantes, o un metodo para obtener los 4 iconos -AF
-		
 		ImageIcon imgIcon4 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeB.gif");	
 		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
 		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
 		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanStunB.gif");
+		ImageIcon imgIcon9 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanStunR.gif");
+		ImageIcon imgIcon10 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanStunF.gif");
+		ImageIcon imgIcon11 = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanStunL.gif");
 		
-		Icon[] rta = new Icon[5];
+		Icon[] rta = new Icon[12];
 		rta[0] = scale(imgIcon0);
 		rta[1] = scale(imgIcon1);
 		rta[2] = scale(imgIcon2);
@@ -109,6 +121,9 @@ public class ConcreteImageFactory extends ImageFactory{
 		rta[6] = scale(imgIcon6);
 		rta[7] = scale(imgIcon7);
 		rta[8] = scale(imgIcon8);
+		rta[9] = scale(imgIcon9);
+		rta[10] = scale(imgIcon10);
+		rta[11] = scale(imgIcon11);
 		
 		return rta;
 	}
@@ -123,9 +138,12 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
 		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
 		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonStunB.gif");
+		ImageIcon imgIcon9 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonStunR.gif");
+		ImageIcon imgIcon10 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonStunF.gif");
+		ImageIcon imgIcon11 = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonStunL.gif");
 		
-		Icon[] rta = new Icon[5];
+		Icon[] rta = new Icon[12];
 		rta[0] = scale(imgIcon0);
 		rta[1] = scale(imgIcon1);
 		rta[2] = scale(imgIcon2);
@@ -135,6 +153,9 @@ public class ConcreteImageFactory extends ImageFactory{
 		rta[6] = scale(imgIcon6);
 		rta[7] = scale(imgIcon7);
 		rta[8] = scale(imgIcon8);
+		rta[9] = scale(imgIcon9);
+		rta[10] = scale(imgIcon10);
+		rta[11] = scale(imgIcon11);
 		
 		return rta;
 	}
@@ -149,9 +170,12 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
 		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
 		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperStunB.gif");
+		ImageIcon imgIcon9 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperStunR.gif");
+		ImageIcon imgIcon10 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperStunF.gif");
+		ImageIcon imgIcon11 = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperStunL.gif");
 		
-		Icon[] rta = new Icon[5];
+		Icon[] rta = new Icon[12];
 		rta[0] = scale(imgIcon0);
 		rta[1] = scale(imgIcon1);
 		rta[2] = scale(imgIcon2);
@@ -161,6 +185,9 @@ public class ConcreteImageFactory extends ImageFactory{
 		rta[6] = scale(imgIcon6);
 		rta[7] = scale(imgIcon7);
 		rta[8] = scale(imgIcon8);
+		rta[9] = scale(imgIcon9);
+		rta[10] = scale(imgIcon10);
+		rta[11] = scale(imgIcon11);
 		
 		return rta;
 	}
@@ -175,9 +202,12 @@ public class ConcreteImageFactory extends ImageFactory{
 		ImageIcon imgIcon5 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeR.gif");
 		ImageIcon imgIcon6 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeF.gif");
 		ImageIcon imgIcon7 = getIcon("/res/img/minecraft/entity/character/enemy/bee/beeL.gif");
-		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
+		ImageIcon imgIcon8 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieStunB.gif");
+		ImageIcon imgIcon9 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieStunR.gif");
+		ImageIcon imgIcon10 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieStunF.gif");
+		ImageIcon imgIcon11 = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieStunL.gif");
 		
-		Icon[] rta = new Icon[9];
+		Icon[] rta = new Icon[12];
 		rta[0] = scale(imgIcon0);
 		rta[1] = scale(imgIcon1);
 		rta[2] = scale(imgIcon2);
@@ -187,6 +217,9 @@ public class ConcreteImageFactory extends ImageFactory{
 		rta[6] = scale(imgIcon6);
 		rta[7] = scale(imgIcon7);
 		rta[8] = scale(imgIcon8);
+		rta[9] = scale(imgIcon9);
+		rta[10] = scale(imgIcon10);
+		rta[11] = scale(imgIcon11);
 		
 		return rta;
 	}
