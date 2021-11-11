@@ -167,7 +167,7 @@ public final class Player extends Character{
 	/**
 	 * Actualiza la direccion de movimiento de la grafica
 	 */
-	private void updateMovementDirection() {
+	private void updateMovementDirection() {	// FIXME cambiar por updateImage de GraphicEntity -AF
 		switch (movementDirection){
 		case UP:
 			((GraphicCharacter) graphic).setMovingUp();

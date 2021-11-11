@@ -21,4 +21,8 @@ public abstract class Character extends Entity {
 		speedMultiplier = multiplier;
 	}
 	
+	public Direction getMovementDirection() {
+		return movementDirection;
+	}
+	
 }

@@ -6,80 +6,57 @@ public class GraphicEnemy extends GraphicCharacter{
 
 	private static final long serialVersionUID = 1L;
 
-	protected transient Icon fleeingUpImage;
-	protected transient Icon fleeingDownImage;
-	protected transient Icon fleeingLeftImage;
-	protected transient Icon fleeingRightImage;
-	protected transient Icon stunEffect;
-
+	/**
+	 * Arreglo con imagenes de escape hacia arriba, derecha, abajo, e izquierda, en las posiciones 0, 1, 2, y 3 respectivamente.
+	 */
+	protected transient Icon[] fleeingImages;
+	
+	/**
+	 * Arreglo con imagenes de enemigo aturdido hacia arriba, derecha, abajo, e izquierda, en las posiciones 0, 1, 2, y 3 respectivamente.
+	 */
+	protected transient Icon[] stunedImages;
+	
 	protected boolean fleeing;
+	protected boolean stuned;
 	
 	public GraphicEnemy(Entity entity, Icon[] images) {
 		super(entity, images);
 		
-		fleeingUpImage 		= images[4];
-		fleeingRightImage 	= images[5];
-		fleeingDownImage 	= images[6];
-		fleeingLeftImage 	= images[7];
+		fleeingImages = new Icon[4];
+		stunedImages = new Icon[4];
 		
-		stunEffect			= images[8];
+		fleeingImages[0] = images[4];
+		fleeingImages[1] = images[5];
+		fleeingImages[2] = images[6];
+		fleeingImages[3] = images[7];
+		
+		stunedImages[0] = images[8];
+		stunedImages[1] = images[9];
+		stunedImages[2] = images[10];
+		stunedImages[3] = images[11];
 	}
 	
-	@Override
-	public void setMovingUp() {
-		if (fleeing) {
-			this.setIcon(fleeingUpImage);
+	protected void setMoveDirection(int index) {
+		if (stuned) {
+			setIcon(stunedImages[index]);
+		} else if (fleeing) {
+			setIcon(fleeingImages[index]);
 		} else {
-			this.setIcon(movingUpImage);
+			super.setMoveDirection(index);
 		}
-		this.repaint();
-	}
-
-	@Override
-	public void setMovingDown() {
-		if (fleeing) {
-			this.setIcon(fleeingDownImage);
-		} else {
-			this.setIcon(movingDownImage);
-		}
-		this.repaint();
-	}
-
-	@Override
-	public void setMovingLeft() {
-		if (fleeing) {
-			this.setIcon(fleeingLeftImage);
-		} else {
-			this.setIcon(movingLeftImage);
-		}
-		this.repaint();
-	}
-
-	@Override
-	public void setMovingRight() {
-		if (fleeing) {
-			this.setIcon(fleeingRightImage);
-		} else {
-			this.setIcon(movingRightImage);
-		}
-		this.repaint();
 	}
 	
 	public void setFleeing(boolean fleeing) {
 		this.fleeing = fleeing;
 	}
 	
+	public void setStunEffect(boolean stuned) {
+		this.stuned = stuned;
+	}
+	
 	@Override
 	public void setVisible(boolean visible) {
-		// TODO imp
-	}
-	
-	public void addStunEffect() {
-		// TODO imp
-	}
-	
-	public void removeStunEffect() {
-		// TODO imp
+		this.setVisible(visible);
 	}
 	
 }
