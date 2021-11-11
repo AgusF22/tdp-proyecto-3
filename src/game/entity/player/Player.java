@@ -58,16 +58,14 @@ public final class Player extends Character{
 	public void move() {
 		if (attemptingMovement == movementDirection.getOpposite()) {
 			movementDirection = attemptingMovement;
-			updateMovementDirection();				//TODO quitar cuando existar char
+			graphic.updateImage();	
 		}
 		move(speedMultiplier * movementSpeed);
-		//graphic.update();						//TODO setear con update() cuando este implementado
 	}
 	
 	/**
-	 * FIXME asume que la distancia sera siempre menor a 1 pero se setea antes de llegar al centro de la zona
-	 * 		 entonces no llego al centro de donde queria ir que ya esta preguntando por el que sigue.
-	 * @param n
+	 * Mueve al jugador las unidades pasadas por parametro en una direccion
+	 * @param n Flaot unidades a mover
 	 */
 	private void move(float n) {
 		
@@ -117,6 +115,7 @@ public final class Player extends Character{
 		y = Math.round(y * 10f) / 10f;
 		
 		this.setCoordinates(x, y);
+		graphic.updatePosition(x,y);			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion
 	}
 	
 	/**
@@ -125,7 +124,7 @@ public final class Player extends Character{
 	private void updateDir() {
 		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {
 			movementDirection = attemptingMovement;
-			updateMovementDirection();					//TODO quitar cuando existar char
+			graphic.updateImage();	
 		}
 	}
 	
@@ -164,26 +163,6 @@ public final class Player extends Character{
 		return toReturn;
 	}
 
-	/**
-	 * Actualiza la direccion de movimiento de la grafica
-	 */
-	private void updateMovementDirection() {	// FIXME cambiar por updateImage de GraphicEntity -AF
-		switch (movementDirection){
-		case UP:
-			((GraphicCharacter) graphic).setMovingUp();
-			break;
-		case RIGHT:
-			((GraphicCharacter) graphic).setMovingRight();
-			break;
-		case DOWN:
-			((GraphicCharacter) graphic).setMovingDown();
-			break;
-		case LEFT:
-			((GraphicCharacter) graphic).setMovingLeft();
-			break;
-		}
-	}
-	
 	/**
 	 * Asigna una nueva direccion a la que intentar mover al jguador
 	 * 
