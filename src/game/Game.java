@@ -7,7 +7,7 @@ import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
-public class Game implements Subscriber{
+public class Game implements Subscriber, Runnable{
 	protected int points;
 	protected GamePanel gui;
 	protected ImageFactory imageFactory;
@@ -25,6 +25,7 @@ public class Game implements Subscriber{
 		labyrinth = new ConcreteLabyrinth1(this);
 		enemyBrain = new EnemyBrain();
 		EndGamePublisher.getInstance().subscribe(this);
+		//TODO setear hilo para game
 	}
 	
 	/**
@@ -103,5 +104,25 @@ public class Game implements Subscriber{
 	
 	public GamePanel getGUI() {
 		return gui;
+	}
+	
+	/**
+	 * Retorna el EnemyBrian asociado al juego
+	 * @return EnemyBrain si existe uno, null sino existe
+	 */
+	public EnemyBrain getEnemyBrain() {
+		return enemyBrain;
+	}
+	
+	public void run() {
+		while (labyrinth != null && labyrinth.dotsRemain()) {
+			try {
+				Thread.sleep(1000/30);
+				Player.getInstance().move();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		winLevel();
 	}
 }

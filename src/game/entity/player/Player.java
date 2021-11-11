@@ -9,13 +9,11 @@ import game.entity.GraphicCharacter;
 import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
-public class Player extends Character{
+public final class Player extends Character{
 	
-	private static final float MOVEMENT_LENGTH = 0.1f;		// Distancia que puede recorrer el personaje en un movimiento // FIXME reemplazar por constante en Character -AF
-	
-	protected float movementSpeed;
 	protected Direction attemptingMovement;
 	protected static Player instance;
+	protected boolean hasShield;
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -23,6 +21,7 @@ public class Player extends Character{
 	private Player() {
 		super(null, 0.1f);
 		attemptingMovement = null;
+		hasShield = false;
 	}
 	
 	/**
@@ -54,14 +53,6 @@ public class Player extends Character{
 	}
 	
 	/**
-	 * Asigna la velocidad de movimiento
-	 * @param speed Float multiplo de velocidad
-	 */
-	public void setMovementSpeed(float speed) {
-		movementSpeed = speed;
-	}
-	
-	/**
 	 * Intena mover al personaje por cada invocacion
 	 */
 	public void move() {
@@ -69,7 +60,7 @@ public class Player extends Character{
 			movementDirection = attemptingMovement;
 			updateMovementDirection();				//TODO quitar cuando existar char
 		}
-		move(MOVEMENT_LENGTH * movementSpeed);
+		move(speedMultiplier * movementSpeed);
 		//graphic.update();						//TODO setear con update() cuando este implementado
 	}
 	
@@ -81,7 +72,6 @@ public class Player extends Character{
 	private void move(float n) {
 		
 		float d = nextCenterDistance();
-		System.out.println("Distancia "+d);
 		boolean canMove = true;
 		if (n < 0) {
 			n = 0;
@@ -219,4 +209,20 @@ public class Player extends Character{
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	
+	/**
+	 * Setea el estado de escudo segundo lo pasado por parametro
+	 * @param shield Boolean , true si tiene escudo, false sino
+	 */
+	public void setShield(boolean shield) {
+		hasShield = shield;
+	}
+	
+	/**
+	 * Consulta si el personaje tiene escudo
+	 * @return True si tiene, no sino tiene
+	 */
+	public boolean hasShield() {
+		return hasShield;
+	} 
 }
