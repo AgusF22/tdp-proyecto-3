@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml> 
+
 <labyrinth>
 	<spawn>
-		<coord x="14" y="16"></coord>
+		<coords x="14" y="16"></coords>
 	</spawn>
 	
-	<dangeon>
+	<dungeon>
 		<start x="14" y="11"></start>
 		<end x="14" y="11"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="10" y="12"></start>
 		<end x="18" y="12"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="10" y="13"></start>
 		<end x="18" y="13"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="10" y="14"></start>
 		<end x="18" y="14"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="10" y="15"></start>
 		<end x="18" y="15"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="10" y="16"></start>
 		<end x="13" y="16"></end>
-	</dangeon>
-	<dangeon>
+	</dungeon>
+	<dungeon>
 		<start x="15" y="16"></start>
 		<end x="18" y="16"></end>
-	</dangeon>
+	</dungeon>
 	
 	<path>
 		<start x="1" y="1"></start>
