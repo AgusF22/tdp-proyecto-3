@@ -7,12 +7,16 @@ import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
-public class Game implements Subscriber, Runnable{
+public class Game implements Subscriber, Runnable {
+	
 	protected int points;
 	protected GamePanel gui;
 	protected ImageFactory imageFactory;
 	protected Labyrinth labyrinth;
 	protected EnemyBrain enemyBrain;
+	
+	protected Thread gameThread;
+	protected Thread brainThread;
 	
 	/**
 	 * Construye una nueva instancia de Game.
@@ -25,7 +29,6 @@ public class Game implements Subscriber, Runnable{
 		labyrinth = new ConcreteLabyrinth1(this);
 		enemyBrain = new EnemyBrain();
 		EndGamePublisher.getInstance().subscribe(this);
-		//TODO setear hilo para game
 	}
 	
 	/**
@@ -74,18 +77,20 @@ public class Game implements Subscriber, Runnable{
 	}
 	
 	/**
-	 * Termina el juego. TODO Mejorar
+	 * Termina el juego.
 	 */
 	public void endGame() {
-		//TODO implementar
-		gui.loseGame();
+		if (labyrinth == null) {
+			gui.winGame();
+		} else {
+			gui.loseGame();
+		}
 	}
 	
 	/**
-	 * Gana el juego TODO mejorar
+	 * Gana el nivel.
 	 */
 	public void winLevel() {
-		//TODO implementar
 		labyrinth = labyrinth.nextLabyrinth();
 	}
 	
@@ -99,6 +104,7 @@ public class Game implements Subscriber, Runnable{
 	
 	@Override
 	public void update() {
+		stop();
 		endGame();
 	}
 	
@@ -108,21 +114,41 @@ public class Game implements Subscriber, Runnable{
 	
 	/**
 	 * Retorna el EnemyBrian asociado al juego
-	 * @return EnemyBrain si existe uno, null sino existe
+	 * @return EnemyBrain si existe uno, null si no existe
 	 */
 	public EnemyBrain getEnemyBrain() {
 		return enemyBrain;
 	}
 	
+	public void start() {
+		gameThread = new Thread(this);
+		brainThread = new Thread(enemyBrain);
+		gameThread.start();
+		brainThread.start();
+	}
+	
+	public void stop() {
+		gameThread.interrupt();
+		brainThread.interrupt();
+	}
+	
 	public void run() {
-		while (labyrinth != null && labyrinth.dotsRemain()) {
+		while(!Thread.currentThread().isInterrupted()) {
+			
+			System.out.println("running game");
+			
+			Player.getInstance().move();
+			
+			if(labyrinth == null || !labyrinth.dotsRemain()) {
+				winLevel();
+			}
+			
 			try {
 				Thread.sleep(1000/30);
-				Player.getInstance().move();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
+				return;
 			}
 		}
-		winLevel();
 	}
 }

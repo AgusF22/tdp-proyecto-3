@@ -7,7 +7,7 @@ import java.util.List;
  * Clase EnemyBrain
  * Avisa las acciones a hacer de los enemigos que controla
  */
-public class EnemyBrain {
+public class EnemyBrain implements Runnable {
 	
 	protected List<Enemy> enemies;
 	
@@ -15,7 +15,6 @@ public class EnemyBrain {
 		//TODO imp
 		enemies = new LinkedList<>();
 	}
-	
 	
 	/**
 	 * Avisa a todos los enemigos en su control que se muevan
@@ -36,6 +35,15 @@ public class EnemyBrain {
 	}
 	
 	public void run() {
-		//TODO imp
+		while (!Thread.currentThread().isInterrupted()) {
+			System.out.println("running brain");
+			try {
+				Thread.sleep(1000/30);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				return;
+			}
+		}
 	}
+	
 }

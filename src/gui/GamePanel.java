@@ -52,6 +52,8 @@ public class GamePanel extends GUIPanel {
 		System.out.println();
 		System.out.println("Creado panel de juego");
 		
+		game.start();
+		
 	}
 	
 	/**
