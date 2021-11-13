@@ -9,6 +9,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
+import exceptions.DataLoadException;
 import game.Game;
 import game.labyrinth.Labyrinth;
 import imagefactories.ConcreteImageFactory;
@@ -42,7 +43,12 @@ public class GamePanel extends GUIPanel {
 		agregarControles();
 		crearFondo();
 		
-		game = new Game(this);
+		try {
+			game = new Game(this);
+		} catch (DataLoadException e) {
+			e.printStackTrace();
+		}
+		
 		score = game.getPoints();
 		lblScore.setText(""+score);
 		
@@ -53,7 +59,6 @@ public class GamePanel extends GUIPanel {
 		System.out.println("Creado panel de juego");
 		
 		game.start();
-		
 	}
 	
 	/**
@@ -83,13 +88,12 @@ public class GamePanel extends GUIPanel {
 	private void crearPanel() {
 		setLayout(null);
 		setLocation(0, 0);
-		
 		panelCapas = new JLayeredPane();
 		add(panelCapas);
 		
 		labyrinthLabel = new JLabel("");
 		labyrinthLabel.setLocation(0, 0);
-		panelCapas.add(labyrinthLabel, new Integer(0), 0);
+		panelCapas.add(labyrinthLabel, Integer.valueOf(0), 0);
 	}
 	
 	/**
@@ -222,8 +226,10 @@ public class GamePanel extends GUIPanel {
 	 * @param label
 	 */
 	public void addLabel(JLabel label) {
-		panelCapas.add(label, new Integer(1), 0);
-		System.out.print("Agregada label"); //TODO sacar
+		panelCapas.add(label, Integer.valueOf(1), 0);
+		System.out.print("Agregada label "); //TODO sacar
+		label.setBackground(Color.BLACK);
+		label.setOpaque(true);
 	}
 	
 	/**
@@ -248,8 +254,8 @@ public class GamePanel extends GUIPanel {
 		float zoneWidth = (float) getWidth() / Labyrinth.WIDTH;
 		float zoneHeight = (float) getHeight() / Labyrinth.HEIGHT;
 		
-		float posX = x * zoneWidth + zoneWidth / 2;
-		float posY = y * zoneHeight + zoneHeight / 2;
+		float posX = x * zoneWidth + zoneWidth / 2f;
+		float posY = y * zoneHeight + zoneHeight / 2f;
 		
 		posX -= (float) label.getWidth() / 2;
 		posY -= label.getHeight();

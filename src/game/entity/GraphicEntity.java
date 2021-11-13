@@ -29,6 +29,6 @@ public abstract class GraphicEntity extends JLabel{
 	public void addToGUI(GamePanel gui) {
 		this.panel = gui;
 		panel.addLabel(this);
+		this.updatePosition();
 	}
-	
 }

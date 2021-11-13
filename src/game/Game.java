@@ -1,5 +1,6 @@
 package game;
 
+import exceptions.DataLoadException;
 import game.entity.enemy.EnemyBrain;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
@@ -21,8 +22,9 @@ public class Game implements Subscriber, Runnable {
 	/**
 	 * Construye una nueva instancia de Game.
 	 * @param gui interfaz grafica asociada al juego.
+	 * @throws DataLoadException 
 	 */
-	public Game(GamePanel gui) {
+	public Game(GamePanel gui) throws DataLoadException {
 		this.gui = gui;
 		points = 0;
 		imageFactory = gui.getImageFactory();

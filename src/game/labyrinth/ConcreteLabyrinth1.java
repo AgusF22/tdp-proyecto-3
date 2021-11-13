@@ -1,5 +1,7 @@
 package game.labyrinth;
 
+import data.LabyrinthLoader;
+import exceptions.DataLoadException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
@@ -18,74 +20,22 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	/**
 	 * Crea una instancia concreta del laberinto 1.
 	 * @param game asociado a este laberinto.
+	 * @throws DataLoadException 
 	 */
-	public ConcreteLabyrinth1(Game game) {
+	public ConcreteLabyrinth1(Game game) throws DataLoadException {
 		super(game);
 		
 		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image());
 		
-		ZoneType[][] matrix = new ZoneMatrixBuilder()
-			
-		.setSpawn(14, 16)										// Set zona SPAWN.
+		LabyrinthLoader labLoader = new LabyrinthLoader("src/res/xml/labyrinth1.xml");
 		
-		.setDungeon(14, 11, 14, 11)								// Set zonas DUNGEON.
-		.setDungeon(12, 10, 12, 18)
-		.setDungeon(13, 10, 13, 18)
-		.setDungeon(14, 10, 14, 18)
-		.setDungeon(15, 11, 15, 18)
+		ZoneType[][] matrix = labLoader.load();
 		
-		.setDungeon(16, 11, 16, 13)
-		.setDungeon(16, 13, 16, 18)
-		
-		.setPath(1, 1, 12, 1)									// Set zonas PATH.
-		.setPath(16, 1, 27, 1)
-		
-		.setPath(12, 2, 12, 4)
-		.setPath(16, 2, 16, 4)
-		
-		.setPath(1, 2, 1, 14)
-		.setPath(27, 2, 27, 14)
-		
-		.setPath(2, 14, 8, 14)
-		.setPath(14, 20, 14, 23)
-		
-		.setPath(6, 5, 22, 5)
-		.setPath(6, 23, 22, 23)
-		
-		.setPath(6, 6, 6, 13)
-		.setPath(6, 15, 6, 22)
-
-		.setPath(22, 6, 22, 13)
-		.setPath(22, 15, 22, 22)
-		
-		.setPath(1, 20, 5, 20)
-		.setPath(23, 20, 27, 20)
-
-		.setPath(1, 21, 1, 29)
-		.setPath(27, 21, 27, 29)
-		
-		.setPath(12, 24, 12, 28)
-		.setPath(16, 24, 16, 28)
-		
-		.setPath(9, 11, 19, 11)
-		.setPath(9, 17, 19, 17)
-
-		.setPath(9, 12, 9, 16)
-		.setPath(19, 12, 19, 16)
-		
-		.setPath(14, 6, 14, 10)
-		.setPath(14, 18, 14, 22) 
-		
-		.setPath(2, 29, 26, 29)
-		.setPath(20, 14, 26, 14)
-		
-		.build();
 		
 		for (int x = 0; x < matrix.length; x++) {
 			for (int y = 0; y < matrix[0].length; y++) {
 				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
 			}
-			
 		}
 		
 		//************************************

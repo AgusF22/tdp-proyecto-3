@@ -9,6 +9,7 @@ public class GraphicPrize extends GraphicEntity{
 	public GraphicPrize(Entity entity, Icon image) {
 		super(entity);
 		this.setIcon(image);
+		this.setSize(image.getIconWidth(), image.getIconHeight());
 	}
 
 	@Override
