@@ -12,7 +12,6 @@ public abstract class Prize extends Entity {
 	 */
 	protected Prize(Zone zone) {
 		super(zone);
-		zone.addEntity(this);
 	}
 	
 	/**

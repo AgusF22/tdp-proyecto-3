@@ -3,15 +3,20 @@ package game.labyrinth;
 import game.Direction;
 import game.entity.Entity;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Zone {
 	//TODO documentar
 	
 	protected Labyrinth labyrinth;
 	protected ZoneType type;
-	protected Collection<Entity> entities;
+	
+	protected List<Entity> entities;
+	protected List<Entity> toRemove;
+	protected List<Entity> toAdd;
+	
 	protected int x;
 	protected int y;
 	
@@ -28,6 +33,8 @@ public class Zone {
 		this.y = y;
 		this.type = type;
 		entities = new LinkedList<>();
+		toRemove = new ArrayList<>();
+		toAdd = new ArrayList<>();
 	}
 	
 	/**
@@ -63,7 +70,7 @@ public class Zone {
 	 * @param entity la entidad que se quiere remover.
 	 */
 	public void removeEntity(Entity entity) {
-		this.entities.remove(entity);
+		toRemove.add(entity);
 	}
 	
 	/**
@@ -71,7 +78,16 @@ public class Zone {
 	 * @param entity la entidad que se quiere agregar.
 	 */
 	public void addEntity(Entity entity) {	 //TODO Excepcion? 
-		this.entities.add(entity);
+		toAdd.add(entity);
+	}
+	
+	public void update() {
+		if (!toRemove.isEmpty() || !toAdd.isEmpty()) {
+			entities.removeAll(toRemove);
+			entities.addAll(toAdd);
+			toRemove.clear();
+			toAdd.clear();
+		}
 	}
 	
 	/**

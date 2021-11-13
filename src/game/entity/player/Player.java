@@ -41,7 +41,10 @@ public final class Player extends Character{
 	public void setZone(Zone zone) {
 		//TODO if (zone == null) excepcion 
 		this.zone = zone;
-		this.setCoordinates(zone.getX(), zone.getY());
+		zone.addEntity(this);
+		zone.update();
+		x = zone.getX();
+		y = zone.getY();
 		setGraphic();
 	}
 	
@@ -61,6 +64,7 @@ public final class Player extends Character{
 			graphic.updateImage();	
 		}
 		move(speedMultiplier * movementSpeed);
+		collide();
 	}
 	
 	/**
@@ -180,6 +184,7 @@ public final class Player extends Character{
 		for (Entity e : zone.zoneEntities()) {
 			e.accept(v);								// TODO cambiar condicion de colision a distancia (y actualizar javadoc posteriormente) -AF
 		}
+		zone.update();
 	}
 	
 	/**
