@@ -3,6 +3,8 @@ package game.entity.enemy;
 import java.util.LinkedList;
 import java.util.List;
 
+import game.Game;
+
 /**
  * Clase EnemyBrain
  * Avisa las acciones a hacer de los enemigos que controla
@@ -38,7 +40,7 @@ public class EnemyBrain implements Runnable {
 		while (!Thread.currentThread().isInterrupted()) {
 			//System.out.println("running brain");
 			try {
-				Thread.sleep(1000/30);
+				Thread.sleep(1000 / Game.CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				return;

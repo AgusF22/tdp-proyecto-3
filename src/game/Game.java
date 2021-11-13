@@ -10,6 +10,8 @@ import imagefactories.ImageFactory;
 
 public class Game implements Subscriber, Runnable {
 	
+	public static final int CYCLES_PER_SECOND = 60;
+	
 	protected int points;
 	protected GamePanel gui;
 	protected ImageFactory imageFactory;
@@ -146,7 +148,7 @@ public class Game implements Subscriber, Runnable {
 			}
 			
 			try {
-				Thread.sleep(1000/30);
+				Thread.sleep(1000 / CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
 				return;

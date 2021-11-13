@@ -20,7 +20,8 @@ public class GraphicCharacter extends GraphicEntity{
 		movingImages[1] = images[1];
 		movingImages[2] = images[2];
 		movingImages[3] = images[3];
-		this.setIcon(movingImages[2]);
+		this.setIcon(movingImages[3]);
+		this.setSize(images[0].getIconWidth(), images[0].getIconHeight());
 	}
 	
 	public void updateImage() {

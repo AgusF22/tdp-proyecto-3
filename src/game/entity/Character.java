@@ -12,6 +12,7 @@ public abstract class Character extends Entity {
 	protected Character(Zone zone, float movementSpeed) {
 		super(zone);
 		this.movementSpeed = movementSpeed;
+		speedMultiplier = 1;
 		movementDirection = Direction.LEFT;
 	}
 	
