@@ -43,12 +43,6 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 			}
 		}
 		
-		for (int x = 0; x < matrix.length; x++) {
-			for (int y = 0; y < matrix[0].length; y++) {
-				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
-			}
-		}
-		
 		this.setEntity();
 	}
 	
