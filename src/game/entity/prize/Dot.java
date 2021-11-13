@@ -15,4 +15,9 @@ public class Dot extends Prize {
 		beConsumed();
 	}
 	
+	protected void beConsumed() {
+		super.beConsumed();
+		zone.getLabyrinth().removeDot();
+	}
+	
 }

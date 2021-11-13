@@ -19,7 +19,7 @@ public final class Player extends Character{
 	 * Crea una nueva instancia de Player.
 	 */
 	private Player() {
-		super(null, 0.1f);
+		super(null, 0.2f);
 		attemptingMovement = null;
 		hasShield = false;
 	}

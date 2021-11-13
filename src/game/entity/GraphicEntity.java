@@ -23,6 +23,7 @@ public abstract class GraphicEntity extends JLabel{
 	public abstract void updateImage();
 	
 	public void delete() {
+		System.out.println("Panel es nulo = " + (panel == null));
 		panel.removeLabel(this);
 	}
 	
