@@ -2,6 +2,7 @@ package game.labyrinth;
 
 import data.LabyrinthLoader;
 import exceptions.DataLoadException;
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
@@ -12,7 +13,6 @@ import game.entity.player.Player;
 import game.entity.prize.ConcreteFruit2;
 import game.entity.prize.ConcretePotion1;
 import game.entity.prize.ConcretePotion2;
-import game.entity.prize.Dot;
 import game.entity.prize.PowerPellet;
 
 public class ConcreteLabyrinth3  extends Labyrinth {
@@ -43,12 +43,6 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 			}
 		}
 		
-		for (int x = 0; x < matrix.length; x++) {
-			for (int y = 0; y < matrix[0].length; y++) {
-				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
-			}
-		}
-		
 		this.setEntity();
 	}
 	
@@ -56,10 +50,6 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	 * Crea y setea en el mapa a todas las entidades del laberinto 3.
 	 */
 	private void setEntity() {
-
-		zones[14][23].addEntity(Player.getInstance());
-		Player.getInstance().setZone(zones[14][23]);
-        Player.getInstance().getGraphic().addToGUI(game.getGUI());
 
 		//TODO descomentar para setear enemigos
 		Zone posSpawn = this.getSpawn();							// ***Set Enemy***
@@ -91,18 +81,7 @@ public class ConcreteLabyrinth3  extends Labyrinth {
         Entity potion1 = new ConcretePotion1(zones[6][14]);
         potion1.getGraphic().addToGUI(game.getGUI());
         Entity potion2 = new ConcretePotion2(zones[22][14]);
-        potion2.getGraphic().addToGUI(game.getGUI());
-
-        Entity dot;
-		for (int x = 0; x < zones.length; x++) {					//	  Set dots
-			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
-				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
-					dot = new Dot(zones[x][y]);
-					dot.getGraphic().addToGUI(game.getGUI());
-					doCount++;
-				}
-			}
-		}	
+        potion2.getGraphic().addToGUI(game.getGUI());	
 	}
 	
 	/**
@@ -110,5 +89,19 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	 */
 	public Labyrinth nextLabyrinth() {
 		return null;
+	}
+	
+	@Override
+	public void addPlayer() {
+		Player player = Player.getInstance();
+		player.getGraphic().delete();
+        zones[14][23].addEntity(player);							// ***Set Player***
+		try {
+			player.setZone(zones[14][23]);
+		} catch (NullZoneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		player.getGraphic().addToGUI(game.getGUI());
 	}
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 import exceptions.DataLoadException;
 import game.Game;
 import game.entity.Entity;
+import game.entity.prize.Dot;
 import game.entity.timedentity.TimedEntity;
 import imagefactories.ImageFactory;
 
@@ -121,5 +122,20 @@ public abstract class Labyrinth {
 	
 	public void runTimedEntity() {
 		timedEntity.forEach(TimedEntity::reduceCountdown);
+	}
+	
+	public abstract void addPlayer();
+		
+	public synchronized void fillWithDots() {
+		Entity dot;													// ***Set dots***
+		for (int x = 0; x < zones.length; x++) {
+			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
+				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
+					dot = new Dot(zones[x][y]);
+					dot.getGraphic().addToGUI(game.getGUI());
+					doCount++;
+				}
+			}
+		}
 	}
 }

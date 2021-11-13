@@ -226,7 +226,6 @@ public class GamePanel extends GUIPanel {
 	 */
 	public void addLabel(JLabel label) {
 		panelCapas.add(label, Integer.valueOf(1), 0);
-		System.out.print("Agregada label "); //TODO sacar
 	}
 	
 	/**
