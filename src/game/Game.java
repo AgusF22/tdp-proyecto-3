@@ -137,7 +137,7 @@ public class Game implements Subscriber, Runnable {
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
 			
-			System.out.println("running game");
+			//System.out.println("running game");
 			
 			Player.getInstance().move();
 			

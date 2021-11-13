@@ -36,7 +36,7 @@ public class EnemyBrain implements Runnable {
 	
 	public void run() {
 		while (!Thread.currentThread().isInterrupted()) {
-			System.out.println("running brain");
+			//System.out.println("running brain");
 			try {
 				Thread.sleep(1000/30);
 			} catch (InterruptedException e) {

@@ -228,8 +228,6 @@ public class GamePanel extends GUIPanel {
 	public void addLabel(JLabel label) {
 		panelCapas.add(label, Integer.valueOf(1), 0);
 		System.out.print("Agregada label "); //TODO sacar
-		label.setBackground(Color.BLACK);
-		label.setOpaque(true);
 	}
 	
 	/**
@@ -251,14 +249,14 @@ public class GamePanel extends GUIPanel {
 			//tirar exception
 		}
 		
-		float zoneWidth = (float) getWidth() / Labyrinth.WIDTH;
-		float zoneHeight = (float) getHeight() / Labyrinth.HEIGHT;
+		float zoneWidth = (float) panelCapas.getWidth() / Labyrinth.WIDTH;
+		float zoneHeight = (float) panelCapas.getHeight() / Labyrinth.HEIGHT;
 		
 		float posX = x * zoneWidth + zoneWidth / 2f;
 		float posY = y * zoneHeight + zoneHeight / 2f;
 		
 		posX -= (float) label.getWidth() / 2;
-		posY -= label.getHeight();
+		posY -= label.getHeight(); //TODO si las imagenes nuevas quedan mal: restar o sumar const.
 		
 		label.setLocation(Math.round(posX), Math.round(posY));
 	}
