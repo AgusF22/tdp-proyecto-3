@@ -3,6 +3,7 @@ package game.labyrinth;
 import data.LabyrinthLoader;
 import exceptions.DataLoadException;
 import exceptions.NullZoneException;
+import game.Direction;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
@@ -102,6 +103,7 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		player.attemptMovement(Direction.LEFT);
 		player.getGraphic().addToGUI(game.getGUI());
 	}
 }
