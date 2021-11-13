@@ -93,8 +93,9 @@ public class Game implements Subscriber, Runnable {
 	
 	/**
 	 * Gana el nivel.
+	 * @throws DataLoadException 
 	 */
-	public void winLevel() {
+	public void winLevel() throws DataLoadException {
 		labyrinth = labyrinth.nextLabyrinth();
 	}
 	
@@ -144,7 +145,11 @@ public class Game implements Subscriber, Runnable {
 			Player.getInstance().move();
 			
 			if(labyrinth == null || !labyrinth.dotsRemain()) {
-				winLevel();
+				try {
+					winLevel();
+				} catch (DataLoadException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			try {

@@ -1,9 +1,14 @@
 package game.labyrinth;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import exceptions.DataLoadException;
 import game.Game;
 import game.entity.Entity;
+import game.entity.timedentity.TimedEntity;
 import imagefactories.ImageFactory;
 
 public abstract class Labyrinth {
@@ -12,9 +17,11 @@ public abstract class Labyrinth {
 	public final static int WIDTH = 29;
 	public final static int HEIGHT = 31;
 	
+	protected Zone spawn;
 	protected int doCount;
 	protected Game game;
 	protected Zone[][] zones;
+	protected List<TimedEntity> timedEntity;
 	
 	/**
 	 * Crear un nuevo labyrinth.
@@ -23,6 +30,7 @@ public abstract class Labyrinth {
 	protected Labyrinth(Game game) {
 		this.game = game;
 		zones = new Zone[WIDTH][HEIGHT];
+		timedEntity = new ArrayList<>();
 	}
 	
 	/**
@@ -41,8 +49,9 @@ public abstract class Labyrinth {
 	
 	/**
 	 * @return el siguiente laberinto.
+	 * @throws DataLoadException 
 	 */
-	public abstract Labyrinth nextLabyrinth();
+	public abstract Labyrinth nextLabyrinth() throws DataLoadException;
 	
 	/**
 	 * Notifica al juego para que incremente los puntos.
@@ -96,5 +105,21 @@ public abstract class Labyrinth {
 	 */
 	public ImageFactory getImageFactory() {
 		return game.getImageFactory();
+	}
+	
+	public Zone getSpawn() {
+		return spawn;
+	}
+	
+	public void addTimedEntity(TimedEntity entity) {
+		timedEntity.add(entity);
+	}
+	
+	public void removeTimedEntity(TimedEntity entity) {
+		timedEntity.remove(entity);
+	}	
+	
+	public void runTimedEntity() {
+		timedEntity.forEach(TimedEntity::reduceCountdown);
 	}
 }
