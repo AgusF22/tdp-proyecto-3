@@ -16,8 +16,8 @@ public abstract class GraphicEntity extends JLabel{
 		this.entity = entity;
 	}
 	
-	public void updatePosition(float x, float y) {
-		panel.updateLabel(this, x, y);
+	public void updatePosition() {
+		panel.updateLabel(this, entity.getX(), entity.getY());
 	}
 	
 	public abstract void updateImage();

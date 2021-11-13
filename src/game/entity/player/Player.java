@@ -115,7 +115,7 @@ public final class Player extends Character{
 		y = Math.round(y * 10f) / 10f;
 		
 		this.setCoordinates(x, y);
-		graphic.updatePosition(x,y);			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion
+		graphic.updatePosition();			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion
 	}
 	
 	/**

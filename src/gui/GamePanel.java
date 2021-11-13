@@ -63,7 +63,7 @@ public class GamePanel extends GUIPanel {
 		lblScoreText = new JLabel("");
 		lblScoreText.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		lblScoreText.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScoreText.setForeground(new java.awt.Color(250, 128, 114));
+		lblScoreText.setForeground(new Color(250, 128, 114));
 		lblScoreText.setBounds(((width - scaleWidth)*2/5), 0, scaleWidth, scaleHeight);
 		lblScoreText.setText("SCORE: ");
 		add(lblScoreText);
@@ -71,7 +71,7 @@ public class GamePanel extends GUIPanel {
 		lblScore = new JLabel("");
 		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScore.setForeground(new java.awt.Color(250, 128, 114));
+		lblScore.setForeground(new Color(250, 128, 114));
 		lblScore.setBounds(((width - scaleWidth)*3/5), 0, scaleWidth, scaleHeight);
 		lblScore.setText(""+score);
 		add(lblScore);
@@ -89,7 +89,7 @@ public class GamePanel extends GUIPanel {
 		
 		labyrinthLabel = new JLabel("");
 		labyrinthLabel.setLocation(0, 0);
-		panelCapas.add(labyrinthLabel, 0);
+		panelCapas.add(labyrinthLabel, new Integer(0), 0);
 	}
 	
 	/**
@@ -222,7 +222,7 @@ public class GamePanel extends GUIPanel {
 	 * @param label
 	 */
 	public void addLabel(JLabel label) {
-		panelCapas.add(label, 100);
+		panelCapas.add(label, new Integer(1), 0);
 		System.out.print("Agregada label"); //TODO sacar
 	}
 	
@@ -300,7 +300,7 @@ public class GamePanel extends GUIPanel {
 	}
 	
 	/**
-	 * Crentra el panelCapas.
+	 * Centra el panelCapas.
 	 */
 	private void centrar() {
 		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7f);
