@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import exceptions.DataLoadException;
 import game.Game;
 import game.labyrinth.Labyrinth;
-import imagefactories.ConcreteImageFactory;
 import imagefactories.ImageFactory;
 
 import javax.swing.AbstractAction;
@@ -265,7 +264,7 @@ public class GamePanel extends GUIPanel {
 	 * Cambia la imagen del laberinto
 	 * @param lab Icon nuevo imagen del laberinto
 	 */
-	public void setLabyrinthImage(Icon lab) {
+	public void setLabyrinthImage(Icon lab, Icon bg) {
 		int width = lab.getIconWidth();
 		int height = lab.getIconHeight();
 		
@@ -274,10 +273,7 @@ public class GamePanel extends GUIPanel {
 		labyrinthLabel.setSize(width, height);
 		labyrinthLabel.setIcon(lab);
 		
-		//TODO sacar las dos siguientes 
-		ImageFactory f = new ConcreteImageFactory(1280, 720);
-		setLabyrinthBgImage(f.getLabyrinth1bgImage());
-		// -------------------------------------------------
+		setLabyrinthBgImage(bg);
 		
 	}
 	

@@ -38,7 +38,6 @@ public class EnemyBrain implements Runnable {
 	
 	public void run() {
 		while (!Thread.currentThread().isInterrupted()) {
-			//System.out.println("running brain");
 			try {
 				Thread.sleep(1000 / Game.CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {

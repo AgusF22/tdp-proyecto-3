@@ -139,24 +139,24 @@ public class Game implements Subscriber, Runnable {
 	
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
-			
-			//System.out.println("running game");
-			
-			Player.getInstance().move();
-			
-			if(labyrinth == null || !labyrinth.dotsRemain()) {
-				try {
-					winLevel();
-				} catch (DataLoadException e) {
-					e.printStackTrace();
+			synchronized (this) {
+
+				Player.getInstance().move();
+
+				if(labyrinth == null || !labyrinth.dotsRemain()) {
+					try {
+						winLevel();
+					} catch (DataLoadException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			
-			try {
-				Thread.sleep(1000 / CYCLES_PER_SECOND);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				return;
+
+				try {
+					Thread.sleep(1000 / CYCLES_PER_SECOND);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					return;
+				}
 			}
 		}
 	}

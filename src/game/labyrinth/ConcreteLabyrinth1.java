@@ -25,7 +25,8 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	public ConcreteLabyrinth1(Game game) throws DataLoadException {
 		super(game);
 		
-		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image());
+		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image(),
+								game.getImageFactory().getLabyrinth1bgImage());
 		
 		LabyrinthLoader labLoader = new LabyrinthLoader("src/res/xml/labyrinth1.xml");
 		

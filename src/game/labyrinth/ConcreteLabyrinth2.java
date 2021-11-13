@@ -25,7 +25,8 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 	public ConcreteLabyrinth2(Game game) throws DataLoadException {
 		super(game);
 		
-		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth2Image());
+		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth2Image(),
+								game.getImageFactory().getLabyrinth2bgImage());
 		
 		LabyrinthLoader labLoader = new LabyrinthLoader("src/res/xml/labyrinth2.xml");
 		
@@ -94,10 +95,12 @@ public class ConcreteLabyrinth2  extends Labyrinth {
         Entity potion2 = new ConcretePotion2(zones[22][14]);
         potion2.getGraphic().addToGUI(game.getGUI());
 
+        Entity dot;
 		for (int x = 0; x < zones.length; x++) {					//	  Set dots
 			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
 				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
-					new Dot(zones[x][y]);
+					dot = new Dot(zones[x][y]);
+					dot.getGraphic().addToGUI(game.getGUI());
 					doCount++;
 				}
 			}

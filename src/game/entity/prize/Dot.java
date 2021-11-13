@@ -12,7 +12,13 @@ public class Dot extends Prize {
 	
 	public void triggerEffect() {
 		zone.getLabyrinth().addPoints(10);
+		zone.getLabyrinth().removeDot();
 		beConsumed();
+	}
+	
+	protected void beConsumed() {
+		super.beConsumed();
+		zone.getLabyrinth().removeDot();
 	}
 	
 }
