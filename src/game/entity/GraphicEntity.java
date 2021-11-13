@@ -2,6 +2,7 @@ package game.entity;
 
 import javax.swing.JLabel;
 
+import game.entity.player.Player;
 import gui.GamePanel;
 
 public abstract class GraphicEntity extends JLabel{
@@ -24,6 +25,7 @@ public abstract class GraphicEntity extends JLabel{
 	
 	public void delete() {
 		System.out.println("Panel es nulo = " + (panel == null));
+		System.out.println("entity = player: " + (entity == Player.getInstance()));
 		panel.removeLabel(this);
 	}
 	

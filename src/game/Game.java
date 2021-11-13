@@ -30,7 +30,11 @@ public class Game implements Subscriber, Runnable {
 		this.gui = gui;
 		points = 0;
 		imageFactory = gui.getImageFactory();
+		
 		labyrinth = new ConcreteLabyrinth1(this);
+		labyrinth.addPlayer();
+		labyrinth.fillWithDots();
+		
 		enemyBrain = new EnemyBrain();
 		EndGamePublisher.getInstance().subscribe(this);
 	}
@@ -97,6 +101,14 @@ public class Game implements Subscriber, Runnable {
 	 */
 	public void winLevel() throws DataLoadException {
 		labyrinth = labyrinth.nextLabyrinth();
+		if (labyrinth != null) {
+			System.out.println("add player");
+			labyrinth.addPlayer();
+			System.out.println("fill with dots");
+			labyrinth.fillWithDots();
+		} else {
+			endGame();
+		}
 	}
 	
 	/**
