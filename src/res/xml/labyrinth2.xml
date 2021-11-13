@@ -3,7 +3,7 @@
 
 <labyrinth>
 	<spawn>
-		<coords x="14" y="16"></coords>
+		<coords x="14" y="15"></coords>
 	</spawn>
 	
 	<dungeon>

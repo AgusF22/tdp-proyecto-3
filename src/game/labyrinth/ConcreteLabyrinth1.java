@@ -34,7 +34,11 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		for (int x = 0; x < matrix.length; x++) {
 			for (int y = 0; y < matrix[0].length; y++) {
-				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
+				zones[x][y] = new Zone(this, x, y, matrix[x][y]);		//seteo atributo spawn
+				
+				if(matrix[x][y] == ZoneType.SPAWN) {
+					spawn = zones[x][y];
+				}
 			}
 		}
 		
@@ -60,19 +64,21 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		Player.getInstance().setZone(zones[14][23]);
 		Player.getInstance().getGraphic().addToGUI(game.getGUI());
 		
-																	
+									
 		//TODO descomentar para setear enemigos
-//		Entity red = new RedEnemy(zones[14][16]);					// ***Set Enemy***
-//		red.getGraphic().addToGUI(game.getGUI());
-//
-//		Entity blue = new BlueEnemy(zones[14][16], (RedEnemy) red);
-//		blue.getGraphic().addToGUI(game.getGUI());
-//		
-//		Entity orange = new OrangeEnemy(zones[14][16]);
-//		orange.getGraphic().addToGUI(game.getGUI());
-//		
-//		Entity pink = new PinkEnemy(zones[14][16]);
-//		pink.getGraphic().addToGUI(game.getGUI());
+		Zone posSpawn = this.getSpawn();							// ***Set Enemy***
+		
+		Entity red = new RedEnemy(posSpawn);
+		red.getGraphic().addToGUI(game.getGUI());
+
+		Entity blue = new BlueEnemy(posSpawn, (RedEnemy) red);
+		blue.getGraphic().addToGUI(game.getGUI());
+		
+		Entity orange = new OrangeEnemy(posSpawn);
+		orange.getGraphic().addToGUI(game.getGUI());
+		
+		Entity pink = new PinkEnemy(posSpawn);
+		pink.getGraphic().addToGUI(game.getGUI());
 		
 																	// ***Set Prize***
         Entity fruit = new ConcreteFruit1(zones[14][17]);
@@ -110,8 +116,9 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	
 	/**
 	 * @return el siguiente laberinto concreto, si no existe retorna null.
+	 * @throws DataLoadException 
 	 */
-	public Labyrinth nextLabyrinth() {
+	public Labyrinth nextLabyrinth() throws DataLoadException {
 		return new ConcreteLabyrinth2(game);
 	}
 }
