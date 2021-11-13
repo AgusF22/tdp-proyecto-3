@@ -12,6 +12,7 @@ public class ConcretePotion1 extends Potion {
 	
 	public void triggerEffect() {
 		//TODO imp
+		beConsumed();
 	}
 	
 }
