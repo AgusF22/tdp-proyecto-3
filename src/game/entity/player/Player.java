@@ -2,6 +2,7 @@ package game.entity.player;
 
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
+import exceptions.NullZoneException;
 import game.Direction;
 import game.entity.Entity;
 import game.entity.Character;
@@ -11,7 +12,7 @@ import game.entity.visitor.Visitor;
 
 public final class Player extends Character{
 	
-	protected Direction attemptingMovement;
+	protected Direction attemptingMovement;					
 	protected static Player instance;
 	protected boolean hasShield;
 	
@@ -25,21 +26,23 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Retorna la intancia de player.
-	 * @return La intancia de player.
+	 * Retorna la instancia de player.
+	 * @return La instancia de player.
 	 */
 	public static Player getInstance() {
-		if(instance == null) 
+		if(instance == null) 			//Si no se creo una instancia , la crea
 			instance = new Player();
 		return instance;
 	}
 	
 	/**
 	 * Setea la zona donde se encuentra el jugador
-	 * @param zone Zone
+	 * @param zone Nueva zona a setear
 	 */
-	public void setZone(Zone zone) {
-		//TODO if (zone == null) excepcion 
+	public void setZone(Zone zone) throws NullZoneException{
+		if (zone == null) {
+			throw new NullZoneException("Intenta setear una zona nula en player");
+		}
 		this.zone = zone;
 		zone.addEntity(this);
 		zone.update();
@@ -59,17 +62,17 @@ public final class Player extends Character{
 	 * Intena mover al personaje por cada invocacion
 	 */
 	public void move() {
-		if (attemptingMovement == movementDirection.getOpposite()) {
+		if (attemptingMovement == movementDirection.getOpposite()) {		//Siempre puede cambiar a su direccino opuesta
 			movementDirection = attemptingMovement;
 			graphic.updateImage();	
 		}
-		move(speedMultiplier * movementSpeed);
+		move(speedMultiplier * movementSpeed);				
 		collide();
 	}
 	
 	/**
 	 * Mueve al jugador las unidades pasadas por parametro en una direccion
-	 * @param n Flaot unidades a mover
+	 * @param n Float unidades a mover
 	 */
 	private void move(float n) {
 		
@@ -78,19 +81,15 @@ public final class Player extends Character{
 		if (n < 0) {
 			n = 0;
 		}
-		if (d == 1) {
+		if (d == 1) {				//Si se encuentra a distancia 1 entonces esta en un centro, puede intentar cambiar de direccion
 			updateDir();
 			canMove = canMove();
 		}
-		if (canMove) {
-			if (d >= n) {
-				//mover
+		if (canMove) {				
+			if (d >= n) {			//Si esta a una distancia menor al centro se mueve a esa distancia
 				updateLocation(n);
-				//return
 			} else {
-				//mover distancia d
-				updateLocation(d);
-				//move (n - distancia)
+				updateLocation(d);	//Si se quiere mover a una distancia mayor al proximo centro , se mueve al proximo centro
 				move(n - d);
 			}
 		}
@@ -101,7 +100,7 @@ public final class Player extends Character{
 	 * @param float Unidades a moverse en la direccion actual
 	 */
 	private void updateLocation(float n) {
-		switch (movementDirection){
+		switch (movementDirection){			//Actualizamos coordenadas dependiendo de la direccion
 			case UP:
 				y -= n;
 				break;
@@ -115,18 +114,18 @@ public final class Player extends Character{
 				x -= n;
 				break;
 		}
-		x = Math.round(x * 10f) / 10f;
+		x = Math.round(x * 10f) / 10f;		//Solo necesitamos precision de dos decimales	
 		y = Math.round(y * 10f) / 10f;
 		
-		this.setCoordinates(x, y);
+		this.setCoordinates(x, y);			
 		graphic.updatePosition();			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion
 	}
 	
 	/**
-	 * Actualiza de ser necesario la direccion del personaje
+	 * Evalua y actualiza la direccion del personaje
 	 */
 	private void updateDir() {
-		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {
+		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {	//Evaluamos si tiene sentido un cambio de direccion
 			movementDirection = attemptingMovement;
 			graphic.updateImage();	
 		}
@@ -146,7 +145,7 @@ public final class Player extends Character{
 	 */
 	private float nextCenterDistance() {
 		float toReturn;
-		switch(movementDirection){
+		switch(movementDirection){			//Evaluamos el centro en la direccion a moverse
 		case RIGHT:
 			toReturn = (float) Math.abs(x - Math.ceil(x));
 			break;
@@ -162,27 +161,27 @@ public final class Player extends Character{
 		default:
 			toReturn = 0f;
 		}
-		if(toReturn == 0f)
+		if(toReturn == 0f)					//Si la distancia un centro es 0, es que esta en un centro, entonces tiene otro centro a distancia 1
 			toReturn = 1f;
 		return toReturn;
 	}
 
 	/**
-	 * Asigna una nueva direccion a la que intentar mover al jguador
+	 * Asigna una nueva direccion a la que intentar moverse
 	 * 
-	 * @param dir Direction 
+	 * @param dir Direccion a intentar moverse
 	 */
 	public void attemptMovement(Direction dir) {
 		attemptingMovement = dir;
 	}
 	
 	/**
-	 * Colisiona al jugador con todas las entidades que se encuantran en su zona.
+	 * Colisiona al jugador con todas las entidades que se encuentran en su zona.
 	 */
 	public void collide() {
 		Visitor v = new PlayerVisitor();
 		for (Entity e : zone.zoneEntities()) {
-			e.accept(v);								// TODO cambiar condicion de colision a distancia (y actualizar javadoc posteriormente) -AF
+			e.accept(v);						
 		}
 		zone.update();
 	}
