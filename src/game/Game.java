@@ -154,13 +154,10 @@ public class Game implements Subscriber, Runnable {
 			synchronized (this) {
 
 				Player.getInstance().move();
-
-				if(labyrinth == null || !labyrinth.dotsRemain()) {
-					try {
-						winLevel();
-					} catch (DataLoadException e) {
-						e.printStackTrace();
-					}
+				
+				if(labyrinth == null) {
+					stop();
+					break;
 				}
 
 				try {
