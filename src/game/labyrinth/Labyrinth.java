@@ -19,7 +19,7 @@ public abstract class Labyrinth {
 	public final static int HEIGHT = 31;
 	
 	protected Zone spawn;
-	protected int doCount;
+	protected int dotCount;
 	protected Game game;
 	protected Zone[][] zones;
 	protected List<TimedEntity> timedEntity;
@@ -38,14 +38,7 @@ public abstract class Labyrinth {
 	 * @return true si quedan dots en el laberinto, false en caso contrario.
 	 */
 	public boolean dotsRemain() {
-		return doCount != 0;
-	}
-	
-	/**
-	 * Finaliza el juego.
-	 */
-	public void endGame() {
-		game.endGame();
+		return dotCount != 0;
 	}
 	
 	/**
@@ -97,7 +90,7 @@ public abstract class Labyrinth {
 	 * Decrementa en uno los dots actuales del laberinto. 
 	 */
 	public void removeDot() {
-		doCount--;
+		dotCount--;
 	}
 	
 	/**
@@ -133,7 +126,7 @@ public abstract class Labyrinth {
 				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
 					dot = new Dot(zones[x][y]);
 					dot.getGraphic().addToGUI(game.getGUI());
-					doCount++;
+					dotCount++;
 				}
 			}
 		}
