@@ -52,7 +52,7 @@ public enum Direction {
 	 * @return La direccion que se encuantra 90 grados en sentido antihorario de esta direccion.
 	 */
 	public Direction getCCWDirection() {
-		return map.get((this.id - 1) % 4);
+		return map.get((this.id + 3) % 4);
 	}
 	
 }
