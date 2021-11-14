@@ -14,8 +14,6 @@ public class Zone {
 	protected ZoneType type;
 	
 	protected List<Entity> entities;
-	protected List<Entity> toRemove;
-	protected List<Entity> toAdd;
 	
 	protected int x;
 	protected int y;
@@ -33,8 +31,6 @@ public class Zone {
 		this.y = y;
 		this.type = type;
 		entities = new LinkedList<>();
-		toRemove = new ArrayList<>();
-		toAdd = new ArrayList<>();
 	}
 	
 	/**
@@ -62,7 +58,7 @@ public class Zone {
 	 * @return coleccion iterable de las entidades de la zona.
 	 */
 	public Iterable<Entity> zoneEntities() {
-		return entities;
+		return new ArrayList<>(entities);
 	}
 	
 	/**
@@ -70,7 +66,7 @@ public class Zone {
 	 * @param entity la entidad que se quiere remover.
 	 */
 	public void removeEntity(Entity entity) {
-		toRemove.add(entity);
+		entities.remove(entity);
 	}
 	
 	/**
@@ -78,16 +74,7 @@ public class Zone {
 	 * @param entity la entidad que se quiere agregar.
 	 */
 	public void addEntity(Entity entity) {	 //TODO Excepcion? 
-		toAdd.add(entity);
-	}
-	
-	public void update() {
-		if (!toRemove.isEmpty() || !toAdd.isEmpty()) {
-			entities.removeAll(toRemove);
-			entities.addAll(toAdd);
-			toRemove.clear();
-			toAdd.clear();
-		}
+		entities.add(entity);
 	}
 	
 	/**
