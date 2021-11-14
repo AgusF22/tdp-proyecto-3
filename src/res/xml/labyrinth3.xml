@@ -20,15 +20,11 @@
 	</dungeon>
 	<dungeon>
 		<start x="11" y="15"></start>
+		<end x="13" y="15"></end>
+	</dungeon>
+	<dungeon>
+		<start x="15" y="15"></start>
 		<end x="17" y="15"></end>
-	</dungeon>
-	<dungeon>
-		<start x="11" y="16"></start>
-		<end x="13" y="16"></end>
-	</dungeon>
-	<dungeon>
-		<start x="15" y="16"></start>
-		<end x="17" y="16"></end>
 	</dungeon>
 	
 	<path>
