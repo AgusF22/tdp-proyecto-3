@@ -18,7 +18,6 @@ public abstract class Entity {
 		this.zone = zone;
 		if (zone != null) {		
 			zone.addEntity(this);
-			zone.update();
 			x = zone.getX();
 			y = zone.getY();
 		}

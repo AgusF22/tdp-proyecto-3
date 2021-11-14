@@ -4,9 +4,10 @@ import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 import exceptions.NullZoneException;
 import game.Direction;
+import game.Game;
 import game.entity.Entity;
 import game.entity.Character;
-import game.entity.GraphicCharacter;
+import game.entity.GraphicPlayer;
 import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
@@ -14,7 +15,12 @@ public final class Player extends Character{
 	
 	protected Direction attemptingMovement;					
 	protected static Player instance;
+	
 	protected boolean hasShield;
+	protected int shieldEffectTimer;
+
+	protected float speedMultiplier;
+	protected int speedEffectTimer;
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -23,6 +29,9 @@ public final class Player extends Character{
 		super(null, 0.1f);
 		attemptingMovement = null;
 		hasShield = false;
+		shieldEffectTimer = 0;
+		speedMultiplier = 1;
+		speedEffectTimer = 0;
 	}
 	
 	/**
@@ -45,7 +54,6 @@ public final class Player extends Character{
 		}
 		this.zone = zone;
 		zone.addEntity(this);
-		zone.update();
 		x = zone.getX();
 		y = zone.getY();
 		setGraphic();
@@ -55,13 +63,14 @@ public final class Player extends Character{
 	 * Crea y asigna la entidad grafica del personaje
 	 */
 	private void setGraphic() {
-		graphic = new GraphicCharacter(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
+		graphic = new GraphicPlayer(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
 	}
 	
 	/**
 	 * Intena mover al personaje por cada invocacion
 	 */
 	public void move() {
+		updateEffects();
 		if (attemptingMovement == movementDirection.getOpposite()) {		//Siempre puede cambiar a su direccino opuesta
 			movementDirection = attemptingMovement;
 			graphic.updateImage();	
@@ -75,7 +84,6 @@ public final class Player extends Character{
 	 * @param n Float unidades a mover
 	 */
 	protected void move(float n) {
-		
 		float d = nextCenterDistance();
 		boolean canMove = true;
 		if (n < 0) {
@@ -130,7 +138,6 @@ public final class Player extends Character{
 		for (Entity e : zone.zoneEntities()) {
 			e.accept(v);						
 		}
-		zone.update();
 	}
 	
 	/**
@@ -141,11 +148,17 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Setea el estado de escudo segundo lo pasado por parametro
-	 * @param shield Boolean , true si tiene escudo, false sino
+	 * Añade un efecto de escudo al jugador.
 	 */
-	public void setShield(boolean shield) {
-		hasShield = shield;
+	public void addShield() {
+		hasShield = true;
+		shieldEffectTimer = 5 * Game.CYCLES_PER_SECOND;
+		((GraphicPlayer) graphic).setShieldEffect(true);
+	}
+	
+	protected void removeShield() {
+		hasShield = false;
+		((GraphicPlayer) graphic).setShieldEffect(false);
 	}
 	
 	/**
@@ -155,4 +168,31 @@ public final class Player extends Character{
 	public boolean hasShield() {
 		return hasShield;
 	} 
+	
+	public void addSpeedMultiplier(float multiplier) {
+		speedMultiplier = multiplier;
+		speedEffectTimer = 10 * Game.CYCLES_PER_SECOND;
+		((GraphicPlayer) graphic).setSpeedEffect(true);
+	}
+	
+	protected void removeSpeedMultiplier() {
+		speedMultiplier = 1;
+		((GraphicPlayer) graphic).setSpeedEffect(false);
+	}
+	
+	protected void updateEffects() {
+		if (speedEffectTimer != 0) {
+			--speedEffectTimer;
+			if (speedEffectTimer == 0) {
+				removeSpeedMultiplier();
+			}
+		}
+		if (shieldEffectTimer != 0) {
+			--shieldEffectTimer;
+			if (shieldEffectTimer == 0) {
+				removeShield();
+			}
+		}
+	}
+	
 }

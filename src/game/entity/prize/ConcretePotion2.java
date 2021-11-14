@@ -13,7 +13,7 @@ public class ConcretePotion2 extends Potion {
 	
 	public void triggerEffect() {
 		//TODO imp
-		Player.getInstance().setSpeed(2);
+		Player.getInstance().addSpeedMultiplier(2);
 		beConsumed();
 	}
 	
