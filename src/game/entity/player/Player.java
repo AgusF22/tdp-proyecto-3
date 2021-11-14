@@ -20,7 +20,7 @@ public final class Player extends Character{
 	 * Crea una nueva instancia de Player.
 	 */
 	private Player() {
-		super(null, 0.2f);
+		super(null, 0.1f);
 		attemptingMovement = null;
 		hasShield = false;
 	}
@@ -74,7 +74,7 @@ public final class Player extends Character{
 	 * Mueve al jugador las unidades pasadas por parametro en una direccion
 	 * @param n Float unidades a mover
 	 */
-	private void move(float n) {
+	protected void move(float n) {
 		
 		float d = nextCenterDistance();
 		boolean canMove = true;
@@ -82,7 +82,7 @@ public final class Player extends Character{
 			n = 0;
 		}
 		if (d == 1) {				//Si se encuentra a distancia 1 entonces esta en un centro, puede intentar cambiar de direccion
-			updateDir();
+			updateMovementDirection();
 			canMove = canMove();
 		}
 		if (canMove) {				
@@ -96,38 +96,12 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Actualiza las coordenadas y la zona con respecto a la direccion y parametro
-	 * @param float Unidades a moverse en la direccion actual
-	 */
-	private void updateLocation(float n) {
-		switch (movementDirection){			//Actualizamos coordenadas dependiendo de la direccion
-			case UP:
-				y -= n;
-				break;
-			case RIGHT:
-				x += n;
-				break;
-			case DOWN:
-				y += n;
-				break;
-			case LEFT:
-				x -= n;
-				break;
-		}
-		x = Math.round(x * 10f) / 10f;		//Solo necesitamos precision de dos decimales	
-		y = Math.round(y * 10f) / 10f;
-		
-		this.setCoordinates(x, y);			
-		graphic.updatePosition();			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion
-	}
-	
-	/**
 	 * Evalua y actualiza la direccion del personaje
 	 */
-	private void updateDir() {
+	protected void updateMovementDirection() {
 		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {	//Evaluamos si tiene sentido un cambio de direccion
 			movementDirection = attemptingMovement;
-			graphic.updateImage();	
+			graphic.updateImage();
 		}
 	}
 	
@@ -135,35 +109,8 @@ public final class Player extends Character{
 	 * Consulta cuando esta en el centro de una zona si puede moverse
 	 * @return True si puede, false sino
 	 */
-	private boolean canMove() {
+	protected boolean canMove() {
 		return zone.getAdjacent(movementDirection).getType() == ZoneType.PATH;
-	}
-	
-	/**
-	 * Calcula la distancia entre el proximo centro desde la posicion actual
-	 * @return float distancia entre posicion y centro proximo en direccion actual
-	 */
-	private float nextCenterDistance() {
-		float toReturn;
-		switch(movementDirection){			//Evaluamos el centro en la direccion a moverse
-		case RIGHT:
-			toReturn = (float) Math.abs(x - Math.ceil(x));
-			break;
-		case LEFT:
-			toReturn = (float) Math.abs(x - Math.floor(x));
-			break;
-		case DOWN:
-			toReturn = (float) Math.abs(y - Math.ceil(y));
-			break;
-		case UP:
-			toReturn = (float) Math.abs(y - Math.floor(y));
-			break;
-		default:
-			toReturn = 0f;
-		}
-		if(toReturn == 0f)					//Si la distancia un centro es 0, es que esta en un centro, entonces tiene otro centro a distancia 1
-			toReturn = 1f;
-		return toReturn;
 	}
 
 	/**

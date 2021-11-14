@@ -1,5 +1,6 @@
 package game.entity.enemy;
 
+import game.Direction;
 import game.entity.GraphicEnemy;
 import game.labyrinth.Zone;
 
@@ -16,7 +17,8 @@ public class PinkEnemy extends Enemy {
 	}
 
 	@Override
-	public void calculateChasePath() {
+	public Direction calculateChasePath() {
+		return null;
 		// TODO imp
 	}
 

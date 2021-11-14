@@ -9,7 +9,7 @@ import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 
-public abstract class Enemy extends Character{
+public abstract class Enemy extends Character {
 	
 	protected EnemyState state;
 	
@@ -65,10 +65,40 @@ public abstract class Enemy extends Character{
 		state.move();
 	}
 	
+	@Override
+	protected void updateMovementDirection() {
+		if (isIntersection(zone)) {
+			movementDirection = calculateChasePath();
+			graphic.updateImage();
+		} else {
+			if (!canMove()) {
+				turnAtPathEnd();
+				graphic.updateImage();
+			}
+		}
+	}
+	
+	private void turnAtPathEnd() {
+		Direction cwDir = movementDirection.getCWDirection();
+		Direction ccwDir = movementDirection.getCCWDirection();
+		if (zone.getAdjacent(cwDir).getType() != ZoneType.WALL) {
+			movementDirection = cwDir;
+		} else if (zone.getAdjacent(cwDir).getType() != ZoneType.WALL) {
+			movementDirection = ccwDir;
+		} else {
+			movementDirection = movementDirection.getOpposite();
+		}
+	}
+
+	@Override
+	protected boolean canMove() {
+		return zone.getAdjacent(movementDirection).getType() != ZoneType.WALL;
+	}
+	
 	/**
 	 * Ordena a este enemigo calcular el camino hacia su objetivo.
 	 */
-	public abstract void calculateChasePath();
+	public abstract Direction calculateChasePath();
 	
 	/**
 	 * Calcula el mejor camino para acercarse a una zona destino.
@@ -159,6 +189,21 @@ public abstract class Enemy extends Character{
 								Math.pow((double) zone1.getY() - zone2.getY(), 2));
 		
 		return distance == 0 ? Double.MAX_VALUE : 1 / distance;
+	}
+	
+	/**
+	 * Chequea si la zona dada es una interseccion para el enemigo.
+	 * @param zone Una zona.
+	 * @return True si la zona es interseccion para el enemigo, false en caso contrario.
+	 */
+	private boolean isIntersection(Zone zone) {
+		int connections = 0;
+		for(Direction d : Direction.values()) {
+			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
+				connections++;
+			}
+		}
+		return connections > 2;
 	}
 	
 	/**
