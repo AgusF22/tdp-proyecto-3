@@ -48,7 +48,7 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 				// TODO ¡¡¡¡BORRAR!!!!
 				for (int y = 0; y < matrix[0].length; y++) {
 					for (int x = 0; x < matrix.length; x++) {
-						System.out.print("[ "+zones[x][y].getType().toString().charAt(0)+" ] ");
+						System.out.format("[%2d,%2d " + zones[x][y].getType().toString().charAt(0) + "]", x, y);
 					}
 					System.out.println();
 				}
