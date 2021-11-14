@@ -8,7 +8,6 @@ public class ChasingState extends EnemyState {
 	}
 	
 	public void move() {
-		System.out.println("ChasingState.move()");
 		context.move(context.getSpeedMultiplier() * context.getMovementSpeed());
 	}
 	

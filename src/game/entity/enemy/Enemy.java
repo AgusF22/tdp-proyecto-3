@@ -91,7 +91,7 @@ public abstract class Enemy extends Character {
 		Direction ccwDir = movementDirection.getCCWDirection();
 		if (zone.getAdjacent(cwDir).getType() != ZoneType.WALL) {
 			movementDirection = cwDir;
-		} else if (zone.getAdjacent(cwDir).getType() != ZoneType.WALL) {
+		} else if (zone.getAdjacent(ccwDir).getType() != ZoneType.WALL) {
 			movementDirection = ccwDir;
 		} else {
 			movementDirection = movementDirection.getOpposite();
@@ -114,6 +114,7 @@ public abstract class Enemy extends Character {
 	 * @return La mejor direccion para acercarse a una zona destino.
 	 */
 	protected Direction bestAproachPath(Zone destZone) {
+		System.out.println("bestAproachPath"); // TODO remove
 		Direction bestDirection = movementDirection;
 		double bestValue = Double.MIN_VALUE;
 		double value;
@@ -123,8 +124,11 @@ public abstract class Enemy extends Character {
 
 		for (Direction d : directions) {
 			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
+				System.out.println("Start " + d.toString() + " value calculation");
 				value = pathValue(cursor.sendCloneTo(d), destZone, 10);
+				System.out.println("direction " + d + " value is " + value);
 				if (value > bestValue) {
+					System.out.println("best value is " + (1d / value));
 					bestValue = value;
 					bestDirection = d;
 				}
@@ -195,6 +199,8 @@ public abstract class Enemy extends Character {
 		double distance = Math.sqrt(
 								Math.pow((double) zone1.getX() - zone2.getX(), 2) +
 								Math.pow((double) zone1.getY() - zone2.getY(), 2));
+		
+		System.out.println("distance from zone to target is " + distance);
 		
 		return distance == 0 ? Double.MAX_VALUE : 1 / distance;
 	}
