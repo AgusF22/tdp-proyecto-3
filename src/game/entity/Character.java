@@ -9,16 +9,26 @@ public abstract class Character extends Entity {
 	protected Direction movementDirection;
 	protected final float movementSpeed;
 	
+	protected float speedMultiplier;
+	protected int speedEffectTimer;
+	
 	protected Character(Zone zone, float movementSpeed) {
 		super(zone);
 		this.movementSpeed = movementSpeed;
 		movementDirection = Direction.LEFT;
+		speedMultiplier = 1;
+		speedEffectTimer = 0;
 	}
 	
+	/**
+	 * Mueve a este personaje. El resultado de este metodo depende del tipo y estado del personaje.
+	 */
 	public abstract void move();
 	
-	
-	
+	/**
+	 * Retorna la direccion de movimiento actual del personaje.
+	 * @return La direccion de movimiento actual del personaje.
+	 */
 	public Direction getMovementDirection() {
 		return movementDirection;
 	}
@@ -27,7 +37,7 @@ public abstract class Character extends Entity {
 	 * Mueve al jugador las unidades pasadas por parametro en una direccion
 	 * @param n Float unidades a mover
 	 */
-	protected void move(float n) {
+	public void move(float n) {
 		
 		float d = nextCenterDistance();
 		boolean canMove = true;
@@ -110,6 +120,26 @@ public abstract class Character extends Entity {
 		if(toReturn == 0f)					//Si la distancia un centro es 0, es que esta en un centro, entonces tiene otro centro a distancia 1
 			toReturn = 1f;
 		return toReturn;
+	}
+	
+	public void addSpeedMultiplier(float multiplier) {
+		speedMultiplier = multiplier;
+		speedEffectTimer = 10 * Game.CYCLES_PER_SECOND;
+		((GraphicCharacter) graphic).setSpeedEffect(true);
+	}
+	
+	protected void removeSpeedMultiplier() {
+		speedMultiplier = 1;
+		((GraphicCharacter) graphic).setSpeedEffect(false);
+	}
+
+	protected void updateEffects() {
+		if (speedEffectTimer != 0) {
+			--speedEffectTimer;
+			if (speedEffectTimer == 0) {
+				removeSpeedMultiplier();
+			}
+		}
 	}
 	
 }

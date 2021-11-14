@@ -8,7 +8,8 @@ public class ChasingState extends EnemyState {
 	}
 	
 	public void move() {
-		//TODO imp
+		System.out.println("ChasingState.move()");
+		context.move(context.getSpeedMultiplier() * context.getMovementSpeed());
 	}
 	
 	public void collideWithPlayer() {

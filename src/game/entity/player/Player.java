@@ -12,15 +12,14 @@ import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
 public final class Player extends Character{
-	
-	protected Direction attemptingMovement;					
+				
 	protected static Player instance;
+	
+	protected Direction attemptingMovement;
+	protected int attemptedMoveTimer;
 	
 	protected boolean hasShield;
 	protected int shieldEffectTimer;
-
-	protected float speedMultiplier;
-	protected int speedEffectTimer;
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -30,8 +29,6 @@ public final class Player extends Character{
 		attemptingMovement = null;
 		hasShield = false;
 		shieldEffectTimer = 0;
-		speedMultiplier = 1;
-		speedEffectTimer = 0;
 	}
 	
 	/**
@@ -66,10 +63,9 @@ public final class Player extends Character{
 		graphic = new GraphicPlayer(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
 	}
 	
-	/**
-	 * Intena mover al personaje por cada invocacion
-	 */
+	@Override
 	public void move() {
+		updateAttemptedMovement();
 		updateEffects();
 		if (attemptingMovement == movementDirection.getOpposite()) {		//Siempre puede cambiar a su direccino opuesta
 			movementDirection = attemptingMovement;
@@ -83,7 +79,7 @@ public final class Player extends Character{
 	 * Mueve al jugador las unidades pasadas por parametro en una direccion
 	 * @param n Float unidades a mover
 	 */
-	protected void move(float n) {
+	public void move(float n) {
 		float d = nextCenterDistance();
 		boolean canMove = true;
 		if (n < 0) {
@@ -128,6 +124,16 @@ public final class Player extends Character{
 	 */
 	public void attemptMovement(Direction dir) {
 		attemptingMovement = dir;
+		attemptedMoveTimer = Game.CYCLES_PER_SECOND;
+	}
+	
+	protected void updateAttemptedMovement() {
+		if (attemptingMovement != null) {
+			--attemptedMoveTimer;
+			if (attemptedMoveTimer == 0) {
+				attemptingMovement = null;
+			}
+		}
 	}
 	
 	/**
@@ -169,24 +175,9 @@ public final class Player extends Character{
 		return hasShield;
 	} 
 	
-	public void addSpeedMultiplier(float multiplier) {
-		speedMultiplier = multiplier;
-		speedEffectTimer = 10 * Game.CYCLES_PER_SECOND;
-		((GraphicPlayer) graphic).setSpeedEffect(true);
-	}
-	
-	protected void removeSpeedMultiplier() {
-		speedMultiplier = 1;
-		((GraphicPlayer) graphic).setSpeedEffect(false);
-	}
-	
+	@Override
 	protected void updateEffects() {
-		if (speedEffectTimer != 0) {
-			--speedEffectTimer;
-			if (speedEffectTimer == 0) {
-				removeSpeedMultiplier();
-			}
-		}
+		super.updateEffects();
 		if (shieldEffectTimer != 0) {
 			--shieldEffectTimer;
 			if (shieldEffectTimer == 0) {

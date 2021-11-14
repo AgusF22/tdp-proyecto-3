@@ -6,6 +6,7 @@ import exceptions.NullZoneException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
+import game.entity.enemy.Enemy;
 import game.entity.enemy.OrangeEnemy;
 import game.entity.enemy.PinkEnemy;
 import game.entity.enemy.RedEnemy;
@@ -44,14 +45,14 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		}
 		
 		//************************************
-		// TODO 　　BORRAR!!!!
-//		for (int y = 0; y < matrix[0].length; y++) {
-//			for (int x = 0; x < matrix.length; x++) {
-//				System.out.print("[ "+zones[x][y].getType().toString().charAt(0)+" ] ");
-//			}
-//			System.out.println();
-//		}
-		//************************************
+				// TODO 　　BORRAR!!!!
+				for (int y = 0; y < matrix[0].length; y++) {
+					for (int x = 0; x < matrix.length; x++) {
+						System.out.print("[ "+zones[x][y].getType().toString().charAt(0)+" ] ");
+					}
+					System.out.println();
+				}
+				//************************************
 		
 		this.setEntity();
 	}
@@ -64,16 +65,18 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		//TODO descomentar para setear enemigos
 		Zone posSpawn = this.getSpawn();							// ***Set Enemy***
 		
-		Entity red = new RedEnemy(posSpawn);
+		Enemy red = new RedEnemy(posSpawn);
 		red.getGraphic().addToGUI(game.getGUI());
+		
+		game.getEnemyBrain().addEnemy(red);
 
-		Entity blue = new BlueEnemy(posSpawn, (RedEnemy) red);
+		Enemy blue = new BlueEnemy(posSpawn, (RedEnemy) red);
 		blue.getGraphic().addToGUI(game.getGUI());
 		
-		Entity orange = new OrangeEnemy(posSpawn);
+		Enemy orange = new OrangeEnemy(posSpawn);
 		orange.getGraphic().addToGUI(game.getGUI());
 		
-		Entity pink = new PinkEnemy(posSpawn);
+		Enemy pink = new PinkEnemy(posSpawn);
 		pink.getGraphic().addToGUI(game.getGUI());
 		
 																	// ***Set Prize***

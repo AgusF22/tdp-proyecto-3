@@ -1,6 +1,6 @@
 package game.entity.enemy;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import game.Game;
@@ -15,14 +15,14 @@ public class EnemyBrain implements Runnable {
 	
 	public EnemyBrain() {
 		//TODO imp
-		enemies = new LinkedList<>();
+		enemies = new ArrayList<>(4);
 	}
 	
 	/**
 	 * Avisa a todos los enemigos en su control que se muevan
 	 */
 	public void moveEnemies() {
-		//TODO imp
+		enemies.forEach(Enemy::move);
 	}
 	
 	/**
@@ -30,7 +30,6 @@ public class EnemyBrain implements Runnable {
 	 * @param enemy Enemy
 	 */
 	public void addEnemy(Enemy enemy) {
-		//TODO imp
 		if (enemy != null) {
 			enemies.add(enemy);
 		}
@@ -38,6 +37,7 @@ public class EnemyBrain implements Runnable {
 	
 	public void run() {
 		while (!Thread.currentThread().isInterrupted()) {
+			moveEnemies();
 			try {
 				Thread.sleep(1000 / Game.CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {

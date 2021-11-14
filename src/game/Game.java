@@ -31,11 +31,12 @@ public class Game implements Subscriber, Runnable {
 		points = 0;
 		imageFactory = gui.getImageFactory();
 		
+		enemyBrain = new EnemyBrain();
+		
 		labyrinth = new ConcreteLabyrinth1(this);
 		labyrinth.addPlayer();
 		labyrinth.fillWithDots();
 		
-		enemyBrain = new EnemyBrain();
 		EndGamePublisher.getInstance().subscribe(this);
 	}
 	

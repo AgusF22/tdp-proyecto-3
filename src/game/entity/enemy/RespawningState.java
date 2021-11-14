@@ -8,6 +8,7 @@ public class RespawningState extends EnemyState {
 	}
 	
 	public void move() {
+		System.out.println("RespawningState.move()");
 		//TODO imp
 	}
 	

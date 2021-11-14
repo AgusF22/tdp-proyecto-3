@@ -9,6 +9,7 @@ public class FleeingState extends EnemyState {
 	
 	@Override
 	public void move() {
+		System.out.println("FleeingState.move()");
 		//TODO imp
 	}
 	
