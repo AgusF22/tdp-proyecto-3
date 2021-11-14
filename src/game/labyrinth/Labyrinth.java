@@ -37,6 +37,7 @@ public abstract class Labyrinth {
 	/**
 	 * @return true si quedan dots en el laberinto, false en caso contrario.
 	 */
+	@Deprecated
 	public boolean dotsRemain() {
 		return dotCount != 0;
 	}
@@ -91,6 +92,14 @@ public abstract class Labyrinth {
 	 */
 	public void removeDot() {
 		dotCount--;
+		if (dotCount <= 0) {
+			try {
+				game.winLevel();
+			} catch (DataLoadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**

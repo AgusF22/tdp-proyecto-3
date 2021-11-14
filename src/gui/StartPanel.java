@@ -70,10 +70,10 @@ public class StartPanel extends GUIPanel{
 		modelo.addColumn("3");
 		
 		modelo.addRow(new String[] {"CONTROLS", "", ""});
-		modelo.addRow(new String[] {"MOVE UP", "W", "↑"});
-		modelo.addRow(new String[] {"MOVE DOWN", "S", "↓"});
-		modelo.addRow(new String[] {"MOVE LEFT", "A", "←"});
-		modelo.addRow(new String[] {"MOVE RIGHT", "D", "→"});
+		modelo.addRow(new String[] {"MOVE UP", "W", Character.toString('\u2191')});
+		modelo.addRow(new String[] {"MOVE DOWN", "S", Character.toString('\u2193')});
+		modelo.addRow(new String[] {"MOVE LEFT", "A", Character.toString('\u2190')});
+		modelo.addRow(new String[] {"MOVE RIGHT", "D", Character.toString('\u2192')});
 
 		tabla.setModel(modelo);
 		
