@@ -1,6 +1,7 @@
 package game.entity;
 
 import javax.swing.Icon;
+import javax.swing.JLabel;
 
 import game.Direction;
 
@@ -13,15 +14,22 @@ public class GraphicCharacter extends GraphicEntity{
 	 */
 	protected final transient Icon[] movingImages;
 	
+	protected transient JLabel speedImageLabel;
+	
 	public GraphicCharacter(Entity entity, Icon[] images) {
 		super(entity);
+		
 		movingImages = new Icon[4];
 		movingImages[0] = images[0];
 		movingImages[1] = images[1];
 		movingImages[2] = images[2];
 		movingImages[3] = images[3];
+		
 		this.setIcon(movingImages[3]);
 		this.setSize(images[0].getIconWidth(), images[0].getIconHeight());
+
+		speedImageLabel = new JLabel(images[4]);
+		speedImageLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
 	}
 	
 	public void updateImage() {
@@ -47,6 +55,14 @@ public class GraphicCharacter extends GraphicEntity{
 	
 	protected void setMoveDirection(int index) {
 		this.setIcon(movingImages[index]);
+	}
+	
+	public void setSpeedEffect(boolean speed) {
+		if (speed) {
+			this.add(speedImageLabel);
+		} else {
+			this.remove(speedImageLabel);
+		}
 	}
 	
 }

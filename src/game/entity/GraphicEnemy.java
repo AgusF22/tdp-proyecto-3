@@ -1,6 +1,7 @@
 package game.entity;
 
 import javax.swing.Icon;
+import javax.swing.JLabel;
 
 public class GraphicEnemy extends GraphicCharacter{
 
@@ -11,10 +12,7 @@ public class GraphicEnemy extends GraphicCharacter{
 	 */
 	protected transient Icon[] fleeingImages;
 	
-	/**
-	 * Arreglo con imagenes de enemigo aturdido hacia arriba, derecha, abajo, e izquierda, en las posiciones 0, 1, 2, y 3 respectivamente.
-	 */
-	protected transient Icon[] stunedImages;
+	protected transient JLabel stunedImageLabel;
 	
 	protected boolean fleeing;
 	protected boolean stuned;
@@ -23,23 +21,18 @@ public class GraphicEnemy extends GraphicCharacter{
 		super(entity, images);
 		
 		fleeingImages = new Icon[4];
-		stunedImages = new Icon[4];
 		
-		fleeingImages[0] = images[4];
-		fleeingImages[1] = images[5];
-		fleeingImages[2] = images[6];
-		fleeingImages[3] = images[7];
+		fleeingImages[0] = images[5];
+		fleeingImages[1] = images[6];
+		fleeingImages[2] = images[7];
+		fleeingImages[3] = images[8];
 		
-		stunedImages[0] = images[8];
-		stunedImages[1] = images[9];
-		stunedImages[2] = images[10];
-		stunedImages[3] = images[11];
+		stunedImageLabel = new JLabel(images[9]);
+		stunedImageLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
 	}
 	
 	protected void setMoveDirection(int index) {
-		if (stuned) {
-			setIcon(stunedImages[index]);
-		} else if (fleeing) {
+		if (fleeing) {
 			setIcon(fleeingImages[index]);
 		} else {
 			super.setMoveDirection(index);
@@ -48,10 +41,15 @@ public class GraphicEnemy extends GraphicCharacter{
 	
 	public void setFleeing(boolean fleeing) {
 		this.fleeing = fleeing;
+		updateImage();
 	}
 	
 	public void setStunEffect(boolean stuned) {
-		this.stuned = stuned;
+		if (stuned) {
+			this.add(stunedImageLabel);
+		} else {
+			this.remove(stunedImageLabel);
+		}
 	}
 	
 	@Override
