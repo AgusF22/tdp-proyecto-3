@@ -32,6 +32,10 @@
 	</dungeon>
 	
 	<path>
+		<start x="1" y="1"></start>
+		<end x="27" y="1"></end>
+	</path>
+	<path>
 		<start x="1" y="2"></start>
 		<end x="1" y="8"></end>
 	</path>
@@ -117,7 +121,7 @@
 	</path>
 	<path>
 		<start x="12" y="18"></start>
-		<end x="12" y="12"></end>
+		<end x="12" y="22"></end>
 	</path>
 	<path>
 		<start x="16" y="18"></start>
@@ -201,11 +205,11 @@
 	</path>
 	<path>
 		<start x="9" y="24"></start>
-		<end x="9" y="28"></end>
+		<end x="9" y="29"></end>
 	</path>
 	<path>
 		<start x="19" y="24"></start>
-		<end x="19" y="28"></end>
+		<end x="19" y="29"></end>
 	</path>
 	<path>
 		<start x="10" y="26"></start>
