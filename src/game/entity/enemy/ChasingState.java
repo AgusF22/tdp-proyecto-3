@@ -1,5 +1,8 @@
 package game.entity.enemy;
 
+import game.EndGamePublisher;
+import game.entity.player.Player;
+
 public class ChasingState extends EnemyState {
 
 	public ChasingState(Enemy enemy) {
@@ -13,6 +16,8 @@ public class ChasingState extends EnemyState {
 	
 	public void collideWithPlayer() {
 		//TODO imp
+		Player.getInstance().getGraphic().delete();
+		EndGamePublisher.getInstance().notifySubscribers();
 	}
 
 }
