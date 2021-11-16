@@ -5,6 +5,7 @@ import static java.lang.Math.round;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toIntExact;
 
+import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
@@ -15,6 +16,7 @@ public class OrangeEnemy extends Enemy {
 	public OrangeEnemy(Zone zone) {
 		super (zone, 0.08f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getOrangeEnemyImages());
+		state = new StartingState(this, 6 * Game.CYCLES_PER_SECOND);
 	}
 
 	@Override

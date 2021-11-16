@@ -30,4 +30,10 @@ public abstract class EnemyState {
 	 */
 	public abstract void collideWithPlayer();
 	
+	/**
+	 * Retorna si este estado puede ser cambiado por el cliente.
+	 * @return True si el estado puede ser cambiado por el cliente, false si no.
+	 */
+	public abstract boolean locked();
+	
 }

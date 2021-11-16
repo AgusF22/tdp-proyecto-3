@@ -45,5 +45,10 @@ public class FleeingState extends EnemyState {
 		contextEnemy.getLabyrinth().addPoints(200);
 		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(false);
 	}
+
+	@Override
+	public boolean locked() {
+		return false;
+	}
 	
 }

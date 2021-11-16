@@ -13,7 +13,7 @@ public class Explosion extends Entity {
 
 	protected void remove() {
 		zone.removeEntity(this);
-		this.graphic.delete();
+//		this.graphic.delete(); TODO descomentar cuando explosion tenga grafica
 	}
 	
 	protected void collide() {

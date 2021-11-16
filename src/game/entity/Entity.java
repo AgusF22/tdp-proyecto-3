@@ -60,7 +60,7 @@ public abstract class Entity {
 	 * @param y Nueva coordenada y.
 	 */
 	public void setCoordinates(float x, float y) {
-		Zone newZone = zone.getLabyrinth().getZone(x, y);
+		Zone newZone = getLabyrinth().getZone(x, y);
 		this.x = x;
 		this.y = y;
 		if (zone != newZone) {

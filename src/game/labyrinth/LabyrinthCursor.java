@@ -57,11 +57,14 @@ public class LabyrinthCursor {
 	/**
 	 * Clona este cursor, le asigna una nueva direccion, y lo mueve en dicha direccion.
 	 * @param direction La direccion para el nuevo cursor.
-	 * @return El nuevo cursor, movido una vez.
+	 * @return El nuevo cursor, movido una vez; nulo, si la direccion pasada lleva a una pared.
 	 */
 	public LabyrinthCursor sendCloneTo(Direction direction) {
-		LabyrinthCursor clone = new LabyrinthCursor(zone, direction);
-		clone.nextZone();
+		LabyrinthCursor clone = null;
+		if (zone.getAdjacent(direction).getType() != ZoneType.WALL) {
+			clone = new LabyrinthCursor(zone, direction);
+			clone.nextZone();
+		}
 		return clone;
 	}
 	

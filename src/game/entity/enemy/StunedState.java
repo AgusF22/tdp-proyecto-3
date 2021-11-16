@@ -48,4 +48,9 @@ public class StunedState extends EnemyState{
 		// metodo vacio
 	}
 
+	@Override
+	public boolean locked() {
+		return false;
+	}
+
 }

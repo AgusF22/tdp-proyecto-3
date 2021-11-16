@@ -21,7 +21,6 @@ public abstract class Enemy extends Character {
 	 */
 	protected Enemy(Zone zone, float movementSpeed) {
 		super(zone, 0.1f);
-		state = new ChasingState(this);
 	}
 	
 	/**
@@ -42,7 +41,9 @@ public abstract class Enemy extends Character {
 	 * Cambia el comportamiento de este enemigo, haciendo que intente escapar del jugador.
 	 */
 	public void setFleeing() {
-		state = new FleeingState(this);
+		if (!state.locked()) {
+			state = new FleeingState(this);
+		}
 	}
 	
 	/**
@@ -182,16 +183,20 @@ public abstract class Enemy extends Character {
 	private double pathValue(LabyrinthCursor cursor, Zone destZone, int n) {
 		double toReturn = zoneValue(cursor.getZone(), destZone);
 		Set<Direction> directions;
-		if (n == 0) {
-			toReturn = zoneValue(cursor.getZone(), destZone);
-		} else {
-			cursor.nextZone();
+		LabyrinthCursor newCursor;
+		if (n > 0) {
 			if (cursor.isInIntersection()) {
-				directions = EnumSet.complementOf(EnumSet.of(cursor.getDirection()));
+				directions = EnumSet.complementOf(
+						EnumSet.of(cursor.getDirection().getOpposite()));
+				
 				for (Direction d : directions) {
-					toReturn = Math.max(toReturn, pathValue(
-										cursor.sendCloneTo(d), destZone, n - 1));
+					newCursor = cursor.sendCloneTo(d);
+					if (newCursor != null) {
+						toReturn = Math.max(toReturn, 
+								pathValue(newCursor, destZone, n - 1));
+					}
 				}
+				
 			} else {
 				toReturn = Math.max(toReturn, pathValue(cursor, destZone, n - 1));
 			}

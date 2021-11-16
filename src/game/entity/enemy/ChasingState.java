@@ -23,12 +23,17 @@ public class ChasingState extends EnemyState {
 		Player player = Player.getInstance();
 		if (player.hasShield()) {
 			contextEnemy.changeState(new StunedState(contextEnemy));
-			player.removeShield();
+			player.useShield();
 		} else {
 			System.out.println("*********************************************************************************");
 			System.out.println("********************************* GAME OVER *************************************");
 			System.out.println("*********************************************************************************");
 		}
+	}
+
+	@Override
+	public boolean locked() {
+		return false;
 	}
 
 }
