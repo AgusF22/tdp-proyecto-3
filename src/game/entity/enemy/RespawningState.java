@@ -13,7 +13,7 @@ public class RespawningState extends EnemyState {
 	}
 	
 	public void collideWithPlayer() {
-		//TODO imp
+		
 	}
 
 }
