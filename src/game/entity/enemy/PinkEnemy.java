@@ -3,6 +3,7 @@ package game.entity.enemy;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
+import game.labyrinth.LabyrinthCursor;
 import game.labyrinth.Zone;
 
 public class PinkEnemy extends Enemy {
@@ -18,14 +19,14 @@ public class PinkEnemy extends Enemy {
 		Zone playerZone = this.getLabyrinth().getZone(player.getX(), player.getY());
 		Direction playerDirection = player.getMovementDirection();
 		
-		Cursor cursor = new Cursor(playerZone, playerDirection);
+		LabyrinthCursor cursor = new LabyrinthCursor(playerZone, playerDirection);
 		
 		cursor.nextZone();
 		while (!cursor.isInIntersection()) {
 			cursor.nextZone();
 		}
 		
-		return bestAproachPath(cursor.zone);
+		return bestAproachPath(cursor.getZone());
 	}
 
 }

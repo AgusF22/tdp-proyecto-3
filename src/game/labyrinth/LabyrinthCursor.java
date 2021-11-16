@@ -2,6 +2,9 @@ package game.labyrinth;
 
 import java.util.EnumSet;
 
+/**
+ * Tipo de dato que brinda funcionalidad para recorrer un laberinto.
+ */
 public class LabyrinthCursor {
 
 	protected Zone zone;
@@ -23,6 +26,14 @@ public class LabyrinthCursor {
 	 */
 	public Zone getZone() {
 		return zone;
+	}
+	
+	/**
+	 * Retorna la direccion en la que apunta este cursor.
+	 * @return La direccion en la que apunta este cursor.
+	 */
+	public Direction getDirection() {
+		return direction;
 	}
 	
 	/**
