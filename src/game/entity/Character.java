@@ -33,6 +33,10 @@ public abstract class Character extends Entity {
 		return movementDirection;
 	}
 	
+	public float getSpeed() {
+		return movementSpeed * speedMultiplier;
+	}
+	
 	/**
 	 * Mueve al jugador las unidades pasadas por parametro en una direccion
 	 * @param n Float unidades a mover

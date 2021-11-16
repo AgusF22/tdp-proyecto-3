@@ -9,7 +9,7 @@ public class RedEnemy extends Enemy {
 
 	public RedEnemy(Zone zone) {
 		super (zone, 0.15f);
-		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getRedEnemyImages());
+		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getRedEnemyImages());
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public class RedEnemy extends Enemy {
 		Player player = Player.getInstance();
 		float playerX = player.getX();
 		float playerY = player.getY();
-		return bestAproachPath(zone.getLabyrinth().getZone(playerX, playerY));
+		return bestAproachPath(this.getLabyrinth().getZone(playerX, playerY));
 	}
 	
 }

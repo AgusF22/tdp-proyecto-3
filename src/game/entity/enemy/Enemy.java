@@ -30,18 +30,6 @@ public abstract class Enemy extends Character {
 		visitor.visit(this);
 	}
 	
-	protected float getSpeedMultiplier() {
-		return speedMultiplier;
-	}
-	
-	protected float getMovementSpeed() {
-		return movementSpeed;
-	}
-	
-	protected Zone getZone() {
-		return zone;
-	}
-	
 	/**
 	 * Aturde a este enemigo, haciendo que no pueda moverse ni interactuar por un tiempo.
 	 */

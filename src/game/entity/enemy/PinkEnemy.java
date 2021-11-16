@@ -9,13 +9,13 @@ public class PinkEnemy extends Enemy {
 
 	public PinkEnemy(Zone zone) {
 		super (zone, 0.1f);
-		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getPinkEnemyImages());
+		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getPinkEnemyImages());
 	}
 
 	@Override
 	public Direction calculateChasePath() {
 		Player player = Player.getInstance();
-		Zone playerZone = zone.getLabyrinth().getZone(player.getX(), player.getY());
+		Zone playerZone = this.getLabyrinth().getZone(player.getX(), player.getY());
 		Direction playerDirection = player.getMovementDirection();
 		
 		Cursor cursor = new Cursor(playerZone, playerDirection);

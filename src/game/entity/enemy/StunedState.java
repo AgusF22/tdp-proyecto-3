@@ -26,7 +26,7 @@ public class StunedState extends EnemyState{
 	@Override
 	public void move() {
 		if (--stunTime == 0) {
-			context.changeState(new ChasingState(context));
+			contextEnemy.changeState(new ChasingState(contextEnemy));
 		}
 	}
 	

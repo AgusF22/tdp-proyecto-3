@@ -1,6 +1,7 @@
 package game.entity;
 
 import game.entity.visitor.Visitor;
+import game.labyrinth.Labyrinth;
 import game.labyrinth.Zone;
 
 public abstract class Entity {
@@ -43,6 +44,14 @@ public abstract class Entity {
 	 */
 	public float getY() {
 		return y;
+	}
+	
+	public Zone getZone() {
+		return zone;
+	}
+	
+	public Labyrinth getLabyrinth() {
+		return zone.getLabyrinth();
 	}
 	
 	/**

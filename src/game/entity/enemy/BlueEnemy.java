@@ -12,7 +12,7 @@ public class BlueEnemy extends Enemy {
 
 	public BlueEnemy(Zone zone, RedEnemy red) {
 		super (zone, 0.1f);
-		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getBlueEnemyImages());
+		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getBlueEnemyImages());
 		this.red = red;
 	}
 
@@ -26,7 +26,7 @@ public class BlueEnemy extends Enemy {
 		targetX = limitToLabyrinthWidth(targetX);
 		targetY = limitToLabyrinthWidth(targetY);
 		
-		return bestAproachPath(zone.getLabyrinth().getZone(targetX, targetY));
+		return bestAproachPath(this.getLabyrinth().getZone(targetX, targetY));
 	}
 	
 	protected int limitToLabyrinthHeight(float yParam) {

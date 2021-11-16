@@ -13,22 +13,22 @@ public class FleeingState extends EnemyState {
 	public FleeingState(Enemy enemy) {
 		super(enemy);
 		fleeTimer = FLEEING_DURATION;
-		context.addSpeedMultiplier(0.5f);
-		context.turnAround();
-		((GraphicEnemy) context.getGraphic()).setFleeing(true);
+		contextEnemy.addSpeedMultiplier(0.5f);
+		contextEnemy.turnAround();
+		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(true);
 	}
 	
 	@Override
 	public void move() {
-		context.move(context.getSpeedMultiplier() * context.getMovementSpeed());
+		contextEnemy.move(contextEnemy.getSpeed());
 		if (--fleeTimer == 0) {
 			changeToChase();
 		}
 	}
 	
 	protected void changeToChase() {
-		((GraphicEnemy) context.getGraphic()).setFleeing(false);
-		context.changeState(new ChasingState(context));
+		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(false);
+		contextEnemy.changeState(new ChasingState(contextEnemy));
 	}
 	
 	@Override
@@ -36,14 +36,14 @@ public class FleeingState extends EnemyState {
 		Player player = Player.getInstance();
 		float playerX = player.getX();
 		float playerY = player.getY();
-		return context.bestFleePath(context.getZone().getLabyrinth().getZone(playerX, playerY));
+		return contextEnemy.bestFleePath(contextEnemy.getLabyrinth().getZone(playerX, playerY));
 	}
 	
 	@Override
 	public void collideWithPlayer() {
-		context.changeState(new RespawningState(context));
-		context.getZone().getLabyrinth().addPoints(200);
-		((GraphicEnemy) context.getGraphic()).setFleeing(false);
+		contextEnemy.changeState(new RespawningState(contextEnemy));
+		contextEnemy.getLabyrinth().addPoints(200);
+		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(false);
 	}
 	
 }

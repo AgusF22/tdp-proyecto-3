@@ -11,18 +11,18 @@ public class ChasingState extends EnemyState {
 	}
 	
 	public void move() {
-		context.move(context.getSpeedMultiplier() * context.getMovementSpeed());
+		contextEnemy.move(contextEnemy.getSpeed());
 	}
 	
 	@Override
 	public Direction nextMoveDirection() {
-		return context.calculateChasePath();
+		return contextEnemy.calculateChasePath();
 	}
 	
 	public void collideWithPlayer() {
 		Player player = Player.getInstance();
 		if (player.hasShield()) {
-			context.changeState(new StunedState(context));
+			contextEnemy.changeState(new StunedState(contextEnemy));
 			player.removeShield();
 		} else {
 			System.out.println("*********************************************************************************");

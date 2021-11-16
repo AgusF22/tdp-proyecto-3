@@ -4,14 +4,14 @@ import game.Direction;
 
 public abstract class EnemyState {
 	
-	protected Enemy context;
+	protected Enemy contextEnemy;
 	
 	/**
 	 * Crea un nuevo estado para el enemigo pasado como parametro.
 	 * @param enemy Un enemigo.
 	 */
 	protected EnemyState(Enemy enemy) {
-		this.context = enemy;
+		this.contextEnemy = enemy;
 	}
 	
 	/**
