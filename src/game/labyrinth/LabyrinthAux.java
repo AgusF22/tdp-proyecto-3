@@ -14,7 +14,7 @@ import game.entity.prize.PotionShield;
 import game.entity.prize.PotionSpeed;
 import game.entity.prize.PowerPellet;
 
-public class LabyrinthAux extends Labyrinth {
+public abstract class LabyrinthAux extends Labyrinth {
 
 	protected LabyrinthAux(Game game) {
 		super(game);

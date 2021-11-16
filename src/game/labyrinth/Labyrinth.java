@@ -121,6 +121,4 @@ public abstract class Labyrinth {
 			}
 		}
 	}
-	
-
 }
