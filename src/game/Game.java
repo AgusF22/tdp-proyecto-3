@@ -121,7 +121,7 @@ public class Game implements Subscriber, Runnable {
 	}
 	
 	@Override
-	public void update() {
+	public void recieveEndGameNotification() {
 		stop();
 		endGame();
 	}

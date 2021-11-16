@@ -4,9 +4,9 @@ import game.entity.GraphicPrize;
 import game.entity.player.Player;
 import game.labyrinth.Zone;
 
-public class ConcretePotion2 extends Potion {
+public class PotionShield extends Potion {
 	
-	public ConcretePotion2(Zone zone) {
+	public PotionShield(Zone zone) {
 		super(zone);
 		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion2());
 	}

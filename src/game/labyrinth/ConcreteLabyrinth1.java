@@ -6,14 +6,13 @@ import exceptions.NullZoneException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
-import game.entity.enemy.Enemy;
 import game.entity.enemy.OrangeEnemy;
 import game.entity.enemy.PinkEnemy;
 import game.entity.enemy.RedEnemy;
 import game.entity.player.Player;
 import game.entity.prize.ConcreteFruit1;
-import game.entity.prize.ConcretePotion1;
-import game.entity.prize.ConcretePotion2;
+import game.entity.prize.PotionSpeed;
+import game.entity.prize.PotionShield;
 import game.entity.prize.PowerPellet;
 
 public class ConcreteLabyrinth1 extends Labyrinth {
@@ -86,8 +85,8 @@ public class ConcreteLabyrinth1 extends Labyrinth {
         Entity powerPellet2 = new PowerPellet		(zones[27][1]);
         Entity powerPellet3 = new PowerPellet		(zones[1][29]);
         Entity powerPellet4 = new PowerPellet		(zones[27][29]);
-        Entity potion1 		= new ConcretePotion1	(zones[6][14]);
-        Entity potion2 		= new ConcretePotion2	(zones[22][14]);
+        Entity potion1 		= new PotionSpeed	(zones[6][14]);
+        Entity potion2 		= new PotionShield	(zones[22][14]);
         
         fruit		.getGraphic().addToGUI(game.getGUI());
         powerPellet1.getGraphic().addToGUI(game.getGUI());

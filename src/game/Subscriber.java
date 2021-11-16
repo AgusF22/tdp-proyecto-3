@@ -5,5 +5,5 @@ public interface Subscriber {
 	/**
 	 * Updatea TODO mejorar
 	 */
-	public void update();
+	public void recieveEndGameNotification();
 }

@@ -1,15 +1,12 @@
 package game.labyrinth;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import exceptions.DataLoadException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.prize.Dot;
-import game.entity.timedentity.TimedEntity;
 import imagefactories.ImageFactory;
 
 public abstract class Labyrinth {
@@ -22,7 +19,6 @@ public abstract class Labyrinth {
 	protected int dotCount;
 	protected Game game;
 	protected Zone[][] zones;
-	protected List<TimedEntity> timedEntity;
 	
 	/**
 	 * Crear un nuevo labyrinth.
@@ -31,15 +27,6 @@ public abstract class Labyrinth {
 	protected Labyrinth(Game game) {
 		this.game = game;
 		zones = new Zone[WIDTH][HEIGHT];
-		timedEntity = new ArrayList<>();
-	}
-	
-	/**
-	 * @return true si quedan dots en el laberinto, false en caso contrario.
-	 */
-	@Deprecated
-	public boolean dotsRemain() {
-		return dotCount != 0;
 	}
 	
 	/**
@@ -112,18 +99,6 @@ public abstract class Labyrinth {
 	
 	public Zone getSpawn() {
 		return spawn;
-	}
-	
-	public void addTimedEntity(TimedEntity entity) {
-		timedEntity.add(entity);
-	}
-	
-	public void removeTimedEntity(TimedEntity entity) {
-		timedEntity.remove(entity);
-	}	
-	
-	public void runTimedEntity() {
-		timedEntity.forEach(TimedEntity::reduceCountdown);
 	}
 	
 	public abstract void addPlayer();
