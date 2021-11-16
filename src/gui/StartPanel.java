@@ -27,7 +27,6 @@ public class StartPanel extends GUIPanel{
 		setSize(width, height);
 		
 		crearBotones();
-		crearInfoControles();
 		crearBotonesBasura(); //TODO basura borrar luego de probar cosas
 		crearFondo();
 	}
@@ -54,7 +53,17 @@ public class StartPanel extends GUIPanel{
 		btnGanar.setBounds((width - scaleWidth), height/2 + 2*scaleHeight + 2*scaleHeight/5, scaleWidth, scaleHeight);
 		add(btnGanar);
 	}
-
+	
+	/**
+	 * Detiene/inicia la musica.
+	 */
+	protected void musicOffPlay() {
+		System.out.println("MUSICA OFF/PLAY implementar en StartPanel");
+	}
+	
+	/**
+	 * Crea el fondo de este panel.
+	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, width, height);
@@ -62,46 +71,9 @@ public class StartPanel extends GUIPanel{
 		add(fondo);
 	}
 	
-	private void crearInfoControles() {
-		JTable tabla = new JTable();
-		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.addColumn("1");
-		modelo.addColumn("2");
-		modelo.addColumn("3");
-		
-		modelo.addRow(new String[] {"CONTROLS", "", ""});
-		modelo.addRow(new String[] {"MOVE UP", "W", Character.toString('\u2191')});
-		modelo.addRow(new String[] {"MOVE DOWN", "S", Character.toString('\u2193')});
-		modelo.addRow(new String[] {"MOVE LEFT", "A", Character.toString('\u2190')});
-		modelo.addRow(new String[] {"MOVE RIGHT", "D", Character.toString('\u2192')});
-
-		tabla.setModel(modelo);
-		
-		tabla.setBounds(width - scaleWidth*2, 0, scaleWidth*2, scaleHeight*5);
-		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		tabla.setShowVerticalLines(false);
-		tabla.setRowHeight(scaleHeight);
-		tabla.setEnabled(false);
-		tabla.setOpaque(false);
-		
-		tabla.getColumnModel().getColumn(0).setMinWidth(scaleWidth);
-		tabla.getColumnModel().getColumn(0).setMaxWidth(scaleWidth);
-		
-		tabla.getColumnModel().getColumn(1).setMinWidth(scaleWidth/2);
-		tabla.getColumnModel().getColumn(1).setMaxWidth(scaleWidth/2);
-
-		tabla.getColumnModel().getColumn(2).setMinWidth(scaleWidth/2);
-		tabla.getColumnModel().getColumn(2).setMinWidth(scaleWidth/2);
-		
-		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-		renderer.setOpaque(false);
-		tabla.getColumnModel().getColumn(0).setCellRenderer( renderer );
-		tabla.getColumnModel().getColumn(1).setCellRenderer( renderer );
-		tabla.getColumnModel().getColumn(2).setCellRenderer( renderer );
-		
-		add(tabla);
-	}
-	
+	/**
+	 * Crea los botones de este panel.
+	 */
 	private void crearBotones() {
 		JButton btnPlay = new JButton("PLAY");
 		btnPlay.addActionListener(new ActionListener() {
@@ -123,6 +95,16 @@ public class StartPanel extends GUIPanel{
 		btnScores.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*12)/5, scaleWidth*2, scaleHeight);
 		add(btnScores);
 		
+		JButton btnControls = new JButton("CONTROLS");
+		btnControls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlsGame();
+			}
+		});
+		btnControls.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
+		btnControls.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
+		add(btnControls);
+		
 		JButton btnExit = new JButton("EXIT");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -130,8 +112,15 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
+		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*24)/5, scaleWidth*2, scaleHeight);
 		add(btnExit);
+	}
+	
+	/**
+	 * Cambia la gui principal a la pantalla de controles.
+	 */
+	private void controlsGame() {
+		frame.setPanel(new ControlsPanel(frame));
 	}
 	
 	/**
