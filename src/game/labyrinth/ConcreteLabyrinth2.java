@@ -5,7 +5,7 @@ import exceptions.NullZoneException;
 import game.Game;
 import game.entity.player.Player;
 
-public class ConcreteLabyrinth2  extends LabyrinthAux {
+public class ConcreteLabyrinth2  extends Labyrinth {
 	
 	/**
 	 * Crea una instancia concreta del laberinto 2.
