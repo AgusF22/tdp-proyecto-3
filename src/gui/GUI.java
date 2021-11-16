@@ -18,7 +18,6 @@ public class GUI extends JFrame{
 	protected final String fuente;
 
 	private transient ImageFactory factory;
-	private GUIPanel panel;
 
 	public GUI() {
 		// TODO Descomentar en ver FINAL
@@ -52,7 +51,6 @@ public class GUI extends JFrame{
 	 */
 	public void setPanel(GUIPanel panel) {
 		getContentPane().removeAll();
-		this.panel = panel;
 		getContentPane().add(panel);
 		repaint();
 	}

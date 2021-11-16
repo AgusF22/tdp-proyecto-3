@@ -173,4 +173,11 @@ public abstract class GameOverPanel extends GUIPanel{
 		}
 		
 	}
+	
+	/**
+	 * Detiene/inicia la musica.
+	 */
+	protected void musicOffPlay() {
+		System.out.println("MUSICA OFF/PLAY implementar en GameOverPanel");
+	}
 }
