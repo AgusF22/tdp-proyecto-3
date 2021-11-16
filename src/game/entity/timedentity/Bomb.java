@@ -3,10 +3,10 @@ package game.entity.timedentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.Direction;
 import game.Game;
 import game.entity.Entity;
 import game.entity.visitor.Visitor;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public class Bomb extends Entity implements Runnable {

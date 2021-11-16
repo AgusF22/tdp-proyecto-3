@@ -2,9 +2,9 @@ package game.entity.enemy;
 
 import static java.lang.Math.*;
 
-import game.Direction;
 import game.Game;
 import game.entity.GraphicEnemy;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public class RespawningState extends EnemyState {

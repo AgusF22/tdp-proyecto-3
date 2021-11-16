@@ -5,9 +5,9 @@ import static java.lang.Math.round;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toIntExact;
 
-import game.Direction;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public class OrangeEnemy extends Enemy {

@@ -1,7 +1,7 @@
 package game.entity.enemy;
 
-import game.Direction;
 import game.Game;
+import game.labyrinth.Direction;
 
 /**
  * Clase que modela el estado de un enemigo que se encuentra aturdido.

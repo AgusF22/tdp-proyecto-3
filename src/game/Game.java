@@ -4,6 +4,7 @@ import exceptions.DataLoadException;
 import game.entity.enemy.EnemyBrain;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
+import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;

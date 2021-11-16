@@ -1,8 +1,8 @@
 package game.entity.enemy;
 
-import game.Direction;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public class PinkEnemy extends Enemy {

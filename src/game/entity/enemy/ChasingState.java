@@ -1,7 +1,7 @@
 package game.entity.enemy;
 
-import game.Direction;
 import game.entity.player.Player;
+import game.labyrinth.Direction;
 
 public class ChasingState extends EnemyState {
 

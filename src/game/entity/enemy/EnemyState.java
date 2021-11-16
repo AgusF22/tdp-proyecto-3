@@ -1,6 +1,6 @@
 package game.entity.enemy;
 
-import game.Direction;
+import game.labyrinth.Direction;
 
 public abstract class EnemyState {
 	

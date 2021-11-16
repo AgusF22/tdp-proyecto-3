@@ -1,9 +1,9 @@
 package game.entity.player;
 
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 import exceptions.NullZoneException;
-import game.Direction;
 import game.Game;
 import game.entity.Entity;
 import game.entity.Character;

@@ -3,7 +3,6 @@ package game.labyrinth;
 import data.LabyrinthLoader;
 import exceptions.DataLoadException;
 import exceptions.NullZoneException;
-import game.Direction;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;

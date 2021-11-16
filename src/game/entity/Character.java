@@ -1,7 +1,7 @@
 package game.entity;
 
-import game.Direction;
 import game.Game;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public abstract class Character extends Entity {

@@ -1,9 +1,9 @@
 package game.entity.enemy;
 
-import game.Direction;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
+import game.labyrinth.Direction;
 
 public class FleeingState extends EnemyState {
 	
