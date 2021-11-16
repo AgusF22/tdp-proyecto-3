@@ -1,21 +1,11 @@
 package game.labyrinth;
 
-import data.LabyrinthLoader;
 import exceptions.DataLoadException;
 import exceptions.NullZoneException;
 import game.Game;
-import game.entity.Entity;
-import game.entity.enemy.BlueEnemy;
-import game.entity.enemy.OrangeEnemy;
-import game.entity.enemy.PinkEnemy;
-import game.entity.enemy.RedEnemy;
 import game.entity.player.Player;
-import game.entity.prize.ConcreteFruit1;
-import game.entity.prize.PotionSpeed;
-import game.entity.prize.PotionShield;
-import game.entity.prize.PowerPellet;
 
-public class ConcreteLabyrinth1 extends Labyrinth {
+public class ConcreteLabyrinth1 extends LabyrinthAux {
 	
 	/**
 	 * Crea una instancia concreta del laberinto 1.
@@ -28,21 +18,8 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		game.getGUI().setLabyrinthImage(game.getImageFactory().getLabyrinth1Image(),
 								game.getImageFactory().getLabyrinth1bgImage());
 		
-		LabyrinthLoader labLoader = new LabyrinthLoader("src/res/xml/labyrinth1.xml");
-		
-		ZoneType[][] matrix = labLoader.load();
-		
-		
-		for (int x = 0; x < matrix.length; x++) {
-			for (int y = 0; y < matrix[0].length; y++) {
-				zones[x][y] = new Zone(this, x, y, matrix[x][y]);		//seteo atributo spawn
-				
-				if(matrix[x][y] == ZoneType.SPAWN) {
-					spawn = zones[x][y];
-				}
-			}
-		}
-		
+		setLabyrinth("src/res/xml/labyrinth1.xml");
+		setEntity();
 		//************************************
 				// TODO ¡¡¡¡BORRAR!!!!
 //				for (int y = 0; y < matrix[0].length; y++) {
@@ -51,50 +28,21 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 //					}
 //					System.out.println();
 //				}
-				//************************************
-		
-		this.setEntity();
+		//************************************
 	}
 	
 	/**
 	 * Crea y setea en el mapa a todas las entidades del laberinto 1.
 	 */
 	private void setEntity() {
-		
-		//TODO descomentar para setear enemigos
-		Zone posSpawn = this.getSpawn();									// ***Set Enemy***
-		
-		RedEnemy red 		= new RedEnemy		(posSpawn);
-		BlueEnemy blue 		= new BlueEnemy		(posSpawn, red);
-		OrangeEnemy orange 	= new OrangeEnemy	(posSpawn);
-		PinkEnemy pink 		= new PinkEnemy		(posSpawn);
-		
-		red		.getGraphic().addToGUI(game.getGUI());
-		blue	.getGraphic().addToGUI(game.getGUI());
-		orange	.getGraphic().addToGUI(game.getGUI());
-		pink	.getGraphic().addToGUI(game.getGUI());
-		
-		game.getEnemyBrain().addEnemy(red);
-		game.getEnemyBrain().addEnemy(blue);
-		game.getEnemyBrain().addEnemy(orange);
-		game.getEnemyBrain().addEnemy(pink);
-		
-																			// ***Set Prize***
-        Entity fruit 		= new ConcreteFruit1	(zones[14][17]);
-        Entity powerPellet1 = new PowerPellet		(zones[1][1]);
-        Entity powerPellet2 = new PowerPellet		(zones[27][1]);
-        Entity powerPellet3 = new PowerPellet		(zones[1][29]);
-        Entity powerPellet4 = new PowerPellet		(zones[27][29]);
-        Entity potion1 		= new PotionSpeed	(zones[6][14]);
-        Entity potion2 		= new PotionShield	(zones[22][14]);
-        
-        fruit		.getGraphic().addToGUI(game.getGUI());
-        powerPellet1.getGraphic().addToGUI(game.getGUI());
-        powerPellet2.getGraphic().addToGUI(game.getGUI());
-        powerPellet3.getGraphic().addToGUI(game.getGUI());
-        powerPellet4.getGraphic().addToGUI(game.getGUI());
-        potion1		.getGraphic().addToGUI(game.getGUI());
-        potion2		.getGraphic().addToGUI(game.getGUI());									
+		setEnemies();											
+		addFruit1(14, 17);
+		addPowerPellet(1, 1);
+		addPowerPellet(27, 1);
+		addPowerPellet(1, 29);
+		addPowerPellet(27, 29);
+		addPotionSpeed(6, 14);
+		addPotionShield(22, 14);
 	}
 	
 	/**
