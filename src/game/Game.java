@@ -164,6 +164,7 @@ public class Game implements Subscriber, Runnable {
 				try {
 					Thread.sleep(1000 / CYCLES_PER_SECOND);
 				} catch (InterruptedException e) {
+					e.printStackTrace();
 					Thread.currentThread().interrupt();
 					return;
 				}

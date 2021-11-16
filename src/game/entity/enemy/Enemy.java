@@ -4,9 +4,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import game.Direction;
-import game.Game;
 import game.entity.Character;
-import game.entity.GraphicCharacter;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
