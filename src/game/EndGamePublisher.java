@@ -40,6 +40,6 @@ public class EndGamePublisher {
 	}
 	
 	public void notifySubscribers() {
-		subscribers.forEach(Subscriber::update);
+		subscribers.forEach(Subscriber::recieveEndGameNotification);
 	}
 }
