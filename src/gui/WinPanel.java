@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 /**
  * Panel para mostrar que el juego termino y el jugador gano.
  */
@@ -15,6 +17,7 @@ public class WinPanel extends GameOverPanel {
 	public WinPanel(GUI gui, int finalScore) {
 		super(gui, finalScore);
 		winLose.setText("YOU WIN");
+		winLose.setForeground(new Color(0, 100, 0));
 	}
 	
 }

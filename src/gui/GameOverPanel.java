@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -84,12 +85,14 @@ public abstract class GameOverPanel extends GUIPanel{
 		score.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		score.setBounds((width - scaleWidth*3), 4*scaleHeight, scaleWidth*3, scaleHeight);
 		score.setText(" SCORE: " + finalScore);
+		score.setForeground(new Color(0, 0, 100));
 		add(score);
 		
 		JLabel yourName = new JLabel("YOUR NAME: ");
 		yourName.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		yourName.setHorizontalAlignment(SwingConstants.RIGHT);
 		yourName.setBounds(0, 4*scaleHeight, scaleWidth*3, scaleHeight);
+		yourName.setForeground(new Color(0, 0, 100));
 		add(yourName);
 	}
 
