@@ -54,7 +54,7 @@ public class GraphicEnemy extends GraphicCharacter{
 	
 	@Override
 	public void setVisible(boolean visible) {
-		this.setVisible(visible);
+		super.setVisible(visible);
 	}
 	
 }
