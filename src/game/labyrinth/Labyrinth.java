@@ -49,12 +49,12 @@ public abstract class Labyrinth {
 	 */
 	public Iterable<Entity> entities() {
 		Set<Entity> entities = new HashSet<>();
-		Iterable<Entity> listEntities;
+		Iterable<Entity> zoneEntities;
 		
 		for (int i = 0; i < zones.length; i++) {										// Recorre todas las zonas del laberinto
 			for (int j = 0; j < zones[0].length; j++) {
-				listEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
-				listEntities.forEach(entities::add);							// Agrega las entidades de la zona en la Set entities
+				zoneEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
+				zoneEntities.forEach(entities::add);							// Agrega las entidades de la zona en la Set entities
 			}
 		}
 		return entities;
@@ -99,6 +99,12 @@ public abstract class Labyrinth {
 	
 	public Zone getSpawn() {
 		return spawn;
+	}
+	
+	public void clearEntities() {
+		for (Entity e : entities()) {
+			e.getGraphic().delete();
+		}
 	}
 	
 	public abstract void addPlayer();

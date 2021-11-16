@@ -1,9 +1,9 @@
 package game.entity.player;
 
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 import exceptions.NullZoneException;
-import game.Direction;
 import game.Game;
 import game.entity.Entity;
 import game.entity.Character;
@@ -162,10 +162,16 @@ public final class Player extends Character{
 		((GraphicPlayer) graphic).setShieldEffect(true);
 	}
 	
-	public void removeShield() {
+	protected void removeShield() {
 		shieldEffectTimer = 0;
 		hasShield = false;
 		((GraphicPlayer) graphic).setShieldEffect(false);
+	}
+	
+	public void useShield() {
+		if (hasShield) {
+			shieldEffectTimer = Math.round(0.5f * Game.CYCLES_PER_SECOND);
+		}
 	}
 	
 	/**

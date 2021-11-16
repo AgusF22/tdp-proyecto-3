@@ -3,9 +3,10 @@ package game.entity.enemy;
 import java.util.EnumSet;
 import java.util.Set;
 
-import game.Direction;
 import game.entity.Character;
 import game.entity.visitor.Visitor;
+import game.labyrinth.Direction;
+import game.labyrinth.LabyrinthCursor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 
@@ -20,7 +21,6 @@ public abstract class Enemy extends Character {
 	 */
 	protected Enemy(Zone zone, float movementSpeed) {
 		super(zone, 0.1f);
-		state = new ChasingState(this);
 	}
 	
 	/**
@@ -28,18 +28,6 @@ public abstract class Enemy extends Character {
 	 */
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
-	}
-	
-	protected float getSpeedMultiplier() {
-		return speedMultiplier;
-	}
-	
-	protected float getMovementSpeed() {
-		return movementSpeed;
-	}
-	
-	protected Zone getZone() {
-		return zone;
 	}
 	
 	/**
@@ -53,7 +41,9 @@ public abstract class Enemy extends Character {
 	 * Cambia el comportamiento de este enemigo, haciendo que intente escapar del jugador.
 	 */
 	public void setFleeing() {
-		state = new FleeingState(this);
+		if (!state.locked()) {
+			state = new FleeingState(this);
+		}
 	}
 	
 	/**
@@ -139,7 +129,7 @@ public abstract class Enemy extends Character {
 		Direction bestDirection = movementDirection;
 		double bestValue = Double.MIN_VALUE;
 		double value;
-		Cursor cursor = new Cursor(zone, movementDirection);
+		LabyrinthCursor cursor = new LabyrinthCursor(zone, movementDirection);
 		Set<Direction> directions = EnumSet.complementOf(
 				EnumSet.of(movementDirection.getOpposite()));
 
@@ -167,7 +157,7 @@ public abstract class Enemy extends Character {
 		Direction bestDirection = movementDirection;
 		double bestValue = Double.MAX_VALUE;
 		double value;
-		Cursor cursor = new Cursor(zone, movementDirection);
+		LabyrinthCursor cursor = new LabyrinthCursor(zone, movementDirection);
 		Set<Direction> directions = EnumSet.complementOf(
 				EnumSet.of(movementDirection.getOpposite()));
 
@@ -190,19 +180,23 @@ public abstract class Enemy extends Character {
 	 * @param n La cantidad de zonas que quedan por evaluar.
 	 * @return El valor del camino, que es igual al mejor valor de las zonas del camino.
 	 */
-	private double pathValue(Cursor cursor, Zone destZone, int n) {
-		double toReturn = zoneValue(cursor.zone, destZone);
+	private double pathValue(LabyrinthCursor cursor, Zone destZone, int n) {
+		double toReturn = zoneValue(cursor.getZone(), destZone);
 		Set<Direction> directions;
-		if (n == 0) {
-			toReturn = zoneValue(cursor.zone, destZone);
-		} else {
-			cursor.nextZone();
+		LabyrinthCursor newCursor;
+		if (n > 0) {
 			if (cursor.isInIntersection()) {
-				directions = EnumSet.complementOf(EnumSet.of(cursor.direction));
+				directions = EnumSet.complementOf(
+						EnumSet.of(cursor.getDirection().getOpposite()));
+				
 				for (Direction d : directions) {
-					toReturn = Math.max(toReturn, pathValue(
-										cursor.sendCloneTo(d), destZone, n - 1));
+					newCursor = cursor.sendCloneTo(d);
+					if (newCursor != null) {
+						toReturn = Math.max(toReturn, 
+								pathValue(newCursor, destZone, n - 1));
+					}
 				}
+				
 			} else {
 				toReturn = Math.max(toReturn, pathValue(cursor, destZone, n - 1));
 			}
@@ -240,69 +234,5 @@ public abstract class Enemy extends Character {
 		}
 		return connections > 2;
 	}
-	
-	/**
-	 * Tipo de dato que modela un par zona direccion. A ser usado para calcular el movimiento del enemigo.
-	 */
-	protected class Cursor {
-		
-		protected Zone zone;
-		protected Direction direction;
-		
-		/**
-		 * Crea una nueva instancia de cursor.
-		 * @param zone Una zona.
-		 * @param direction Una direccion.
-		 */
-		protected Cursor(Zone zone, Direction direction) {
-			this.zone = zone;
-			this.direction = direction;
-		}
-		
-		/**
-		 * Mueve este cursor para que apunte a la siguiente zona, de acuerdo a la direccion actual.
-		 */
-		protected void nextZone() {
-			if(zone.getAdjacent(direction).getType() != ZoneType.WALL) {
-				zone = zone.getAdjacent(direction);
-			} else {
-				if(zone.getAdjacent(direction.getCWDirection())
-						.getType() != ZoneType.WALL) {
-					zone = zone.getAdjacent(direction.getCWDirection());
-					direction = direction.getCWDirection();
-				} else {
-					zone = zone.getAdjacent(direction.getCCWDirection());
-					direction = direction.getCCWDirection();
-				}
-			}
-		}
-		
-		/**
-		 * Clona este cursor, le asigna una nueva direccion, y lo mueve en dicha direccion.
-		 * @param direction La direccion para el nuevo cursor.
-		 * @return El nuevo cursor, movido una vez.
-		 */
-		protected Cursor sendCloneTo(Direction direction) {
-			Cursor clone = new Cursor(zone, direction);
-			clone.nextZone();
-			return clone;
-		}
-		
-		/**
-		 * Comprueba si este cursor se encuentra en una zona interseccion, es decir, una zona adyacente a mas de 2 caminos.
-		 * @return True si la zona a la que apunta este cursor es interseccion, false si no.
-		 */
-		protected boolean isInIntersection() {
-			int connections = 0;
-			EnumSet<Direction> directions = EnumSet.complementOf(EnumSet.of(direction));
-			for(Direction d : directions) {
-				if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
-					connections++;
-				}
-			}
-			return connections > 1;
-		}
-		
-	}
-	
+
 }

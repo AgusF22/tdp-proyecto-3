@@ -1,6 +1,7 @@
 package game.entity;
 
 import game.entity.visitor.Visitor;
+import game.labyrinth.Labyrinth;
 import game.labyrinth.Zone;
 
 public abstract class Entity {
@@ -45,13 +46,21 @@ public abstract class Entity {
 		return y;
 	}
 	
+	public Zone getZone() {
+		return zone;
+	}
+	
+	public Labyrinth getLabyrinth() {
+		return zone.getLabyrinth();
+	}
+	
 	/**
 	 * Setea las coordenadas de esta entidad, cambiando de zona en caso de ser necesario.
 	 * @param x Nueva coordenada x.
 	 * @param y Nueva coordenada y.
 	 */
 	public void setCoordinates(float x, float y) {
-		Zone newZone = zone.getLabyrinth().getZone(x, y);
+		Zone newZone = getLabyrinth().getZone(x, y);
 		this.x = x;
 		this.y = y;
 		if (zone != newZone) {

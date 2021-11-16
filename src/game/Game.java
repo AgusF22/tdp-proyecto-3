@@ -4,6 +4,7 @@ import exceptions.DataLoadException;
 import game.entity.enemy.EnemyBrain;
 import game.entity.player.Player;
 import game.labyrinth.ConcreteLabyrinth1;
+import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
@@ -38,6 +39,9 @@ public class Game implements Subscriber, Runnable {
 		labyrinth.fillWithDots();
 		
 		EndGamePublisher.getInstance().subscribe(this);
+		
+		gameThread = new Thread(this);
+		brainThread = new Thread(enemyBrain);
 	}
 	
 	/**
@@ -101,15 +105,23 @@ public class Game implements Subscriber, Runnable {
 	 * @throws DataLoadException 
 	 */
 	public void winLevel() throws DataLoadException {
+		labyrinth.clearEntities();
+		resetBrain();
 		labyrinth = labyrinth.nextLabyrinth();
+		
 		if (labyrinth != null) {
-			System.out.println("add player");
 			labyrinth.addPlayer();
-			System.out.println("fill with dots");
 			labyrinth.fillWithDots();
+			brainThread.start();
 		} else {
 			endGame();
 		}
+	}
+	
+	protected void resetBrain() {
+		brainThread.interrupt();
+		enemyBrain = new EnemyBrain();
+		brainThread = new Thread(enemyBrain);
 	}
 	
 	/**
@@ -139,8 +151,6 @@ public class Game implements Subscriber, Runnable {
 	}
 	
 	public void start() {
-		gameThread = new Thread(this);
-		brainThread = new Thread(enemyBrain);
 		gameThread.start();
 		brainThread.start();
 	}

@@ -1,17 +1,17 @@
 package game.entity.enemy;
 
-import game.Direction;
+import game.labyrinth.Direction;
 
 public abstract class EnemyState {
 	
-	protected Enemy context;
+	protected Enemy contextEnemy;
 	
 	/**
 	 * Crea un nuevo estado para el enemigo pasado como parametro.
 	 * @param enemy Un enemigo.
 	 */
 	protected EnemyState(Enemy enemy) {
-		this.context = enemy;
+		this.contextEnemy = enemy;
 	}
 	
 	/**
@@ -29,5 +29,11 @@ public abstract class EnemyState {
 	 * Hace que el enemigo que se encuantra en este estado colisione con el jugador.
 	 */
 	public abstract void collideWithPlayer();
+	
+	/**
+	 * Retorna si este estado puede ser cambiado por el cliente.
+	 * @return True si el estado puede ser cambiado por el cliente, false si no.
+	 */
+	public abstract boolean locked();
 	
 }

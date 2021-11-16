@@ -1,6 +1,5 @@
 package game.labyrinth;
 
-import game.Direction;
 import game.entity.Entity;
 
 import java.util.ArrayList;

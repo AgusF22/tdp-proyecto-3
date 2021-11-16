@@ -3,7 +3,7 @@ package game.entity;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import game.Direction;
+import game.labyrinth.Direction;
 
 public class GraphicCharacter extends GraphicEntity{
 	
