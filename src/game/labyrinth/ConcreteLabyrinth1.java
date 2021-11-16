@@ -65,10 +65,10 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		//TODO descomentar para setear enemigos
 		Zone posSpawn = this.getSpawn();									// ***Set Enemy***
 		
-		Enemy red 		= new RedEnemy		(posSpawn);
-		Enemy blue 		= new BlueEnemy		(posSpawn, (RedEnemy) red);
-		Enemy orange 	= new OrangeEnemy	(posSpawn);
-		Enemy pink 		= new PinkEnemy		(posSpawn);
+		RedEnemy red 		= new RedEnemy		(posSpawn);
+		BlueEnemy blue 		= new BlueEnemy		(posSpawn, red);
+		OrangeEnemy orange 	= new OrangeEnemy	(posSpawn);
+		PinkEnemy pink 		= new PinkEnemy		(posSpawn);
 		
 		red		.getGraphic().addToGUI(game.getGUI());
 		blue	.getGraphic().addToGUI(game.getGUI());
