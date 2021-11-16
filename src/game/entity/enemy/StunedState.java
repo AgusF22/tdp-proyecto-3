@@ -1,5 +1,8 @@
 package game.entity.enemy;
 
+import game.Direction;
+import game.Game;
+
 /**
  * Clase que modela el estado de un enemigo que se encuentra aturdido.
  */
@@ -13,7 +16,7 @@ public class StunedState extends EnemyState{
 	 */
 	protected StunedState(Enemy enemy) {
 		super(enemy);
-		stunTime = 30;
+		stunTime = 1 * Game.CYCLES_PER_SECOND;
 	}
 
 	/**
@@ -22,10 +25,18 @@ public class StunedState extends EnemyState{
 	 */
 	@Override
 	public void move() {
-		stunTime--;
-		if (stunTime >= 0) {
+		if (--stunTime == 0) {
 			context.changeState(new ChasingState(context));
 		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * En estado aturdido, el enemigo no se mueve, por lo que la direccion es nula.
+	 */
+	@Override
+	public Direction nextMoveDirection() {
+		return null;
 	}
 
 	/**

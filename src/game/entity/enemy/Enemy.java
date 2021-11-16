@@ -4,7 +4,9 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import game.Direction;
+import game.Game;
 import game.entity.Character;
+import game.entity.GraphicCharacter;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
@@ -16,9 +18,10 @@ public abstract class Enemy extends Character {
 	/**
 	 * Construye un nuevo enemigo.
 	 * @param zone La zona en la que se encontrara el nuevo enemigo.
+	 * @param movementSpeed La velocidad de movimiento para el nuevo enemigo.
 	 */
-	protected Enemy(Zone zone) {
-		super(zone, 0.15f);
+	protected Enemy(Zone zone, float movementSpeed) {
+		super(zone, 0.1f);
 		state = new ChasingState(this);
 	}
 	
@@ -35,6 +38,10 @@ public abstract class Enemy extends Character {
 	
 	protected float getMovementSpeed() {
 		return movementSpeed;
+	}
+	
+	protected Zone getZone() {
+		return zone;
 	}
 	
 	/**
@@ -66,17 +73,29 @@ public abstract class Enemy extends Character {
 		this.state = state; 
 	}
 	
+	@Override
+	public void addSpeedMultiplier(float multiplier) {
+		speedMultiplier = multiplier;
+		speedEffectTimer = FleeingState.FLEEING_DURATION;
+	}
+	
+	@Override
+	protected void removeSpeedMultiplier() {
+		speedMultiplier = 1;
+	}
+	
 	/**
 	 * Ejecuta el movimiento de este enemigo.
 	 */
 	public void move() {
+		updateEffects();
 		state.move();
 	}
 	
 	@Override
 	protected void updateMovementDirection() {
 		if (isIntersection(zone)) {
-			movementDirection = calculateChasePath();
+			movementDirection = state.nextMoveDirection();
 			graphic.updateImage();
 		} else {
 			if (!canMove()) {
@@ -97,6 +116,10 @@ public abstract class Enemy extends Character {
 			movementDirection = movementDirection.getOpposite();
 		}
 	}
+	
+	protected void turnAround() {
+		movementDirection = movementDirection.getOpposite();
+	}
 
 	@Override
 	protected boolean canMove() {
@@ -114,7 +137,7 @@ public abstract class Enemy extends Character {
 	 * @return La mejor direccion para acercarse a una zona destino.
 	 */
 	protected Direction bestAproachPath(Zone destZone) {
-		System.out.println("bestAproachPath"); // TODO remove
+//		System.out.println("bestAproachPath"); // TODO remove
 		Direction bestDirection = movementDirection;
 		double bestValue = Double.MIN_VALUE;
 		double value;
@@ -124,11 +147,11 @@ public abstract class Enemy extends Character {
 
 		for (Direction d : directions) {
 			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
-				System.out.println("Start " + d.toString() + " value calculation");
+//				System.out.println("Start " + d.toString() + " value calculation");
 				value = pathValue(cursor.sendCloneTo(d), destZone, 10);
-				System.out.println("direction " + d + " value is " + value);
+//				System.out.println("direction " + d + " value is " + value);
 				if (value > bestValue) {
-					System.out.println("best value is " + (1d / value));
+//					System.out.println("best value is " + (1d / value));
 					bestValue = value;
 					bestDirection = d;
 				}
@@ -200,7 +223,7 @@ public abstract class Enemy extends Character {
 								Math.pow((double) zone1.getX() - zone2.getX(), 2) +
 								Math.pow((double) zone1.getY() - zone2.getY(), 2));
 		
-		System.out.println("distance from zone to target is " + distance);
+//		System.out.println("distance from zone to target is " + distance);
 		
 		return distance == 0 ? Double.MAX_VALUE : 1 / distance;
 	}
@@ -223,17 +246,17 @@ public abstract class Enemy extends Character {
 	/**
 	 * Tipo de dato que modela un par zona direccion. A ser usado para calcular el movimiento del enemigo.
 	 */
-	private class Cursor {
+	protected class Cursor {
 		
-		private Zone zone;
-		private Direction direction;
+		protected Zone zone;
+		protected Direction direction;
 		
 		/**
 		 * Crea una nueva instancia de cursor.
 		 * @param zone Una zona.
 		 * @param direction Una direccion.
 		 */
-		private Cursor(Zone zone, Direction direction) {
+		protected Cursor(Zone zone, Direction direction) {
 			this.zone = zone;
 			this.direction = direction;
 		}
@@ -241,7 +264,7 @@ public abstract class Enemy extends Character {
 		/**
 		 * Mueve este cursor para que apunte a la siguiente zona, de acuerdo a la direccion actual.
 		 */
-		private void nextZone() {
+		protected void nextZone() {
 			if(zone.getAdjacent(direction).getType() != ZoneType.WALL) {
 				zone = zone.getAdjacent(direction);
 			} else {
@@ -261,7 +284,7 @@ public abstract class Enemy extends Character {
 		 * @param direction La direccion para el nuevo cursor.
 		 * @return El nuevo cursor, movido una vez.
 		 */
-		private Cursor sendCloneTo(Direction direction) {
+		protected Cursor sendCloneTo(Direction direction) {
 			Cursor clone = new Cursor(zone, direction);
 			clone.nextZone();
 			return clone;
@@ -271,7 +294,7 @@ public abstract class Enemy extends Character {
 		 * Comprueba si este cursor se encuentra en una zona interseccion, es decir, una zona adyacente a mas de 2 caminos.
 		 * @return True si la zona a la que apunta este cursor es interseccion, false si no.
 		 */
-		private boolean isInIntersection() {
+		protected boolean isInIntersection() {
 			int connections = 0;
 			EnumSet<Direction> directions = EnumSet.complementOf(EnumSet.of(direction));
 			for(Direction d : directions) {

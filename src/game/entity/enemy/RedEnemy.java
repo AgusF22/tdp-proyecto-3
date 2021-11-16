@@ -8,14 +8,9 @@ import game.labyrinth.Zone;
 public class RedEnemy extends Enemy {
 
 	public RedEnemy(Zone zone) {
-		super (zone);
+		super (zone, 0.15f);
 		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getRedEnemyImages());
 	}
-	
-//	@Override
-//	public void move() {
-//		//TODO imp
-//	}
 
 	@Override
 	public Direction calculateChasePath() {

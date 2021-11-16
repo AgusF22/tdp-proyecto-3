@@ -63,42 +63,39 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 	private void setEntity() {
 		
 		//TODO descomentar para setear enemigos
-		Zone posSpawn = this.getSpawn();							// ***Set Enemy***
+		Zone posSpawn = this.getSpawn();									// ***Set Enemy***
 		
-		Enemy red = new RedEnemy(posSpawn);
-		red.getGraphic().addToGUI(game.getGUI());
+		Enemy red 		= new RedEnemy		(posSpawn);
+		Enemy blue 		= new BlueEnemy		(posSpawn, (RedEnemy) red);
+		Enemy orange 	= new OrangeEnemy	(posSpawn);
+		Enemy pink 		= new PinkEnemy		(posSpawn);
+		
+		red		.getGraphic().addToGUI(game.getGUI());
+		blue	.getGraphic().addToGUI(game.getGUI());
+		orange	.getGraphic().addToGUI(game.getGUI());
+		pink	.getGraphic().addToGUI(game.getGUI());
 		
 		game.getEnemyBrain().addEnemy(red);
-
-		Enemy blue = new BlueEnemy(posSpawn, (RedEnemy) red);
-		blue.getGraphic().addToGUI(game.getGUI());
+		game.getEnemyBrain().addEnemy(blue);
+		game.getEnemyBrain().addEnemy(orange);
+		game.getEnemyBrain().addEnemy(pink);
 		
-		Enemy orange = new OrangeEnemy(posSpawn);
-		orange.getGraphic().addToGUI(game.getGUI());
-		
-		Enemy pink = new PinkEnemy(posSpawn);
-		pink.getGraphic().addToGUI(game.getGUI());
-		
-																	// ***Set Prize***
-        Entity fruit = new ConcreteFruit1(zones[14][17]);
-        fruit.getGraphic().addToGUI(game.getGUI());
+																			// ***Set Prize***
+        Entity fruit 		= new ConcreteFruit1	(zones[14][17]);
+        Entity powerPellet1 = new PowerPellet		(zones[1][1]);
+        Entity powerPellet2 = new PowerPellet		(zones[27][1]);
+        Entity powerPellet3 = new PowerPellet		(zones[1][29]);
+        Entity powerPellet4 = new PowerPellet		(zones[27][29]);
+        Entity potion1 		= new ConcretePotion1	(zones[6][14]);
+        Entity potion2 		= new ConcretePotion2	(zones[22][14]);
         
-        Entity powerPellet1 = new PowerPellet(zones[1][1]);
+        fruit		.getGraphic().addToGUI(game.getGUI());
         powerPellet1.getGraphic().addToGUI(game.getGUI());
-        
-        Entity powerPellet2 = new PowerPellet(zones[27][1]);
         powerPellet2.getGraphic().addToGUI(game.getGUI());
-        
-        Entity powerPellet3 = new PowerPellet(zones[1][29]);
         powerPellet3.getGraphic().addToGUI(game.getGUI());
-        
-        Entity powerPellet4 = new PowerPellet(zones[27][29]);
         powerPellet4.getGraphic().addToGUI(game.getGUI());
-        
-        Entity potion1 = new ConcretePotion1(zones[6][14]);
-        potion1.getGraphic().addToGUI(game.getGUI());
-        Entity potion2 = new ConcretePotion2(zones[22][14]);
-        potion2.getGraphic().addToGUI(game.getGUI());									
+        potion1		.getGraphic().addToGUI(game.getGUI());
+        potion2		.getGraphic().addToGUI(game.getGUI());									
 	}
 	
 	/**

@@ -82,8 +82,8 @@ public abstract class Character extends Entity {
 				x -= n;
 				break;
 		}
-		x = Math.round(x * 10f) / 10f;		//Solo necesitamos precision de dos decimales	
-		y = Math.round(y * 10f) / 10f;
+		x = Math.round(x * 100f) / 100f;		//Solo necesitamos precision de dos decimales	
+		y = Math.round(y * 100f) / 100f;
 		
 		this.setCoordinates(x, y);			
 		graphic.updatePosition();			//Actualiza la posicion de la Label en la grafica luego de cambiar su posicion

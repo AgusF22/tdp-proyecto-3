@@ -162,7 +162,8 @@ public final class Player extends Character{
 		((GraphicPlayer) graphic).setShieldEffect(true);
 	}
 	
-	protected void removeShield() {
+	public void removeShield() {
+		shieldEffectTimer = 0;
 		hasShield = false;
 		((GraphicPlayer) graphic).setShieldEffect(false);
 	}
