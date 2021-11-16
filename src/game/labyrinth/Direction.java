@@ -1,4 +1,4 @@
-package game;
+package game.labyrinth;
 
 import java.util.HashMap;
 import java.util.Map;

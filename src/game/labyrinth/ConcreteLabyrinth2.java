@@ -2,7 +2,6 @@ package game.labyrinth;
 
 import exceptions.DataLoadException;
 import exceptions.NullZoneException;
-import game.Direction;
 import game.Game;
 import game.entity.player.Player;
 

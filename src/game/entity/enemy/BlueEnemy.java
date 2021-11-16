@@ -1,8 +1,9 @@
 package game.entity.enemy;
 
-import game.Direction;
+import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
+import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
 import game.labyrinth.Zone;
 
@@ -12,8 +13,9 @@ public class BlueEnemy extends Enemy {
 
 	public BlueEnemy(Zone zone, RedEnemy red) {
 		super (zone, 0.1f);
-		this.graphic = new GraphicEnemy(this, zone.getLabyrinth().getImageFactory().getBlueEnemyImages());
 		this.red = red;
+		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getBlueEnemyImages());
+		state = new StartingState(this, 3 * Game.CYCLES_PER_SECOND);
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class BlueEnemy extends Enemy {
 		targetX = limitToLabyrinthWidth(targetX);
 		targetY = limitToLabyrinthWidth(targetY);
 		
-		return bestAproachPath(zone.getLabyrinth().getZone(targetX, targetY));
+		return bestAproachPath(this.getLabyrinth().getZone(targetX, targetY));
 	}
 	
 	protected int limitToLabyrinthHeight(float yParam) {

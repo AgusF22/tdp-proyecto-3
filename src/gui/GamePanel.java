@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import exceptions.DataLoadException;
 import game.Game;
@@ -29,10 +30,7 @@ public class GamePanel extends GUIPanel {
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
 	private JLabel lblScore;
-	private JLabel lblScoreText;
 	private int score;
-	
-	// TODO se necesitan componentes para mostrar el puntaje, y para poder implementar winGame, loseGame, y updatePoints -AF
 	
 	public GamePanel(GUI gui) { 
 		super(gui);
@@ -64,20 +62,16 @@ public class GamePanel extends GUIPanel {
 	 * Crea los labels y los coloca en el panel.
 	 */
 	private void crearLabels() {
-		lblScoreText = new JLabel("");
-		lblScoreText.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblScoreText.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScoreText.setForeground(new Color(250, 128, 114));
-		lblScoreText.setBounds(((width - scaleWidth)*2/5), 0, scaleWidth, scaleHeight);
-		lblScoreText.setText("SCORE: ");
-		add(lblScoreText);
 		
 		lblScore = new JLabel("");
 		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScore.setForeground(new Color(250, 128, 114));
-		lblScore.setBounds(((width - scaleWidth)*3/5), 0, scaleWidth, scaleHeight);
-		lblScore.setText(""+score);
+		lblScore.setForeground(new Color(186, 64, 50));
+		lblScore.setBounds(((width - scaleWidth)*1/3), (scaleHeight*1)/6, (scaleWidth*13)/4, scaleHeight);
+		lblScore.setText("SCORE: "+score);
+		lblScore.setBackground(new Color(250, 128, 114));
+		lblScore.setOpaque(true);
+		lblScore.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
 		add(lblScore);
 	}
 
@@ -144,10 +138,20 @@ public class GamePanel extends GUIPanel {
 			}
 		};
 		
+		Action bomb = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				putBomb();
+			}
+		};
+		
 		final String arriba = "arriba";
 		final String abajo = "abajo";
 		final String derecha = "deracha";
 		final String izquierda = "izquierda";
+		final String bomba = "bomba";
 		
 		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		
@@ -159,11 +163,18 @@ public class GamePanel extends GUIPanel {
 		iMap.put(KeyStroke.getKeyStroke("D"), derecha);
 		iMap.put(KeyStroke.getKeyStroke("LEFT"), izquierda);
 		iMap.put(KeyStroke.getKeyStroke("A"), izquierda);
+		iMap.put(KeyStroke.getKeyStroke("SPACE"), bomba);
 		
 		getActionMap().put(arriba, moveUp);
 		getActionMap().put(abajo, moveDown);
 		getActionMap().put(derecha, moveRight);
 		getActionMap().put(izquierda, moveLeft);
+		getActionMap().put(bomba, bomb);
+	}
+	
+	private void putBomb() {
+		// TODO IMPLEMENTAR
+		System.out.println("BOMBA implementar");
 	}
 	
 	/**
@@ -203,7 +214,7 @@ public class GamePanel extends GUIPanel {
 	 */
 	public void updatePoints() {
 		score = game.getPoints();
-		lblScore.setText(""+score);
+		lblScore.setText("SCORE: "+score);
 	}
 	
 	/**
@@ -305,5 +316,12 @@ public class GamePanel extends GUIPanel {
 		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7f);
 		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38f);
 		panelCapas.setLocation(posW, posH);
+	}
+	
+	/**
+	 * Detiene/inicia la musica.
+	 */
+	protected void musicOffPlay() {
+		System.out.println("MUSICA OFF/PLAY implementar en GamePanel");
 	}
 }

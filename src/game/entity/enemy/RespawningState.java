@@ -2,9 +2,9 @@ package game.entity.enemy;
 
 import static java.lang.Math.*;
 
-import game.Direction;
 import game.Game;
 import game.entity.GraphicEnemy;
+import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
 public class RespawningState extends EnemyState {
@@ -14,25 +14,25 @@ public class RespawningState extends EnemyState {
 	public RespawningState(Enemy enemy) {
 		super(enemy);
 		respawnTimer = getStateDuration();
-		Zone spawn = context.getZone().getLabyrinth().getSpawn();
-		context.setCoordinates(spawn.getX(), spawn.getY());
-		((GraphicEnemy) context.getGraphic()).setVisible(false);
+		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
+		contextEnemy.setCoordinates(spawn.getX(), spawn.getY());
+		((GraphicEnemy) contextEnemy.getGraphic()).setVisible(false);
 	}
 	
 	protected int getStateDuration() {
-		Zone spawn = context.getZone().getLabyrinth().getSpawn();
+		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
 		int distance = toIntExact(round(sqrt(
-				pow((double) spawn.getX() - context.getZone().getX(), 2) +
-				pow((double) spawn.getY() - context.getZone().getY(), 2))));
+				pow((double) spawn.getX() - contextEnemy.getZone().getX(), 2) +
+				pow((double) spawn.getY() - contextEnemy.getZone().getY(), 2))));
 		
 		System.out.println("distance = " + distance);
 		return round(distance * 0.2f * Game.CYCLES_PER_SECOND);
 	}
 	
 	public void move() {
-		if (--respawnTimer == 0) {
-			context.changeState(new ChasingState(context));
-			((GraphicEnemy) context.getGraphic()).setVisible(true);
+		if (--respawnTimer <= 0) {
+			contextEnemy.changeState(new ChasingState(contextEnemy));
+			((GraphicEnemy) contextEnemy.getGraphic()).setVisible(true);
 		}
 	}
 	
@@ -43,6 +43,11 @@ public class RespawningState extends EnemyState {
 	
 	public void collideWithPlayer() {
 		// metodo vacio
+	}
+
+	@Override
+	public boolean locked() {
+		return true;
 	}
 
 }
