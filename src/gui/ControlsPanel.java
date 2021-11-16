@@ -9,13 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class ControlsPanel extends GUIPanel{
 	
 	protected JLabel fondo;
+	
+	private static final long serialVersionUID = 1L;
 	
 	public ControlsPanel(GUI gui) {
 		super(gui);
@@ -47,20 +48,20 @@ public class ControlsPanel extends GUIPanel{
 	/**
 	 * Crea una tabla con informacion de controles.
 	 */
-	private void crearInfoControles() {
+	private void crearInfoControles() {	// TODO ajustar tamaño de columnas, toggle music no se ve
 		JTable tabla = new JTable();
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("1");
 		modelo.addColumn("2");
 		modelo.addColumn("3");
 		
-		modelo.addRow(new String[] {"CONTROLS", "OP1", "OP2"});
-		modelo.addRow(new String[] {"MOVE UP", "W", Character.toString('\u2191')});
-		modelo.addRow(new String[] {"MOVE DOWN", "S", Character.toString('\u2193')});
-		modelo.addRow(new String[] {"MOVE LEFT", "A", Character.toString('\u2190')});
-		modelo.addRow(new String[] {"MOVE RIGHT", "D", Character.toString('\u2192')});
-		modelo.addRow(new String[] {"PUT BOMB", "SPACE", "SPACE"});
-		modelo.addRow(new String[] {"MUSIC", "M", "M"});
+		modelo.addRow(new String[] {"CONTROLS", 	"OP1", 		"OP2"});
+		modelo.addRow(new String[] {"MOVE UP", 		"W", 		Character.toString('\u2191')});
+		modelo.addRow(new String[] {"MOVE DOWN", 	"S", 		Character.toString('\u2193')});
+		modelo.addRow(new String[] {"MOVE LEFT", 	"A", 		Character.toString('\u2190')});
+		modelo.addRow(new String[] {"MOVE RIGHT", 	"D", 		Character.toString('\u2192')});
+		modelo.addRow(new String[] {"PLACE BOMB", 	"SPACE", 	"SPACE"});
+		modelo.addRow(new String[] {"TOGGLE MUSIC", "M", 		"M"});
 		
 		tabla.setModel(modelo);
 		

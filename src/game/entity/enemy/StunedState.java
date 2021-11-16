@@ -1,6 +1,7 @@
 package game.entity.enemy;
 
 import game.Game;
+import game.entity.GraphicEnemy;
 import game.labyrinth.Direction;
 
 /**
@@ -16,6 +17,7 @@ public class StunedState extends EnemyState{
 	 */
 	protected StunedState(Enemy enemy) {
 		super(enemy);
+		((GraphicEnemy) contextEnemy.getGraphic()).setStunEffect(true);
 		stunTime = 1 * Game.CYCLES_PER_SECOND;
 	}
 
@@ -26,6 +28,7 @@ public class StunedState extends EnemyState{
 	@Override
 	public void move() {
 		if (--stunTime == 0) {
+			((GraphicEnemy) contextEnemy.getGraphic()).setStunEffect(false);
 			contextEnemy.changeState(new ChasingState(contextEnemy));
 		}
 	}
