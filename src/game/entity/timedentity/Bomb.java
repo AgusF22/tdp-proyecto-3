@@ -1,21 +1,30 @@
 package game.entity.timedentity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import game.Direction;
+import game.Game;
 import game.entity.Entity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
-public class Bomb extends Entity {
+public class Bomb extends Entity implements Runnable {
 
 	protected int time;
 	protected boolean exploded;
-	protected Explosion[][] explosion;
+	protected List<Explosion> explosion;
+	
+	protected Thread bombThread;
 	
 	protected Bomb(Zone zone) {
 		super(zone);
-		// TODO Auto-generated constructor stub
+		time = 4 * Game.CYCLES_PER_SECOND;
+		exploded = false;
+		explosion = new ArrayList<>();
 	}
 	
-	public void reduceCountdown() {
+	protected void startCountdown() {
 		time--;
 	}
 	
@@ -24,16 +33,19 @@ public class Bomb extends Entity {
 	}
 	
 	protected void endExplosion() {
-	
+		for (Explosion e : explosion) {
+			e.remove();
+		}
 	}
 	
 	public void run() {
-		
+		while(!Thread.currentThread().isInterrupted()) {
+			
+		}
 	}
 
 	@Override
 	public void accept(Visitor visitor) {
-		// TODO Auto-generated method stub
-		
+		visitor.visit(this);
 	}
 }
