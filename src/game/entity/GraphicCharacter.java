@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 
 import game.labyrinth.Direction;
 
-public class GraphicCharacter extends GraphicEntity{
+public abstract class GraphicCharacter extends GraphicEntity{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +33,7 @@ public class GraphicCharacter extends GraphicEntity{
 	}
 	
 	public void updateImage() {
-		Direction dir = ((Character) entity).getMovementDirection();
+		Direction dir = entity.getMovementDirection();
 		switch (dir) {
 		case DOWN:
 			setMoveDirection(2);
@@ -64,5 +64,5 @@ public class GraphicCharacter extends GraphicEntity{
 			this.remove(speedImageLabel);
 		}
 	}
-	
+
 }

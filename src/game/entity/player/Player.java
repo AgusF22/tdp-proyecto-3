@@ -159,13 +159,13 @@ public final class Player extends Character{
 	public void addShield() {
 		hasShield = true;
 		shieldEffectTimer = 5 * Game.CYCLES_PER_SECOND;
-		((GraphicPlayer) graphic).setShieldEffect(true);
+		graphic.setShieldEffect(true);
 	}
 	
 	protected void removeShield() {
 		shieldEffectTimer = 0;
 		hasShield = false;
-		((GraphicPlayer) graphic).setShieldEffect(false);
+		graphic.setShieldEffect(false);
 	}
 	
 	public void useShield() {

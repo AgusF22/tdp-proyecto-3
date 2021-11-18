@@ -51,10 +51,12 @@ public class GraphicEnemy extends GraphicCharacter{
 			this.remove(stunedImageLabel);
 		}
 	}
-	
+
 	@Override
-	public void setVisible(boolean visible) {
-		super.setVisible(visible);
+	@Deprecated
+	public void setShieldEffect(boolean shield) {
+		// metodo vacio
+		// TODO documentar
 	}
 	
 }

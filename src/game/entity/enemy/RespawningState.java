@@ -3,7 +3,6 @@ package game.entity.enemy;
 import static java.lang.Math.*;
 
 import game.Game;
-import game.entity.GraphicEnemy;
 import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
@@ -16,7 +15,7 @@ public class RespawningState extends EnemyState {
 		respawnTimer = getStateDuration();
 		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
 		contextEnemy.setCoordinates(spawn.getX(), spawn.getY());
-		((GraphicEnemy) contextEnemy.getGraphic()).setVisible(false);
+		contextEnemy.getGraphic().setVisible(false);
 	}
 	
 	protected int getStateDuration() {
@@ -32,7 +31,7 @@ public class RespawningState extends EnemyState {
 	public void move() {
 		if (--respawnTimer <= 0) {
 			contextEnemy.changeState(new ChasingState(contextEnemy));
-			((GraphicEnemy) contextEnemy.getGraphic()).setVisible(true);
+			contextEnemy.getGraphic().setVisible(true);
 		}
 	}
 	
