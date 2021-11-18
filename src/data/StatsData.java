@@ -12,10 +12,10 @@ import java.io.Serializable;
  * Clase encargada de cargar y guardar el registro de puntajes.
  */
 public class StatsData implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
 
 	protected static final String FILE_NAME = "score";
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Carga el registro de mejores puntajes. Si no existe, crea uno nuevo.

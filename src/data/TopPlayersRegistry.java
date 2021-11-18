@@ -3,7 +3,6 @@ package data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class TopPlayersRegistry implements Serializable {
 	
@@ -24,8 +23,8 @@ public class TopPlayersRegistry implements Serializable {
 	 */
 	public void addPlayer(PlayerScore p) {
 		ranking.add(p);														// Agrega nuevo puntaje 
+		Collections.sort(this.ranking, Collections.reverseOrder());			// Ordena
 		if (ranking.size() > 5) {											// Controla que solo se guarden los 5 mejores puntajes.
-			Collections.sort(this.ranking, Collections.reverseOrder());
 			ranking.remove(ranking.size() - 1);
 		}
 	}
@@ -33,14 +32,7 @@ public class TopPlayersRegistry implements Serializable {
 	/**
 	 * @return una lista ordenada de mayor a menor de objetos PlayerScore. 
 	 */
-	public List<PlayerScore> getScores() {
-		Collections.sort(this.ranking, Collections.reverseOrder());
-		List<PlayerScore> top = new ArrayList<>();
-
-		for (PlayerScore p: this.ranking) {
-			top.add(p);
-		}
-		
-		return top;
+	public Iterable<PlayerScore> getScores() {
+		return new ArrayList<>(ranking);
 	}
 }

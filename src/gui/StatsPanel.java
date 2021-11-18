@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -43,8 +42,6 @@ public class StatsPanel extends GUIPanel{
 			e.printStackTrace();
 		}
 		
-		List<PlayerScore> scores = registro.getScores();
-		
 		JTable tabla = new JTable();
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("NAME");
@@ -53,14 +50,14 @@ public class StatsPanel extends GUIPanel{
 		String[] p0 = {"NAME", "SCORE"};
 		modelo.addRow(p0);
 		
-		for(PlayerScore s: scores) {
-			String[] p = {s.getName(), ""+s.getScore()};
+		for(PlayerScore s: registro.getScores()) {
+			String[] p = {s.getName(), "" + s.getScore()};
 			modelo.addRow(p);
 		}
 
 		tabla.setModel(modelo);
 		
-		tabla.setBounds((width - scaleWidth*2) / 2, 0, scaleWidth*2, scaleHeight*6);
+		tabla.setBounds((width - scaleWidth * 2) / 2, 0, scaleWidth * 2, scaleHeight * 6);
 		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
