@@ -38,6 +38,7 @@ public class GamePanel extends GUIPanel {
 		crearPanel();
 		crearLabels();
 		agregarControles();
+		agregarControlMusica();
 		crearFondo();
 		
 		try {
@@ -307,6 +308,29 @@ public class GamePanel extends GUIPanel {
 	 */
 	public ImageFactory getImageFactory() {
 		return frame.getImageFactory();
+	}
+	
+	
+	/**
+	 * Agrega funcionalidad a la tecla "m" para poder detener/iniciar la musica.
+	 */
+	private void agregarControlMusica() {
+		Action music = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				musicOffPlay();
+			}
+		};
+		
+		final String musica= "musica";
+		
+		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		iMap.put(KeyStroke.getKeyStroke("M"), musica);
+		
+		getActionMap().put(musica, music);
 	}
 	
 	/**

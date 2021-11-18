@@ -37,36 +37,7 @@ public abstract class GUIPanel extends JPanel{
 		height = 720;
 		scaleWidth = width/8;
 		scaleHeight = height/16;
-		agregarControlMusica();
 	}
-	
-	/**
-	 * Agrega funcionalidad a la tecla "m" para poder detener/iniciar la musica.s
-	 */
-	private void agregarControlMusica() {
-		Action music = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				musicOffPlay();
-			}
-		};
-		
-		final String musica= "musica";
-		
-		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		
-		iMap.put(KeyStroke.getKeyStroke("M"), musica);
-		
-		getActionMap().put(musica, music);
-	}
-	
-	/**
-	 * Detiene/inicia la musica.
-	 */
-	protected abstract void musicOffPlay();
-	
 	/**
 	 * Devuelve la gui que contiene a este panel.
 	 * @return La gui que contiene a este panel.

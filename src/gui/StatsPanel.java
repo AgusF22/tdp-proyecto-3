@@ -108,11 +108,4 @@ public class StatsPanel extends GUIPanel{
 		frame.setPanel(new StartPanel(frame));
 	}
 	
-	/**
-	 * Detiene/inicia la musica.
-	 */
-	protected void musicOffPlay() {
-		System.out.println("MUSICA OFF/PLAY implementar en StatsPanel");
-	}
-	
 }
