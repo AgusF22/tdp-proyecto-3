@@ -16,4 +16,34 @@ public class GraphicPrize extends GraphicEntity{
 	public void updateImage() {
 		// metodo vacio
 	}
+	
+	@Override
+	@Deprecated
+	public void setVisible(boolean visible) {
+		// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setSpeedEffect(boolean speed) {
+		// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setStunEffect(boolean stuned) {
+		// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setShieldEffect(boolean shield) {
+		// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setFleeing(boolean fleeing) {
+		// TODO documentar
+	}
 }

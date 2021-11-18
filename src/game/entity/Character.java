@@ -129,12 +129,12 @@ public abstract class Character extends Entity {
 	public void addSpeedMultiplier(float multiplier) {
 		speedMultiplier = multiplier;
 		speedEffectTimer = 10 * Game.CYCLES_PER_SECOND;
-		((GraphicCharacter) graphic).setSpeedEffect(true);
+		graphic.setSpeedEffect(true);
 	}
 	
 	protected void removeSpeedMultiplier() {
 		speedMultiplier = 1;
-		((GraphicCharacter) graphic).setSpeedEffect(false);
+		graphic.setSpeedEffect(false);
 	}
 
 	protected void updateEffects() {

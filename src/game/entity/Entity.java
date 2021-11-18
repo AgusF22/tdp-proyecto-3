@@ -1,6 +1,7 @@
 package game.entity;
 
 import game.entity.visitor.Visitor;
+import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
 import game.labyrinth.Zone;
 
@@ -76,5 +77,13 @@ public abstract class Entity {
 	 */
 	public GraphicEntity getGraphic() {
 		return graphic;
+	}
+	
+	/**
+	 * Consulta la direccion de movimiento si esta existe
+	 * @return Direcion de movimiento actual
+	 */
+	public Direction getMovementDirection() {
+		return null;		//Retorna null porque sera redefinida en las clases que lo necesiten
 	}
 }

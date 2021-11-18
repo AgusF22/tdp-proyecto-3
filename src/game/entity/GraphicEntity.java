@@ -31,4 +31,16 @@ public abstract class GraphicEntity extends JLabel{
 		panel.addLabel(this);
 		this.updatePosition();
 	}
+	
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+	}
+	
+	public abstract void setSpeedEffect(boolean speed);
+	
+	public abstract void setStunEffect(boolean stuned);
+	
+	public abstract void setShieldEffect(boolean shield);
+
+	public abstract void setFleeing(boolean fleeing);
 }

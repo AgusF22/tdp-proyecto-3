@@ -24,4 +24,22 @@ public class GraphicPlayer extends GraphicCharacter {
 		}
 	}
 
+	@Override
+	@Deprecated
+	public void setVisible(boolean visible) {
+		// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setStunEffect(boolean stuned) {
+		/// TODO documentar
+	}
+
+	@Override
+	@Deprecated
+	public void setFleeing(boolean fleeing) {
+		// TODO documentar
+	}
+
 }

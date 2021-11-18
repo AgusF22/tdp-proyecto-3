@@ -1,7 +1,6 @@
 package game.entity.enemy;
 
 import game.Game;
-import game.entity.GraphicEnemy;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
 
@@ -15,7 +14,7 @@ public class FleeingState extends EnemyState {
 		fleeTimer = FLEEING_DURATION;
 		contextEnemy.addSpeedMultiplier(0.5f);
 		contextEnemy.turnAround();
-		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(true);
+		contextEnemy.getGraphic().setFleeing(true);
 	}
 	
 	@Override
@@ -27,7 +26,7 @@ public class FleeingState extends EnemyState {
 	}
 	
 	protected void changeToChase() {
-		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(false);
+		contextEnemy.getGraphic().setFleeing(false);
 		contextEnemy.changeState(new ChasingState(contextEnemy));
 	}
 	
@@ -43,7 +42,7 @@ public class FleeingState extends EnemyState {
 	public void collideWithPlayer() {
 		contextEnemy.changeState(new RespawningState(contextEnemy));
 		contextEnemy.getLabyrinth().addPoints(200);
-		((GraphicEnemy) contextEnemy.getGraphic()).setFleeing(false);
+		contextEnemy.getGraphic().setFleeing(false);
 	}
 
 	@Override
