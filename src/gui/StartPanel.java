@@ -55,13 +55,6 @@ public class StartPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Detiene/inicia la musica.
-	 */
-	protected void musicOffPlay() {
-		System.out.println("MUSICA OFF/PLAY implementar en StartPanel");
-	}
-	
-	/**
 	 * Crea el fondo de este panel.
 	 */
 	private void crearFondo() {

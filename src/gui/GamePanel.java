@@ -31,6 +31,9 @@ public class GamePanel extends GUIPanel {
 	private JLabel fondo;
 	private JLabel lblScore;
 	private int score;
+	private int lives;
+
+	private JLabel lblLives;
 	
 	public GamePanel(GUI gui) { 
 		super(gui);
@@ -38,6 +41,7 @@ public class GamePanel extends GUIPanel {
 		crearPanel();
 		crearLabels();
 		agregarControles();
+		agregarControlMusica();
 		crearFondo();
 		
 		try {
@@ -47,7 +51,7 @@ public class GamePanel extends GUIPanel {
 		}
 		
 		score = game.getPoints();
-		lblScore.setText(""+score);
+		//lives = game.getLives();
 		
 		repaint();
 		
@@ -67,12 +71,23 @@ public class GamePanel extends GUIPanel {
 		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
 		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
 		lblScore.setForeground(new Color(186, 64, 50));
-		lblScore.setBounds(((width - scaleWidth)*1/3), (scaleHeight*1)/6, (scaleWidth*13)/4, scaleHeight);
+		lblScore.setBounds(((width - (scaleWidth*9)/4)*61)/100, (scaleHeight*1)/6, (scaleWidth*9)/4, scaleHeight);
 		lblScore.setText("SCORE: "+score);
 		lblScore.setBackground(new Color(250, 128, 114));
 		lblScore.setOpaque(true);
 		lblScore.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
 		add(lblScore);
+		
+		lblLives = new JLabel("");
+		lblLives.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblLives.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLives.setForeground(new Color(186, 64, 50));
+		lblLives.setBounds(((width - (scaleWidth*5)/4)*32)/100, (scaleHeight*1)/6, (scaleWidth*5)/4, scaleHeight);
+		lblLives.setText("LIVES: "+lives);
+		lblLives.setBackground(new Color(250, 128, 114));
+		lblLives.setOpaque(true);
+		lblLives.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
+		add(lblLives);
 	}
 
 	/**
@@ -307,6 +322,36 @@ public class GamePanel extends GUIPanel {
 	 */
 	public ImageFactory getImageFactory() {
 		return frame.getImageFactory();
+	}
+	
+	/**
+	 * Baja el contador de vidas de la ventana en uno y lo actualiza.
+	 */
+	public void discountLife() {
+		lives--;
+		lblLives.setText("LIVES: "+lives);
+	}
+	
+	/**
+	 * Agrega funcionalidad a la tecla "m" para poder detener/iniciar la musica.
+	 */
+	private void agregarControlMusica() {
+		Action music = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				musicOffPlay();
+			}
+		};
+		
+		final String musica= "musica";
+		
+		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		iMap.put(KeyStroke.getKeyStroke("M"), musica);
+		
+		getActionMap().put(musica, music);
 	}
 	
 	/**

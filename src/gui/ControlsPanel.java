@@ -29,13 +29,6 @@ public class ControlsPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Detiene/inicia la musica.
-	 */
-	protected void musicOffPlay() {
-		System.out.println("MUSICA OFF/PLAY implementar en ControlsPanel");
-	}
-	
-	/**
 	 * Crea el fondo de este panel.
 	 */
 	private void crearFondo() {

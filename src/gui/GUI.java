@@ -1,6 +1,13 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 
 import data.StatsData;
 import imagefactories.ImageFactory;
@@ -70,4 +77,5 @@ public class GUI extends JFrame{
 	public ImageFactory getImageFactory() {
 		return factory;
 	}
+
 }
