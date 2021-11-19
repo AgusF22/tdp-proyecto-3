@@ -40,7 +40,7 @@ public class GUI extends JFrame{
 	}
 	
 	/**
-	 * Setea las propiedades de frame.
+	 * Setea las propiedades del frame.
 	 */
 	private void createFrame() {
 		setSize(currentScreenWidth, currentScreenHeight);

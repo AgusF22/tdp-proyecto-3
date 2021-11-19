@@ -139,10 +139,22 @@ public abstract class ImageFactory {
 	public abstract Icon getPotion1();
 	
 	/**
-	 * Devuelve el icono correspondiente a la pocion 1.
+	 * Devuelve el icono correspondiente a la pocion 2.
 	 * @return Un icono.
 	 */
 	public abstract Icon getPotion2();
+	
+	/**
+	 * Devuelve el icono correspondiente a la pocion 3.
+	 * @return Un icono.
+	 */
+	public abstract Icon getPotion3();
+	
+	/**
+	 * Devuelve el icono correspondiente a una bomba.
+	 * @return
+	 */
+	public abstract Icon getBomb();
 	
 	/**
 	 * Devuelve un ImageIcono escalado para mantener proporciones.

@@ -222,6 +222,16 @@ public class ConcreteImageFactory extends ImageFactory{
 		return getIcon("/res/img/minecraft/entity/prize/potion2.gif");
 	}
 	
+	@Override
+	public Icon getPotion3() {
+		return getIcon("/res/img/minecraft/entity/prize/potion3.gif");
+	}
+	
+	@Override
+	public Icon getBomb() {
+		return getIcon("/res/img/minecraft/entity/prize/tnt.gif");
+	}
+	
 	private ImageIcon getIcon(String path) {
 		ImageIcon icon = new ImageIcon(imagefactories
 				.ConcreteImageFactory.class.getResource(path));

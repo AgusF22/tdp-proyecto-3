@@ -31,7 +31,6 @@ public class GamePanel extends GUIPanel {
 	private JLabel fondo;
 	private JLabel lblScore;
 	private int score;
-
 	private JLabel lblLives;
 	
 	public GamePanel(GUI gui) { 
@@ -52,174 +51,7 @@ public class GamePanel extends GUIPanel {
 		//lives = game.getLives();
 		
 		repaint();
-		
-		
-		System.out.println();
-		System.out.println("Creado panel de juego");
-		
 		game.start();
-	}
-	
-	/**
-	 * Crea los labels y los coloca en el panel.
-	 */
-	private void crearLabels() {
-		
-		lblScore = new JLabel("");
-		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScore.setForeground(new Color(186, 64, 50));
-		lblScore.setBounds(((width - (scaleWidth*9)/4)*61)/100, (scaleHeight*1)/6, (scaleWidth*9)/4, scaleHeight);
-		lblScore.setText("SCORE: "+score);
-		lblScore.setBackground(new Color(250, 128, 114));
-		lblScore.setOpaque(true);
-		lblScore.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
-		add(lblScore);
-		
-		lblLives = new JLabel("");
-		lblLives.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblLives.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLives.setForeground(new Color(186, 64, 50));
-		lblLives.setBounds(((width - (scaleWidth*5)/4)*32)/100, (scaleHeight*1)/6, (scaleWidth*5)/4, scaleHeight);
-		lblLives.setText("LIVES: "+0);
-		lblLives.setBackground(new Color(250, 128, 114));
-		lblLives.setOpaque(true);
-		lblLives.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
-		add(lblLives);
-	}
-
-	/**
-	 * Setea algunas propiedades del panel.
-	 */
-	private void crearPanel() {
-		setLayout(null);
-		setLocation(0, 0);
-		panelCapas = new JLayeredPane();
-		add(panelCapas);
-		
-		labyrinthLabel = new JLabel("");
-		labyrinthLabel.setLocation(0, 0);
-		panelCapas.add(labyrinthLabel, Integer.valueOf(0), 0);
-	}
-	
-	/**
-	 * Crea el fondo del panel.
-	 */
-	private void crearFondo() {
-		fondo = new JLabel("");
-		fondo.setLocation(0, 0);
-		add(fondo);
-	}
-	
-	/**
-	 * Agrega los controles al panel.
-	 */
-	private void agregarControles() {
-		Action moveUp = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveUp();
-			}
-		};
-		
-		Action moveDown = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveDown();
-			}
-		};
-		
-		Action moveRight = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveRight();
-			}
-		};
-		
-		Action moveLeft = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moveLeft();
-			}
-		};
-		
-		Action bomb = new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				placeBomb();
-			}
-		};
-		
-		final String arriba = "arriba";
-		final String abajo = "abajo";
-		final String derecha = "deracha";
-		final String izquierda = "izquierda";
-		final String bomba = "bomba";
-		
-		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		
-		iMap.put(KeyStroke.getKeyStroke("UP"), arriba);
-		iMap.put(KeyStroke.getKeyStroke("W"), arriba);
-		iMap.put(KeyStroke.getKeyStroke("DOWN"), abajo);
-		iMap.put(KeyStroke.getKeyStroke("S"), abajo);
-		iMap.put(KeyStroke.getKeyStroke("RIGHT"), derecha);
-		iMap.put(KeyStroke.getKeyStroke("D"), derecha);
-		iMap.put(KeyStroke.getKeyStroke("LEFT"), izquierda);
-		iMap.put(KeyStroke.getKeyStroke("A"), izquierda);
-		iMap.put(KeyStroke.getKeyStroke("SPACE"), bomba);
-		
-		getActionMap().put(arriba, moveUp);
-		getActionMap().put(abajo, moveDown);
-		getActionMap().put(derecha, moveRight);
-		getActionMap().put(izquierda, moveLeft);
-		getActionMap().put(bomba, bomb);
-	}
-	
-	/**
-	 * Coloca una bomba.
-	 */
-	private void placeBomb() {
-		// TODO IMPLEMENTAR
-		// game.placeBomb();
-		System.out.println("BOMBA implementar");
-	}
-	
-	/**
-	 * Mueve al personaje principal a arriba.
-	 */
-	public void moveUp() {
-		game.moveUp();
-	}
-	
-	/**
-	 * Mueve al personaje principal a la derecha.
-	 */
-	public void moveRight() {
-		game.moveRight();
-	}
-	
-	/**
-	 * Mueve al personaje principal a abajo.
-	 */
-	public void moveDown() {
-		game.moveDown();
-	}
-	
-	/**
-	 * Mueve al personaje principal a la izquierda.
-	 */
-	public void moveLeft() {
-		game.moveLeft();
 	}
 	
 	/**
@@ -325,7 +157,169 @@ public class GamePanel extends GUIPanel {
 	public void updateLives(int lives) {
 		lblLives.setText("LIVES: "+lives);
 	}
+
+	/**
+	 * Crea los labels y los coloca en el panel.
+	 */
+	private void crearLabels() {
+		
+		lblScore = new JLabel("");
+		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
+		lblScore.setForeground(new Color(186, 64, 50));
+		lblScore.setBounds(((width - (scaleWidth*9)/4)*61)/100, (scaleHeight*1)/6, (scaleWidth*9)/4, scaleHeight);
+		lblScore.setText("SCORE: "+score);
+		lblScore.setBackground(new Color(250, 128, 114));
+		lblScore.setOpaque(true);
+		lblScore.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
+		add(lblScore);
+		
+		lblLives = new JLabel("");
+		lblLives.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblLives.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLives.setForeground(new Color(186, 64, 50));
+		lblLives.setBounds(((width - (scaleWidth*5)/4)*32)/100, (scaleHeight*1)/6, (scaleWidth*5)/4, scaleHeight);
+		lblLives.setText("LIVES: "+0);
+		lblLives.setBackground(new Color(250, 128, 114));
+		lblLives.setOpaque(true);
+		lblLives.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
+		add(lblLives);
+	}
+
+	/**
+	 * Setea algunas propiedades del panel.
+	 */
+	private void crearPanel() {
+		setLayout(null);
+		setLocation(0, 0);
+		panelCapas = new JLayeredPane();
+		add(panelCapas);
+		
+		labyrinthLabel = new JLabel("");
+		labyrinthLabel.setLocation(0, 0);
+		panelCapas.add(labyrinthLabel, Integer.valueOf(0), 0);
+	}
+
+	/**
+	 * Crea el fondo del panel.
+	 */
+	private void crearFondo() {
+		fondo = new JLabel("");
+		fondo.setLocation(0, 0);
+		add(fondo);
+	}
+
+	/**
+	 * Agrega los controles al panel.
+	 */
+	private void agregarControles() {
+		Action moveUp = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
 	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moveUp();
+			}
+		};
+		
+		Action moveDown = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moveDown();
+			}
+		};
+		
+		Action moveRight = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moveRight();
+			}
+		};
+		
+		Action moveLeft = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moveLeft();
+			}
+		};
+		
+		Action bomb = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				placeBomb();
+			}
+		};
+		
+		final String arriba = "arriba";
+		final String abajo = "abajo";
+		final String derecha = "deracha";
+		final String izquierda = "izquierda";
+		final String bomba = "bomba";
+		
+		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		iMap.put(KeyStroke.getKeyStroke("UP"), arriba);
+		iMap.put(KeyStroke.getKeyStroke("W"), arriba);
+		iMap.put(KeyStroke.getKeyStroke("DOWN"), abajo);
+		iMap.put(KeyStroke.getKeyStroke("S"), abajo);
+		iMap.put(KeyStroke.getKeyStroke("RIGHT"), derecha);
+		iMap.put(KeyStroke.getKeyStroke("D"), derecha);
+		iMap.put(KeyStroke.getKeyStroke("LEFT"), izquierda);
+		iMap.put(KeyStroke.getKeyStroke("A"), izquierda);
+		iMap.put(KeyStroke.getKeyStroke("SPACE"), bomba);
+		
+		getActionMap().put(arriba, moveUp);
+		getActionMap().put(abajo, moveDown);
+		getActionMap().put(derecha, moveRight);
+		getActionMap().put(izquierda, moveLeft);
+		getActionMap().put(bomba, bomb);
+	}
+
+	/**
+	 * Coloca una bomba.
+	 */
+	private void placeBomb() {
+		// TODO IMPLEMENTAR
+		// game.placeBomb();
+		System.out.println("BOMBA implementar");
+	}
+
+	/**
+	 * Mueve al personaje principal a arriba.
+	 */
+	private void moveUp() {
+		game.moveUp();
+	}
+
+	/**
+	 * Mueve al personaje principal a la derecha.
+	 */
+	private void moveRight() {
+		game.moveRight();
+	}
+
+	/**
+	 * Mueve al personaje principal a abajo.
+	 */
+	private void moveDown() {
+		game.moveDown();
+	}
+
+	/**
+	 * Mueve al personaje principal a la izquierda.
+	 */
+	private void moveLeft() {
+		game.moveLeft();
+	}
+
 	/**
 	 * Centra el panelCapas.
 	 */

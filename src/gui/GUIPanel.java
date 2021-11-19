@@ -31,12 +31,9 @@ public abstract class GUIPanel extends JPanel{
 	 */
 	protected GUIPanel(GUI gui) {
 		frame = gui;
-		//fuente = frame.fuente; TODO descomentar y borrar abajo
-		fuente = "Sans-Serif";
-		//width = frame.currentScreenWidth; TODO descomentar y borrar abajo
-		width = 1280;
-		//height = frame.currentScreenHeight; TODO decomentar y borrar abajo
-		height = 720;
+		fuente = frame.fuente;
+		width = frame.currentScreenWidth;
+		height = frame.currentScreenHeight;
 		scaleWidth = width/8;
 		scaleHeight = height/16;
 		agregarControlMusica();

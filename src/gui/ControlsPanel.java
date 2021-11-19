@@ -106,7 +106,7 @@ public class ControlsPanel extends GUIPanel{
 	/**
 	 * Carga en la gui una nueva pantalla de inicio
 	 */
-	public void backToMenu() {
+	private void backToMenu() {
 		frame.setPanel(new StartPanel(frame));
 	}
 }
