@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
+import audio.MusicPlayer;
 import data.StatsData;
 import imagefactories.ImageFactory;
 import imagefactories.ConcreteImageFactory;
@@ -23,6 +24,7 @@ public class GUI extends JFrame{
 	protected final int currentScreenWidth;
 	protected final int currentScreenHeight;
 	protected final String fuente;
+	protected MusicPlayer musicPlayer;
 
 	private transient ImageFactory factory;
 
@@ -36,8 +38,12 @@ public class GUI extends JFrame{
 		fuente = "SansSerif";
 		factory = new ConcreteImageFactory(currentScreenWidth, currentScreenHeight);
 		
+		musicPlayer = new MusicPlayer("/res/music/minecraft/music.wav");
+		
 		createFrame();
 		setPanel(new StartPanel(this));
+		
+		musicPlayer.start();
 	}
 	
 	/**
@@ -76,6 +82,10 @@ public class GUI extends JFrame{
 	 */
 	public ImageFactory getImageFactory() {
 		return factory;
+	}
+	
+	public MusicPlayer getMusicPlayer() {
+		return musicPlayer;
 	}
 
 }
