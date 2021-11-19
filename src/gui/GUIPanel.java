@@ -9,6 +9,8 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import audio.MusicPlayer;
+
 /**
  * Modela el panel abstracto a ser mostrado por la gui principal.
  */
@@ -37,6 +39,7 @@ public abstract class GUIPanel extends JPanel{
 		height = 720;
 		scaleWidth = width/8;
 		scaleHeight = height/16;
+		agregarControlMusica();
 	}
 	/**
 	 * Devuelve la gui que contiene a este panel.
@@ -44,5 +47,32 @@ public abstract class GUIPanel extends JPanel{
 	 */
 	public GUI getGUI() {
 		return frame;
+	}
+	
+	/**
+	 * Agrega funcionalidad a la tecla "m" para poder detener/iniciar la musica.
+	 */
+	private void agregarControlMusica() {
+		Action music = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MusicPlayer musicPlayer = frame.getMusicPlayer();
+				if (musicPlayer.isPlaying()) {
+					musicPlayer.stop();
+				} else {
+					musicPlayer.start();
+				}
+			}
+		};
+		
+		final String musica= "musica";
+		
+		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		iMap.put(KeyStroke.getKeyStroke("M"), musica);
+		
+		getActionMap().put(musica, music);
 	}
 }
