@@ -1,13 +1,6 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.KeyStroke;
 
 import audio.MusicPlayer;
 import data.StatsData;
@@ -84,6 +77,10 @@ public class GUI extends JFrame{
 		return factory;
 	}
 	
+	/**
+	 * Devuelve el musicPlayer.
+	 * @return el musicPlayer.
+	 */
 	public MusicPlayer getMusicPlayer() {
 		return musicPlayer;
 	}

@@ -41,6 +41,7 @@ public abstract class GUIPanel extends JPanel{
 		scaleHeight = height/16;
 		agregarControlMusica();
 	}
+	
 	/**
 	 * Devuelve la gui que contiene a este panel.
 	 * @return La gui que contiene a este panel.

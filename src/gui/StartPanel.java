@@ -2,13 +2,6 @@ package gui;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import data.PlayerScore;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;

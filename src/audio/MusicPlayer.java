@@ -20,18 +20,28 @@ public class MusicPlayer implements Runnable {
 		playing = false;
 	}
 	
+	/**
+	 * Inicia el hilo de la musica.
+	 */
 	public void start() {
 		playing = true;
 		musicThread = new Thread(this);
 		musicThread.start();
 	}
 	
+	/**
+	 * Detiene el hilo de la musica.
+	 */
 	public void stop() {
 		playing = false;
 		musicThread.interrupt();
 		clip.stop();
 	}
 	
+	/**
+	 * Retorna verdadero si la musica esta sonando, falso caso contrario.
+	 * @return verdadero si la musica esta sonando, falso caso contrario.
+	 */
 	public boolean isPlaying() {
 		return playing;
 	}

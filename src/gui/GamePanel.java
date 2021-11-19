@@ -185,6 +185,9 @@ public class GamePanel extends GUIPanel {
 		getActionMap().put(bomba, bomb);
 	}
 	
+	/**
+	 * Coloca una bomba.
+	 */
 	private void placeBomb() {
 		// TODO IMPLEMENTAR
 		// game.placeBomb();
@@ -195,15 +198,13 @@ public class GamePanel extends GUIPanel {
 	 * Mueve al personaje principal a arriba.
 	 */
 	public void moveUp() {
-		System.out.println("W o UP");
-		game.moveUp(); //TODO sacar
+		game.moveUp();
 	}
 	
 	/**
 	 * Mueve al personaje principal a la derecha.
 	 */
 	public void moveRight() {
-		System.out.println("D o RIGHT"); //TODO sacar
 		game.moveRight();
 	}
 	
@@ -211,7 +212,6 @@ public class GamePanel extends GUIPanel {
 	 * Mueve al personaje principal a abajo.
 	 */
 	public void moveDown() {
-		System.out.println("S o DOWN"); //TODO sacar
 		game.moveDown();
 	}
 	
@@ -219,7 +219,6 @@ public class GamePanel extends GUIPanel {
 	 * Mueve al personaje principal a la izquierda.
 	 */
 	public void moveLeft() {
-		System.out.println("A o LEFT"); //TODO sacar
 		game.moveLeft();
 	}
 	
@@ -267,10 +266,7 @@ public class GamePanel extends GUIPanel {
 	 * @param x la coordenada x.
 	 * @param y la coordenada y.
 	 */
-	public void updateLabel(JLabel label, float x, float y) {		
-		if (label.getParent() != this) {
-			//tirar exception
-		}
+	public void updateLabel(JLabel label, float x, float y) {
 		
 		float zoneWidth = (float) panelCapas.getWidth() / Labyrinth.WIDTH;
 		float zoneHeight = (float) panelCapas.getHeight() / Labyrinth.HEIGHT;
