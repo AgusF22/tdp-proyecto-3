@@ -59,7 +59,7 @@ public class ControlsPanel extends GUIPanel{
 		tabla.setModel(modelo);
 		
 		tabla.setBounds((width - scaleWidth*3)/2, scaleHeight/2, scaleWidth*3, scaleHeight*7);
-		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
+		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/3));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
 		tabla.setEnabled(false);
@@ -70,7 +70,7 @@ public class ControlsPanel extends GUIPanel{
 		tabla.getColumnModel().getColumn(0).setMinWidth(scaleWidth);
 		tabla.getColumnModel().getColumn(0).setMaxWidth(scaleWidth);
 		
-		tabla.getColumnModel().getColumn(1).setMinWidth(scaleWidth);
+		tabla.getColumnModel().getColumn(1).setMinWidth((scaleWidth));
 		tabla.getColumnModel().getColumn(1).setMaxWidth(scaleWidth);
 
 		tabla.getColumnModel().getColumn(2).setMinWidth(scaleWidth);
