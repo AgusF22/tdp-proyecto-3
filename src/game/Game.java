@@ -73,6 +73,13 @@ public class Game implements Subscriber, Runnable {
 	}
 	
 	/**
+	 * Hace que el personaje ponga una bomba
+	 */
+	public void placeBomb() {
+		Player.getInstance().placeBomb();
+	}
+	
+	/**
 	 * Devuelve los puntos acumulados.
 	 * @return un entero que representa los puntos.
 	 */

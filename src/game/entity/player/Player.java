@@ -13,6 +13,8 @@ import game.entity.visitor.Visitor;
 
 public final class Player extends Character{
 				
+	private static final int MAX_BOMBS = 2;
+
 	protected static Player instance;
 	
 	protected Direction attemptingMovement;
@@ -20,6 +22,8 @@ public final class Player extends Character{
 	
 	protected boolean hasShield;
 	protected int shieldEffectTimer;
+	protected int bombs;
+	protected int lives;
 	
 	/**
 	 * Crea una nueva instancia de Player.
@@ -191,6 +195,38 @@ public final class Player extends Character{
 				removeShield();
 			}
 		}
+	}
+	
+	/**
+	 * Le avisa al jugador que deje una bomba
+	 */
+	public void placeBomb() {
+		//TODO set bombs
+	}
+	
+	/**
+	 * Le agrega una bomba al jugador
+	 */
+	public void addBomb() {
+		if (bombs < MAX_BOMBS) {
+			bombs++;
+		}
+	}
+	
+	/**
+	 * Retorna las vidas actuales del jugador
+	 * @return Entero vidas
+	 */
+	public int getLives() {
+		return lives;
+	}
+	
+	/**
+	 * Modifica las vidas del jugador
+	 * @param n Entero vidas a reducir
+	 */
+	public void reduceLives(int n) {
+		lives += n;
 	}
 	
 }
