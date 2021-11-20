@@ -25,6 +25,7 @@ public class ChasingState extends EnemyState {
 			contextEnemy.changeState(new StunedState(contextEnemy));
 			player.useShield();
 		} else {
+			//contextEnemy.getZone().getLabyrinth().respawnPlayer(); TODO descomentar cuando el respawnPlayer este implementado
 			System.out.println("*********************************************************************************");
 			System.out.println("********************************* GAME OVER *************************************");
 			System.out.println("*********************************************************************************");

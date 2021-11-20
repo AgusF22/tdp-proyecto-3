@@ -30,6 +30,8 @@ public abstract class Labyrinth {
 	protected Game game;
 	protected Zone[][] zones;
 	
+	//TODO falta agregar las zonas playerSpawn y los enemySpawn
+	
 	/**
 	 * Crear un nuevo labyrinth.
 	 * @param game asociado a este laberinto.
@@ -119,6 +121,10 @@ public abstract class Labyrinth {
 	
 	public abstract void addPlayer();
 		
+	public void respawnPlayer() {
+		//TODO setear respawnPlayer
+	}
+	
 	public synchronized void fillWithDots() {
 		Entity dot;													// ***Set dots***
 		for (int x = 0; x < zones.length; x++) {
