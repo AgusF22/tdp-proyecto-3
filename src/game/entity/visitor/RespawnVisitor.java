@@ -2,6 +2,7 @@ package game.entity.visitor;
 
 import game.entity.enemy.Enemy;
 import game.entity.player.Player;
+import game.entity.timedentity.Bomb;
 
 public class RespawnVisitor extends Visitor {
 
@@ -10,12 +11,16 @@ public class RespawnVisitor extends Visitor {
 			player.respawn();
 			player.reduceLives(1);
 		} else {
-			
+			player.getLabyrinth().endGame();
 		}
 	}
 	
 	public void visit(Enemy enemy) {
 		enemy.respawn();
+	}
+	
+	public void visit(Bomb bomb) {
+		bomb.delete();
 	}
 	
 }

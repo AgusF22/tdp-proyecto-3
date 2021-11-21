@@ -38,7 +38,7 @@ public final class Player extends Character{
 		hasShield = false;
 		shieldEffectTimer = 0;
 		bombs = 8;
-		lives = 3;
+		lives = 7;
 	}
 	
 	/**
@@ -84,6 +84,7 @@ public final class Player extends Character{
 		Zone spawn = getLabyrinth().getPlayerSpawn();
 		setCoordinates(spawn.getX(), spawn.getY());
 		movementDirection = Direction.LEFT;
+		attemptedMoveTimer = 0;
 	}
 	
 	@Override
@@ -153,7 +154,7 @@ public final class Player extends Character{
 	protected void updateAttemptedMovement() {
 		if (attemptingMovement != null) {
 			--attemptedMoveTimer;
-			if (attemptedMoveTimer == 0) {
+			if (attemptedMoveTimer <= 0) {
 				attemptingMovement = null;
 			}
 		}
@@ -164,7 +165,7 @@ public final class Player extends Character{
 		super.updateEffects();
 		if (shieldEffectTimer != 0) {
 			--shieldEffectTimer;
-			if (shieldEffectTimer == 0) {
+			if (shieldEffectTimer <= 0) {
 				removeShield();
 			}
 		}

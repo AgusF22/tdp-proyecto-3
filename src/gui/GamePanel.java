@@ -82,8 +82,8 @@ public class GamePanel extends GUIPanel {
 	 * Agrega el label pasado por parametro al panel
 	 * @param label
 	 */
-	public void addLabel(JLabel label) {
-		panelCapas.add(label, Integer.valueOf(1), 0);
+	public void addLabel(JLabel label, int depth) {
+		panelCapas.add(label, Integer.valueOf(1 + depth), 0);
 	}
 	
 	/**

@@ -30,6 +30,8 @@ public abstract class GraphicCharacter extends GraphicEntity{
 
 		speedImageLabel = new JLabel(images[4]);
 		speedImageLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		depth = 1;
 	}
 	
 	public void updateImage() {

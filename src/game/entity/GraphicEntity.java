@@ -10,6 +10,8 @@ public abstract class GraphicEntity extends JLabel{
 	
 	protected transient Entity entity;
 	protected GamePanel panel;
+	
+	protected int depth;
 
 	protected GraphicEntity(Entity entity) {
 		super();
@@ -28,7 +30,7 @@ public abstract class GraphicEntity extends JLabel{
 	
 	public void addToGUI(GamePanel gui) {
 		this.panel = gui;
-		panel.addLabel(this);
+		panel.addLabel(this, depth);
 		this.updatePosition();
 	}
 	

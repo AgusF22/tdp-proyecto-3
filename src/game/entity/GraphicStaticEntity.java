@@ -10,6 +10,7 @@ public class GraphicStaticEntity extends GraphicEntity{
 		super(entity);
 		this.setIcon(image);
 		this.setSize(image.getIconWidth(), image.getIconHeight());
+		depth = 0;
 	}
 
 	@Override

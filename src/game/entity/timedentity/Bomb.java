@@ -115,9 +115,19 @@ public class Bomb extends Entity implements Runnable {
 			
 		}
 	}
+	
+	public void delete() {
+		bombThread.interrupt();
+		zone.removeEntity(this);
+		graphic.delete();
+		for (Explosion e : explosions) {
+			e.remove();
+		}
+	}
 
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
+	
 }
