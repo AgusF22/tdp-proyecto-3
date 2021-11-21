@@ -27,7 +27,8 @@ public abstract class Labyrinth {
 	public final static int WIDTH = 29;
 	public final static int HEIGHT = 31;
 	
-	protected Zone spawn;
+	protected Zone playerSpawn;
+	protected Zone enemySpawn;
 	protected int dotCount;
 	protected Game game;
 	protected Zone[][] zones;
@@ -111,35 +112,48 @@ public abstract class Labyrinth {
 		return game.getImageFactory();
 	}
 	
-	public Zone getSpawn() {
-		return spawn;
+	public Zone getEnemySpawn() {
+		return enemySpawn;
 	}
 	
+	public Zone getPlayerSpawn() {
+		return playerSpawn;
+	}
+	
+	
+	/**
+	 * Le quita a las entidades del laberinto su entidad grafica.
+	 */
 	public void clearEntities() {
 		for (Entity e : entities()) {
 			e.getGraphic().delete();
 		}
 	}
 	
+	/**
+	 * Agrega el jugador al laberinto.
+	 */
 	public abstract void addPlayer();
-		
-	public void respawnPlayer() {
-		//TODO setear respawnPlayer
-	}
 	
+	/**
+	 * Setea los dots en el laberinto.
+	 */
 	public synchronized void fillWithDots() {
-		Entity dot;													// ***Set dots***
 		for (int x = 0; x < zones.length; x++) {
 			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
 				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
-					dot = new Dot(zones[x][y]);
-//					dot.getGraphic().addToGUI(game.getGUI());
+					new Dot(zones[x][y]);
 					dotCount++;
 				}
 			}
 		}
 	}
 	
+	/**
+	 * Setea el camino del laberinto.
+	 * @param path direccion del camino concreto.
+	 * @throws DataLoadException
+	 */
 	protected void setLabyrinth(String path) throws DataLoadException {
 		LabyrinthLoader labLoader = new LabyrinthLoader(path);
 		ZoneType[][] matrix = labLoader.load();
@@ -149,28 +163,22 @@ public abstract class Labyrinth {
 				zones[x][y] = new Zone(this, x, y, matrix[x][y]);
 				
 				if(matrix[x][y] == ZoneType.SPAWN) {					//seteo atributo spawn
-					spawn = zones[x][y];
+					enemySpawn = zones[x][y];
 				}
 			}
 		}
 	}
 	
-	private void addToGUI(Entity e) {
-		e.getGraphic().addToGUI(game.getGUI());
-	}
-	
+	/**
+	 * Setea en el laberinto a los enemigos.
+	 */
 	protected void setEnemies() {
-		Zone posSpawn = this.getSpawn();									// ***Set Enemy***
+		Zone posSpawn = this.getEnemySpawn();									// ***Set Enemy***
 		
 		RedEnemy    red 	= new RedEnemy		(posSpawn);
 		BlueEnemy   blue 	= new BlueEnemy		(posSpawn, red);
 		OrangeEnemy orange 	= new OrangeEnemy	(posSpawn);
 		PinkEnemy   pink 	= new PinkEnemy		(posSpawn);
-		
-//		addToGUI(red);
-//		addToGUI(blue);
-//		addToGUI(orange);
-//		addToGUI(pink);
 		
 		game.getEnemyBrain().addEnemy(red);
 		game.getEnemyBrain().addEnemy(blue);
@@ -179,45 +187,62 @@ public abstract class Labyrinth {
 	}
 
 	/**
-	 * 
-	 * @param posX
-	 * @param posY
+	 * Agrega una fruta 1 en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
 	 */
 	protected void addFruit1(int posX, int posY) {
-		Entity fruit = new ConcreteFruit1(zones[posX][posY]);
-//		addToGUI(fruit);
+		new ConcreteFruit1(zones[posX][posY]);
 	}
 	
 	/**
-	 * 
-	 * @param posX
-	 * @param posY
+	 * Agrega una fruta 2 en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
 	 */
 	protected void addFruit2(int posX, int posY) {
-		Entity fruit = new ConcreteFruit2(zones[posX][posY]);
-//		addToGUI(fruit);
+		new ConcreteFruit2(zones[posX][posY]);
 	}
 	
+	/**
+	 * Agrega un power pellet en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPowerPellet(int posX, int posY) {
-		Entity powerPellet = new PowerPellet(zones[posX][posY]);
-//		addToGUI(powerPellet);
+		new PowerPellet(zones[posX][posY]);
 	}
 	
+	/**
+	 * Agrega una pocion de velocidad en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionSpeed(int posX, int posY) {
-		Entity potionSpeed = new PotionSpeed(zones[posX][posY]);
-//		addToGUI(potionSpeed);
+		new PotionSpeed(zones[posX][posY]);
 	}
 	
+	/**
+	 * Agrega una pocion de armadura en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionShield(int posX, int posY) {
-		Entity potionShield = new PotionShield(zones[posX][posY]);
-//		addToGUI(potionShield);
+		new PotionShield(zones[posX][posY]);
 	}
 	
+	/**
+	 * Agrega una pocion de bomba en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionBomb(int posX, int posY) {
-		Entity potionBomb = new PotionBomb(zones[posX][posY]);
-		addToGUI(potionBomb);
+		new PotionBomb(zones[posX][posY]);
 	}
 	
+	/**
+	 * @return la GUI asociada al juego.
+	 */
 	public GamePanel getGUI() {
 		return game.getGUI();
 	}
