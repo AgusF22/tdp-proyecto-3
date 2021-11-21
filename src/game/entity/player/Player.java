@@ -243,4 +243,12 @@ public final class Player extends Character{
 		zone.getLabyrinth().getGUI().updateLives(lives);
 	}
 	
+	public void resetState() {
+		// TODO setear estado a como tiene que estar al inicio del juego
+	}
+	
+	public void resetEffects() {
+		// TODO remover effectos para pasar de nivel 
+	}
+	
 }
