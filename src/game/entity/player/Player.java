@@ -90,6 +90,7 @@ public final class Player extends Character{
 		Zone spawn = getLabyrinth().getPlayerSpawn();
 		setCoordinates(spawn.getX(), spawn.getY());
 		movementDirection = Direction.LEFT;
+		graphic.updateImage();
 		resetEffects();
 	}
 	

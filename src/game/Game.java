@@ -98,12 +98,13 @@ public class Game implements Runnable {
 	 * Termina el juego.
 	 */
 	public void endGame() {
-		stop();
+		Player.getInstance().resetState();
 		if (labyrinth == null) {
 			gui.winGame();
 		} else {
 			gui.loseGame();
 		}
+		stop();
 	}
 	
 	/**
@@ -119,6 +120,7 @@ public class Game implements Runnable {
 			labyrinth.addPlayer();
 			labyrinth.fillWithDots();
 			brainThread.start();
+			Player.getInstance().resetEffects();
 		} else {
 			endGame();
 		}
@@ -153,7 +155,6 @@ public class Game implements Runnable {
 	public void start() {
 		gameThread.start();
 		brainThread.start();
-		Player.getInstance().resetState();
 	}
 	
 	public void stop() {
