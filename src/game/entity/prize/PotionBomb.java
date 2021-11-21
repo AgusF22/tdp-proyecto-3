@@ -1,6 +1,6 @@
 package game.entity.prize;
 
-import game.entity.GraphicPrize;
+import game.entity.GraphicStaticEntity;
 import game.entity.player.Player;
 import game.labyrinth.Zone;
 
@@ -13,9 +13,10 @@ public class PotionBomb extends Potion {
 	 * Crea una nueva pocion de bomba.
 	 * @param zone  La zona en la que se encontrara la nueva pocion.
 	 */
-	protected PotionBomb(Zone zone) {
+	public PotionBomb(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion3());
+		graphic = new GraphicStaticEntity(this, zone.getLabyrinth().getImageFactory().getPotion3());
+		addToGUI();
 	}
 
 	/**

@@ -1,6 +1,6 @@
 package game.entity.prize;
 
-import game.entity.GraphicPrize;
+import game.entity.GraphicStaticEntity;
 import game.labyrinth.Zone;
 
 /**
@@ -14,7 +14,8 @@ public class ConcreteFruit2 extends Fruit {
 	 */
 	public ConcreteFruit2(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getFruit2Image());
+		graphic = new GraphicStaticEntity(this, zone.getLabyrinth().getImageFactory().getFruit2Image());
+		addToGUI();
 	}
 	
 	/**

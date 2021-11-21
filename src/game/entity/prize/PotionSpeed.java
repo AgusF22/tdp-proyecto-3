@@ -1,6 +1,6 @@
 package game.entity.prize;
 
-import game.entity.GraphicPrize;
+import game.entity.GraphicStaticEntity;
 import game.entity.player.Player;
 import game.labyrinth.Zone;
 
@@ -15,7 +15,8 @@ public class PotionSpeed extends Potion {
 	 */
 	public PotionSpeed(Zone zone) {
 		super(zone);
-		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion1());
+		graphic = new GraphicStaticEntity(this, zone.getLabyrinth().getImageFactory().getPotion1());
+		addToGUI();
 	}
 	
 	/**

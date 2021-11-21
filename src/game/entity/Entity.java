@@ -26,6 +26,13 @@ public abstract class Entity {
 	}
 	
 	/**
+	 * Añade a la gui la entidad grafica de esta entidad.
+	 */
+	protected void addToGUI() {
+		graphic.addToGUI(getLabyrinth().getGUI());
+	}
+	
+	/**
 	 * Acepta un visitor.
 	 * @param visitor Un visitor.
 	 */

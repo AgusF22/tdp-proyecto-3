@@ -228,7 +228,7 @@ public class ConcreteImageFactory extends ImageFactory{
 	}
 	
 	@Override
-	public Icon getBomb() {
+	public Icon getBombImage() {
 		return getIcon("/res/img/minecraft/entity/prize/tnt.gif");
 	}
 	

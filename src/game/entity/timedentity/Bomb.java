@@ -7,6 +7,7 @@ import java.util.Set;
 
 import game.Game;
 import game.entity.Entity;
+import game.entity.GraphicStaticEntity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.LabyrinthCursor;
@@ -20,8 +21,10 @@ public class Bomb extends Entity implements Runnable {
 	
 	protected Thread bombThread;
 	
-	protected Bomb(Zone zone) {
+	public Bomb(Zone zone) {
 		super(zone);
+		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getBombImage());
+		addToGUI();
 		time = 4 * Game.CYCLES_PER_SECOND;
 		exploded = false;
 		explosions = new ArrayList<>();
@@ -36,15 +39,18 @@ public class Bomb extends Entity implements Runnable {
 	protected void explode() {
 		LabyrinthCursor cursor = new LabyrinthCursor(zone, Direction.UP);
 		LabyrinthCursor newCursor;
+		exploded = true;
+		
 		for (Direction d : Direction.values()) {
 			newCursor = cursor.sendCloneTo(d);
 			if (newCursor != null) {
 				explode(newCursor, 5);
 			}
 		}
+		
 		time = Math.round(0.5f * Game.CYCLES_PER_SECOND);
 		zone.removeEntity(this);
-//		this.graphic.delete(); TODO descomentar cuando bomba tenga grafica
+		graphic.delete();
 	}
 	
 	protected void explode(LabyrinthCursor cursor, int power) {

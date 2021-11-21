@@ -24,6 +24,7 @@ public class BlueEnemy extends Enemy {
 		super (zone, 0.1f);
 		this.red = red;
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getBlueEnemyImages());
+		addToGUI();
 		state = new StartingState(this, 3 * Game.CYCLES_PER_SECOND);
 	}
 
