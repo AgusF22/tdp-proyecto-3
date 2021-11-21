@@ -8,6 +8,9 @@ public class RespawnVisitor extends Visitor {
 	public void visit(Player player) {
 		if (player.getLives() > 1) {
 			player.respawn();
+			player.reduceLives(1);
+		} else {
+			
 		}
 	}
 	
