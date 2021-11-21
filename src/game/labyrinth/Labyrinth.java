@@ -14,6 +14,7 @@ import game.entity.enemy.RedEnemy;
 import game.entity.prize.ConcreteFruit1;
 import game.entity.prize.ConcreteFruit2;
 import game.entity.prize.Dot;
+import game.entity.prize.PotionBomb;
 import game.entity.prize.PotionShield;
 import game.entity.prize.PotionSpeed;
 import game.entity.prize.PowerPellet;
@@ -210,6 +211,11 @@ public abstract class Labyrinth {
 	protected void addPotionShield(int posX, int posY) {
 		Entity potionShield = new PotionShield(zones[posX][posY]);
 //		addToGUI(potionShield);
+	}
+	
+	protected void addPotionBomb(int posX, int posY) {
+		Entity potionBomb = new PotionBomb(zones[posX][posY]);
+		addToGUI(potionBomb);
 	}
 	
 	public GamePanel getGUI() {
