@@ -8,7 +8,7 @@ public class PotionBomb  extends Potion {
 	public PotionBomb(Zone zone) {
 		super(zone);
 		//TODO cambiar por getPotion3 cuando esté implementada.
-		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion2());
+		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion3());
 	}
 
 	@Override
