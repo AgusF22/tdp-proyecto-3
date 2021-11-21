@@ -32,6 +32,8 @@ public class GamePanel extends GUIPanel {
 	private JLabel lblScore;
 	private int score;
 	private JLabel lblLives;
+
+	private JLabel lblBombs;
 	
 	public GamePanel(GUI gui) { 
 		super(gui);
@@ -155,7 +157,14 @@ public class GamePanel extends GUIPanel {
 	 * Cambia el contador de vidas de la ventana y lo actualiza.
 	 */
 	public void updateLives(int lives) {
-		lblLives.setText("LIVES: "+lives);
+		lblLives.setText("LIVES: " + lives);
+	}
+	
+	/**
+	 * Cambia el contador de bombas de la ventana y lo actualiza.
+	 */
+	public void updateBombs(int bombs) {
+		lblBombs.setText("BOMBS: " + bombs);
 	}
 
 	/**
@@ -184,6 +193,17 @@ public class GamePanel extends GUIPanel {
 		lblLives.setOpaque(true);
 		lblLives.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
 		add(lblLives);
+		
+		lblBombs = new JLabel("");
+		lblBombs.setFont(new Font(fuente, Font.BOLD, scaleHeight));
+		lblBombs.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBombs.setForeground(new Color(186, 64, 50));
+		lblBombs.setBounds(((width - (scaleWidth*6)/4)*8)/100, (scaleHeight*1)/6, (scaleWidth*6)/4, scaleHeight);
+		lblBombs.setText("BOMBS: "+0);
+		lblBombs.setBackground(new Color(250, 128, 114));
+		lblBombs.setOpaque(true);
+		lblBombs.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
+		add(lblBombs);
 	}
 
 	/**
