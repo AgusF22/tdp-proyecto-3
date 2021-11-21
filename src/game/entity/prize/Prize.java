@@ -4,6 +4,9 @@ import game.entity.Entity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 
+/**
+ * Clase que modela un premio.
+ */
 public abstract class Prize extends Entity {
 	
 	/**
@@ -14,9 +17,7 @@ public abstract class Prize extends Entity {
 		super(zone);
 	}
 	
-	/**
-	 * Acepta un visitor
-	 */
+	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
@@ -27,7 +28,7 @@ public abstract class Prize extends Entity {
 	public abstract void triggerEffect();
 	
 	/**
-	 * Remueve la grafica y se remueve de la lista de entidades
+	 * Borra la grafica de este premio y se remueve de la lista de entidades.
 	 */
 	protected void beConsumed() {
 		zone.removeEntity(this);
