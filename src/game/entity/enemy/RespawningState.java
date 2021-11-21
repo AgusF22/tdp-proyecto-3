@@ -20,7 +20,7 @@ public class RespawningState extends EnemyState {
 	public RespawningState(Enemy enemy) {
 		super(enemy);
 		respawnTimer = getStateDuration();
-		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
+		Zone spawn = contextEnemy.getLabyrinth().getEnemySpawn();
 		contextEnemy.setCoordinates(spawn.getX(), spawn.getY());
 		contextEnemy.getGraphic().setVisible(false);
 	}
@@ -30,7 +30,7 @@ public class RespawningState extends EnemyState {
 	 * @return La duracion de este estado.
 	 */
 	protected int getStateDuration() {
-		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
+		Zone spawn = contextEnemy.getLabyrinth().getEnemySpawn();
 		int distance = toIntExact(round(sqrt(
 				pow((double) spawn.getX() - contextEnemy.getZone().getX(), 2) +
 				pow((double) spawn.getY() - contextEnemy.getZone().getY(), 2))));

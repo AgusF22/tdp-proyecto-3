@@ -56,7 +56,8 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 
 	@Override
 	public void addPlayer() {
-		zones[14][23].addEntity(Player.getInstance());				// ***Set Player***
+		playerSpawn = zones[14][23];									// ***Set Player***
+		playerSpawn.addEntity(Player.getInstance());
 		
 		try {
 			Player.getInstance().setZone(zones[14][23]);
