@@ -8,6 +8,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Clase que se encarga de reproducir la musica del juego.
+ */
 public class MusicPlayer implements Runnable {
 	
 	protected Thread musicThread;
@@ -21,7 +24,7 @@ public class MusicPlayer implements Runnable {
 	}
 	
 	/**
-	 * Inicia el hilo de la musica.
+	 * Inicia la reproduccion de la musica.
 	 */
 	public void start() {
 		playing = true;
@@ -30,7 +33,7 @@ public class MusicPlayer implements Runnable {
 	}
 	
 	/**
-	 * Detiene el hilo de la musica.
+	 * Detiene la reproduccion de la musica.
 	 */
 	public void stop() {
 		playing = false;
@@ -39,8 +42,8 @@ public class MusicPlayer implements Runnable {
 	}
 	
 	/**
-	 * Retorna verdadero si la musica esta sonando, falso caso contrario.
-	 * @return verdadero si la musica esta sonando, falso caso contrario.
+	 * Retorna si este reproductor esta activo o no.
+	 * @return True si este reproductor esta activo, false si no.
 	 */
 	public boolean isPlaying() {
 		return playing;

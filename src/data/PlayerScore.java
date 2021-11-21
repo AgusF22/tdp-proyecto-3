@@ -56,15 +56,6 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
 	}
 	
 	@Override
-	public boolean equals(Object playerScore) {
-		if (playerScore == null) {
-			return false;
-		}
-		return score == ((PlayerScore) playerScore).getScore() &&
-				name.equals(((PlayerScore) playerScore).getName());
-	}
-	
-	@Override
 	public String toString() {
 		return name + " " + score;
 	}

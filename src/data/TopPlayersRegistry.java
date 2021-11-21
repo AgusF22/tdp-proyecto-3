@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Modela una coleccion de mejores jugadores.
+ * Esta estructura guarda solo 5 puntajes, que son siempre los mas altos que hayan sido ingresados.
+ */
 public class TopPlayersRegistry implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -11,7 +15,7 @@ public class TopPlayersRegistry implements Serializable {
 	protected ArrayList<PlayerScore> ranking;
 	
 	/**
-	 * Crea una nueva registro de mejores jugadores.
+	 * Crea un nuevo registro de mejores jugadores.
 	 */
 	public TopPlayersRegistry() {
 		ranking = new ArrayList<>();
@@ -30,7 +34,8 @@ public class TopPlayersRegistry implements Serializable {
 	}
 	
 	/**
-	 * @return una lista ordenada de mayor a menor de objetos PlayerScore. 
+	 * Retorna una coleccion iterable de puntajes de jugador, ordenada de mayor a menor.
+	 * @return una coleccion iterable de puntajes de jugador, ordenada de mayor a menor.
 	 */
 	public Iterable<PlayerScore> getScores() {
 		return new ArrayList<>(ranking);

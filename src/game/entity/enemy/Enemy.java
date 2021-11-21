@@ -10,6 +10,9 @@ import game.labyrinth.LabyrinthCursor;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
 
+/**
+ * Clase que modela un enemigo.
+ */
 public abstract class Enemy extends Character {
 	
 	protected EnemyState state;
@@ -23,9 +26,7 @@ public abstract class Enemy extends Character {
 		super(zone, 0.1f);
 	}
 	
-	/**
-	 * Acepta un visitor.
-	 */
+	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
@@ -73,8 +74,18 @@ public abstract class Enemy extends Character {
 	}
 	
 	/**
-	 * Ejecuta el movimiento de este enemigo.
+	 * Cambia la direccion actual por su opuesta.
 	 */
+	protected void turnAround() {
+		movementDirection = movementDirection.getOpposite();
+	}
+	
+	/**
+	 * Ordena a este enemigo calcular el camino hacia su objetivo.
+	 */
+	protected abstract Direction calculateChasePath();
+	
+	@Override
 	public void move() {
 		updateEffects();
 		state.move();
@@ -93,6 +104,15 @@ public abstract class Enemy extends Character {
 		}
 	}
 	
+	@Override
+	protected boolean canMove() {
+		return zone.getAdjacent(movementDirection).getType() != ZoneType.WALL;
+	}
+	
+	/**
+	 * Asumiendo que este enemigo no puede continuar moviendose ya que se topo con una pared y no se encuentra en una interseccion,
+	 * cambia de direccion para continuar por el mismo camino.
+	 */
 	private void turnAtPathEnd() {
 		Direction cwDir = movementDirection.getCWDirection();
 		Direction ccwDir = movementDirection.getCCWDirection();
@@ -105,27 +125,12 @@ public abstract class Enemy extends Character {
 		}
 	}
 	
-	protected void turnAround() {
-		movementDirection = movementDirection.getOpposite();
-	}
-
-	@Override
-	protected boolean canMove() {
-		return zone.getAdjacent(movementDirection).getType() != ZoneType.WALL;
-	}
-	
-	/**
-	 * Ordena a este enemigo calcular el camino hacia su objetivo.
-	 */
-	public abstract Direction calculateChasePath();
-	
 	/**
 	 * Calcula el mejor camino para acercarse a una zona destino.
 	 * @param destZone La zona destino.
 	 * @return La mejor direccion para acercarse a una zona destino.
 	 */
 	protected Direction bestAproachPath(Zone destZone) {
-//		System.out.println("bestAproachPath"); // TODO remove
 		Direction bestDirection = movementDirection;
 		double bestValue = Double.MIN_VALUE;
 		double value;
@@ -135,11 +140,8 @@ public abstract class Enemy extends Character {
 
 		for (Direction d : directions) {
 			if(zone.getAdjacent(d).getType() != ZoneType.WALL) {
-//				System.out.println("Start " + d.toString() + " value calculation");
 				value = pathValue(cursor.sendCloneTo(d), destZone, 10);
-//				System.out.println("direction " + d + " value is " + value);
 				if (value > bestValue) {
-//					System.out.println("best value is " + (1d / value));
 					bestValue = value;
 					bestDirection = d;
 				}
@@ -214,8 +216,6 @@ public abstract class Enemy extends Character {
 		double distance = Math.sqrt(
 								Math.pow((double) zone1.getX() - zone2.getX(), 2) +
 								Math.pow((double) zone1.getY() - zone2.getY(), 2));
-		
-//		System.out.println("distance from zone to target is " + distance);
 		
 		return distance == 0 ? Double.MAX_VALUE : 1 / distance;
 	}

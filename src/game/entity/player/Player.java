@@ -11,6 +11,9 @@ import game.entity.GraphicPlayer;
 import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
+/**
+ * Clase que modela al jugador.
+ */
 public final class Player extends Character{
 				
 	private static final int MAX_BOMBS = 2;
@@ -46,8 +49,8 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Setea la zona donde se encuentra el jugador
-	 * @param zone Nueva zona a setear
+	 * Setea la zona donde se encuentra el jugador.
+	 * @param zone Nueva zona a setear.
 	 */
 	public void setZone(Zone zone) throws NullZoneException{
 		if (zone == null) {
@@ -61,10 +64,25 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Crea y asigna la entidad grafica del personaje
+	 * Crea y asigna la entidad grafica de este jugador.
 	 */
 	private void setGraphic() {
 		graphic = new GraphicPlayer(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
+	}
+	
+	/**
+	 * Colisiona al jugador con todas las entidades que se encuentran en su zona.
+	 */
+	public void collide() {
+		Visitor v = new PlayerVisitor();
+		for (Entity e : zone.zoneEntities()) {
+			e.accept(v);						
+		}
+	}
+	
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 	
 	@Override
@@ -79,10 +97,7 @@ public final class Player extends Character{
 		collide();
 	}
 	
-	/**
-	 * Mueve al jugador las unidades pasadas por parametro en una direccion
-	 * @param n Float unidades a mover
-	 */
+	@Override
 	public void move(float n) {
 		float d = nextCenterDistance();
 		boolean canMove = true;
@@ -103,9 +118,7 @@ public final class Player extends Character{
 		}
 	}
 	
-	/**
-	 * Evalua y actualiza la direccion del personaje
-	 */
+	@Override
 	protected void updateMovementDirection() {
 		if (attemptingMovement != null && zone.getAdjacent(attemptingMovement).getType() == ZoneType.PATH) {	//Evaluamos si tiene sentido un cambio de direccion
 			movementDirection = attemptingMovement;
@@ -113,24 +126,24 @@ public final class Player extends Character{
 		}
 	}
 	
-	/**
-	 * Consulta cuando esta en el centro de una zona si puede moverse
-	 * @return True si puede, false sino
-	 */
+	@Override
 	protected boolean canMove() {
 		return zone.getAdjacent(movementDirection).getType() == ZoneType.PATH;
 	}
 
 	/**
-	 * Asigna una nueva direccion a la que intentar moverse
-	 * 
-	 * @param dir Direccion a intentar moverse
+	 * Avisa al jugador que debe intentar moverse en la direccion dada.
+	 * @param dir Direccion en la cual el jugador intentara moverse.
 	 */
 	public void attemptMovement(Direction dir) {
 		attemptingMovement = dir;
 		attemptedMoveTimer = Game.CYCLES_PER_SECOND;
 	}
 	
+	/**
+	 * Actualiza el tiempo durante el cual el jugador intentara moverse en la ultima direccion dada.
+	 * Cuando el tiempo llega a 0, el jugador deja de intentar cambiar su direccion.
+	 */
 	protected void updateAttemptedMovement() {
 		if (attemptingMovement != null) {
 			--attemptedMoveTimer;
@@ -139,52 +152,6 @@ public final class Player extends Character{
 			}
 		}
 	}
-	
-	/**
-	 * Colisiona al jugador con todas las entidades que se encuentran en su zona.
-	 */
-	public void collide() {
-		Visitor v = new PlayerVisitor();
-		for (Entity e : zone.zoneEntities()) {
-			e.accept(v);						
-		}
-	}
-	
-	/**
-	 * Acepta un visitor.
-	 */
-	public void accept(Visitor visitor) {
-		visitor.visit(this);
-	}
-	
-	/**
-	 * Añade un efecto de escudo al jugador.
-	 */
-	public void addShield() {
-		hasShield = true;
-		shieldEffectTimer = 5 * Game.CYCLES_PER_SECOND;
-		graphic.setShieldEffect(true);
-	}
-	
-	protected void removeShield() {
-		shieldEffectTimer = 0;
-		hasShield = false;
-		graphic.setShieldEffect(false);
-	}
-	
-	public void useShield() {
-		if (hasShield) {
-			shieldEffectTimer = Math.round(0.5f * Game.CYCLES_PER_SECOND);
-		}
-	}
-	
-	/**
-	 * Consulta si el personaje tiene escudo
-	 * @return True si tiene, no sino tiene
-	 */
-	public boolean hasShield() {
-		return hasShield;
-	} 
 	
 	@Override
 	protected void updateEffects() {
@@ -198,14 +165,49 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Le avisa al jugador que deje una bomba
+	 * Añade un efecto de escudo al jugador.
+	 */
+	public void addShield() {
+		hasShield = true;
+		shieldEffectTimer = 5 * Game.CYCLES_PER_SECOND;
+		graphic.setShieldEffect(true);
+	}
+	
+	/**
+	 * Remueve el escudo de este jugador.
+	 */
+	protected void removeShield() {
+		shieldEffectTimer = 0;
+		hasShield = false;
+		graphic.setShieldEffect(false);
+	}
+	
+	/**
+	 * Avisa al jugador que su escudo fue usado, reduciendo el tiempo restante del escudo a un valor minimo.
+	 */
+	public void useShield() {
+		if (hasShield) {
+			shieldEffectTimer = Math.round(0.5f * Game.CYCLES_PER_SECOND);
+		}
+	}
+	
+	/**
+	 * Consulta si el personaje tiene escudo.
+	 * @return True si tiene, false si no.
+	 */
+	public boolean hasShield() {
+		return hasShield;
+	} 
+	
+	/**
+	 * Le avisa al jugador que deje una bomba.
 	 */
 	public void placeBomb() {
 		//TODO set bombs
 	}
 	
 	/**
-	 * Le agrega una bomba al jugador
+	 * Agrega una bomba al jugador.
 	 */
 	public void addBomb() {
 		if (bombs < MAX_BOMBS) {
@@ -214,16 +216,16 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Retorna las vidas actuales del jugador
-	 * @return Entero vidas
+	 * Retorna las vidas actuales del jugador.
+	 * @return Las vidas del jugador.
 	 */
 	public int getLives() {
 		return lives;
 	}
 	
 	/**
-	 * Modifica las vidas del jugador
-	 * @param n Entero vidas a reducir
+	 * Resta el valor pasado como parametro a las vidas actuales del jugador.
+	 * @param n Cantidad de vidas a restar.
 	 */
 	public void reduceLives(int n) {
 		lives += n;

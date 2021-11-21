@@ -4,15 +4,15 @@ import game.Game;
 import game.labyrinth.Direction;
 
 /**
- * Clase que modela el estado de un enemigo que se encuentra aturdido.
+ * Clase que modela el comportamiento de un enemigo que se encuentra en estado aturdido.
  */
 public class StunedState extends EnemyState{
 	
 	protected int stunTime;
 
 	/**
-	 * Crea un nuevo estado para un enemigo aturdido.
-	 * @param enemy El enemigo que tendra este estado.
+	 * Crea un nuevo estado aturdido.
+	 * @param enemy El enemigo que se encontrara en este estado.
 	 */
 	protected StunedState(Enemy enemy) {
 		super(enemy);
@@ -50,6 +50,10 @@ public class StunedState extends EnemyState{
 		// metodo vacio
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * El estado aturdido nunca esta bloqueado.
+	 */
 	@Override
 	public boolean locked() {
 		return false;

@@ -4,11 +4,18 @@ import game.Game;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
 
+/**
+ * Clase que modela el comportamiento de un enemigo que se encuentra en estado de huida.
+ */
 public class FleeingState extends EnemyState {
 	
 	protected static final int FLEEING_DURATION = 5 * Game.CYCLES_PER_SECOND;
 	protected int fleeTimer;
 	
+	/**
+	 * Crea un nuevo estado de huida.
+	 * @param enemy El enemigo que se encontrara en este estado.
+	 */
 	public FleeingState(Enemy enemy) {
 		super(enemy);
 		fleeTimer = FLEEING_DURATION;
@@ -17,19 +24,23 @@ public class FleeingState extends EnemyState {
 		contextEnemy.getGraphic().setFleeing(true);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * En estado de huida, el enemigo se mueve normalmente.
+	 */
 	@Override
 	public void move() {
 		contextEnemy.move(contextEnemy.getSpeed());
 		if (--fleeTimer == 0) {
-			changeToChase();
+			contextEnemy.getGraphic().setFleeing(false);
+			contextEnemy.changeState(new ChasingState(contextEnemy));
 		}
 	}
 	
-	protected void changeToChase() {
-		contextEnemy.getGraphic().setFleeing(false);
-		contextEnemy.changeState(new ChasingState(contextEnemy));
-	}
-	
+	/**
+	 * {@inheritDoc}
+	 *  En estado de huida, el enemigo se mueve en la mejor direccion para alejarse del jugador.
+	 */
 	@Override
 	public Direction nextMoveDirection() {
 		Player player = Player.getInstance();
@@ -38,6 +49,10 @@ public class FleeingState extends EnemyState {
 		return contextEnemy.bestFleePath(contextEnemy.getLabyrinth().getZone(playerX, playerY));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 *  En estado de huida, la colision hace que el enemigo sea comido por el jugador.
+	 */
 	@Override
 	public void collideWithPlayer() {
 		contextEnemy.changeState(new RespawningState(contextEnemy));
@@ -45,6 +60,10 @@ public class FleeingState extends EnemyState {
 		contextEnemy.getGraphic().setFleeing(false);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * El estado de huida nunca esta bloqueado.
+	 */
 	@Override
 	public boolean locked() {
 		return false;

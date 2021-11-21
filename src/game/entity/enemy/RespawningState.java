@@ -6,10 +6,17 @@ import game.Game;
 import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
+/**
+ * Clase que modela el comportamiento de un enemigo que se encuentra en estado de reaparicion.
+ */
 public class RespawningState extends EnemyState {
 
 	protected int respawnTimer;
 	
+	/**
+	 * Crea un nuevo estado de reaparicion.
+	 * @param enemy El enemigo que se encontrara en este estado.
+	 */
 	public RespawningState(Enemy enemy) {
 		super(enemy);
 		respawnTimer = getStateDuration();
@@ -18,6 +25,10 @@ public class RespawningState extends EnemyState {
 		contextEnemy.getGraphic().setVisible(false);
 	}
 	
+	/**
+	 * Calcula la duracion de este estado.
+	 * @return La duracion de este estado.
+	 */
 	protected int getStateDuration() {
 		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
 		int distance = toIntExact(round(sqrt(
@@ -28,6 +39,11 @@ public class RespawningState extends EnemyState {
 		return round(distance * 0.2f * Game.CYCLES_PER_SECOND);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * En estado de reaparicion, cada invocacion a este metodo reduce el contador hasta que el enemigo reaparezca.
+	 */
+	@Override
 	public void move() {
 		if (--respawnTimer <= 0) {
 			contextEnemy.changeState(new ChasingState(contextEnemy));
@@ -35,15 +51,28 @@ public class RespawningState extends EnemyState {
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * En estado de reaparicion, el enemigo no se mueve, por lo que la direccion es nula.
+	 */
 	@Override
 	public Direction nextMoveDirection() {
 		return null;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * En estado de reaparicion, la colision no hace nada.
+	 */
+	@Override
 	public void collideWithPlayer() {
 		// metodo vacio
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * El estado de reaparicion esta siempre bloqueado.
+	 */
 	@Override
 	public boolean locked() {
 		return true;

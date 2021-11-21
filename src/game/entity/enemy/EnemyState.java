@@ -26,12 +26,12 @@ public abstract class EnemyState {
 	public abstract Direction nextMoveDirection();
 	
 	/**
-	 * Hace que el enemigo que se encuantra en este estado colisione con el jugador.
+	 * Hace que el enemigo que se encuentra en este estado colisione con el jugador.
 	 */
 	public abstract void collideWithPlayer();
 	
 	/**
-	 * Retorna si este estado puede ser cambiado por el cliente.
+	 * Retorna si este estado esta bloqueado y no puede ser cambiado por el cliente.
 	 * @return True si el estado puede ser cambiado por el cliente, false si no.
 	 */
 	public abstract boolean locked();

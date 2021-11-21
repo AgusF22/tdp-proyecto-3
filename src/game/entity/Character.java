@@ -38,8 +38,8 @@ public abstract class Character extends Entity {
 	}
 	
 	/**
-	 * Mueve al jugador las unidades pasadas por parametro en una direccion
-	 * @param n Float unidades a mover
+	 * Mueve a este personaje el valor pasado por parametro en una direccion.
+	 * @param n Valor a mover.
 	 */
 	public void move(float n) {
 		

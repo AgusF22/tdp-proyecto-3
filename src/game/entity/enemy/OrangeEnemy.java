@@ -11,16 +11,29 @@ import game.entity.player.Player;
 import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 
+/**
+ * Modela un enemigo de tipo naranja.
+ * Este enemigo persigue o escapa del jugador segun su distancia al mismo.
+ */
 public class OrangeEnemy extends Enemy {
 
+	/**
+	 * Crea un nuevo enemigo naranja.
+	 * @param zone La zona en la que se encontrara el nuevo enemigo.
+	 */
 	public OrangeEnemy(Zone zone) {
 		super (zone, 0.08f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getOrangeEnemyImages());
 		state = new StartingState(this, 6 * Game.CYCLES_PER_SECOND);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * El objetivo del enemigo naranja es el jugador, si se encuantra a una distancia mayor o igual a 16, o escapar del jugador, si se encuantra a 
+	 * una distancia menor a 16.
+	 */
 	@Override
-	public Direction calculateChasePath() {
+	protected Direction calculateChasePath() {
 		Player player = Player.getInstance();
 		float playerX = player.getX();
 		float playerY = player.getY();
