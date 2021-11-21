@@ -25,7 +25,7 @@ public class Bomb extends Entity implements Runnable {
 		super(zone);
 		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getBombImage());
 		addToGUI();
-		time = 4 * Game.CYCLES_PER_SECOND;
+		time = 2 * Game.CYCLES_PER_SECOND;
 		exploded = false;
 		explosions = new ArrayList<>();
 		startCountdown();
@@ -41,6 +41,8 @@ public class Bomb extends Entity implements Runnable {
 		LabyrinthCursor newCursor;
 		exploded = true;
 		
+		addExplosion(zone);
+		
 		for (Direction d : Direction.values()) {
 			newCursor = cursor.sendCloneTo(d);
 			if (newCursor != null) {
@@ -48,7 +50,7 @@ public class Bomb extends Entity implements Runnable {
 			}
 		}
 		
-		time = Math.round(0.5f * Game.CYCLES_PER_SECOND);
+		time = Math.round(0.4f * Game.CYCLES_PER_SECOND);
 		zone.removeEntity(this);
 		graphic.delete();
 	}
@@ -86,6 +88,7 @@ public class Bomb extends Entity implements Runnable {
 		for (Explosion e : explosions) {
 			e.remove();
 		}
+		bombThread.interrupt();
 	}
 	
 	public void run() {
@@ -106,7 +109,6 @@ public class Bomb extends Entity implements Runnable {
 			try {
 				Thread.sleep(1000 / Game.CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 				Thread.currentThread().interrupt();
 				return;
 			}

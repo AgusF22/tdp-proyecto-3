@@ -38,6 +38,11 @@ public abstract class Character extends Entity {
 	}
 	
 	/**
+	 * Respawnea a este personaje.
+	 */
+	public abstract void respawn();
+	
+	/**
 	 * Mueve a este personaje el valor pasado por parametro en una direccion.
 	 * @param n Valor a mover.
 	 */

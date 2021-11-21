@@ -156,6 +156,9 @@ public abstract class ImageFactory {
 	 */
 	public abstract Icon getBombImage();
 	
+	
+	public abstract Icon getExplosionImage();
+	
 	/**
 	 * Devuelve un ImageIcono escalado para mantener proporciones.
 	 * @param imageIcon un IageIcon a escalar.

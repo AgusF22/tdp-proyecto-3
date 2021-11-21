@@ -21,6 +21,7 @@ public class PinkEnemy extends Enemy {
 		super (zone, 0.1f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getPinkEnemyImages());
 		addToGUI();
+		spawnDelay = 10 * Game.CYCLES_PER_SECOND;
 		state = new StartingState(this, 10 * Game.CYCLES_PER_SECOND);
 	}
 

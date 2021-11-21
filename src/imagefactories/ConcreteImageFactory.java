@@ -189,47 +189,51 @@ public class ConcreteImageFactory extends ImageFactory{
 
 	@Override
 	public Icon getDotImage() {
-		return getIcon("/res/img/minecraft/entity/prize/dot.png");
+		return getIcon("/res/img/minecraft/entity/staticentity/dot.png");
 	}
 
 	@Override
 	public Icon getPowerPelletImage() {
-		return getIcon("/res/img/minecraft/entity/prize/powerpellet.png");
+		return getIcon("/res/img/minecraft/entity/staticentity/powerpellet.png");
 	}
 
 	@Override
 	public Icon getFruit1Image() {
-		return getIcon("/res/img/minecraft/entity/prize/fruit1.png");
+		return getIcon("/res/img/minecraft/entity/staticentity/fruit1.png");
 	}
 	
 	@Override
 	public Icon getFruit2Image() {
-		return getIcon("/res/img/minecraft/entity/prize/fruit2.png");
+		return getIcon("/res/img/minecraft/entity/staticentity/fruit2.png");
 	}
 	
 	@Override
 	public Icon getFruit3Image() {
-		return getIcon("/res/img/minecraft/entity/prize/fruit3.png");
+		return getIcon("/res/img/minecraft/entity/staticentity/fruit3.png");
 	}
 	
 	@Override
 	public Icon getPotion1() {
-		return getIcon("/res/img/minecraft/entity/prize/potion1.gif");
+		return getIcon("/res/img/minecraft/entity/staticentity/potion1.gif");
 	}
 	
 	@Override
 	public Icon getPotion2() {
-		return getIcon("/res/img/minecraft/entity/prize/potion2.gif");
+		return getIcon("/res/img/minecraft/entity/staticentity/potion2.gif");
 	}
 	
 	@Override
 	public Icon getPotion3() {
-		return getIcon("/res/img/minecraft/entity/prize/potion3.gif");
+		return getIcon("/res/img/minecraft/entity/staticentity/potion3.gif");
 	}
 	
 	@Override
 	public Icon getBombImage() {
-		return getIcon("/res/img/minecraft/entity/prize/tnt.gif");
+		return getIcon("/res/img/minecraft/entity/staticentity/tnt.gif");
+	}
+	
+	public Icon getExplosionImage() {
+		return getIcon("/res/img/minecraft/entity/staticentity/explosion.png");
 	}
 	
 	private ImageIcon getIcon(String path) {

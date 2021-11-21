@@ -14,6 +14,10 @@ public class ChasingState extends EnemyState {
 	 */
 	public ChasingState(Enemy enemy) {
 		super(enemy);
+		
+		contextEnemy.getGraphic().setVisible(true);
+		contextEnemy.getGraphic().setFleeing(false);
+		contextEnemy.getGraphic().setStunEffect(false);
 	}
 	
 	/**

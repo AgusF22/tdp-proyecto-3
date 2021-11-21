@@ -16,6 +16,7 @@ import game.labyrinth.ZoneType;
 public abstract class Enemy extends Character {
 	
 	protected EnemyState state;
+	protected int spawnDelay;
 	
 	/**
 	 * Construye un nuevo enemigo.
@@ -48,10 +49,15 @@ public abstract class Enemy extends Character {
 	}
 	
 	/**
-	 * Colisiona este enemigo con el jugador.
+	 * Mata a este enemigo, haciendo que entre en estado de reaparicion.
 	 */
-	public void collideWithPlayer() {
-		state.collideWithPlayer();
+	public void kill() {
+		state = new RespawningState(this);
+	}
+	
+	@Override
+	public void respawn() {
+		state = new StartingState(this, spawnDelay);
 	}
 	
 	/**
@@ -60,6 +66,13 @@ public abstract class Enemy extends Character {
 	 */
 	protected void changeState(EnemyState state) {
 		this.state = state; 
+	}
+	
+	/**
+	 * Colisiona este enemigo con el jugador.
+	 */
+	public void collideWithPlayer() {
+		state.collideWithPlayer();
 	}
 	
 	@Override

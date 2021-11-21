@@ -10,7 +10,7 @@ public class Explosion extends Entity {
 
 	protected Explosion(Zone zone) {
 		super(zone);
-		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getBombImage());
+		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getExplosionImage());
 		addToGUI();
 	}
 
@@ -22,7 +22,7 @@ public class Explosion extends Entity {
 	protected void collide() {
 		Visitor v = new ExplosionVisitor();
 		for (Entity e : zone.zoneEntities()) {
-			e.accept(v);						
+			e.accept(v);					
 		}
 	}
 

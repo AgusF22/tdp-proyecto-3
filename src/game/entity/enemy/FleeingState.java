@@ -21,7 +21,10 @@ public class FleeingState extends EnemyState {
 		fleeTimer = FLEEING_DURATION;
 		contextEnemy.addSpeedMultiplier(0.5f);
 		contextEnemy.turnAround();
+		
+		contextEnemy.getGraphic().setVisible(true);
 		contextEnemy.getGraphic().setFleeing(true);
+		contextEnemy.getGraphic().setStunEffect(false);
 	}
 	
 	/**
@@ -32,7 +35,6 @@ public class FleeingState extends EnemyState {
 	public void move() {
 		contextEnemy.move(contextEnemy.getSpeed());
 		if (--fleeTimer == 0) {
-			contextEnemy.getGraphic().setFleeing(false);
 			contextEnemy.changeState(new ChasingState(contextEnemy));
 		}
 	}
@@ -57,7 +59,6 @@ public class FleeingState extends EnemyState {
 	public void collideWithPlayer() {
 		contextEnemy.changeState(new RespawningState(contextEnemy));
 		contextEnemy.getLabyrinth().addPoints(200);
-		contextEnemy.getGraphic().setFleeing(false);
 	}
 
 	/**

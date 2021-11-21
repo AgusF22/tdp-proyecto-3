@@ -22,7 +22,11 @@ public class RespawningState extends EnemyState {
 		respawnTimer = getStateDuration();
 		Zone spawn = contextEnemy.getLabyrinth().getSpawn();
 		contextEnemy.setCoordinates(spawn.getX(), spawn.getY());
+		
 		contextEnemy.getGraphic().setVisible(false);
+		contextEnemy.getGraphic().setFleeing(false);
+		contextEnemy.getGraphic().setStunEffect(false);
+		contextEnemy.getGraphic().updatePosition();
 	}
 	
 	/**
@@ -47,7 +51,6 @@ public class RespawningState extends EnemyState {
 	public void move() {
 		if (--respawnTimer <= 0) {
 			contextEnemy.changeState(new ChasingState(contextEnemy));
-			contextEnemy.getGraphic().setVisible(true);
 		}
 	}
 	

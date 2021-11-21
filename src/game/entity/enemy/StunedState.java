@@ -16,7 +16,11 @@ public class StunedState extends EnemyState{
 	 */
 	protected StunedState(Enemy enemy) {
 		super(enemy);
+
+		contextEnemy.getGraphic().setVisible(true);
+		contextEnemy.getGraphic().setFleeing(false);
 		contextEnemy.getGraphic().setStunEffect(true);
+		
 		stunTime = 1 * Game.CYCLES_PER_SECOND;
 	}
 

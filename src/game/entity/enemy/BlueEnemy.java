@@ -25,6 +25,7 @@ public class BlueEnemy extends Enemy {
 		this.red = red;
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getBlueEnemyImages());
 		addToGUI();
+		spawnDelay = 3 * Game.CYCLES_PER_SECOND;
 		state = new StartingState(this, 3 * Game.CYCLES_PER_SECOND);
 	}
 

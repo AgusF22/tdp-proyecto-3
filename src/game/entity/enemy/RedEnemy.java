@@ -20,7 +20,8 @@ public class RedEnemy extends Enemy {
 		super (zone, 0.15f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getRedEnemyImages());
 		addToGUI();
-		state = new StartingState(this, 1 * Game.CYCLES_PER_SECOND);
+		spawnDelay = 1 * Game.CYCLES_PER_SECOND;
+		state = new StartingState(this, spawnDelay);
 	}
 
 	/**

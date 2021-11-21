@@ -77,6 +77,11 @@ public final class Player extends Character{
 	}
 	
 	@Override
+	public void respawn() {
+		// FIXME implementar 
+	}
+	
+	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
 	}
