@@ -1,5 +1,6 @@
 package game.entity.enemy;
 
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -44,7 +45,12 @@ public class BlueEnemy extends Enemy {
 		targetX = limitToLabyrinthWidth(targetX);
 		targetY = limitToLabyrinthWidth(targetY);
 		
-		return bestAproachPath(this.getLabyrinth().getZone(targetX, targetY));
+		try {
+			return bestAproachPath(this.getLabyrinth().getZone(targetX, targetY));
+		} catch (NullZoneException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**

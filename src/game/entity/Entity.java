@@ -1,5 +1,6 @@
 package game.entity;
 
+import exceptions.NullZoneException;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
@@ -68,13 +69,17 @@ public abstract class Entity {
 	 * @param y Nueva coordenada y.
 	 */
 	public void setCoordinates(float x, float y) {
-		Zone newZone = getLabyrinth().getZone(x, y);
-		this.x = x;
-		this.y = y;
-		if (zone != newZone) {
-			zone.removeEntity(this);
-			zone = newZone;
-			zone.addEntity(this);
+		try {
+			Zone newZone = getLabyrinth().getZone(x, y);
+			this.x = x;
+			this.y = y;
+			if (zone != newZone) {
+				zone.removeEntity(this);
+				zone = newZone;
+				zone.addEntity(this);
+			}
+		} catch(NullZoneException e) {
+			e.printStackTrace();
 		}
 	}
 	

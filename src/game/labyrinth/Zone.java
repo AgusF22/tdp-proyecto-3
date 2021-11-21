@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import exceptions.NullZoneException;
+
 public class Zone {
 	//TODO documentar
 	
@@ -105,7 +107,13 @@ public class Zone {
 			adjacentY--;
 			break;
 		}
-		return labyrinth.getZone(adjacentX, adjacentY);
+		
+		try {
+			return labyrinth.getZone(adjacentX, adjacentY);
+		} catch (NullZoneException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
