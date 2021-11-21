@@ -5,7 +5,7 @@ import game.labyrinth.Zone;
 
 public class PotionBomb  extends Potion {
 
-	protected PotionBomb(Zone zone) {
+	public PotionBomb(Zone zone) {
 		super(zone);
 		//TODO cambiar por getPotion3 cuando esté implementada.
 		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion2());
