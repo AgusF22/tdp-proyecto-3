@@ -153,6 +153,7 @@ public class Game implements Runnable {
 	public void start() {
 		gameThread.start();
 		brainThread.start();
+		Player.getInstance().resetState();
 	}
 	
 	public void stop() {

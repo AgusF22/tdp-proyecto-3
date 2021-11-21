@@ -18,7 +18,9 @@ import game.entity.visitor.Visitor;
 public final class Player extends Character{
 				
 	private static final int MAX_BOMBS = 2;
-
+	private static final int DEFAULT_BOMBS = 8;
+	private static final int DEFAULT_LIVES = 3;
+	
 	protected static Player instance;
 	
 	protected Direction attemptingMovement;
@@ -37,8 +39,8 @@ public final class Player extends Character{
 		attemptingMovement = null;
 		hasShield = false;
 		shieldEffectTimer = 0;
-		bombs = 8;
-		lives = 3;
+		bombs = DEFAULT_BOMBS;
+		lives = DEFAULT_LIVES;				//?Se podria usar resetState pero ocurre error al usar el resetEffects
 	}
 	
 	/**
@@ -79,11 +81,15 @@ public final class Player extends Character{
 		}
 	}
 	
+	/**
+	 * Restea 
+	 */
 	@Override
 	public void respawn() {
 		Zone spawn = getLabyrinth().getPlayerSpawn();
 		setCoordinates(spawn.getX(), spawn.getY());
 		movementDirection = Direction.LEFT;
+		resetEffects();
 	}
 	
 	@Override
@@ -211,8 +217,7 @@ public final class Player extends Character{
 	public void placeBomb() {
 		if (bombs > 0) {
 			new Bomb(zone);
-			bombs--;
-			zone.getLabyrinth().getGUI().updateBombs(bombs);
+			setBombs(--bombs);
 		}
 	}
 	
@@ -221,8 +226,7 @@ public final class Player extends Character{
 	 */
 	public void addBomb() {
 		if (bombs < MAX_BOMBS) {
-			bombs++;
-			zone.getLabyrinth().getGUI().updateBombs(bombs);
+			setBombs(bombs++);
 		}
 	}
 	
@@ -239,16 +243,41 @@ public final class Player extends Character{
 	 * @param n Cantidad de vidas a restar.
 	 */
 	public void reduceLives(int n) {
-		lives -= n;
+		setLives(lives - n);
+	}
+	
+	/**
+	 * Establece el personaje en su estado inicial
+	 */
+	public void resetState() {
+		setBombs(DEFAULT_BOMBS);
+		setLives(DEFAULT_LIVES);
+		resetEffects();
+	}
+	
+	/**
+	 * Remueve los efectos del Jugador
+	 */
+	public void resetEffects() {
+		removeShield();
+		removeSpeedMultiplier();
+	}
+
+	/**
+	 * Setea un nuevo valor a las bombas y notifica su actualizacion
+	 * @param l entero lives
+	 */
+	private void setBombs(int b) {
+		bombs = b;
+		zone.getLabyrinth().getGUI().updateBombs(bombs);
+	}
+	
+	/**
+	 * Setea un nuevo valor a las vidas y notifica su actualizacion
+	 * @param l entero lives
+	 */
+	private void setLives(int l) {
+		lives = l;
 		zone.getLabyrinth().getGUI().updateLives(lives);
 	}
-	
-	public void resetState() {
-		// TODO setear estado a como tiene que estar al inicio del juego
-	}
-	
-	public void resetEffects() {
-		// TODO remover effectos para pasar de nivel 
-	}
-	
 }
