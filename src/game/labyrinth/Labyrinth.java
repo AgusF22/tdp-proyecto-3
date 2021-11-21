@@ -11,6 +11,7 @@ import game.entity.enemy.BlueEnemy;
 import game.entity.enemy.OrangeEnemy;
 import game.entity.enemy.PinkEnemy;
 import game.entity.enemy.RedEnemy;
+import game.entity.player.Player;
 import game.entity.prize.ConcreteFruit1;
 import game.entity.prize.ConcreteFruit2;
 import game.entity.prize.Dot;
@@ -111,22 +112,41 @@ public abstract class Labyrinth {
 		return game.getImageFactory();
 	}
 	
+	/**
+	 * @return la zona correspondiente al spawn.
+	 */
 	public Zone getSpawn() {
 		return spawn;
 	}
 	
+	/**
+	 * Le quita a las entidades del laberinto su entidad grafica.
+	 */
 	public void clearEntities() {
 		for (Entity e : entities()) {
 			e.getGraphic().delete();
 		}
 	}
 	
+	/**
+	 * Agrega el jugador al laberinto.
+	 */
 	public abstract void addPlayer();
 		
 	public void respawnPlayer() {
-		//TODO setear respawnPlayer
+		Player player = Player.getInstance();
+		if (player.getLives() != 0) {
+			addPlayer();
+			setEnemies();
+			player.reduceLives(1);
+		} else {
+			game.endGame();
+		}
 	}
 	
+	/**
+	 * Setea los dots en el laberinto.
+	 */
 	public synchronized void fillWithDots() {
 		Entity dot;													// ***Set dots***
 		for (int x = 0; x < zones.length; x++) {
@@ -140,6 +160,11 @@ public abstract class Labyrinth {
 		}
 	}
 	
+	/**
+	 * Setea el camino del laberinto.
+	 * @param path direccion del camino concreto.
+	 * @throws DataLoadException
+	 */
 	protected void setLabyrinth(String path) throws DataLoadException {
 		LabyrinthLoader labLoader = new LabyrinthLoader(path);
 		ZoneType[][] matrix = labLoader.load();
@@ -155,10 +180,17 @@ public abstract class Labyrinth {
 		}
 	}
 	
+	/**
+	 * Le setea a la entidad e su entidad grafica.
+	 * @param e entidad a setear.
+	 */
 	private void addToGUI(Entity e) {
 		e.getGraphic().addToGUI(game.getGUI());
 	}
 	
+	/**
+	 * Setea en el laberinto a los enemigos.
+	 */
 	protected void setEnemies() {
 		Zone posSpawn = this.getSpawn();									// ***Set Enemy***
 		
@@ -179,9 +211,9 @@ public abstract class Labyrinth {
 	}
 
 	/**
-	 * 
-	 * @param posX
-	 * @param posY
+	 * Agrega una fruta 1 en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
 	 */
 	protected void addFruit1(int posX, int posY) {
 		Entity fruit = new ConcreteFruit1(zones[posX][posY]);
@@ -189,30 +221,50 @@ public abstract class Labyrinth {
 	}
 	
 	/**
-	 * 
-	 * @param posX
-	 * @param posY
+	 * Agrega una fruta 2 en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
 	 */
 	protected void addFruit2(int posX, int posY) {
 		Entity fruit = new ConcreteFruit2(zones[posX][posY]);
 //		addToGUI(fruit);
 	}
 	
+	/**
+	 * Agrega un power pellet en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPowerPellet(int posX, int posY) {
 		Entity powerPellet = new PowerPellet(zones[posX][posY]);
 //		addToGUI(powerPellet);
 	}
 	
+	/**
+	 * Agrega una pocion de velocidad en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionSpeed(int posX, int posY) {
 		Entity potionSpeed = new PotionSpeed(zones[posX][posY]);
 //		addToGUI(potionSpeed);
 	}
 	
+	/**
+	 * Agrega una pocion de armadura en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionShield(int posX, int posY) {
 		Entity potionShield = new PotionShield(zones[posX][posY]);
 //		addToGUI(potionShield);
 	}
 	
+	/**
+	 * Agrega una pocion de bomba en la zona correspondiente a las coordenadas pasadas por parametro.
+	 * @param posX coordenada x de la zona.
+	 * @param posY coordenada y de la zona.
+	 */
 	protected void addPotionBomb(int posX, int posY) {
 		Entity potionBomb = new PotionBomb(zones[posX][posY]);
 		addToGUI(potionBomb);
