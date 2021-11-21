@@ -81,7 +81,9 @@ public final class Player extends Character{
 	
 	@Override
 	public void respawn() {
-		// FIXME implementar 
+		Zone spawn = getLabyrinth().getPlayerSpawn();
+		setCoordinates(spawn.getX(), spawn.getY());
+		movementDirection = Direction.LEFT;
 	}
 	
 	@Override

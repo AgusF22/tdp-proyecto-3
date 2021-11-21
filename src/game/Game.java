@@ -9,7 +9,7 @@ import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
-public class Game implements Subscriber, Runnable {
+public class Game implements Runnable {
 	
 	public static final int CYCLES_PER_SECOND = 60;
 	
@@ -37,8 +37,6 @@ public class Game implements Subscriber, Runnable {
 		labyrinth = new ConcreteLabyrinth1(this);
 		labyrinth.addPlayer();
 		labyrinth.fillWithDots();
-		
-		EndGamePublisher.getInstance().subscribe(this);
 		
 		gameThread = new Thread(this);
 		brainThread = new Thread(enemyBrain);
@@ -100,6 +98,7 @@ public class Game implements Subscriber, Runnable {
 	 * Termina el juego.
 	 */
 	public void endGame() {
+		stop();
 		if (labyrinth == null) {
 			gui.winGame();
 		} else {
@@ -137,12 +136,6 @@ public class Game implements Subscriber, Runnable {
 	 */
 	public ImageFactory getImageFactory() {
 		return gui.getImageFactory();
-	}
-	
-	@Override
-	public void recieveEndGameNotification() {
-		stop();
-		endGame();
 	}
 	
 	public GamePanel getGUI() {
