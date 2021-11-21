@@ -1,5 +1,6 @@
 package game.entity.enemy;
 
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -32,17 +33,23 @@ public class PinkEnemy extends Enemy {
 	@Override
 	protected Direction calculateChasePath() {
 		Player player = Player.getInstance();
-		Zone playerZone = this.getLabyrinth().getZone(player.getX(), player.getY());
-		Direction playerDirection = player.getMovementDirection();
-		
-		LabyrinthCursor cursor = new LabyrinthCursor(playerZone, playerDirection);
-		
-		cursor.nextZone();
-		while (!cursor.isInIntersection()) {
+		Zone playerZone;
+		try {
+			playerZone = this.getLabyrinth().getZone(player.getX(), player.getY());
+			Direction playerDirection = player.getMovementDirection();
+
+			LabyrinthCursor cursor = new LabyrinthCursor(playerZone, playerDirection);
+
 			cursor.nextZone();
+			while (!cursor.isInIntersection()) {
+				cursor.nextZone();
+			}
+
+			return bestAproachPath(cursor.getZone());
+		} catch (NullZoneException e) {
+			e.printStackTrace();
 		}
-		
-		return bestAproachPath(cursor.getZone());
+		return null;
 	}
 
 }

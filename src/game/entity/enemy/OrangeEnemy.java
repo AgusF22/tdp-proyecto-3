@@ -5,6 +5,7 @@ import static java.lang.Math.round;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toIntExact;
 
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -39,20 +40,26 @@ public class OrangeEnemy extends Enemy {
 		Player player = Player.getInstance();
 		float playerX = player.getX();
 		float playerY = player.getY();
-		Zone playerZone = this.getLabyrinth().getZone(playerX, playerY);
-		Direction toReturn;
+		Zone playerZone;
 		
-		int distance = toIntExact(round(sqrt(
-				pow((double) playerZone.getX() - zone.getX(), 2) +
-				pow((double) playerZone.getY() - zone.getY(), 2))));
+		try {
+			playerZone = this.getLabyrinth().getZone(playerX, playerY);
+			Direction toReturn;
 		
-		if (distance >= 16) {
-			toReturn = bestAproachPath(playerZone);
-		} else {
-			toReturn = bestFleePath(playerZone);
+			int distance = toIntExact(round(sqrt(
+					pow((double) playerZone.getX() - zone.getX(), 2) +
+					pow((double) playerZone.getY() - zone.getY(), 2))));
+			
+			if (distance >= 16) {
+				toReturn = bestAproachPath(playerZone);
+			} else {
+				toReturn = bestFleePath(playerZone);
+			}
+			return toReturn;
+		} catch (NullZoneException e) {
+			e.printStackTrace();
 		}
-		
-		return toReturn;
+		return null;
 	}
 
 }
