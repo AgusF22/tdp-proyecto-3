@@ -77,6 +77,7 @@ public final class Player extends Character{
 	public void collide() {
 		Visitor v = new PlayerVisitor();
 		for (Entity e : zone.zoneEntities()) {
+			System.out.println(Thread.currentThread());
 			e.accept(v);						
 		}
 	}

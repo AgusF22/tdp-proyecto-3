@@ -166,7 +166,6 @@ public class Game implements Runnable {
 			synchronized (this) {
 
 				Player.getInstance().move();
-				
 				if(labyrinth == null) {
 					stop();
 					break;
