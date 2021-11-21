@@ -37,7 +37,8 @@ public final class Player extends Character{
 		attemptingMovement = null;
 		hasShield = false;
 		shieldEffectTimer = 0;
-		bombs = 80;
+		bombs = 8;
+		lives = 3;
 	}
 	
 	/**
@@ -64,6 +65,8 @@ public final class Player extends Character{
 		y = zone.getY();
 		graphic = new GraphicPlayer(this, getLabyrinth().getImageFactory().getPlayerImages());
 		addToGUI();
+		zone.getLabyrinth().getGUI().updateLives(lives);
+		zone.getLabyrinth().getGUI().updateBombs(bombs);
 	}
 	
 	/**
@@ -201,6 +204,8 @@ public final class Player extends Character{
 	public void placeBomb() {
 		if (bombs > 0) {
 			new Bomb(zone);
+			bombs--;
+			zone.getLabyrinth().getGUI().updateBombs(bombs);
 		}
 	}
 	
@@ -210,6 +215,7 @@ public final class Player extends Character{
 	public void addBomb() {
 		if (bombs < MAX_BOMBS) {
 			bombs++;
+			zone.getLabyrinth().getGUI().updateBombs(bombs);
 		}
 	}
 	
@@ -226,7 +232,8 @@ public final class Player extends Character{
 	 * @param n Cantidad de vidas a restar.
 	 */
 	public void reduceLives(int n) {
-		lives += n;
+		lives -= n;
+		zone.getLabyrinth().getGUI().updateLives(lives);
 	}
 	
 }
