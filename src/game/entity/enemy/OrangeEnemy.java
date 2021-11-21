@@ -24,6 +24,7 @@ public class OrangeEnemy extends Enemy {
 	public OrangeEnemy(Zone zone) {
 		super (zone, 0.08f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getOrangeEnemyImages());
+		addToGUI();
 		state = new StartingState(this, 6 * Game.CYCLES_PER_SECOND);
 	}
 

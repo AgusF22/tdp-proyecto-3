@@ -8,6 +8,7 @@ import game.Game;
 import game.entity.Entity;
 import game.entity.Character;
 import game.entity.GraphicPlayer;
+import game.entity.timedentity.Bomb;
 import game.entity.visitor.PlayerVisitor;
 import game.entity.visitor.Visitor;
 
@@ -36,6 +37,7 @@ public final class Player extends Character{
 		attemptingMovement = null;
 		hasShield = false;
 		shieldEffectTimer = 0;
+		bombs = 80;
 	}
 	
 	/**
@@ -52,7 +54,7 @@ public final class Player extends Character{
 	 * Setea la zona donde se encuentra el jugador.
 	 * @param zone Nueva zona a setear.
 	 */
-	public void setZone(Zone zone) throws NullZoneException{
+	public void setZone(Zone zone) throws NullZoneException {
 		if (zone == null) {
 			throw new NullZoneException("Intenta setear una zona nula en player");
 		}
@@ -60,14 +62,8 @@ public final class Player extends Character{
 		zone.addEntity(this);
 		x = zone.getX();
 		y = zone.getY();
-		setGraphic();
-	}
-	
-	/**
-	 * Crea y asigna la entidad grafica de este jugador.
-	 */
-	private void setGraphic() {
-		graphic = new GraphicPlayer(this, zone.getLabyrinth().getImageFactory().getPlayerImages());
+		graphic = new GraphicPlayer(this, getLabyrinth().getImageFactory().getPlayerImages());
+		addToGUI();
 	}
 	
 	/**
@@ -203,7 +199,9 @@ public final class Player extends Character{
 	 * Le avisa al jugador que deje una bomba.
 	 */
 	public void placeBomb() {
-		//TODO set bombs
+		if (bombs > 0) {
+			new Bomb(zone);
+		}
 	}
 	
 	/**
