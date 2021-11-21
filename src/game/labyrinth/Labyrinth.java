@@ -135,6 +135,10 @@ public abstract class Labyrinth {
 	 */
 	public abstract void addPlayer();
 	
+	public void endGame() {
+		game.endGame();
+	}
+	
 	/**
 	 * Setea los dots en el laberinto.
 	 */
