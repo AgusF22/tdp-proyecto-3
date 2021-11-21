@@ -1,19 +1,32 @@
 package game.entity.prize;
 
-import game.entity.GraphicPrize;
+import game.entity.GraphicStaticEntity;
+import game.entity.player.Player;
 import game.labyrinth.Zone;
 
-public class PotionBomb  extends Potion {
+/**
+ * Modela una pocion de bomba.
+ */
+public class PotionBomb extends Potion {
 
-	protected PotionBomb(Zone zone) {
+	/**
+	 * Crea una nueva pocion de bomba.
+	 * @param zone  La zona en la que se encontrara la nueva pocion.
+	 */
+	public PotionBomb(Zone zone) {
 		super(zone);
-		//TODO cambiar por getPotion3 cuando esté implementada.
-		graphic = new GraphicPrize(this, zone.getLabyrinth().getImageFactory().getPotion2());
+		graphic = new GraphicStaticEntity(this, zone.getLabyrinth().getImageFactory().getPotion3());
+		addToGUI();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * La pocion de bomba le añade una bomba adicional al jugador.
+	 */
 	@Override
 	public void triggerEffect() {
-		// TODO Auto-generated method stub
+		Player.getInstance().addBomb();
+		beConsumed();
 	}
 
 }

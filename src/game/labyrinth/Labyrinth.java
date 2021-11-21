@@ -14,9 +14,11 @@ import game.entity.enemy.RedEnemy;
 import game.entity.prize.ConcreteFruit1;
 import game.entity.prize.ConcreteFruit2;
 import game.entity.prize.Dot;
+import game.entity.prize.PotionBomb;
 import game.entity.prize.PotionShield;
 import game.entity.prize.PotionSpeed;
 import game.entity.prize.PowerPellet;
+import gui.GamePanel;
 import imagefactories.ImageFactory;
 
 public abstract class Labyrinth {
@@ -131,7 +133,7 @@ public abstract class Labyrinth {
 			for(int y = 0; y < zones[0].length; y++) {				// Si es camino y no hay entidades, add dot
 				if ((zones[x][y].getType() == ZoneType.PATH) && (zones[x][y].entities.isEmpty())) {
 					dot = new Dot(zones[x][y]);
-					dot.getGraphic().addToGUI(game.getGUI());
+//					dot.getGraphic().addToGUI(game.getGUI());
 					dotCount++;
 				}
 			}
@@ -165,10 +167,10 @@ public abstract class Labyrinth {
 		OrangeEnemy orange 	= new OrangeEnemy	(posSpawn);
 		PinkEnemy   pink 	= new PinkEnemy		(posSpawn);
 		
-		addToGUI(red);
-		addToGUI(blue);
-		addToGUI(orange);
-		addToGUI(pink);
+//		addToGUI(red);
+//		addToGUI(blue);
+//		addToGUI(orange);
+//		addToGUI(pink);
 		
 		game.getEnemyBrain().addEnemy(red);
 		game.getEnemyBrain().addEnemy(blue);
@@ -183,7 +185,7 @@ public abstract class Labyrinth {
 	 */
 	protected void addFruit1(int posX, int posY) {
 		Entity fruit = new ConcreteFruit1(zones[posX][posY]);
-		addToGUI(fruit);
+//		addToGUI(fruit);
 	}
 	
 	/**
@@ -193,21 +195,31 @@ public abstract class Labyrinth {
 	 */
 	protected void addFruit2(int posX, int posY) {
 		Entity fruit = new ConcreteFruit2(zones[posX][posY]);
-		addToGUI(fruit);
+//		addToGUI(fruit);
 	}
 	
 	protected void addPowerPellet(int posX, int posY) {
 		Entity powerPellet = new PowerPellet(zones[posX][posY]);
-		addToGUI(powerPellet);
+//		addToGUI(powerPellet);
 	}
 	
 	protected void addPotionSpeed(int posX, int posY) {
 		Entity potionSpeed = new PotionSpeed(zones[posX][posY]);
-		addToGUI(potionSpeed);
+//		addToGUI(potionSpeed);
 	}
 	
 	protected void addPotionShield(int posX, int posY) {
 		Entity potionShield = new PotionShield(zones[posX][posY]);
-		addToGUI(potionShield);
+//		addToGUI(potionShield);
 	}
+	
+	protected void addPotionBomb(int posX, int posY) {
+		Entity potionBomb = new PotionBomb(zones[posX][posY]);
+		addToGUI(potionBomb);
+	}
+	
+	public GamePanel getGUI() {
+		return game.getGUI();
+	}
+	
 }

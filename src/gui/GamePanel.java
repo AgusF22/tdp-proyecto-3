@@ -92,6 +92,8 @@ public class GamePanel extends GUIPanel {
 	 */
 	public void removeLabel(JLabel label) {
 		panelCapas.remove(label);
+		panelCapas.revalidate();
+		panelCapas.repaint();
 	}
 	
 	/**
@@ -307,9 +309,7 @@ public class GamePanel extends GUIPanel {
 	 * Coloca una bomba.
 	 */
 	private void placeBomb() {
-		// TODO IMPLEMENTAR
-		// game.placeBomb();
-		System.out.println("BOMBA implementar");
+		game.placeBomb();
 	}
 
 	/**

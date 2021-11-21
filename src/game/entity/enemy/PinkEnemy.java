@@ -20,6 +20,7 @@ public class PinkEnemy extends Enemy {
 	public PinkEnemy(Zone zone) {
 		super (zone, 0.1f);
 		this.graphic = new GraphicEnemy(this, this.getLabyrinth().getImageFactory().getPinkEnemyImages());
+		addToGUI();
 		state = new StartingState(this, 10 * Game.CYCLES_PER_SECOND);
 	}
 

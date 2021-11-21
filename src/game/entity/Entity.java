@@ -14,7 +14,7 @@ public abstract class Entity {
 	
 	/**
 	 * Construye una nueva entidad ubicada en la coordenada (0, 0), asignandole una zona pasada como parametro.
-	 * @param zone Una zona.
+	 * @param zone La zona en la que se encontrara la nueva entidad.
 	 */
 	protected Entity(Zone zone) {
 		this.zone = zone;
@@ -23,6 +23,13 @@ public abstract class Entity {
 			x = zone.getX();
 			y = zone.getY();
 		}
+	}
+	
+	/**
+	 * Añade a la gui la entidad grafica de esta entidad.
+	 */
+	protected void addToGUI() {
+		graphic.addToGUI(getLabyrinth().getGUI());
 	}
 	
 	/**

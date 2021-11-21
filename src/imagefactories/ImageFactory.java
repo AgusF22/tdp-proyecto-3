@@ -154,7 +154,7 @@ public abstract class ImageFactory {
 	 * Devuelve el icono correspondiente a una bomba.
 	 * @return
 	 */
-	public abstract Icon getBomb();
+	public abstract Icon getBombImage();
 	
 	/**
 	 * Devuelve un ImageIcono escalado para mantener proporciones.

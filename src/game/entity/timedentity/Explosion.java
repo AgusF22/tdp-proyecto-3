@@ -1,6 +1,7 @@
 package game.entity.timedentity;
 
 import game.entity.Entity;
+import game.entity.GraphicStaticEntity;
 import game.entity.visitor.ExplosionVisitor;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
@@ -9,11 +10,13 @@ public class Explosion extends Entity {
 
 	protected Explosion(Zone zone) {
 		super(zone);
+		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getBombImage());
+		addToGUI();
 	}
 
 	protected void remove() {
 		zone.removeEntity(this);
-//		this.graphic.delete(); TODO descomentar cuando explosion tenga grafica
+		graphic.delete();
 	}
 	
 	protected void collide() {
