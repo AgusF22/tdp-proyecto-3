@@ -1,5 +1,6 @@
 package game.entity.enemy;
 
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
@@ -48,7 +49,12 @@ public class FleeingState extends EnemyState {
 		Player player = Player.getInstance();
 		float playerX = player.getX();
 		float playerY = player.getY();
-		return contextEnemy.bestFleePath(contextEnemy.getLabyrinth().getZone(playerX, playerY));
+		try {
+			return contextEnemy.bestFleePath(contextEnemy.getLabyrinth().getZone(playerX, playerY));
+		} catch (NullZoneException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**

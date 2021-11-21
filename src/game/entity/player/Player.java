@@ -159,7 +159,7 @@ public final class Player extends Character{
 	protected void updateAttemptedMovement() {
 		if (attemptingMovement != null) {
 			--attemptedMoveTimer;
-			if (attemptedMoveTimer == 0) {
+			if (attemptedMoveTimer <= 0) {
 				attemptingMovement = null;
 			}
 		}
@@ -170,7 +170,7 @@ public final class Player extends Character{
 		super.updateEffects();
 		if (shieldEffectTimer != 0) {
 			--shieldEffectTimer;
-			if (shieldEffectTimer == 0) {
+			if (shieldEffectTimer <= 0) {
 				removeShield();
 			}
 		}

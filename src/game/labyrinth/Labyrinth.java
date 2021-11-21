@@ -5,6 +5,7 @@ import java.util.Set;
 
 import data.LabyrinthLoader;
 import exceptions.DataLoadException;
+import exceptions.NullZoneException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.enemy.BlueEnemy;
@@ -66,9 +67,9 @@ public abstract class Labyrinth {
 		Set<Entity> entities = new HashSet<>();
 		Iterable<Entity> zoneEntities;
 		
-		for (int i = 0; i < zones.length; i++) {										// Recorre todas las zonas del laberinto
+		for (int i = 0; i < zones.length; i++) {								// Recorre todas las zonas del laberinto
 			for (int j = 0; j < zones[0].length; j++) {
-				zoneEntities = zones[i][j].zoneEntities();								// Le pide a la zona todas sus entidades
+				zoneEntities = zones[i][j].zoneEntities();						// Le pide a la zona todas sus entidades
 				zoneEntities.forEach(entities::add);							// Agrega las entidades de la zona en la Set entities
 			}
 		}
@@ -79,13 +80,15 @@ public abstract class Labyrinth {
 	 * @param x coordenada eje x.
 	 * @param y coordenada eje y.
 	 * @return la zona cuyas cordenadas a las pasadas por parametro.
+	 * @throws NullZoneException si la zona es invalida
 	 */
-	public Zone getZone(float x, float y) {
+	public Zone getZone(float x, float y) throws NullZoneException {
 		int xInt = Math.round(x);									// Si la parte decimal del número es menor que la mitad,
 		int yInt = Math.round(y);									// redondear hacia abajo. En caso de que sea la mitad o mayor,
 																	// redondea hacia arriba.
 		
-		// TODO if(zones[xInt][yInt] == null) excepcion zona invalida 
+		if(zones[xInt][yInt] == null) throw new NullZoneException("Zona invalida.");
+		
 		return zones[xInt][yInt];
 	}
 	
@@ -177,7 +180,7 @@ public abstract class Labyrinth {
 	 * Setea en el laberinto a los enemigos.
 	 */
 	protected void setEnemies() {
-		Zone posSpawn = this.getEnemySpawn();									// ***Set Enemy***
+		Zone posSpawn = this.getEnemySpawn();
 		
 		RedEnemy    red 	= new RedEnemy		(posSpawn);
 		BlueEnemy   blue 	= new BlueEnemy		(posSpawn, red);
