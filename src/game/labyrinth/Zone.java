@@ -86,9 +86,9 @@ public class Zone {
 	}
 	
 	/**
-	 * TODO ...
-	 * @param direction
-	 * @return
+	 * Consulta y retorna la zona adjacente en la direccion indicada
+	 * @param direction Direccion
+	 * @return Zone zona inmediata en cierta direccion
 	 */
 	public Zone getAdjacent(Direction direction) {
 		int adjacentX = this.x;
