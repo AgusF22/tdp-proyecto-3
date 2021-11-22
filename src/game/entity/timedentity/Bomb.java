@@ -51,7 +51,6 @@ public class Bomb extends Entity implements Runnable {
 		}
 		
 		time = Math.round(0.4f * Game.CYCLES_PER_SECOND);
-		zone.removeEntity(this);
 		graphic.delete();
 	}
 	
@@ -88,13 +87,14 @@ public class Bomb extends Entity implements Runnable {
 		for (Explosion e : explosions) {
 			e.remove();
 		}
+		zone.removeEntity(this);
 		bombThread.interrupt();
 	}
 	
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
 			
-			if (--time == 0) {
+			if (--time <= 0) {
 				if (!exploded) {
 					explode();
 				} else {
@@ -117,12 +117,13 @@ public class Bomb extends Entity implements Runnable {
 	}
 	
 	public void delete() {
-		bombThread.interrupt();
 		zone.removeEntity(this);
 		graphic.delete();
 		for (Explosion e : explosions) {
 			e.remove();
 		}
+		System.out.println("delete called");
+		bombThread.interrupt();
 	}
 
 	@Override

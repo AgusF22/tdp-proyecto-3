@@ -6,21 +6,23 @@ import game.entity.player.Player;
 
 public class ExplosionVisitor extends Visitor {
 
+	protected boolean playerVisited = false;
+	
 	@Override
 	public void visit(Player player) {
-		
-		if (player.hasShield()) {
-			player.useShield();
-		} else {
-			Visitor v = new RespawnVisitor();
-			for (Entity e : player.getLabyrinth().entities()) {
-				e.accept(v);
+		if (!playerVisited) {
+			if (player.hasShield()) {
+				player.useShield();
+			} else {
+				Visitor v = new RespawnVisitor();
+				for (Entity e : player.getLabyrinth().entities()) {
+					e.accept(v);
+				}
 			}
+			playerVisited = true;
 		}
-		
-		System.out.println("ExplosionVisitor visit player");
 	}
-	
+
 	@Override
 	public void visit(Enemy enemy) {
 		enemy.kill();

@@ -140,6 +140,7 @@ public abstract class Labyrinth {
 	
 	public void endGame() {
 		game.endGame();
+		System.out.println("lab endGame");
 	}
 	
 	/**

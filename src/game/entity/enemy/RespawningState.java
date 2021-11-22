@@ -39,7 +39,6 @@ public class RespawningState extends EnemyState {
 				pow((double) spawn.getX() - contextEnemy.getZone().getX(), 2) +
 				pow((double) spawn.getY() - contextEnemy.getZone().getY(), 2))));
 		
-		System.out.println("distance = " + distance);
 		return round(distance * 0.2f * Game.CYCLES_PER_SECOND);
 	}
 	

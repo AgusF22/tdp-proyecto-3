@@ -98,12 +98,12 @@ public class Game implements Runnable {
 	 * Termina el juego.
 	 */
 	public void endGame() {
-		stop();
 		if (labyrinth == null) {
 			gui.winGame();
 		} else {
 			gui.loseGame();
 		}
+		stop();
 	}
 	
 	/**
@@ -165,18 +165,17 @@ public class Game implements Runnable {
 			synchronized (this) {
 
 				Player.getInstance().move();
-				
+
 				if(labyrinth == null) {
 					stop();
 					break;
 				}
-
+				
 				try {
 					Thread.sleep(1000 / CYCLES_PER_SECOND);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-					Thread.currentThread().interrupt();
-					return;
+					Thread.currentThread().interrupt();	
 				}
 			}
 		}
