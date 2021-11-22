@@ -8,12 +8,19 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 
+/**
+ * Panel para mostrar las mejores puntuaciones obtenidas. 
+ */
 public class StartPanel extends GUIPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
 	protected JLabel fondo;
 	
+	/**
+	 * Crea una nueva instancia de StartPanel y la asocia a la GUI pasada por parametro
+	 * @param gui asociada al juego
+	 */
 	public StartPanel(GUI gui) {
 		super(gui);
 		setLayout(null);

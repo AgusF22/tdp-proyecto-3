@@ -28,6 +28,12 @@ public abstract class GameOverPanel extends GUIPanel{
 	
 	private JTextField name;
 	
+	/**
+	 * Crea una nueva instancia de GameOverPanel y la asocia a la GUI y a la puntuacion obtenida
+	 * pasadas por parametro
+	 * @param gui asociada al juego
+	 * @param finalScore puntuacion obtenida
+	 */
 	protected GameOverPanel(GUI gui, int finalScore) {
 		super(gui);
 		this.finalScore = finalScore;

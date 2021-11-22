@@ -7,6 +7,9 @@ import data.StatsData;
 import imagefactories.ImageFactory;
 import imagefactories.ConcreteImageFactory1;
 
+/*
+ * Modela la interfaz grafica del juego
+ */
 public class GUI extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
@@ -21,6 +24,9 @@ public class GUI extends JFrame{
 
 	private transient ImageFactory factory;
 
+	/**
+	 * Crea una nueva instancia de GUI
+	 */
 	public GUI() {
 		// TODO Descomentar en ver FINAL
 		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

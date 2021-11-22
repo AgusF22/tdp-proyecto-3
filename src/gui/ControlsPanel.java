@@ -12,12 +12,19 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Panel para mostrar los controles del juego
+ */
 public class ControlsPanel extends GUIPanel{
 	
 	protected JLabel fondo;
 	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Crea una nueva instancia de ControlsPanel y la asocia a la GUI pasada por parametro
+	 * @param gui asociada al juego
+	 */
 	public ControlsPanel(GUI gui) {
 		super(gui);
 		setLayout(null);
