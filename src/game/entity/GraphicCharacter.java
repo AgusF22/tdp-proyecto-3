@@ -61,7 +61,6 @@ public abstract class GraphicCharacter extends GraphicEntity{
 		default:
 			break;
 		}
-//		this.repaint(); TODO descomentar si hace falta
 	}
 	
 	/**

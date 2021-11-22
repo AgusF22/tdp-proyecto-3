@@ -3,8 +3,8 @@ package game.labyrinth;
 import game.entity.Entity;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import exceptions.InvalidZoneException;
 
@@ -16,7 +16,7 @@ public class Zone {
 	protected Labyrinth labyrinth;
 	protected ZoneType type;
 	
-	protected List<Entity> entities;
+	protected Set<Entity> entities;
 	
 	protected int x;
 	protected int y;
@@ -33,7 +33,7 @@ public class Zone {
 		this.x = x;
 		this.y = y;
 		this.type = type;
-		entities = new LinkedList<>();
+		entities = new HashSet<>();
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class Zone {
 	 * Agrega la entidad pasada por parametro a la lista de entidades de la zona.
 	 * @param entity la entidad que se quiere agregar.
 	 */
-	public void addEntity(Entity entity) {	 //TODO Excepcion? 
+	public void addEntity(Entity entity) {
 		entities.add(entity);
 	}
 	

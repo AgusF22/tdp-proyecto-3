@@ -263,7 +263,6 @@ public abstract class Labyrinth {
 			try {
 				game.winLevel();
 			} catch (DataLoadException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -46,14 +46,15 @@ public class ConcreteLabyrinth3  extends Labyrinth {
 	@Override
 	public void addPlayer() {
 		Player player = Player.getInstance();
-		playerSpawn = zones[14][23];									// ***Set Player***
+		playerSpawn = zones[14][23];
 		player.getGraphic().delete();
 		
 		try {
-			player.setZone(zones[14][23]);
+			player.setZone(playerSpawn);
 		} catch (InvalidZoneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			/* Este catch no debe ser alcanzado, se debe asegurar
+			en este metodo que setZone reciba una zona valida */
+			throw new AssertionError();
 		}
 		player.attemptMovement(Direction.LEFT);
 		fillWithDots();
