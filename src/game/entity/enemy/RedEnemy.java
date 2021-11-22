@@ -1,6 +1,6 @@
 package game.entity.enemy;
 
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -36,7 +36,7 @@ public class RedEnemy extends Enemy {
 		float playerY = player.getY();
 		try {
 			return bestAproachPath(this.getLabyrinth().getZone(playerX, playerY));
-		} catch (NullZoneException e) {
+		} catch (InvalidZoneException e) {
 			e.printStackTrace();
 		}
 		return null;

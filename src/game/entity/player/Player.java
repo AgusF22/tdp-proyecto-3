@@ -3,7 +3,7 @@ package game.entity.player;
 import game.labyrinth.Direction;
 import game.labyrinth.Zone;
 import game.labyrinth.ZoneType;
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.Game;
 import game.entity.Entity;
 import game.entity.Character;
@@ -57,9 +57,9 @@ public final class Player extends Character{
 	 * Setea la zona donde se encuentra el jugador.
 	 * @param zone Nueva zona a setear.
 	 */
-	public void setZone(Zone zone) throws NullZoneException {
+	public void setZone(Zone zone) throws InvalidZoneException {
 		if (zone == null) {
-			throw new NullZoneException("Intenta setear una zona nula en player");
+			throw new InvalidZoneException("Intenta setear una zona nula en player");
 		}
 		this.zone = zone;
 		for(Entity e : zone.zoneEntities()) {

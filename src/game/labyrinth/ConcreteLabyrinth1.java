@@ -1,16 +1,19 @@
 package game.labyrinth;
 
 import exceptions.DataLoadException;
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.Game;
 import game.entity.player.Player;
 
+/**
+ * Modela el laberinto del primer nivel.
+ */
 public class ConcreteLabyrinth1 extends Labyrinth {
 	
 	/**
-	 * Crea una instancia concreta del laberinto 1.
-	 * @param game asociado a este laberinto.
-	 * @throws DataLoadException 
+	 * Crea una nueva instancia de laberinto 1.
+	 * @param game El juego a asociar al nuevo laberinto.
+	 * @throws DataLoadException Si ocurre un error al cargar el laberinto.
 	 */
 	public ConcreteLabyrinth1(Game game) throws DataLoadException {
 		super(game);
@@ -19,37 +22,23 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 								game.getImageFactory().getLabyrinth1bgImage());
 		
 		setLabyrinth("src/res/xml/labyrinth1.xml");
-		setEntity();
-		//************************************
-				// TODO ¡¡¡¡BORRAR!!!!
-//				for (int y = 0; y < matrix[0].length; y++) {
-//					for (int x = 0; x < matrix.length; x++) {
-//						System.out.format("[%2d,%2d " + zones[x][y].getType().toString().charAt(0) + "]", x, y);
-//					}
-//					System.out.println();
-//				}
-		//************************************
+		setEntities();
 	}
 	
-	/**
-	 * Crea y setea en el mapa a todas las entidades del laberinto 1.
-	 */
-	private void setEntity() {
+	@Override
+	protected void setEntities() {
 		setEnemies();											
-		addFruit1(14, 17);
-		addPowerPellet(1, 1);
-		addPowerPellet(27, 1);
-		addPowerPellet(1, 29);
-		addPowerPellet(27, 29);
-		addPotionSpeed(6, 14);
-		addPotionShield(22, 14);
-		addPotionBomb(14, 11);
+		addFruit1		(14, 17);
+		addPowerPellet	(01, 01);
+		addPowerPellet	(27, 01);
+		addPowerPellet	(01, 29);
+		addPowerPellet	(27, 29);
+		addPotionSpeed	(06, 14);
+		addPotionShield	(22, 14);
+		addPotionBomb	(14, 11);
 	}
 	
-	/**
-	 * @return el siguiente laberinto concreto, si no existe retorna null.
-	 * @throws DataLoadException 
-	 */
+	@Override
 	public Labyrinth nextLabyrinth() throws DataLoadException {
 		return new ConcreteLabyrinth2(game);
 	}
@@ -61,10 +50,11 @@ public class ConcreteLabyrinth1 extends Labyrinth {
 		
 		try {
 			Player.getInstance().setZone(zones[14][23]);
-		} catch (NullZoneException e) {
+		} catch (InvalidZoneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		player.attemptMovement(Direction.LEFT);
+		fillWithDots();
 	}
 }

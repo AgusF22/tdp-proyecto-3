@@ -5,7 +5,7 @@ import static java.lang.Math.round;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.toIntExact;
 
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -56,7 +56,7 @@ public class OrangeEnemy extends Enemy {
 				toReturn = bestFleePath(playerZone);
 			}
 			return toReturn;
-		} catch (NullZoneException e) {
+		} catch (InvalidZoneException e) {
 			e.printStackTrace();
 		}
 		return null;

@@ -1,6 +1,6 @@
 package game.entity.enemy;
 
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.Game;
 import game.entity.GraphicEnemy;
 import game.entity.player.Player;
@@ -46,7 +46,7 @@ public class PinkEnemy extends Enemy {
 			}
 
 			return bestAproachPath(cursor.getZone());
-		} catch (NullZoneException e) {
+		} catch (InvalidZoneException e) {
 			e.printStackTrace();
 		}
 		return null;

@@ -1,5 +1,8 @@
 package game.labyrinth;
 
+/**
+ * Clase que permite crear matrices de tipos de zonas. A ser utilizada para facilitar la creacion de laberintos.
+ */
 public class ZoneMatrixBuilder {
 	
 	private ZoneType[][] matrix;
@@ -93,13 +96,17 @@ public class ZoneMatrixBuilder {
 	 * @return La matriz de tipos de zona.
 	 */
 	public ZoneType[][] build() {
-		ZoneType[][] toReturn = new ZoneType[matrix.length][matrix[0].length];
-		for (int x = 0; x < toReturn.length; x++) {
-			for (int y = 0; y < toReturn[0].length; y++) {
-				toReturn[x][y] = matrix[x][y];
-			}
+		ZoneType[][] toReturn = new ZoneType[matrix.length][];
+		int subArrLen = matrix[0].length;
+		ZoneType[] auxArr;
+		
+		for (int i = 0; i < matrix.length; i++) {
+			toReturn[i] = new ZoneType[subArrLen];
+			auxArr = matrix[i];
+			System.arraycopy(auxArr, 0, toReturn[i], 0, subArrLen);
 		}
-		return matrix;		// TODO cambiar copia
+	
+		return toReturn;
 	}
 	
 }

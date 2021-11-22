@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 
+/**
+ * Modela una zona del laberinto.
+ */
 public class Zone {
-	//TODO documentar
 	
 	protected Labyrinth labyrinth;
 	protected ZoneType type;
@@ -21,10 +23,10 @@ public class Zone {
 	
 	/**
 	 * Crea una nueva zona.
-	 * @param lab laberinto asociado a esta zona. 
-	 * @param x coordenada x de la zona.
-	 * @param y coordenada y de la zona.
-	 * @param type tipo de la zona.
+	 * @param lab El laberinto a asociar a esta zona. 
+	 * @param x Coordenada x para la nueva zona.
+	 * @param y Coordenada y para la nueva zona.
+	 * @param type Tipo de la nueva zona.
 	 */
 	public Zone(Labyrinth lab, int x, int y, ZoneType type) {
 		labyrinth = lab; 
@@ -35,36 +37,40 @@ public class Zone {
 	}
 	
 	/**
-	 * @return el tipo de la zona que recibe el mensaje.
+	 * Retorna el tipo de esta zona.
+	 * @return el tipo de esta zona.
 	 */
 	public ZoneType getType() {
 		return type;
 	}
 	
 	/**
-	 * @return coordenada x de la zona.
+	 * Retorna la coordenada x de esta zona.
+	 * @return La coordenada x de esta zona.
 	 */
 	public int getX() {
 		return x;
 	}
 	
 	/**
-	 * @return coordenada y de la zona.
+	 * Retorna la coordenada y de esta zona.
+	 * @return La coordenada y de esta zona.
 	 */
 	public int getY() {
 		return y;
 	}
 	
 	/**
-	 * @return coleccion iterable de las entidades de la zona.
+	 * Retorna una coleccion iterable con las entidades de esta zona.
+	 * @return Coleccion iterable con las entidades de esta zona.
 	 */
 	public Iterable<Entity> zoneEntities() {
 		return new ArrayList<>(entities);
 	}
 	
 	/**
-	 * Remueve la entidad pasada por parametro de la lista de entidades de la zona, si es que está.
-	 * @param entity la entidad que se quiere remover.
+	 * Remueve la entidad pasada como parametro de la lista de entidades de la zona.
+	 * @param entity La entidad a remover.
 	 */
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
@@ -79,18 +85,20 @@ public class Zone {
 	}
 	
 	/**
-	 * @return el laberinto asociado a esata zona.
+	 * Retorna el laberinto en el que se encuentra esta zona.
+	 * @return El laberinto en el que se encuentra esta zona.
 	 */
 	public Labyrinth getLabyrinth() {
 		return labyrinth;
 	}
 	
 	/**
-	 * Consulta y retorna la zona adjacente en la direccion indicada
-	 * @param direction Direccion
-	 * @return Zone zona inmediata en cierta direccion
+	 * Retorna la zona adjacente a esta en la direccion indicada.
+	 * @param direction Una direccion.
+	 * @return La zona adjacente a esta en la direccion indicada, nulo si se sale de los limites del laberinto.
 	 */
 	public Zone getAdjacent(Direction direction) {
+		Zone toReturn = null;
 		int adjacentX = this.x;
 		int adjacentY = this.y;
 		switch(direction) {
@@ -109,11 +117,12 @@ public class Zone {
 		}
 		
 		try {
-			return labyrinth.getZone(adjacentX, adjacentY);
-		} catch (NullZoneException e) {
+			toReturn = labyrinth.getZone(adjacentX, adjacentY);
+		} catch (InvalidZoneException e) {
 			e.printStackTrace();
 		}
-		return null;
+		
+		return toReturn;
 	}
 	
 }

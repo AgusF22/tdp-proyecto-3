@@ -36,7 +36,6 @@ public class Game implements Runnable {
 		
 		labyrinth = new ConcreteLabyrinth1(this);
 		labyrinth.addPlayer();
-		labyrinth.fillWithDots();
 		
 		gameThread = new Thread(this);
 		brainThread = new Thread(enemyBrain);

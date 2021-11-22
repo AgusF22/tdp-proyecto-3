@@ -1,6 +1,6 @@
 package game.entity;
 
-import exceptions.NullZoneException;
+import exceptions.InvalidZoneException;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
@@ -89,7 +89,7 @@ public abstract class Entity {
 				zone = newZone;
 				zone.addEntity(this);
 			}
-		} catch(NullZoneException e) {
+		} catch(InvalidZoneException e) {
 			e.printStackTrace();
 		}
 	}
