@@ -37,7 +37,7 @@ public class RedEnemy extends Enemy {
 		try {
 			return bestAproachPath(this.getLabyrinth().getZone(playerX, playerY));
 		} catch (InvalidZoneException e) {
-			e.printStackTrace();
+			// La zona siempre es valida, por lo que no se llega a este bloque.
 		}
 		return null;
 	}

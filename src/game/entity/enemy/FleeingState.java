@@ -52,7 +52,7 @@ public class FleeingState extends EnemyState {
 		try {
 			return contextEnemy.bestFleePath(contextEnemy.getLabyrinth().getZone(playerX, playerY));
 		} catch (InvalidZoneException e) {
-			e.printStackTrace();
+			// La zona siempre es valida, por lo que no se llega a este bloque.
 		}
 		return null;
 	}

@@ -48,7 +48,7 @@ public class BlueEnemy extends Enemy {
 		try {
 			return bestAproachPath(this.getLabyrinth().getZone(targetX, targetY));
 		} catch (InvalidZoneException e) {
-			e.printStackTrace();
+			// La zona siempre es valida, por lo que no se llega a este bloque.
 		}
 		return null;
 	}

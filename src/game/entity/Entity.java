@@ -90,7 +90,7 @@ public abstract class Entity {
 				zone.addEntity(this);
 			}
 		} catch(InvalidZoneException e) {
-			e.printStackTrace();
+			// Sigue hasta el final del metodo.
 		}
 	}
 	

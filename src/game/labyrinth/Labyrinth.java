@@ -263,7 +263,7 @@ public abstract class Labyrinth {
 			try {
 				game.winLevel();
 			} catch (DataLoadException e) {
-				e.printStackTrace();
+				// Sigue hasta el final del metodo.
 			}
 		}
 	}

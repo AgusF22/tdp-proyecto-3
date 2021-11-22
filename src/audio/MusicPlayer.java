@@ -59,7 +59,7 @@ public class MusicPlayer implements Runnable {
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
 			
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			e.printStackTrace();
+			Thread.currentThread().interrupt();
 		}
 	}
 

@@ -119,7 +119,7 @@ public class Zone {
 		try {
 			toReturn = labyrinth.getZone(adjacentX, adjacentY);
 		} catch (InvalidZoneException e) {
-			e.printStackTrace();
+			return null;
 		}
 		
 		return toReturn;

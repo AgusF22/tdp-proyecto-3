@@ -185,7 +185,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			registro.addPlayer(new PlayerScore(name.getText(), finalScore));
 			sd.save(registro);
 		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
+			// Sigue hast el final del metodo.
 		}
 		
 	}

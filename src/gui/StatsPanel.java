@@ -53,7 +53,7 @@ public class StatsPanel extends GUIPanel{
 				modelo.addRow(p);
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
+			return;
 		}
 		
 		tabla.setModel(modelo);

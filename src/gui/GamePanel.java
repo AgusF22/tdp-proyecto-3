@@ -52,7 +52,7 @@ public class GamePanel extends GUIPanel {
 		try {
 			game = new Game(this);
 		} catch (DataLoadException e) {
-			e.printStackTrace();
+			return;
 		}
 		
 		repaint();
