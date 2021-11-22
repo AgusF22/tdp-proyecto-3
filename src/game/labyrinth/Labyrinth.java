@@ -139,6 +139,11 @@ public abstract class Labyrinth {
 	public void endGame() {
 		game.endGame();
 		System.out.println("lab endGame");
+		try {
+			throw new Exception();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

@@ -48,7 +48,6 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 	public void addPlayer() {
 		Player player = Player.getInstance();
 		playerSpawn = zones[14][23];									// ***Set Player***
-		playerSpawn.addEntity(player);
 		player.getGraphic().delete();
         
 		try {
@@ -58,7 +57,6 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 			e.printStackTrace();
 		}
 		player.attemptMovement(Direction.LEFT);
-		player.getGraphic().addToGUI(game.getGUI());
 	}
 
 }

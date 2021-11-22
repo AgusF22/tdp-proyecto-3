@@ -62,6 +62,11 @@ public final class Player extends Character{
 			throw new NullZoneException("Intenta setear una zona nula en player");
 		}
 		this.zone = zone;
+		for(Entity e : zone.zoneEntities()) {
+			if(e == this) {
+				System.out.println("Set zone repeated");
+			}
+		}
 		zone.addEntity(this);
 		x = zone.getX();
 		y = zone.getY();
@@ -77,7 +82,6 @@ public final class Player extends Character{
 	public void collide() {
 		Visitor v = new PlayerVisitor();
 		for (Entity e : zone.zoneEntities()) {
-			System.out.println(Thread.currentThread());
 			e.accept(v);						
 		}
 	}

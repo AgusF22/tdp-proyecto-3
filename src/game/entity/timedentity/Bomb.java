@@ -8,6 +8,8 @@ import java.util.Set;
 import game.Game;
 import game.entity.Entity;
 import game.entity.GraphicStaticEntity;
+import game.entity.player.Player;
+import game.entity.visitor.ExplosionVisitor;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.LabyrinthCursor;
@@ -19,6 +21,8 @@ public class Bomb extends Entity implements Runnable {
 	protected boolean exploded;
 	protected List<Explosion> explosions;
 	
+	protected ExplosionVisitor visitor;
+	
 	protected Thread bombThread;
 	
 	public Bomb(Zone zone) {
@@ -28,6 +32,7 @@ public class Bomb extends Entity implements Runnable {
 		time = 2 * Game.CYCLES_PER_SECOND;
 		exploded = false;
 		explosions = new ArrayList<>();
+		visitor = new ExplosionVisitor();
 		startCountdown();
 	}
 	
@@ -46,7 +51,7 @@ public class Bomb extends Entity implements Runnable {
 		for (Direction d : Direction.values()) {
 			newCursor = cursor.sendCloneTo(d);
 			if (newCursor != null) {
-				explode(newCursor, 5);
+				explode(newCursor, 2);
 			}
 		}
 		
@@ -78,7 +83,7 @@ public class Bomb extends Entity implements Runnable {
 	}
 	
 	protected void addExplosion(Zone zoneParam) {
-		Explosion expl = new Explosion(zoneParam);
+		Explosion expl = new Explosion(zoneParam, this);
 		zoneParam.addEntity(expl);
 		explosions.add(expl);
 	}
@@ -93,6 +98,16 @@ public class Bomb extends Entity implements Runnable {
 	
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
+			
+//			System.out.println("Player coords = (" + Player.getInstance().getX() + ", " + Player.getInstance().getY() + ")");
+//			System.out.println("Player zone x = " + Player.getInstance().getZone().getX());
+//			System.out.println("Player zone y = " + Player.getInstance().getZone().getY());
+			
+			for(Entity e : Player.getInstance().getLabyrinth().getPlayerSpawn().zoneEntities()) {
+				if(e == Player.getInstance()) {
+					System.out.println("Player is in spawn");
+				}
+			}
 			
 			if (--time <= 0) {
 				if (!exploded) {
