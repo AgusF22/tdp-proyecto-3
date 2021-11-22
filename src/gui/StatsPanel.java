@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import data.PlayerScore;
+import data.StatsData;
 import data.TopPlayersRegistry;
 
 public class StatsPanel extends GUIPanel{
@@ -36,7 +37,7 @@ public class StatsPanel extends GUIPanel{
 	private void crearTabla() {
 		TopPlayersRegistry registro = null;
 		try {
-			registro = frame.getStatsData().load();
+			registro = (new StatsData()).load();
 			
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
