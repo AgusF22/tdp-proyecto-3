@@ -51,10 +51,10 @@ public class StartPanel extends GUIPanel{
 		JButton btnControls = new JButton("CONTROLS");
 		JButton btnExit = new JButton("EXIT");
 
-		btnPlay.addActionListener((e) -> {startGame();});
-		btnScores.addActionListener((e) -> {viewStats();});
-		btnControls.addActionListener((e) -> {controlsGame();});
-		btnExit.addActionListener((e) -> {exitGame();});
+		btnPlay.addActionListener(e -> startGame());
+		btnScores.addActionListener(e -> viewStats());
+		btnControls.addActionListener(e -> controlsGame());
+		btnExit.addActionListener(e -> exitGame());
 		
 		btnPlay.setFont(font);
 		btnScores.setFont(font);

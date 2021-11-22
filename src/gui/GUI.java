@@ -32,11 +32,8 @@ public class GUI extends JFrame{
 	 */
 	public GUI() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//		currentScreenWidth = Math.toIntExact(Math.round(screenSize.getWidth()));
-//		currentScreenHeight = Math.toIntExact(Math.round(screenSize.getHeight()));
-		
-		currentScreenWidth = 1280;
-		currentScreenHeight = 720;
+		currentScreenWidth = Math.toIntExact(Math.round(screenSize.getWidth()));
+		currentScreenHeight = Math.toIntExact(Math.round(screenSize.getHeight()));
 		
 		factory = new ConcreteImageFactory1(currentScreenWidth, currentScreenHeight);
 		
@@ -53,7 +50,7 @@ public class GUI extends JFrame{
 	 */
 	private void createFrame() {
 		setSize(currentScreenWidth, currentScreenHeight);
-//		setUndecorated(true);
+		setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

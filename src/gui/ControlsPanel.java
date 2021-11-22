@@ -63,8 +63,8 @@ public class ControlsPanel extends GUIPanel {
 		
 		tabla.setModel(modelo);
 		
-		tabla.setBounds((guiPanelWidth - scaleWidth*3)/2, scaleHeight/2, scaleWidth*3, scaleHeight*7);
-		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/3));
+		tabla.setBounds((guiPanelWidth - scaleWidth * 3) / 2, scaleHeight / 2, scaleWidth * 3, scaleHeight * 7);
+		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight / 3));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
 		tabla.setEnabled(false);
@@ -84,9 +84,9 @@ public class ControlsPanel extends GUIPanel {
 		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
 		renderer.setOpaque(true);
 		renderer.setHorizontalAlignment(SwingConstants.CENTER);
-		tabla.getColumnModel().getColumn(0).setCellRenderer( renderer );
-		tabla.getColumnModel().getColumn(1).setCellRenderer( renderer );
-		tabla.getColumnModel().getColumn(2).setCellRenderer( renderer );
+		tabla.getColumnModel().getColumn(0).setCellRenderer(renderer);
+		tabla.getColumnModel().getColumn(1).setCellRenderer(renderer);
+		tabla.getColumnModel().getColumn(2).setCellRenderer(renderer);
 		
 		add(tabla);
 	}
@@ -96,8 +96,8 @@ public class ControlsPanel extends GUIPanel {
 	 */
 	private void crearBotones() {
 		JButton btnMenu = new JButton("MENU");
-		
-		btnMenu.addActionListener((e) -> {backToMenu();});
+
+		btnMenu.addActionListener(e -> backToMenu());
 		
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
 		btnMenu.setBounds((guiPanelWidth - scaleWidth*2) / 2, guiPanelHeight/2 + (scaleHeight*6)/5,

@@ -66,9 +66,9 @@ public abstract class GameOverPanel extends GUIPanel{
 		JButton btnRestart	= new JButton("RESTART");
 		JButton btnExit		= new JButton("EXIT");
 
-		btnMenu.addActionListener((e) -> {backToMenu();});
-		btnRestart.addActionListener((e) -> {restartGame();});
-		btnExit.addActionListener((e) -> {exitGame();});
+		btnMenu.addActionListener(e -> backToMenu());
+		btnRestart.addActionListener(e -> restartGame());
+		btnExit.addActionListener(e -> exitGame());
 		
 		btnMenu.setFont(smallPanelFont);
 		btnRestart.setFont(smallPanelFont);
