@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import audio.MusicPlayer;
 import data.StatsData;
 import imagefactories.ImageFactory;
-import imagefactories.ConcreteImageFactory;
+import imagefactories.ConcreteImageFactory1;
 
 public class GUI extends JFrame{
 	
@@ -29,7 +29,7 @@ public class GUI extends JFrame{
 		currentScreenWidth = 1280;
 		currentScreenHeight = 720;
 		fuente = "SansSerif";
-		factory = new ConcreteImageFactory(currentScreenWidth, currentScreenHeight);
+		factory = new ConcreteImageFactory1(currentScreenWidth, currentScreenHeight);
 		
 		musicPlayer = new MusicPlayer("/res/music/minecraft/music.wav");
 		

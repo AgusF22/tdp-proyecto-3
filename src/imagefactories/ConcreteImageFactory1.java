@@ -1,11 +1,18 @@
 package imagefactories;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
-public class ConcreteImageFactory extends ImageFactory{
+/**
+ * Modela la fabrica de imagenes de minecraft.
+ */
+public class ConcreteImageFactory1 extends ImageFactory{
 	
-	public ConcreteImageFactory(int currentScreenWidth, int currentScreenHeight) {
+	/**
+	 * Crea una nueva fabrica de imagenes de minecraft.
+	 * @param currentScreenWidth El ancho de la pantalla.
+	 * @param currentScreenHeight La altura de la pantalla.
+	 */
+	public ConcreteImageFactory1(int currentScreenWidth, int currentScreenHeight) {
 		super(currentScreenWidth, currentScreenHeight);
 	}
 
@@ -158,18 +165,12 @@ public class ConcreteImageFactory extends ImageFactory{
 		return toReturn;
 	}
 	
-	/**
-	 * Retorna el icono del efecto de velocidad.
-	 * @return El icono del efecto de velocidad.
-	 */
+	@Override
 	protected Icon getSpeedEffectImage() {
 		return getIcon("/res/img/minecraft/entity/character/speedEffect.gif");
 	}
 	
-	/**
-	 * Retorna el icono del efecto de aturdimiento.
-	 * @return El icono del efecto de aturdimiento.
-	 */
+	@Override
 	protected Icon getStunEffectImage() {
 		return getIcon("/res/img/minecraft/entity/character/enemy/stunEffect.gif");
 	}
@@ -232,15 +233,9 @@ public class ConcreteImageFactory extends ImageFactory{
 		return getIcon("/res/img/minecraft/entity/staticentity/tnt.gif");
 	}
 	
+	@Override
 	public Icon getExplosionImage() {
 		return getIcon("/res/img/minecraft/entity/staticentity/explosion.png");
-	}
-	
-	private ImageIcon getIcon(String path) {
-		ImageIcon icon = new ImageIcon(imagefactories
-				.ConcreteImageFactory.class.getResource(path));
-
-		return scale(icon);
 	}
 
 }

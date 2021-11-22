@@ -8,7 +8,7 @@ import gui.GUI;
 public class Launcher {
 
 	/**
-	 * Metodo main, lanza la gui.
+	 * Metodo main, inicia la gui.
 	 * @param args Argumentos del programa.
 	 */
 	public static void main(String[] args) {
