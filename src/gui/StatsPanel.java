@@ -20,6 +20,10 @@ public class StatsPanel extends GUIPanel{
 	private static final long serialVersionUID = 1L;
 	private JLabel fondo;
 	
+	/**
+	 * Crea una nueva instancia de StatsPanel y la asocia a a GUI pasada por parametro
+	 * @param gui asociada al juego
+	 */
 	public StatsPanel(GUI gui) {
 		super(gui);
 		
@@ -80,6 +84,9 @@ public class StatsPanel extends GUIPanel{
 		add(tabla);
 	}
 
+	/**
+	 * Crea y agrega el fondo de este panel
+	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, width, height);
