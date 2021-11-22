@@ -1,6 +1,6 @@
 package main;
 
-import gui.GUI;
+import gui.GraphicSelectorFrame;
 
 /**
  * Launcher del juego.
@@ -8,11 +8,11 @@ import gui.GUI;
 public class Launcher {
 
 	/**
-	 * Metodo main, inicia la gui.
+	 * Metodo main, inicia el selector de graficos.
 	 * @param args Argumentos del programa.
 	 */
 	public static void main(String[] args) {
-		new GUI();
+		new GraphicSelectorFrame();
 	}
 	
 }

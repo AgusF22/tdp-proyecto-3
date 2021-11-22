@@ -17,10 +17,17 @@ public abstract class ImageFactory {
 	
 	/**
 	 * Crea una nueva fabrica de imagenes.
+	 */
+	protected ImageFactory() {
+		super();
+	}
+	
+	/**
+	 * Setea las dimensiones de la pantalla, para poder construir iconos del tamaño correcto.
 	 * @param currentScreenWidth El ancho de la pantalla.
 	 * @param currentScreenHeight La altura de la pantalla.
 	 */
-	protected ImageFactory(int currentScreenWidth, int currentScreenHeight) {
+	public void setSize(int currentScreenWidth, int currentScreenHeight) {
 		this.currentScreenWidth = currentScreenWidth;
 		this.currentScreenHeight = currentScreenHeight;
 	}

@@ -3,14 +3,14 @@ package imagefactories;
 import javax.swing.Icon;
 
 /**
- * Modela la fabrica de imagenes de minecraft.
+ * Modela la fabrica de imagenes de dungeon.
  */
-public class ConcreteImageFactory1 extends ImageFactory {
-	
+public class ConcreteImageFactory2 extends ImageFactory {
+
 	/**
-	 * Crea una nueva fabrica de imagenes de minecraft.
+	 * Crea una nueva fabrica de imagenes de dungeon.
 	 */
-	public ConcreteImageFactory1() {
+	public ConcreteImageFactory2() {
 		super();
 	}
 
@@ -63,10 +63,10 @@ public class ConcreteImageFactory1 extends ImageFactory {
 	public Icon[] getPlayerImages() {
 		Icon[] toReturn = new Icon[6];
 		
-		toReturn[0] = getIcon("/res/img/minecraft/entity/character/player/steveB.gif");
-		toReturn[1] = getIcon("/res/img/minecraft/entity/character/player/steveR.gif");
-		toReturn[2] = getIcon("/res/img/minecraft/entity/character/player/steveF.gif");
-		toReturn[3] = getIcon("/res/img/minecraft/entity/character/player/steveL.gif");
+		toReturn[0] = getIcon("/res/img/dungeon/entity/character/player/player_walkRight.gif");
+		toReturn[1] = getIcon("/res/img/dungeon/entity/character/player/player_walkRight.gif");
+		toReturn[2] = getIcon("/res/img/dungeon/entity/character/player/player_walkLeft.gif");
+		toReturn[3] = getIcon("/res/img/dungeon/entity/character/player/player_walkLeft.gif");
 		
 		toReturn[4] = getSpeedEffectImage();
 		
@@ -80,10 +80,10 @@ public class ConcreteImageFactory1 extends ImageFactory {
 		Icon[] toReturn = new Icon[10];
 		Icon[] fleeingIcons = getFleeingEnemyImages();
 		
-		toReturn[0] = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanB.gif");
-		toReturn[1] = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanR.gif");
-		toReturn[2] = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanF.gif");
-		toReturn[3] = getIcon("/res/img/minecraft/entity/character/enemy/pigman/pigmanL.gif");
+		toReturn[0] = getIcon("/res/img/dungeon/entity/character/enemy/ghoul/ghoul_walkRight.gif");
+		toReturn[1] = getIcon("/res/img/dungeon/entity/character/enemy/ghoul/ghoul_walkRight.gif");
+		toReturn[2] = getIcon("/res/img/dungeon/entity/character/enemy/ghoul/ghoul_walkLeft.gif");
+		toReturn[3] = getIcon("/res/img/dungeon/entity/character/enemy/ghoul/ghoul_walkLeft.gif");
 		
 		toReturn[4] = getSpeedEffectImage();
 		
@@ -102,10 +102,10 @@ public class ConcreteImageFactory1 extends ImageFactory {
 		Icon[] toReturn = new Icon[10];
 		Icon[] fleeingIcons = getFleeingEnemyImages();
 		
-		toReturn[0] = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonB.gif");
-		toReturn[1] = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonR.gif");
-		toReturn[2] = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonF.gif");
-		toReturn[3] = getIcon("/res/img/minecraft/entity/character/enemy/skeleton/skeletonL.gif");
+		toReturn[0] = getIcon("/res/img/dungeon/entity/character/enemy/eye/eye_walkRight.gif");
+		toReturn[1] = getIcon("/res/img/dungeon/entity/character/enemy/eye/eye_walkRight.gif");
+		toReturn[2] = getIcon("/res/img/dungeon/entity/character/enemy/eye/eye_walkLeft.gif");
+		toReturn[3] = getIcon("/res/img/dungeon/entity/character/enemy/eye/eye_walkLeft.gif");
 		
 		toReturn[4] = getSpeedEffectImage();
 		
@@ -124,10 +124,10 @@ public class ConcreteImageFactory1 extends ImageFactory {
 		Icon[] toReturn = new Icon[10];
 		Icon[] fleeingIcons = getFleeingEnemyImages();
 		
-		toReturn[0] = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperB.gif");
-		toReturn[1] = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperR.gif");
-		toReturn[2] = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperF.gif");
-		toReturn[3] = getIcon("/res/img/minecraft/entity/character/enemy/creeper/creeperL.gif");
+		toReturn[0] = getIcon("/res/img/dungeon/entity/character/enemy/imp/imp_walkRight.gif");
+		toReturn[1] = getIcon("/res/img/dungeon/entity/character/enemy/imp/imp_walkRight.gif");
+		toReturn[2] = getIcon("/res/img/dungeon/entity/character/enemy/imp/imp_walkLeft.gif");
+		toReturn[3] = getIcon("/res/img/dungeon/entity/character/enemy/imp/imp_walkLeft.gif");
 		
 		toReturn[4] = getSpeedEffectImage();
 		
@@ -146,10 +146,10 @@ public class ConcreteImageFactory1 extends ImageFactory {
 		Icon[] toReturn = new Icon[10];
 		Icon[] fleeingIcons = getFleeingEnemyImages();
 		
-		toReturn[0] = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieB.gif");
-		toReturn[1] = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieR.gif");
-		toReturn[2] = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieF.gif");
-		toReturn[3] = getIcon("/res/img/minecraft/entity/character/enemy/zombie/zombieL.gif");
+		toReturn[0] = getIcon("/res/img/dungeon/entity/character/enemy/cyclops/cyclops_walkRight.gif");
+		toReturn[1] = getIcon("/res/img/dungeon/entity/character/enemy/cyclops/cyclops_walkRight.gif");
+		toReturn[2] = getIcon("/res/img/dungeon/entity/character/enemy/cyclops/cyclops_walkLeft.gif");
+		toReturn[3] = getIcon("/res/img/dungeon/entity/character/enemy/cyclops/cyclops_walkLeft.gif");
 		
 		toReturn[4] = getSpeedEffectImage();
 		
@@ -188,52 +188,52 @@ public class ConcreteImageFactory1 extends ImageFactory {
 
 	@Override
 	public Icon getDotImage() {
-		return getIcon("/res/img/minecraft/entity/staticentity/dot.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/dot.png");
 	}
 
 	@Override
 	public Icon getPowerPelletImage() {
-		return getIcon("/res/img/minecraft/entity/staticentity/powerpellet.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/powerPellet.png");
 	}
 
 	@Override
 	public Icon getFruit1Image() {
-		return getIcon("/res/img/minecraft/entity/staticentity/fruit1.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/fruit1.png");
 	}
 	
 	@Override
 	public Icon getFruit2Image() {
-		return getIcon("/res/img/minecraft/entity/staticentity/fruit2.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/fruit2.png");
 	}
 	
 	@Override
 	public Icon getFruit3Image() {
-		return getIcon("/res/img/minecraft/entity/staticentity/fruit3.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/fruit3.png");
 	}
 	
 	@Override
 	public Icon getPotion1() {
-		return getIcon("/res/img/minecraft/entity/staticentity/potion1.gif");
+		return getIcon("/res/img/dungeon/entity/staticentity/shieldPotion.png");
 	}
 	
 	@Override
 	public Icon getPotion2() {
-		return getIcon("/res/img/minecraft/entity/staticentity/potion2.gif");
+		return getIcon("/res/img/dungeon/entity/staticentity/speedPotion.png");
 	}
 	
 	@Override
 	public Icon getPotion3() {
-		return getIcon("/res/img/minecraft/entity/staticentity/potion3.gif");
+		return getIcon("/res/img/dungeon/entity/staticentity/BombPotion.png");
 	}
 	
 	@Override
 	public Icon getBombImage() {
-		return getIcon("/res/img/minecraft/entity/staticentity/tnt.gif");
+		return getIcon("/res/img/dungeon/entity/staticentity/bomb.png");
 	}
 	
 	@Override
 	public Icon getExplosionImage() {
-		return getIcon("/res/img/minecraft/entity/staticentity/explosion.png");
+		return getIcon("/res/img/dungeon/entity/staticentity/explosion.png");
 	}
-
+	
 }

@@ -1,13 +1,9 @@
 package gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 
 import audio.MusicPlayer;
 import imagefactories.ImageFactory;
-import imagefactories.ConcreteImageFactory1;
 
 /**
  * Clase que modela la GUI principal del juego.
@@ -30,12 +26,12 @@ public class GUI extends JFrame{
 	/**
 	 * Crea una nueva instancia de la gui.
 	 */
-	public GUI() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		currentScreenWidth = Math.toIntExact(Math.round(screenSize.getWidth()));
-		currentScreenHeight = Math.toIntExact(Math.round(screenSize.getHeight()));
+	public GUI(ImageFactory factory, int screenWidth, int screenHeight) {
+		currentScreenWidth = screenWidth;
+		currentScreenHeight = screenHeight;
 		
-		factory = new ConcreteImageFactory1(currentScreenWidth, currentScreenHeight);
+		this.factory = factory;
+		factory.setSize(currentScreenWidth, currentScreenHeight);
 		
 		musicPlayer = new MusicPlayer("/res/music/minecraft/music.wav");
 		
