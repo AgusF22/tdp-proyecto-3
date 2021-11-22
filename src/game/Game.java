@@ -181,22 +181,21 @@ public class Game implements Runnable {
 	@Override
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
-			synchronized (this) {
 
-				Player.getInstance().move();
-				
-				if(labyrinth == null) {
-					stop();
-					break;
-				}
-				
-				try {
-					Thread.sleep(1000 / CYCLES_PER_SECOND);
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();	
-					System.out.println("gameThread Interrupted");
-				}
+			Player.getInstance().move();
+
+			if(labyrinth == null) {
+				stop();
+				break;
 			}
+
+			try {
+				Thread.sleep(1000 / CYCLES_PER_SECOND);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();	
+				System.out.println("gameThread Interrupted");
+			}
+			
 		}
 	}
 }
