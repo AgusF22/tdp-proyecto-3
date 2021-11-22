@@ -4,10 +4,17 @@ import game.entity.Entity;
 import game.entity.enemy.Enemy;
 import game.entity.player.Player;
 
+/**
+ * Modela un visitor de explosion.
+ */
 public class ExplosionVisitor extends Visitor {
 
 	protected boolean playerVisited = false;
 	
+	/**
+	 * {@inheritDoc}
+	 * Si el jugador tiene escudo, lo consume, si no, activa el respawn.
+	 */
 	@Override
 	public void visit(Player player) {
 		if (!playerVisited) {
@@ -23,6 +30,10 @@ public class ExplosionVisitor extends Visitor {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * Mata al enemigo.
+	 */
 	@Override
 	public void visit(Enemy enemy) {
 		enemy.kill();

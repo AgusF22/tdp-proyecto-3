@@ -3,8 +3,11 @@ package game.entity;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
+/**
+ * Modela un enemigo grafico.
+ */
 public class GraphicEnemy extends GraphicCharacter{
-
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -17,6 +20,11 @@ public class GraphicEnemy extends GraphicCharacter{
 	protected boolean fleeing;
 	protected boolean stuned;
 	
+	/**
+	 * Crea un nuevo enemigo grafico.
+	 * @param entity La entidad asociada a esta entidad grafica.
+	 * @param images Arreglo de imagenes para el nuevo enemigo grafico.
+	 */
 	public GraphicEnemy(Entity entity, Icon[] images) {
 		super(entity, images);
 		
@@ -31,6 +39,7 @@ public class GraphicEnemy extends GraphicCharacter{
 		stunedImageLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
 	}
 	
+	@Override
 	protected void setMoveDirection(int index) {
 		if (fleeing) {
 			setIcon(fleeingImages[index]);
@@ -39,11 +48,13 @@ public class GraphicEnemy extends GraphicCharacter{
 		}
 	}
 	
+	@Override
 	public void setFleeing(boolean fleeing) {
 		this.fleeing = fleeing;
 		updateImage();
 	}
 	
+	@Override
 	public void setStunEffect(boolean stuned) {
 		if (stuned) {
 			this.add(stunedImageLabel);
@@ -52,12 +63,13 @@ public class GraphicEnemy extends GraphicCharacter{
 		}
 	}
 
-	@Override
-	@Deprecated/**
+	/**
 	 * {@inheritDoc}
-	 * Nunca puede tener un escudo un enemigo
+	 * Un enemigo nuna tiene escudo, por lo que este metodo no hace nada.
 	 */
+	@Override
 	public void setShieldEffect(boolean shield) {
+		// metodo vacio
 	}
 	
 }

@@ -6,6 +6,9 @@ import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;
 import game.labyrinth.Zone;
 
+/**
+ * Modela una entidad del juego.
+ */
 public abstract class Entity {
 	
 	protected Zone zone;
@@ -14,7 +17,7 @@ public abstract class Entity {
 	protected float y;
 	
 	/**
-	 * Construye una nueva entidad ubicada en la coordenada (0, 0), asignandole una zona pasada como parametro.
+	 * Construye una nueva entidad, asignandole una zona pasada como parametro.
 	 * @param zone La zona en la que se encontrara la nueva entidad.
 	 */
 	protected Entity(Zone zone) {
@@ -55,10 +58,18 @@ public abstract class Entity {
 		return y;
 	}
 	
+	/**
+	 * Retorna la zona en la que se encuentra esta entidad.
+	 * @return La zona en la que se encuentra esta entidad.
+	 */
 	public Zone getZone() {
 		return zone;
 	}
 	
+	/**
+	 * Retorna el laberinto en el que se encuentra esta entidad.
+	 * @return El laberinto en el que se encuentra esta entidad.
+	 */
 	public Labyrinth getLabyrinth() {
 		return zone.getLabyrinth();
 	}
@@ -84,18 +95,18 @@ public abstract class Entity {
 	}
 	
 	/**
-	 * Retorna la grafica asociada a la entidad
-	 * @return Entidad grafica asociada
+	 * Retorna la grafica asociada a esta entidad.
+	 * @return La grafica asociada a esta entidad.
 	 */
 	public GraphicEntity getGraphic() {
 		return graphic;
 	}
 	
 	/**
-	 * Consulta la direccion de movimiento si esta existe
-	 * @return Direcion de movimiento actual
+	 * Consulta la direccion de movimiento de la entidad.
+	 * @return null, ya que la entidad no se mueve.
 	 */
 	public Direction getMovementDirection() {
-		return null;		//Retorna null porque sera redefinida en las clases que lo necesiten
+		return null;
 	}
 }

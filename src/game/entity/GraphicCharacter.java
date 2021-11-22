@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 
 import game.labyrinth.Direction;
 
+/**
+ * Modela un personaje grafico.
+ */
 public abstract class GraphicCharacter extends GraphicEntity{
 	
 	private static final long serialVersionUID = 1L;
@@ -16,6 +19,11 @@ public abstract class GraphicCharacter extends GraphicEntity{
 	
 	protected transient JLabel speedImageLabel;
 	
+	/**
+	 * Crea un nuevo personaje grafico.
+	 * @param entity La entidad asociada a esta entidad grafica.
+	 * @param images Arreglo de imagenes para el nuevo personaje grafico.
+	 */
 	public GraphicCharacter(Entity entity, Icon[] images) {
 		super(entity);
 		
@@ -34,6 +42,7 @@ public abstract class GraphicCharacter extends GraphicEntity{
 		depth = 1;
 	}
 	
+	@Override
 	public void updateImage() {
 		Direction dir = entity.getMovementDirection();
 		switch (dir) {
@@ -52,13 +61,18 @@ public abstract class GraphicCharacter extends GraphicEntity{
 		default:
 			break;
 		}
-		this.repaint();
+//		this.repaint(); TODO descomentar si hace falta
 	}
 	
+	/**
+	 * Setea la direccion de este personaje grafico de acuerdo al valor dado.
+	 * @param index Un valor entero que codifica una direccion como sigue: 1 = arriba; 2 = derecha; 3 = abajo; 4 = izquierda.
+	 */
 	protected void setMoveDirection(int index) {
 		this.setIcon(movingImages[index]);
 	}
 	
+	@Override
 	public void setSpeedEffect(boolean speed) {
 		if (speed) {
 			this.add(speedImageLabel);

@@ -189,7 +189,7 @@ public abstract class Enemy extends Character {
 	}
 
 	/**
-	 * Calcula el valor de un camino.
+	 * Calcula recursivamente el valor de un camino.
 	 * @param cursor Un cursor.
 	 * @param destZone La zona destino, con la cual se calcula el valor de cada zona evaluada.
 	 * @param n La cantidad de zonas que quedan por evaluar.

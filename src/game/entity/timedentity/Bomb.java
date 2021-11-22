@@ -8,13 +8,15 @@ import java.util.Set;
 import game.Game;
 import game.entity.Entity;
 import game.entity.GraphicStaticEntity;
-import game.entity.player.Player;
 import game.entity.visitor.ExplosionVisitor;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.LabyrinthCursor;
 import game.labyrinth.Zone;
 
+/**
+ * Modela una bomba.
+ */
 public class Bomb extends Entity implements Runnable {
 
 	protected int time;
@@ -25,6 +27,10 @@ public class Bomb extends Entity implements Runnable {
 	
 	protected Thread bombThread;
 	
+	/**
+	 * Cra una nueva bomba.
+	 * @param zone La zona en la que se encontrara la nueva bomba.
+	 */
 	public Bomb(Zone zone) {
 		super(zone);
 		graphic = new GraphicStaticEntity(this, getLabyrinth().getImageFactory().getBombImage());
@@ -36,11 +42,17 @@ public class Bomb extends Entity implements Runnable {
 		startCountdown();
 	}
 	
+	/**
+	 * Inicia el hilo que controla esta bomba.
+	 */
 	protected void startCountdown() {
 		bombThread = new Thread(this);
 		bombThread.start();
 	}
 	
+	/**
+	 * Explota esta bomba, creando explosiones en todos los caminos que se encuentren a una cierta distancia.
+	 */
 	protected void explode() {
 		LabyrinthCursor cursor = new LabyrinthCursor(zone, Direction.UP);
 		LabyrinthCursor newCursor;
@@ -51,7 +63,7 @@ public class Bomb extends Entity implements Runnable {
 		for (Direction d : Direction.values()) {
 			newCursor = cursor.sendCloneTo(d);
 			if (newCursor != null) {
-				explode(newCursor, 2);
+				explode(newCursor, 6);
 			}
 		}
 		
@@ -59,6 +71,11 @@ public class Bomb extends Entity implements Runnable {
 		graphic.delete();
 	}
 	
+	/**
+	 * Añade explosiones recursivamente alrededor de esta bomba.
+	 * @param cursor Un cursor de laberinto, usado para recorrer los caminos.
+	 * @param power La fuerza de la explosion, es decir, la cantidad de caminos que se expandira.
+	 */
 	protected void explode(LabyrinthCursor cursor, int power) {
 		Set<Direction> directions;
 		LabyrinthCursor newCursor;
@@ -82,12 +99,19 @@ public class Bomb extends Entity implements Runnable {
 		}
 	}
 	
+	/**
+	 * Añade una explosion a la zona pasada como parametro.
+	 * @param zoneParam La zona en la que se añadira la explosion.
+	 */
 	protected void addExplosion(Zone zoneParam) {
 		Explosion expl = new Explosion(zoneParam, this);
 		zoneParam.addEntity(expl);
 		explosions.add(expl);
 	}
 	
+	/**
+	 * Termina la explosion de esta bomba, interrumpiendo su hilo.
+	 */
 	protected void endExplosion() {
 		for (Explosion e : explosions) {
 			e.remove();
@@ -96,18 +120,9 @@ public class Bomb extends Entity implements Runnable {
 		bombThread.interrupt();
 	}
 	
+	@Override
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
-			
-//			System.out.println("Player coords = (" + Player.getInstance().getX() + ", " + Player.getInstance().getY() + ")");
-//			System.out.println("Player zone x = " + Player.getInstance().getZone().getX());
-//			System.out.println("Player zone y = " + Player.getInstance().getZone().getY());
-			
-			for(Entity e : Player.getInstance().getLabyrinth().getPlayerSpawn().zoneEntities()) {
-				if(e == Player.getInstance()) {
-					System.out.println("Player is in spawn");
-				}
-			}
 			
 			if (--time <= 0) {
 				if (!exploded) {
@@ -131,6 +146,9 @@ public class Bomb extends Entity implements Runnable {
 		}
 	}
 	
+	/**
+	 * Borra esta bomba, sus explosiones, e interrumpe su hilo.
+	 */
 	public void delete() {
 		zone.removeEntity(this);
 		graphic.delete();
@@ -144,6 +162,14 @@ public class Bomb extends Entity implements Runnable {
 	@Override
 	public void accept(Visitor visitor) {
 		visitor.visit(this);
+	}
+	
+	/**
+	 * Devuelve el visitor de explosion de esta bomba. A ser usado por sus explosiones.
+	 * @return El visitor de explosion de esta bomba.
+	 */
+	protected ExplosionVisitor getExplosionVisitor() {
+		return visitor;
 	}
 	
 }

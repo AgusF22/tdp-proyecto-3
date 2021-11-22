@@ -6,24 +6,47 @@ import game.entity.prize.Prize;
 import game.entity.timedentity.Bomb;
 import game.entity.timedentity.Explosion;
 
+/**
+ * Modela un visitor.
+ */
 public abstract class Visitor {
 	
+	/**
+	 * Visita un jugador.
+	 * @param player Un jugador.
+	 */
 	public void visit(Player player) {
 		// metodo vacio
 	}
 	
+	/**
+	 * Visita un enemigo.
+	 * @param enemy Un enemigo.
+	 */
 	public void visit(Enemy enemy) {
 		// metodo vacio
 	}
 	
+	/**
+	 * Visita un premio.
+	 * @param prize Un premio.
+	 */
 	public void visit(Prize prize) {
 		// metodo vacio
 	}
 	
+	/**
+	 * Visita una bomba.
+	 * @param bomb Una bomba.
+	 */
 	public void visit(Bomb bomb) {
 		// metodo vacio
 	}
 	
+	/**
+	 * Visita una explosion.
+	 * @param explosion Una explosion.
+	 */
 	public void visit(Explosion explosion) {
 		// metodo vacio
 	}
