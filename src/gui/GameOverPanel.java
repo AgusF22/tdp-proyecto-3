@@ -12,9 +12,7 @@ import data.PlayerScore;
 import data.StatsData;
 import data.TopPlayersRegistry;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -44,7 +42,7 @@ public abstract class GameOverPanel extends GUIPanel{
 		this.finalScore = finalScore;
 		
 		setLayout(null);
-		setSize(width, height);
+		setSize(guiPanelWidth, guiPanelHeight);
 		
 		smallPanelFont = new Font(fuente, Font.BOLD, scaleHeight / 2);
 		bigPanelFont = new Font(fuente, Font.BOLD, scaleHeight);
@@ -60,39 +58,25 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Crea los botones del panel.
 	 */
 	private void crearBotones() {
-		int btnXPos = (width - scaleWidth * 2) / 2;
+		int btnXPos = (guiPanelWidth - scaleWidth * 2) / 2;
 		int btnWidth = scaleWidth * 2;
 		int btnHeight = scaleHeight;
 		
 		JButton btnMenu		= new JButton("MENU");
 		JButton btnRestart	= new JButton("RESTART");
 		JButton btnExit		= new JButton("EXIT");
-		
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backToMenu();
-			}
-		});
-		
-		btnRestart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				restartGame();
-			}
-		});
-		
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exitGame();
-			}
-		});
+
+		btnMenu.addActionListener((e) -> {backToMenu();});
+		btnRestart.addActionListener((e) -> {restartGame();});
+		btnExit.addActionListener((e) -> {exitGame();});
 		
 		btnMenu.setFont(smallPanelFont);
 		btnRestart.setFont(smallPanelFont);
 		btnExit.setFont(smallPanelFont);
 		
-		btnMenu.setBounds	(btnXPos, (height / 2) + (scaleHeight * 06) / 5, btnWidth, btnHeight);
-		btnRestart.setBounds(btnXPos, (height / 2) + (scaleHeight * 12) / 5, btnWidth, btnHeight);
-		btnExit.setBounds	(btnXPos, (height / 2) + (scaleHeight * 18) / 5, btnWidth, btnHeight);
+		btnMenu.setBounds	(btnXPos, (guiPanelHeight / 2) + (scaleHeight * 06) / 5, btnWidth, btnHeight);
+		btnRestart.setBounds(btnXPos, (guiPanelHeight / 2) + (scaleHeight * 12) / 5, btnWidth, btnHeight);
+		btnExit.setBounds	(btnXPos, (guiPanelHeight / 2) + (scaleHeight * 18) / 5, btnWidth, btnHeight);
 		
 		add(btnMenu);
 		add(btnRestart);
@@ -118,8 +102,8 @@ public abstract class GameOverPanel extends GUIPanel{
 		winLose.setHorizontalAlignment(SwingConstants.CENTER);
 		yourName.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		winLose.setBounds(0, 0, width, 2 * scaleHeight);
-		score.setBounds((width - scaleWidth * 3), 4 * scaleHeight, scaleWidth * 3, scaleHeight);
+		winLose.setBounds(0, 0, guiPanelWidth, 2 * scaleHeight);
+		score.setBounds((guiPanelWidth - scaleWidth * 3), 4 * scaleHeight, scaleWidth * 3, scaleHeight);
 		yourName.setBounds(0, 4 * scaleHeight, scaleWidth * 3, scaleHeight);
 		
 		score.setForeground(color);
@@ -144,7 +128,7 @@ public abstract class GameOverPanel extends GUIPanel{
 			
 		});
 		name.setFont(bigPanelFont);
-		name.setBounds((width - scaleWidth * 2) / 2, 4 * scaleHeight, scaleWidth * 2, scaleHeight);
+		name.setBounds((guiPanelWidth - scaleWidth * 2) / 2, 4 * scaleHeight, scaleWidth * 2, scaleHeight);
 		name.setText("PLAYER");
 		name.setHorizontalAlignment(SwingConstants.CENTER);
 		add(name);
@@ -155,7 +139,7 @@ public abstract class GameOverPanel extends GUIPanel{
 	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
-		fondo.setBounds(0, 0, width, height);
+		fondo.setBounds(0, 0, guiPanelWidth, guiPanelHeight);
 		fondo.setIcon(frame.getImageFactory().getGameOverBgImage());
 		add(fondo);
 	}

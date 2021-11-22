@@ -24,7 +24,7 @@ public abstract class GraphicCharacter extends GraphicEntity{
 	 * @param entity La entidad asociada a esta entidad grafica.
 	 * @param images Arreglo de imagenes para el nuevo personaje grafico.
 	 */
-	public GraphicCharacter(Entity entity, Icon[] images) {
+	protected GraphicCharacter(Entity entity, Icon[] images) {
 		super(entity);
 		
 		movingImages = new Icon[4];

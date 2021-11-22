@@ -7,7 +7,7 @@ import game.entity.player.Player;
 /**
  * Modela un visitor de explosion.
  */
-public class ExplosionVisitor extends Visitor {
+public class ExplosionVisitor implements Visitor {
 
 	protected boolean playerVisited = false;
 	

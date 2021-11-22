@@ -55,14 +55,6 @@ public abstract class GraphicEntity extends JLabel{
 	}
 	
 	/**
-	 * Hace a esta entidad grafica visible o invisible.
-	 */
-	@Override
-	public void setVisible(boolean visible) {
-		super.setVisible(visible);
-	}
-	
-	/**
 	 * Añade o quita el efecto de velocidad de esta entidad grafica.
 	 * @param speed True para hacer que la entidad grafica tenga un efecto de velocidad, false en caso contrario.
 	 */

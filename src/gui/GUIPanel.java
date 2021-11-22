@@ -20,10 +20,10 @@ public abstract class GUIPanel extends JPanel{
 	
 	protected GUI frame;
 	protected String fuente;
-	protected int width;
-	protected int height;
-	protected int scaleWidth = width/4;
-	protected int scaleHeight = height/15;
+	protected int guiPanelWidth;
+	protected int guiPanelHeight;
+	protected int scaleWidth = guiPanelWidth/4;
+	protected int scaleHeight = guiPanelHeight/15;
 	
 	/**
 	 * Crea un nuevo panel de gui.
@@ -32,10 +32,10 @@ public abstract class GUIPanel extends JPanel{
 	protected GUIPanel(GUI gui) {
 		frame = gui;
 		fuente = GUI.FONT;
-		width = frame.currentScreenWidth;
-		height = frame.currentScreenHeight;
-		scaleWidth = width/8;
-		scaleHeight = height/16;
+		guiPanelWidth = frame.currentScreenWidth;
+		guiPanelHeight = frame.currentScreenHeight;
+		scaleWidth = guiPanelWidth/8;
+		scaleHeight = guiPanelHeight/16;
 		agregarControlMusica();
 	}
 	
@@ -58,13 +58,14 @@ public abstract class GUIPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MusicPlayer musicPlayer = frame.getMusicPlayer();
-				if (musicPlayer != null && musicPlayer.isPlaying()) {
-					musicPlayer.stop();
-				} else {
-					musicPlayer.start();
+				if (musicPlayer != null) {
+					if (musicPlayer.isPlaying()) {
+						musicPlayer.stop();
+					} else {
+						musicPlayer.start();
+					}
 				}
 			}
-			
 		};
 		
 		final String musica = "musica";

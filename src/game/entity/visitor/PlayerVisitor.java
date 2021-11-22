@@ -6,7 +6,7 @@ import game.entity.prize.Prize;
 /**
  * Modela un visitor de jugador.
  */
-public class PlayerVisitor extends Visitor{
+public class PlayerVisitor implements Visitor{
 	
 	/**
 	 * {@inheritDoc}

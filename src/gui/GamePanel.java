@@ -99,11 +99,11 @@ public class GamePanel extends GUIPanel {
 		lblLives.setForeground(foregroundColor);
 		lblBombs.setForeground(foregroundColor);
 		
-		lblScore.setBounds(((width - (scaleWidth * 9) / 4) * 61) / 100,
+		lblScore.setBounds(((guiPanelWidth - (scaleWidth * 9) / 4) * 61) / 100,
 							yPos, (scaleWidth * 9) / 4, scaleHeight);
-		lblLives.setBounds(((width - (scaleWidth * 5) / 4) * 32) / 100,
+		lblLives.setBounds(((guiPanelWidth - (scaleWidth * 5) / 4) * 32) / 100,
 							yPos, (scaleWidth * 5) / 4, scaleHeight);
-		lblBombs.setBounds(((width - (scaleWidth * 6) / 4) * 8) / 100,
+		lblBombs.setBounds(((guiPanelWidth - (scaleWidth * 6) / 4) * 8) / 100,
 							yPos, (scaleWidth * 6) / 4, scaleHeight);
 		
 		lblScore.setBackground(backgroundColor);
@@ -352,8 +352,8 @@ public class GamePanel extends GUIPanel {
 		fondo.setIcon(icon);
 		
 		// Centrar panelCapas
-		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7f);
-		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38f);
+		int posW = Math.round((getWidth() - panelCapas.getWidth()) / 2f - 7f);
+		int posH = Math.round((getHeight() - panelCapas.getHeight()) - 38f);
 		panelCapas.setLocation(posW, posH);
 	}
 	

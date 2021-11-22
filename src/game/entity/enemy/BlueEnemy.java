@@ -59,15 +59,15 @@ public class BlueEnemy extends Enemy {
 	 * @return El valor entero a menor distancia del parametro dado, restringido a la altura del laberinto.
 	 */
 	protected int limitToLabyrinthHeight(float yParam) {
-		float toReturn;
+		int toReturn;
 		if (yParam < 0) {
 			toReturn = 0;
 		} else if ( yParam > Labyrinth.HEIGHT - 1) {
 			toReturn = Labyrinth.HEIGHT - 1;
 		} else {
-			toReturn = yParam;
+			toReturn = (int) yParam;
 		}
-		return (int) toReturn;
+		return toReturn;
 	}
 	
 	/**
@@ -76,15 +76,15 @@ public class BlueEnemy extends Enemy {
 	 * @return El valor entero a menor distancia del parametro dado, restringido a la anchura del laberinto.
 	 */
 	protected int limitToLabyrinthWidth(float xParam) {
-		float toReturn;
+		int toReturn;
 		if (xParam < 0) {
 			toReturn = 0;
 		} else if ( xParam > Labyrinth.WIDTH - 1) {
 			toReturn = Labyrinth.WIDTH - 1;
 		} else {
-			toReturn = xParam;
+			toReturn = (int) xParam;
 		}
-		return (int) toReturn;
+		return toReturn;
 	}
 
 }

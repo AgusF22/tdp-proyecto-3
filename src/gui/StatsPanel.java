@@ -1,13 +1,12 @@
 package gui;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,7 +17,6 @@ import data.TopPlayersRegistry;
 public class StatsPanel extends GUIPanel{
 	
 	private static final long serialVersionUID = 1L;
-	private JLabel fondo;
 	
 	/**
 	 * Crea una nueva instancia de StatsPanel y la asocia a a GUI pasada por parametro
@@ -28,7 +26,7 @@ public class StatsPanel extends GUIPanel{
 		super(gui);
 		
 		setLayout(null);
-		setSize(width, height);
+		setSize(guiPanelWidth, guiPanelHeight);
 		
 		crearBotones();
 		crearTabla();
@@ -40,13 +38,6 @@ public class StatsPanel extends GUIPanel{
 	 */
 	private void crearTabla() {
 		TopPlayersRegistry registro = null;
-		try {
-			registro = (new StatsData()).load();
-			
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-		
 		JTable tabla = new JTable();
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("NAME");
@@ -54,16 +45,21 @@ public class StatsPanel extends GUIPanel{
 		
 		String[] p0 = {"NAME", "SCORE"};
 		modelo.addRow(p0);
-		
-		for(PlayerScore s: registro.getScores()) {
-			String[] p = {s.getName(), "" + s.getScore()};
-			modelo.addRow(p);
-		}
 
+		try {
+			registro = (new StatsData()).load();
+			for(PlayerScore s: registro.getScores()) {
+				String[] p = {s.getName(), "" + s.getScore()};
+				modelo.addRow(p);
+			}
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		
 		tabla.setModel(modelo);
 		
-		tabla.setBounds((width - scaleWidth * 2) / 2, 0, scaleWidth * 2, scaleHeight * 6);
-		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
+		tabla.setBounds((guiPanelWidth - scaleWidth * 2) / 2, 0, scaleWidth * 2, scaleHeight * 6);
+		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight / 2));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
 		tabla.setEnabled(false);
@@ -76,10 +72,10 @@ public class StatsPanel extends GUIPanel{
 		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setOpaque(false);
-		centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		tabla.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-		tabla.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+		tabla.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		tabla.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		
 		add(tabla);
 	}
@@ -88,8 +84,8 @@ public class StatsPanel extends GUIPanel{
 	 * Crea y agrega el fondo de este panel
 	 */
 	private void crearFondo() {
-		fondo = new JLabel("");
-		fondo.setBounds(0, 0, width, height);
+		JLabel fondo = new JLabel("");
+		fondo.setBounds(0, 0, guiPanelWidth, guiPanelHeight);
 		fondo.setIcon(frame.getImageFactory().getStatsBgImage());
 		add(fondo);
 	}
@@ -99,13 +95,12 @@ public class StatsPanel extends GUIPanel{
 	 */
 	private void crearBotones() {
 		JButton btnMenu = new JButton("MENU");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backToMenu();
-			}
-		});
-		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
+		
+		btnMenu.addActionListener((e) -> {backToMenu();});
+		
+		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight / 2));
+		btnMenu.setBounds((guiPanelWidth - scaleWidth * 2) / 2, guiPanelHeight / 2 + 
+						(scaleHeight * 6) / 5, scaleWidth * 2, scaleHeight);
 		add(btnMenu);
 	}
 	

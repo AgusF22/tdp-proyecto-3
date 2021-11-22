@@ -23,7 +23,7 @@ public class GUI extends JFrame{
 
 	protected final int currentScreenWidth;
 	protected final int currentScreenHeight;
-	protected MusicPlayer musicPlayer;
+	protected transient MusicPlayer musicPlayer;
 
 	private transient ImageFactory factory;
 

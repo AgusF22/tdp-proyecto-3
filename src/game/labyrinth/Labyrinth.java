@@ -21,8 +21,8 @@ import imagefactories.ImageFactory;
  */
 public abstract class Labyrinth {
 	
-	public final static int WIDTH = 29;
-	public final static int HEIGHT = 31;
+	public static final int WIDTH = 29;
+	public static final int HEIGHT = 31;
 	
 	protected Zone playerSpawn;
 	protected Zone enemySpawn;

@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,7 +26,7 @@ public class ControlsPanel extends GUIPanel {
 	public ControlsPanel(GUI gui) {
 		super(gui);
 		setLayout(null);
-		setSize(width, height);
+		setSize(guiPanelWidth, guiPanelHeight);
 		
 		crearBotones();
 		crearInfoControles();
@@ -40,7 +38,7 @@ public class ControlsPanel extends GUIPanel {
 	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
-		fondo.setBounds(0, 0, width, height);
+		fondo.setBounds(0, 0, guiPanelWidth, guiPanelHeight);
 		fondo.setIcon(frame.getImageFactory().getStartBgImage());
 		add(fondo);
 	}
@@ -65,7 +63,7 @@ public class ControlsPanel extends GUIPanel {
 		
 		tabla.setModel(modelo);
 		
-		tabla.setBounds((width - scaleWidth*3)/2, scaleHeight/2, scaleWidth*3, scaleHeight*7);
+		tabla.setBounds((guiPanelWidth - scaleWidth*3)/2, scaleHeight/2, scaleWidth*3, scaleHeight*7);
 		tabla.setFont(new Font(fuente, Font.BOLD, scaleHeight/3));
 		tabla.setShowVerticalLines(false);
 		tabla.setRowHeight(scaleHeight);
@@ -98,13 +96,11 @@ public class ControlsPanel extends GUIPanel {
 	 */
 	private void crearBotones() {
 		JButton btnMenu = new JButton("MENU");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backToMenu();
-			}
-		});
+		
+		btnMenu.addActionListener((e) -> {backToMenu();});
+		
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5,
+		btnMenu.setBounds((guiPanelWidth - scaleWidth*2) / 2, guiPanelHeight/2 + (scaleHeight*6)/5,
 							scaleWidth*2, scaleHeight);
 		add(btnMenu);
 	}

@@ -155,7 +155,6 @@ public class Bomb extends Entity implements Runnable {
 		for (Explosion e : explosions) {
 			e.remove();
 		}
-		System.out.println("delete called");
 		bombThread.interrupt();
 	}
 

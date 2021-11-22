@@ -4,8 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * Modela el panel del menu principal.
@@ -23,7 +21,7 @@ public class StartPanel extends GUIPanel{
 	public StartPanel(GUI gui) {
 		super(gui);
 		setLayout(null);
-		setSize(width, height);
+		setSize(guiPanelWidth, guiPanelHeight);
 		
 		crearBotones();
 		crearFondo();
@@ -34,7 +32,7 @@ public class StartPanel extends GUIPanel{
 	 */
 	private void crearFondo() {
 		fondo = new JLabel("");
-		fondo.setBounds(0, 0, width, height);
+		fondo.setBounds(0, 0, guiPanelWidth, guiPanelHeight);
 		fondo.setIcon(frame.getImageFactory().getStartBgImage());
 		add(fondo);
 	}
@@ -43,52 +41,38 @@ public class StartPanel extends GUIPanel{
 	 * Crea los botones de este panel.
 	 */
 	private void crearBotones() {
+		Font font = new Font(fuente, Font.BOLD, scaleHeight / 2);
+		int xPos = (guiPanelWidth - scaleWidth * 2) / 2;
+		int btnWidht = scaleWidth * 2;
+		int btnHeight = scaleHeight;
+		
 		JButton btnPlay = new JButton("PLAY");
-		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				startGame();
-			}
-		});
-		btnPlay.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnPlay.setBounds((width - scaleWidth*2) / 2,
-						  height/2 + (scaleHeight*6)/5,
-						  scaleWidth*2, scaleHeight);
-		add(btnPlay);
-		
 		JButton btnScores = new JButton("SCORES");
-		btnScores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				viewStats();
-			}
-		});
-		btnScores.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnScores.setBounds((width - scaleWidth*2) / 2,
-							height/2 + (scaleHeight*12)/5,
-							scaleWidth*2, scaleHeight);
-		add(btnScores);
-		
 		JButton btnControls = new JButton("CONTROLS");
-		btnControls.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controlsGame();
-			}
-		});
-		btnControls.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnControls.setBounds((width - scaleWidth*2) / 2,
-							  height/2 + (scaleHeight*18)/5,
-							  scaleWidth*2, scaleHeight);
-		add(btnControls);
-		
 		JButton btnExit = new JButton("EXIT");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exitGame();
-			}
-		});
-		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth*2) / 2,
-						  height/2 + (scaleHeight*24)/5,
-						  scaleWidth*2, scaleHeight);
+
+		btnPlay.addActionListener((e) -> {startGame();});
+		btnScores.addActionListener((e) -> {viewStats();});
+		btnControls.addActionListener((e) -> {controlsGame();});
+		btnExit.addActionListener((e) -> {exitGame();});
+		
+		btnPlay.setFont(font);
+		btnScores.setFont(font);
+		btnControls.setFont(font);
+		btnExit.setFont(font);
+		
+		btnPlay.setBounds(xPos, guiPanelHeight / 2 +
+					(scaleHeight * 6) / 5, btnWidht, btnHeight);
+		btnScores.setBounds(xPos, guiPanelHeight / 2 +
+					(scaleHeight * 12) / 5, btnWidht, btnHeight);
+		btnControls.setBounds(xPos, guiPanelHeight / 2 +
+					(scaleHeight * 18) / 5, btnWidht, btnHeight);
+		btnExit.setBounds(xPos, guiPanelHeight / 2 +
+					(scaleHeight * 24) / 5, btnWidht, btnHeight);
+
+		add(btnPlay);
+		add(btnScores);
+		add(btnControls);
 		add(btnExit);
 	}
 	

@@ -7,7 +7,7 @@ import game.entity.timedentity.Bomb;
 /**
  * Modela un visitor de reaparicion.
  */
-public class RespawnVisitor extends Visitor {
+public class RespawnVisitor implements Visitor {
 
 	/**
 	 * {@inheritDoc}

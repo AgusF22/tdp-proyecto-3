@@ -5,7 +5,7 @@ import game.entity.enemy.Enemy;
 /**
  * Modela un visitor de power pellet.
  */
-public class PowerPelletVisitor extends Visitor{
+public class PowerPelletVisitor implements Visitor{
 	
 	/**
 	 * {@inheritDoc}
