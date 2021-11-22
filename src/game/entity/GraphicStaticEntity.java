@@ -14,8 +14,11 @@ public class GraphicStaticEntity extends GraphicEntity{
 	}
 
 	@Override
+	/**
+	 * Nunca actualiza su grafica una vez establecida
+	 */
 	public void updateImage() {
-		// metodo vacio
+		// metodo vacio 
 	}
 	
 	@Override
@@ -25,26 +28,35 @@ public class GraphicStaticEntity extends GraphicEntity{
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca puede aumentar su velocidad una entidad estacionaria
+	 */
 	public void setSpeedEffect(boolean speed) {
-		// TODO documentar
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca puede aturdise una entidad estacionaria
+	 */
 	public void setStunEffect(boolean stuned) {
-		// TODO documentar
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca tiene escudo una entidad estacionaria
+	 */
 	public void setShieldEffect(boolean shield) {
-		// TODO documentar
 	}
 
 	@Override
 	@Deprecated
+	/**
+	 * {@inheritDoc}
+	 * Nunca intenta escapar una entidad estacionaria
+	 */
 	public void setFleeing(boolean fleeing) {
-		// TODO documentar
 	}
 }

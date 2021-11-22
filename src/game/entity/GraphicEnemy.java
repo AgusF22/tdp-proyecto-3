@@ -53,10 +53,11 @@ public class GraphicEnemy extends GraphicCharacter{
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca puede tener un escudo un enemigo
+	 */
 	public void setShieldEffect(boolean shield) {
-		// metodo vacio
-		// TODO documentar
 	}
 	
 }

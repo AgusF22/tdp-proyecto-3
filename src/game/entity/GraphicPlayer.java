@@ -31,15 +31,19 @@ public class GraphicPlayer extends GraphicCharacter {
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca puede ser aturidido
+	 */
 	public void setStunEffect(boolean stuned) {
-		/// TODO documentar
 	}
 
 	@Override
-	@Deprecated
+	@Deprecated/**
+	 * {@inheritDoc}
+	 * Nunca puede estar establecido en un estado Fleeing
+	 */
 	public void setFleeing(boolean fleeing) {
-		// TODO documentar
 	}
 
 }
