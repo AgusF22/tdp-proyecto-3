@@ -35,6 +35,7 @@ public class ConcreteLabyrinth2  extends Labyrinth {
 		addPowerPellet	(27, 29);
 		addPotionSpeed	(06, 14);
 		addPotionShield	(22, 14);
+		addPotionBomb	(14, 11);
 	}
 	
 	@Override
