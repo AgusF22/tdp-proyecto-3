@@ -96,7 +96,7 @@ public class StatsPanel extends GUIPanel{
 	private void crearBotones() {
 		JButton btnMenu = new JButton("MENU");
 		
-		btnMenu.addActionListener((e) -> {backToMenu();});
+		btnMenu.addActionListener(e -> backToMenu());
 		
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight / 2));
 		btnMenu.setBounds((guiPanelWidth - scaleWidth * 2) / 2, guiPanelHeight / 2 + 
