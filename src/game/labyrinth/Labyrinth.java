@@ -34,8 +34,6 @@ public abstract class Labyrinth {
 	protected Game game;
 	protected Zone[][] zones;
 	
-	//TODO falta agregar las zonas playerSpawn y los enemySpawn
-	
 	/**
 	 * Crear un nuevo labyrinth.
 	 * @param game asociado a este laberinto.
