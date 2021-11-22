@@ -13,17 +13,17 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Panel para mostrar los controles del juego
+ * Modela el panel que muestra los controles del juego.
  */
-public class ControlsPanel extends GUIPanel{
-	
-	protected JLabel fondo;
+public class ControlsPanel extends GUIPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
+	protected JLabel fondo;
+	
 	/**
-	 * Crea una nueva instancia de ControlsPanel y la asocia a la GUI pasada por parametro
-	 * @param gui asociada al juego
+	 * Crea un nuevo panel de controles.
+	 * @param gui La gui en la que se encontrara este panel.
 	 */
 	public ControlsPanel(GUI gui) {
 		super(gui);
@@ -48,7 +48,7 @@ public class ControlsPanel extends GUIPanel{
 	/**
 	 * Crea una tabla con informacion de controles.
 	 */
-	private void crearInfoControles() {	// TODO ajustar tamaño de columnas, toggle music no se ve
+	private void crearInfoControles() {
 		JTable tabla = new JTable();
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("1");
@@ -90,8 +90,6 @@ public class ControlsPanel extends GUIPanel{
 		tabla.getColumnModel().getColumn(1).setCellRenderer( renderer );
 		tabla.getColumnModel().getColumn(2).setCellRenderer( renderer );
 		
-		
-		
 		add(tabla);
 	}
 	
@@ -106,14 +104,15 @@ public class ControlsPanel extends GUIPanel{
 			}
 		});
 		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
+		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5,
+							scaleWidth*2, scaleHeight);
 		add(btnMenu);
 	}
 	
 	/**
-	 * Carga en la gui una nueva pantalla de inicio
+	 * Retorna la gui a la pantalla de inicio.
 	 */
-	private void backToMenu() {
+	protected void backToMenu() {
 		frame.setPanel(new StartPanel(frame));
 	}
 }

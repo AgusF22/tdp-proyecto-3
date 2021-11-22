@@ -5,11 +5,10 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 
 /**
- * Panel para mostrar las mejores puntuaciones obtenidas. 
+ * Modela el panel del menu principal.
  */
 public class StartPanel extends GUIPanel{
 	
@@ -18,8 +17,8 @@ public class StartPanel extends GUIPanel{
 	protected JLabel fondo;
 	
 	/**
-	 * Crea una nueva instancia de StartPanel y la asocia a la GUI pasada por parametro
-	 * @param gui asociada al juego
+	 * Crea un nuevo panel de menu principal.
+	 * @param gui La gui en la que se encontrara este panel.
 	 */
 	public StartPanel(GUI gui) {
 		super(gui);
@@ -27,31 +26,7 @@ public class StartPanel extends GUIPanel{
 		setSize(width, height);
 		
 		crearBotones();
-		crearBotonesBasura(); //TODO basura borrar luego de probar cosas
 		crearFondo();
-	}
-	
-	private void crearBotonesBasura() { //TODO metodo basura, luego borrar
-		Random rnd = new Random();
-		JButton btnPerder = new JButton("PERDER");
-		btnPerder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.setPanel(new LosePanel(frame, (rnd.nextInt()%10000)+10000));
-			}
-		});
-		btnPerder.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnPerder.setBounds((width - scaleWidth), height/2 + scaleHeight + scaleHeight/5, scaleWidth, scaleHeight);
-		add(btnPerder);
-		
-		JButton btnGanar = new JButton("GANAR");
-		btnGanar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.setPanel(new WinPanel(frame, (rnd.nextInt()%10000)+10000));
-			}
-		});
-		btnGanar.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnGanar.setBounds((width - scaleWidth), height/2 + 2*scaleHeight + 2*scaleHeight/5, scaleWidth, scaleHeight);
-		add(btnGanar);
 	}
 	
 	/**
@@ -75,7 +50,9 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnPlay.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnPlay.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
+		btnPlay.setBounds((width - scaleWidth*2) / 2,
+						  height/2 + (scaleHeight*6)/5,
+						  scaleWidth*2, scaleHeight);
 		add(btnPlay);
 		
 		JButton btnScores = new JButton("SCORES");
@@ -85,7 +62,9 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnScores.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnScores.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*12)/5, scaleWidth*2, scaleHeight);
+		btnScores.setBounds((width - scaleWidth*2) / 2,
+							height/2 + (scaleHeight*12)/5,
+							scaleWidth*2, scaleHeight);
 		add(btnScores);
 		
 		JButton btnControls = new JButton("CONTROLS");
@@ -95,7 +74,9 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnControls.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnControls.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
+		btnControls.setBounds((width - scaleWidth*2) / 2,
+							  height/2 + (scaleHeight*18)/5,
+							  scaleWidth*2, scaleHeight);
 		add(btnControls);
 		
 		JButton btnExit = new JButton("EXIT");
@@ -105,7 +86,9 @@ public class StartPanel extends GUIPanel{
 			}
 		});
 		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*24)/5, scaleWidth*2, scaleHeight);
+		btnExit.setBounds((width - scaleWidth*2) / 2,
+						  height/2 + (scaleHeight*24)/5,
+						  scaleWidth*2, scaleHeight);
 		add(btnExit);
 	}
 	
@@ -131,7 +114,7 @@ public class StartPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Termina la ejecucion del juego.
+	 * Cierra el juego.
 	 */
 	public void exitGame() {
 		System.exit(0);

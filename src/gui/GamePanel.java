@@ -21,20 +21,26 @@ import javax.swing.Icon;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 
+/**
+ * Modela el panel del juego.
+ */
 public class GamePanel extends GUIPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
 	protected transient Game game;
+	
 	private JLabel labyrinthLabel;
 	private JLayeredPane panelCapas;
 	private JLabel fondo;
 	private JLabel lblScore;
-	private int score;
 	private JLabel lblLives;
-
 	private JLabel lblBombs;
 	
+	/**
+	 * Crea un nuevo panel del juego.
+	 * @param gui La gui en la que se encontrara este panel.
+	 */
 	public GamePanel(GUI gui) { 
 		super(gui);
 		
@@ -49,167 +55,12 @@ public class GamePanel extends GUIPanel {
 			e.printStackTrace();
 		}
 		
-		score = game.getPoints();
-		//lives = game.getLives();
-		
 		repaint();
 		game.start();
 	}
 	
 	/**
-	 * Actualiza los puntos.
-	 */
-	public void updatePoints() {
-		score = game.getPoints();
-		lblScore.setText("SCORE: "+score);
-	}
-	
-	/**
-	 * Elimina este panel y carga un nuevo panel de juego ganado en la gui principal.
-	 */
-	public void winGame() {
-		frame.setPanel(new WinPanel(frame, game.getPoints()));
-	}
-	
-	/**
-	 * Elimina este panel y carga un nuevo panel de juego perdido en la gui principal.
-	 */
-	public void loseGame() {
-		frame.setPanel(new LosePanel(frame, game.getPoints()));
-	}
-	
-	/**
-	 * Agrega el label pasado por parametro al panel
-	 * @param label
-	 */
-	public void addLabel(JLabel label, int depth) {
-		panelCapas.add(label, Integer.valueOf(1 + depth), 0);
-	}
-	
-	/**
-	 * Remueve el label pasado por parametro.
-	 * @param label un label.
-	 */
-	public void removeLabel(JLabel label) {
-		panelCapas.remove(label);
-		panelCapas.revalidate();
-		panelCapas.repaint();
-	}
-	
-	/**
-	 * Mueve el label pasado por parametro a la posicion pasada por parametro.
-	 * @param label un label.
-	 * @param x la coordenada x.
-	 * @param y la coordenada y.
-	 */
-	public void updateLabel(JLabel label, float x, float y) {
-		
-		float zoneWidth = (float) panelCapas.getWidth() / Labyrinth.WIDTH;
-		float zoneHeight = (float) panelCapas.getHeight() / Labyrinth.HEIGHT;
-		
-		float posX = x * zoneWidth + zoneWidth / 2f;
-		float posY = y * zoneHeight + zoneHeight / 2f;
-		
-		posX -= (float) label.getWidth() / 2;
-		posY -= label.getHeight(); //TODO si las imagenes nuevas quedan mal: restar o sumar const.
-		
-		label.setLocation(Math.round(posX), Math.round(posY));
-	}
-	
-	/**
-	 * Cambia la imagen del laberinto
-	 * @param lab Icon nuevo imagen del laberinto
-	 */
-	public void setLabyrinthImage(Icon lab, Icon bg) {
-		int width = lab.getIconWidth();
-		int height = lab.getIconHeight();
-		
-		panelCapas.setSize(width, height);
-		
-		labyrinthLabel.setSize(width, height);
-		labyrinthLabel.setIcon(lab);
-		
-		setLabyrinthBgImage(bg);
-		
-	}
-	
-	/**
-	 * Cambia la imagen del fondo del laberinto
-	 * @param lab Icon nuevo imagen del fondo del laberinto
-	 */
-	public void setLabyrinthBgImage(Icon lab) {
-		int width = lab.getIconWidth();
-		int height = lab.getIconHeight();
-		
-		setSize(width, height);
-		fondo.setSize(width, height);
-		fondo.setIcon(lab);
-		centrar();
-	}
-	
-	/**
-	 * Devuelve la fabrica de imagenes de la gui principal.
-	 * @return La fabrica de imagenes de la gui principal.
-	 */
-	public ImageFactory getImageFactory() {
-		return frame.getImageFactory();
-	}
-	
-	/**
-	 * Cambia el contador de vidas de la ventana y lo actualiza.
-	 */
-	public void updateLives(int lives) {
-		lblLives.setText("LIVES: " + lives);
-	}
-	
-	/**
-	 * Cambia el contador de bombas de la ventana y lo actualiza.
-	 */
-	public void updateBombs(int bombs) {
-		lblBombs.setText("BOMBS: " + bombs);
-	}
-
-	/**
-	 * Crea los labels y los coloca en el panel.
-	 */
-	private void crearLabels() {
-		
-		lblScore = new JLabel("");
-		lblScore.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
-		lblScore.setForeground(new Color(186, 64, 50));
-		lblScore.setBounds(((width - (scaleWidth*9)/4)*61)/100, (scaleHeight*1)/6, (scaleWidth*9)/4, scaleHeight);
-		lblScore.setText("SCORE: "+score);
-		lblScore.setBackground(new Color(250, 128, 114));
-		lblScore.setOpaque(true);
-		lblScore.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
-		add(lblScore);
-		
-		lblLives = new JLabel("");
-		lblLives.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblLives.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLives.setForeground(new Color(186, 64, 50));
-		lblLives.setBounds(((width - (scaleWidth*5)/4)*32)/100, (scaleHeight*1)/6, (scaleWidth*5)/4, scaleHeight);
-		lblLives.setText("LIVES: "+0);
-		lblLives.setBackground(new Color(250, 128, 114));
-		lblLives.setOpaque(true);
-		lblLives.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
-		add(lblLives);
-		
-		lblBombs = new JLabel("");
-		lblBombs.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		lblBombs.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBombs.setForeground(new Color(186, 64, 50));
-		lblBombs.setBounds(((width - (scaleWidth*6)/4)*8)/100, (scaleHeight*1)/6, (scaleWidth*6)/4, scaleHeight);
-		lblBombs.setText("BOMBS: "+0);
-		lblBombs.setBackground(new Color(250, 128, 114));
-		lblBombs.setOpaque(true);
-		lblBombs.setBorder(new LineBorder(new Color(186, 64, 50), scaleHeight/8, false));
-		add(lblBombs);
-	}
-
-	/**
-	 * Setea algunas propiedades del panel.
+	 * Setea propiedades del panel.
 	 */
 	private void crearPanel() {
 		setLayout(null);
@@ -221,21 +72,63 @@ public class GamePanel extends GUIPanel {
 		labyrinthLabel.setLocation(0, 0);
 		panelCapas.add(labyrinthLabel, Integer.valueOf(0), 0);
 	}
-
+	
 	/**
-	 * Crea el fondo del panel.
+	 * Crea los labels y los coloca en el panel.
 	 */
-	private void crearFondo() {
-		fondo = new JLabel("");
-		fondo.setLocation(0, 0);
-		add(fondo);
+	private void crearLabels() {
+		Font font = new Font(fuente, Font.BOLD, scaleHeight);
+		Color foregroundColor = new Color(186, 64, 50);
+		Color backgroundColor = new Color(250, 128, 114);
+		LineBorder border = new LineBorder(new Color(186, 64, 50), scaleHeight/8, false);
+		int yPos = (scaleHeight * 1) / 6;
+		
+		lblScore = new JLabel("SCORE: " + 0);
+		lblLives = new JLabel("LIVES: " + 0);
+		lblBombs = new JLabel("BOMBS: " + 0);
+		
+		lblScore.setFont(font);
+		lblLives.setFont(font);
+		lblBombs.setFont(font);
+		
+		lblScore.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLives.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBombs.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		lblScore.setForeground(foregroundColor);
+		lblLives.setForeground(foregroundColor);
+		lblBombs.setForeground(foregroundColor);
+		
+		lblScore.setBounds(((width - (scaleWidth * 9) / 4) * 61) / 100,
+							yPos, (scaleWidth * 9) / 4, scaleHeight);
+		lblLives.setBounds(((width - (scaleWidth * 5) / 4) * 32) / 100,
+							yPos, (scaleWidth * 5) / 4, scaleHeight);
+		lblBombs.setBounds(((width - (scaleWidth * 6) / 4) * 8) / 100,
+							yPos, (scaleWidth * 6) / 4, scaleHeight);
+		
+		lblScore.setBackground(backgroundColor);
+		lblLives.setBackground(backgroundColor);
+		lblBombs.setBackground(backgroundColor);
+		
+		lblScore.setOpaque(true);
+		lblLives.setOpaque(true);
+		lblBombs.setOpaque(true);
+		
+		lblScore.setBorder(border);
+		lblLives.setBorder(border);
+		lblBombs.setBorder(border);
+		
+		add(lblScore);
+		add(lblLives);
+		add(lblBombs);
 	}
-
+	
 	/**
 	 * Agrega los controles al panel.
 	 */
 	private void agregarControles() {
 		Action moveUp = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 	
 			@Override
@@ -245,6 +138,7 @@ public class GamePanel extends GUIPanel {
 		};
 		
 		Action moveDown = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -254,6 +148,7 @@ public class GamePanel extends GUIPanel {
 		};
 		
 		Action moveRight = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -263,6 +158,7 @@ public class GamePanel extends GUIPanel {
 		};
 		
 		Action moveLeft = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -272,6 +168,7 @@ public class GamePanel extends GUIPanel {
 		};
 		
 		Action bomb = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -280,73 +177,194 @@ public class GamePanel extends GUIPanel {
 			}
 		};
 		
-		final String arriba = "arriba";
-		final String abajo = "abajo";
-		final String derecha = "deracha";
-		final String izquierda = "izquierda";
-		final String bomba = "bomba";
+		final String arriba		= "arriba";
+		final String abajo		= "abajo";
+		final String derecha	= "deracha";
+		final String izquierda	= "izquierda";
+		final String bomba		= "bomba";
 		
 		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		
-		iMap.put(KeyStroke.getKeyStroke("UP"), arriba);
-		iMap.put(KeyStroke.getKeyStroke("W"), arriba);
-		iMap.put(KeyStroke.getKeyStroke("DOWN"), abajo);
-		iMap.put(KeyStroke.getKeyStroke("S"), abajo);
-		iMap.put(KeyStroke.getKeyStroke("RIGHT"), derecha);
-		iMap.put(KeyStroke.getKeyStroke("D"), derecha);
-		iMap.put(KeyStroke.getKeyStroke("LEFT"), izquierda);
-		iMap.put(KeyStroke.getKeyStroke("A"), izquierda);
-		iMap.put(KeyStroke.getKeyStroke("SPACE"), bomba);
+		iMap.put(KeyStroke.getKeyStroke("UP"),		arriba);
+		iMap.put(KeyStroke.getKeyStroke("W"),		arriba);
+		iMap.put(KeyStroke.getKeyStroke("DOWN"),	abajo);
+		iMap.put(KeyStroke.getKeyStroke("S"),		abajo);
+		iMap.put(KeyStroke.getKeyStroke("RIGHT"),	derecha);
+		iMap.put(KeyStroke.getKeyStroke("D"),		derecha);
+		iMap.put(KeyStroke.getKeyStroke("LEFT"),	izquierda);
+		iMap.put(KeyStroke.getKeyStroke("A"),		izquierda);
+		iMap.put(KeyStroke.getKeyStroke("SPACE"),	bomba);
 		
-		getActionMap().put(arriba, moveUp);
-		getActionMap().put(abajo, moveDown);
-		getActionMap().put(derecha, moveRight);
-		getActionMap().put(izquierda, moveLeft);
-		getActionMap().put(bomba, bomb);
+		getActionMap().put(arriba,		moveUp);
+		getActionMap().put(abajo,		moveDown);
+		getActionMap().put(derecha,		moveRight);
+		getActionMap().put(izquierda,	moveLeft);
+		getActionMap().put(bomba,		bomb);
 	}
-
+	
 	/**
-	 * Coloca una bomba.
+	 * Crea el fondo del panel.
+	 */
+	private void crearFondo() {
+		fondo = new JLabel("");
+		fondo.setLocation(0, 0);
+		add(fondo);
+	}
+	
+	/**
+	 * Informa al juego que se quiere colocar una bomba.
 	 */
 	private void placeBomb() {
 		game.placeBomb();
 	}
 
 	/**
-	 * Mueve al personaje principal a arriba.
+	 * Informa al juego que se quiere mover al jugador hacia arriba.
 	 */
 	private void moveUp() {
 		game.moveUp();
 	}
 
 	/**
-	 * Mueve al personaje principal a la derecha.
+	 * Informa al juego que se quiere mover al jugador hacia la derecha.
 	 */
 	private void moveRight() {
 		game.moveRight();
 	}
 
 	/**
-	 * Mueve al personaje principal a abajo.
+	 * Informa al juego que se quiere mover al jugador hacia abajo.
 	 */
 	private void moveDown() {
 		game.moveDown();
 	}
 
 	/**
-	 * Mueve al personaje principal a la izquierda.
+	 * Informa al juego que se quiere mover al jugador hacia la izquierda.
 	 */
 	private void moveLeft() {
 		game.moveLeft();
 	}
-
+	
 	/**
-	 * Centra el panelCapas.
+	 * Actualiza el puntaje mostrado.
 	 */
-	private void centrar() {
+	public void updatePoints() {
+		lblScore.setText("SCORE: " + game.getPoints());
+	}
+	
+	/**
+	 * Actualiza las vidas mostradas.
+	 * @param lives La nueva cantidad de vidas a mostrar.
+	 */
+	public void updateLives(int lives) {
+		lblLives.setText("LIVES: " + lives);
+	}
+	
+	/**
+	 * Actualiza las bombas mostradas.
+	 * @param bombs La nueva cantidad de bombas a mostrar.
+	 */
+	public void updateBombs(int bombs) {
+		lblBombs.setText("BOMBS: " + bombs);
+	}
+	
+	/**
+	 * Cambia la gui al panel de juego ganado.
+	 */
+	public void winGame() {
+		frame.setPanel(new WinPanel(frame, game.getPoints()));
+	}
+	
+	/**
+	 * Cambia la gui al panel de juego perdido.
+	 */
+	public void loseGame() {
+		frame.setPanel(new LosePanel(frame, game.getPoints()));
+	}
+	
+	/**
+	 * Agrega el label pasado por parametro al panel
+	 * @param label Un label.
+	 * @parama depth La profundidad en la que se añadira el label (a mayor valor, mas al frente).
+	 */
+	public void addLabel(JLabel label, int depth) {
+		panelCapas.add(label, Integer.valueOf(1 + depth), 0);
+	}
+	
+	/**
+	 * Remueve el label pasado por parametro del panel.
+	 * @param label Un label.
+	 */
+	public void removeLabel(JLabel label) {
+		panelCapas.remove(label);
+		panelCapas.revalidate();
+		panelCapas.repaint();
+	}
+	
+	/**
+	 * Mueve el label pasado como parametro a las coordenadas indicadas.
+	 * @param label Un label.
+	 * @param x Coordenada x.
+	 * @param y Coordenada y.
+	 */
+	public void updateLabel(JLabel label, float x, float y) {
+		
+		float zoneWidth = (float) panelCapas.getWidth() / Labyrinth.WIDTH;
+		float zoneHeight = (float) panelCapas.getHeight() / Labyrinth.HEIGHT;
+		
+		float posX = x * zoneWidth + zoneWidth / 2f;
+		float posY = y * zoneHeight + zoneHeight / 2f;
+		
+		posX -= (float) label.getWidth() / 2;
+		posY -= label.getHeight();
+		
+		label.setLocation(Math.round(posX), Math.round(posY));
+	}
+	
+	/**
+	 * Cambia la imagen del laberinto
+	 * @param labIcon Icon nuevo imagen del laberinto
+	 */
+	public void setLabyrinthImage(Icon labIcon, Icon bgIcon) {
+		int width = labIcon.getIconWidth();
+		int height = labIcon.getIconHeight();
+		
+		panelCapas.setSize(width, height);
+		
+		labyrinthLabel.setSize(width, height);
+		labyrinthLabel.setIcon(labIcon);
+		
+		setLabyrinthBgImage(bgIcon);
+		
+	}
+	
+	/**
+	 * Cambia la imagen de fondo de este panel.
+	 * @param icon nuevo imagen de fondo para este panel.
+	 */
+	public void setLabyrinthBgImage(Icon icon) {
+		int width = icon.getIconWidth();
+		int height = icon.getIconHeight();
+		
+		setSize(width, height);
+		fondo.setSize(width, height);
+		fondo.setIcon(icon);
+		
+		// Centrar panelCapas
 		int posW = (int) Math.round((getWidth() - panelCapas.getWidth()) / 2 - 7f);
 		int posH = (int) Math.round((getHeight() - panelCapas.getHeight()) - 38f);
 		panelCapas.setLocation(posW, posH);
 	}
+	
+	/**
+	 * Devuelve la fabrica de imagenes de la gui principal.
+	 * @return La fabrica de imagenes de la gui principal.
+	 */
+	public ImageFactory getImageFactory() {
+		return frame.getImageFactory();
+	}
+	
+	
 	
 }

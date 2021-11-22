@@ -18,7 +18,7 @@ import game.entity.visitor.Visitor;
 public final class Player extends Character{
 				
 	private static final int MAX_BOMBS = 2;
-	private static final int DEFAULT_BOMBS = 8;
+	private static final int DEFAULT_BOMBS = 1;
 	private static final int DEFAULT_LIVES = 3;
 	
 	protected static Player instance;
@@ -40,7 +40,7 @@ public final class Player extends Character{
 		hasShield = false;
 		shieldEffectTimer = 0;
 		bombs = DEFAULT_BOMBS;
-		lives = DEFAULT_LIVES;				//?Se podria usar resetState pero ocurre error al usar el resetEffects
+		lives = DEFAULT_LIVES;
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public final class Player extends Character{
 	 * @return La instancia de player.
 	 */
 	public static Player getInstance() {
-		if(instance == null) 			//Si no se creo una instancia , la crea
+		if(instance == null) 						//Si no se creo una instancia, la crea
 			instance = new Player();
 		return instance;
 	}
@@ -86,9 +86,6 @@ public final class Player extends Character{
 		}
 	}
 	
-	/**
-	 * Restea 
-	 */
 	@Override
 	public void respawn() {
 		Zone spawn = getLabyrinth().getPlayerSpawn();
@@ -159,6 +156,16 @@ public final class Player extends Character{
 	}
 	
 	/**
+	 * Le avisa al jugador que deje una bomba.
+	 */
+	public void placeBomb() {
+		if (bombs > 0) {
+			new Bomb(zone);
+			setBombs(--bombs);
+		}
+	}
+	
+	/**
 	 * Actualiza el tiempo durante el cual el jugador intentara moverse en la ultima direccion dada.
 	 * Cuando el tiempo llega a 0, el jugador deja de intentar cambiar su direccion.
 	 */
@@ -218,21 +225,11 @@ public final class Player extends Character{
 	} 
 	
 	/**
-	 * Le avisa al jugador que deje una bomba.
-	 */
-	public void placeBomb() {
-		if (bombs > 0) {
-			new Bomb(zone);
-			setBombs(--bombs);
-		}
-	}
-	
-	/**
 	 * Agrega una bomba al jugador.
 	 */
 	public void addBomb() {
 		if (bombs < MAX_BOMBS) {
-			setBombs(bombs++);
+			setBombs(++bombs);
 		}
 	}
 	
@@ -253,7 +250,7 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Establece el personaje en su estado inicial
+	 * Establece el personaje en su estado inicial.
 	 */
 	public void resetState() {
 		setBombs(DEFAULT_BOMBS);
@@ -262,7 +259,7 @@ public final class Player extends Character{
 	}
 	
 	/**
-	 * Remueve los efectos del Jugador
+	 * Remueve los efectos del Jugador.
 	 */
 	public void resetEffects() {
 		removeShield();
@@ -270,20 +267,21 @@ public final class Player extends Character{
 	}
 
 	/**
-	 * Setea un nuevo valor a las bombas y notifica su actualizacion
-	 * @param l entero lives
+	 * Setea un nuevo valor a las bombas y notifica su actualizacion a la gui.
+	 * @param b La nueva cantidad de bombas.
 	 */
 	private void setBombs(int b) {
 		bombs = b;
-		zone.getLabyrinth().getGUI().updateBombs(bombs);
+		getLabyrinth().getGUI().updateBombs(bombs);
 	}
 	
 	/**
-	 * Setea un nuevo valor a las vidas y notifica su actualizacion
-	 * @param l entero lives
+	 * Setea un nuevo valor a las vidas y notifica su actualizacion a la gui.
+	 * @param l La nueva cantidad de vidas.
 	 */
 	private void setLives(int l) {
 		lives = l;
-		zone.getLabyrinth().getGUI().updateLives(lives);
+		getLabyrinth().getGUI().updateLives(lives);
 	}
+	
 }

@@ -12,7 +12,7 @@ import javax.swing.KeyStroke;
 import audio.MusicPlayer;
 
 /**
- * Modela el panel abstracto a ser mostrado por la gui principal.
+ * Modela el panel abstracto de la gui.
  */
 public abstract class GUIPanel extends JPanel{
 	
@@ -31,7 +31,7 @@ public abstract class GUIPanel extends JPanel{
 	 */
 	protected GUIPanel(GUI gui) {
 		frame = gui;
-		fuente = frame.fuente;
+		fuente = GUI.FONT;
 		width = frame.currentScreenWidth;
 		height = frame.currentScreenHeight;
 		scaleWidth = width/8;
@@ -52,20 +52,22 @@ public abstract class GUIPanel extends JPanel{
 	 */
 	private void agregarControlMusica() {
 		Action music = new AbstractAction() {
+			
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MusicPlayer musicPlayer = frame.getMusicPlayer();
-				if (musicPlayer.isPlaying()) {
+				if (musicPlayer != null && musicPlayer.isPlaying()) {
 					musicPlayer.stop();
 				} else {
 					musicPlayer.start();
 				}
 			}
+			
 		};
 		
-		final String musica= "musica";
+		final String musica = "musica";
 		
 		InputMap iMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		
@@ -73,4 +75,5 @@ public abstract class GUIPanel extends JPanel{
 		
 		getActionMap().put(musica, music);
 	}
+	
 }

@@ -1,40 +1,43 @@
 package gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 import audio.MusicPlayer;
-import data.StatsData;
 import imagefactories.ImageFactory;
 import imagefactories.ConcreteImageFactory1;
 
-/*
- * Modela la interfaz grafica del juego
+/**
+ * Clase que modela la GUI principal del juego.
  */
 public class GUI extends JFrame{
-	
-	private static final long serialVersionUID = 1L;
 	
 	public static final int DEFAULT_SCREEN_WIDTH = 1920;
 	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
 	
+	protected static final String FONT = "SansSerif";	
+	
+	private static final long serialVersionUID = 1L;
+
 	protected final int currentScreenWidth;
 	protected final int currentScreenHeight;
-	protected final String fuente;
 	protected MusicPlayer musicPlayer;
 
 	private transient ImageFactory factory;
 
 	/**
-	 * Crea una nueva instancia de GUI
+	 * Crea una nueva instancia de la gui.
 	 */
 	public GUI() {
-		// TODO Descomentar en ver FINAL
-		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		//CURRENT_SCREEN_WIDTH = Math.toIntExact(Math.round(screenSize.getWidth()));
-		//CURRENT_SCREEN_HEIGHT = Math.toIntExact(Math.round(screenSize.getHeight()));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		currentScreenWidth = Math.toIntExact(Math.round(screenSize.getWidth()));
+//		currentScreenHeight = Math.toIntExact(Math.round(screenSize.getHeight()));
+		
 		currentScreenWidth = 1280;
 		currentScreenHeight = 720;
-		fuente = "SansSerif";
+		
 		factory = new ConcreteImageFactory1(currentScreenWidth, currentScreenHeight);
 		
 		musicPlayer = new MusicPlayer("/res/music/minecraft/music.wav");
@@ -50,7 +53,7 @@ public class GUI extends JFrame{
 	 */
 	private void createFrame() {
 		setSize(currentScreenWidth, currentScreenHeight);
-		//setUndecorated(true);
+//		setUndecorated(true);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -68,14 +71,6 @@ public class GUI extends JFrame{
 	}
 	
 	/**
-	 * Devuelve los datos de stats.
-	 * @return un StatsData.
-	 */
-	public StatsData getStatsData() {
-		return new StatsData();
-	}
-	
-	/**
 	 * Retorna la fabrica de imagenes de esta gui.
 	 * @return La fabrica de imagenes de esta gui.
 	 */
@@ -85,7 +80,7 @@ public class GUI extends JFrame{
 	
 	/**
 	 * Devuelve el musicPlayer.
-	 * @return el musicPlayer.
+	 * @return El musicPlayer.
 	 */
 	public MusicPlayer getMusicPlayer() {
 		return musicPlayer;

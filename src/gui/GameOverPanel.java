@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import data.PlayerScore;
+import data.StatsData;
 import data.TopPlayersRegistry;
 
 import java.awt.event.ActionListener;
@@ -17,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Modela el panel de fin del juego.
+ */
 public abstract class GameOverPanel extends GUIPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -27,12 +31,13 @@ public abstract class GameOverPanel extends GUIPanel{
 	protected JLabel score;
 	
 	private JTextField name;
+	private Font smallPanelFont;
+	private Font bigPanelFont;
 	
 	/**
-	 * Crea una nueva instancia de GameOverPanel y la asocia a la GUI y a la puntuacion obtenida
-	 * pasadas por parametro
-	 * @param gui asociada al juego
-	 * @param finalScore puntuacion obtenida
+	 * Crea un nuevo panel de fin del juego.
+	 * @param gui La gui en la que se encontrara este panel.
+	 * @param finalScore El puntaje del juego al terminar.
 	 */
 	protected GameOverPanel(GUI gui, int finalScore) {
 		super(gui);
@@ -41,11 +46,108 @@ public abstract class GameOverPanel extends GUIPanel{
 		setLayout(null);
 		setSize(width, height);
 		
+		smallPanelFont = new Font(fuente, Font.BOLD, scaleHeight / 2);
+		bigPanelFont = new Font(fuente, Font.BOLD, scaleHeight);
+		
 		crearBotones();
 		crearLabels();
 		crearCampoDeTexto();
 		crearFondo();
 		
+	}
+	
+	/**
+	 * Crea los botones del panel.
+	 */
+	private void crearBotones() {
+		int btnXPos = (width - scaleWidth * 2) / 2;
+		int btnWidth = scaleWidth * 2;
+		int btnHeight = scaleHeight;
+		
+		JButton btnMenu		= new JButton("MENU");
+		JButton btnRestart	= new JButton("RESTART");
+		JButton btnExit		= new JButton("EXIT");
+		
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backToMenu();
+			}
+		});
+		
+		btnRestart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				restartGame();
+			}
+		});
+		
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exitGame();
+			}
+		});
+		
+		btnMenu.setFont(smallPanelFont);
+		btnRestart.setFont(smallPanelFont);
+		btnExit.setFont(smallPanelFont);
+		
+		btnMenu.setBounds	(btnXPos, (height / 2) + (scaleHeight * 06) / 5, btnWidth, btnHeight);
+		btnRestart.setBounds(btnXPos, (height / 2) + (scaleHeight * 12) / 5, btnWidth, btnHeight);
+		btnExit.setBounds	(btnXPos, (height / 2) + (scaleHeight * 18) / 5, btnWidth, btnHeight);
+		
+		add(btnMenu);
+		add(btnRestart);
+		add(btnExit);
+		
+	}
+	
+	/**
+	 * Crea los labels del panel.
+	 */
+	private void crearLabels() {
+		JLabel yourName;
+		Color color = new Color(0, 0, 100);
+		
+		winLose = new JLabel("");
+		score = new JLabel(" SCORE: " + finalScore);
+		yourName = new JLabel("YOUR NAME: ");
+		
+		winLose.setFont(bigPanelFont);
+		score.setFont(bigPanelFont);
+		yourName.setFont(bigPanelFont);
+		
+		winLose.setHorizontalAlignment(SwingConstants.CENTER);
+		yourName.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		winLose.setBounds(0, 0, width, 2 * scaleHeight);
+		score.setBounds((width - scaleWidth * 3), 4 * scaleHeight, scaleWidth * 3, scaleHeight);
+		yourName.setBounds(0, 4 * scaleHeight, scaleWidth * 3, scaleHeight);
+		
+		score.setForeground(color);
+		yourName.setForeground(color);
+		
+		add(winLose);
+		add(score);
+		add(yourName);
+	}
+	
+	/**
+	 * Crea el campo de texto del panel.
+	 */
+	private void crearCampoDeTexto() {
+		name = new JTextField();
+		name.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				name.setText("");
+			}
+			
+		});
+		name.setFont(bigPanelFont);
+		name.setBounds((width - scaleWidth * 2) / 2, 4 * scaleHeight, scaleWidth * 2, scaleHeight);
+		name.setText("PLAYER");
+		name.setHorizontalAlignment(SwingConstants.CENTER);
+		add(name);
 	}
 	
 	/**
@@ -59,97 +161,7 @@ public abstract class GameOverPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Crea y coloca el campo de texto del panel.
-	 */
-	private void crearCampoDeTexto() {
-		name = new JTextField();
-		name.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				name.setText("");
-			}
-		});
-		name.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		name.setBounds((width - scaleWidth*2)/2, 4*scaleHeight, scaleWidth*2, scaleHeight);
-		name.setText("PLAYER");
-		name.setHorizontalAlignment(SwingConstants.CENTER);
-		add(name);
-	}
-	
-	/**
-	 * Crea y coloca los labels del panel.
-	 */
-	private void crearLabels() {
-		
-		winLose = new JLabel("");
-		winLose.setFont(new Font(fuente, Font.BOLD, 2*scaleHeight));
-		winLose.setHorizontalAlignment(SwingConstants.CENTER);
-		winLose.setBounds(0, 0, width, 2*scaleHeight);
-		add(winLose);
-		
-		score = new JLabel("");
-		score.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		score.setBounds((width - scaleWidth*3), 4*scaleHeight, scaleWidth*3, scaleHeight);
-		score.setText(" SCORE: " + finalScore);
-		score.setForeground(new Color(0, 0, 100));
-		add(score);
-		
-		JLabel yourName = new JLabel("YOUR NAME: ");
-		yourName.setFont(new Font(fuente, Font.BOLD, scaleHeight));
-		yourName.setHorizontalAlignment(SwingConstants.RIGHT);
-		yourName.setBounds(0, 4*scaleHeight, scaleWidth*3, scaleHeight);
-		yourName.setForeground(new Color(0, 0, 100));
-		add(yourName);
-	}
-
-	/**
-	 * Crea y coloca los botones del panel.
-	 */
-	private void crearBotones() {
-		
-		JButton btnMenu = new JButton("MENU");
-		btnMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				backToMenu();
-			}
-		});
-		btnMenu.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnMenu.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*6)/5, scaleWidth*2, scaleHeight);
-		add(btnMenu);
-		
-		JButton btnRestart = new JButton("RESTART");
-		btnRestart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				restartGame();
-			}
-		});
-		btnRestart.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnRestart.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*12)/5, scaleWidth*2, scaleHeight);
-		add(btnRestart);
-		
-		
-		JButton btnExit = new JButton("EXIT");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				exitGame();
-			}
-		});
-		btnExit.setFont(new Font(fuente, Font.BOLD, scaleHeight/2));
-		btnExit.setBounds((width - scaleWidth*2) / 2, height/2 + (scaleHeight*18)/5, scaleWidth*2, scaleHeight);
-		add(btnExit);
-		
-	}
-	
-	/**
-	 * Guarda la partida y carga en la gui un nuevo panel de juego.
-	 */
-	protected void restartGame() {
-		saveScore();
-		frame.setPanel(new GamePanel(frame));
-	}
-	
-	/**
-	 * Guarda la partida y carga en la gui una nueva pantalla de inicio
+	 * Guarda el puntaje y devuelve la gui al menu principal.
 	 */
 	protected void backToMenu() {
 		saveScore();
@@ -157,7 +169,15 @@ public abstract class GameOverPanel extends GUIPanel{
 	}
 	
 	/**
-	 * Guarda la partida y termina la ejecucion del juego.
+	 * Guarda el puntaje y reinicia el juego.
+	 */
+	protected void restartGame() {
+		saveScore();
+		frame.setPanel(new GamePanel(frame));
+	}
+	
+	/**
+	 * Guarda el puntaje y cierra el juego.
 	 */
 	protected void exitGame() {
 		saveScore();
@@ -168,15 +188,18 @@ public abstract class GameOverPanel extends GUIPanel{
 	 * Guarda el puntaje obtenido.
 	 */
 	protected void saveScore() {
+		TopPlayersRegistry registro;
+		StatsData sd;
+		
 		if(name.getText().equals("")) {
 			name.setText("NONE");
 		}
 		
-		TopPlayersRegistry registro;
 		try {
-			registro = frame.getStatsData().load();
+			sd = new StatsData();
+			registro = sd.load();
 			registro.addPlayer(new PlayerScore(name.getText(), finalScore));
-			frame.getStatsData().save(registro);
+			sd.save(registro);
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}

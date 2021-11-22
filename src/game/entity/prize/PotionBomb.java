@@ -15,7 +15,6 @@ public class PotionBomb extends Potion {
 	 */
 	public PotionBomb(Zone zone) {
 		super(zone);
-
 		graphic = new GraphicStaticEntity(this, zone.getLabyrinth().getImageFactory().getPotion3());
 		addToGUI();
 	}

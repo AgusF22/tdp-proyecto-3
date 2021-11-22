@@ -6,28 +6,29 @@ import java.util.List;
 import game.Game;
 
 /**
- * Clase EnemyBrain
- * Avisa las acciones a hacer de los enemigos que controla
+ * Clase que controla a los enemigos.
  */
 public class EnemyBrain implements Runnable {
 	
 	protected List<Enemy> enemies;
 	
+	/**
+	 * Crea un nuevo enemy brain.
+	 */
 	public EnemyBrain() {
-		//TODO imp
 		enemies = new ArrayList<>(4);
 	}
 	
 	/**
-	 * Avisa a todos los enemigos en su control que se muevan
+	 * Avisa a todos los enemigos de este controlador que se muevan.
 	 */
 	public void moveEnemies() {
 		enemies.forEach(Enemy::move);
 	}
 	
 	/**
-	 * Agrega un enemigo al control de EnemyBrain
-	 * @param enemy Enemy
+	 * Agrega un enemigo a este controlador.
+	 * @param enemy Un enemigo.
 	 */
 	public void addEnemy(Enemy enemy) {
 		if (enemy != null) {
@@ -35,9 +36,10 @@ public class EnemyBrain implements Runnable {
 		}
 	}
 	
+	@Override
 	public void run() {
 		while (!Thread.currentThread().isInterrupted()) {
-//			moveEnemies(); TODO descomentar
+			moveEnemies();
 			try {
 				Thread.sleep(1000 / Game.CYCLES_PER_SECOND);
 			} catch (InterruptedException e) {

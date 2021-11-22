@@ -37,8 +37,8 @@ public class MusicPlayer implements Runnable {
 	 */
 	public void stop() {
 		playing = false;
-		musicThread.interrupt();
 		clip.stop();
+		musicThread.interrupt();
 	}
 	
 	/**
