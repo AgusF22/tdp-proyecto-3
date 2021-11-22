@@ -9,6 +9,9 @@ import game.labyrinth.Labyrinth;
 import gui.GamePanel;
 import imagefactories.ImageFactory;
 
+/**
+ * Modela el juego.
+ */
 public class Game implements Runnable {
 	
 	public static final int CYCLES_PER_SECOND = 60;
@@ -23,9 +26,9 @@ public class Game implements Runnable {
 	protected Thread brainThread;
 	
 	/**
-	 * Construye una nueva instancia de Game.
-	 * @param gui interfaz grafica asociada al juego.
-	 * @throws DataLoadException 
+	 * Construye una nueva instancia del juego.
+	 * @param gui Interfaz grafica a asociar al juego.
+	 * @throws DataLoadException Si ocurre un error al cargar el primer nivel del juego.
 	 */
 	public Game(GamePanel gui) throws DataLoadException {
 		this.gui = gui;
@@ -42,51 +45,75 @@ public class Game implements Runnable {
 	}
 	
 	/**
-	 * Mueve al personaje principal hacia arriba.
+	 * Mueve al jugador hacia arriba.
 	 */
 	public void moveUp() {
 		Player.getInstance().attemptMovement(Direction.UP);
 	}
 	
 	/**
-	 * Mueve al personaje principal hacia la derecha.
+	 * Mueve al jugador hacia la derecha.
 	 */
 	public void moveRight() {
 		Player.getInstance().attemptMovement(Direction.RIGHT);
 	}
 	
 	/**
-	 * Mueve al personaje principal hacia abajo.
+	 * Mueve al jugador hacia abajo.
 	 */
 	public void moveDown() {
 		Player.getInstance().attemptMovement(Direction.DOWN);
 	}
 	
 	/**
-	 * Mueve al personaje principal hacia la izquierda.
+	 * Mueve al jugador hacia la izquierda.
 	 */
 	public void moveLeft() {
 		Player.getInstance().attemptMovement(Direction.LEFT);
 	}
 	
 	/**
-	 * Hace que el personaje ponga una bomba
+	 * Hace que el jugador ponga una bomba.
 	 */
 	public void placeBomb() {
 		Player.getInstance().placeBomb();
 	}
+
+	/**
+	 * Retorna la fabrica de imagenes que se utiliza en el juego.
+	 * @return Una fabrica de imagenes.
+	 */
+	public ImageFactory getImageFactory() {
+		return gui.getImageFactory();
+	}
+	
+	/**
+	 * Retorna la gui asociada al juego.
+	 * @return La gui asociada al juego.
+	 */
+	public GamePanel getGUI() {
+		return gui;
+	}
+	
+	/**
+	 * Retorna el EnemyBrian asociado al juego.
+	 * @return El EnemyBrian asociado al juego.
+	 */
+	public EnemyBrain getEnemyBrain() {
+		return enemyBrain;
+	}
 	
 	/**
 	 * Devuelve los puntos acumulados.
-	 * @return un entero que representa los puntos.
+	 * @return Los puntos acumulados.
 	 */
 	public int getPoints() {
 		return points;
 	}
 	
 	/**
-	 * Incrementa el puntaje con la cantidad p.
-	 * @param p cantidad a incrementar.
+	 * Incrementa el puntaje en la cantidad pasada como parametro.
+	 * @param p Cantidad a incrementar.
 	 */
 	public void addPoints(int p) {
 		this.points += p;
@@ -108,7 +135,7 @@ public class Game implements Runnable {
 	
 	/**
 	 * Gana el nivel.
-	 * @throws DataLoadException 
+	 * @throws DataLoadException Si ocurre un error al cargar el siguiente nivel.
 	 */
 	public void winLevel() throws DataLoadException {
 		labyrinth.clearEntities();
@@ -125,42 +152,33 @@ public class Game implements Runnable {
 		}
 	}
 	
+	/**
+	 * Reinicia el controlador de los enemigos.
+	 */
 	protected void resetBrain() {
 		brainThread.interrupt();
 		enemyBrain = new EnemyBrain();
 		brainThread = new Thread(enemyBrain);
 	}
 	
-	/**
-	 * Retorna la fabrica de imagenes que se utiliza en el juego.
-	 * @return Una fabrica de imagenes.
-	 */
-	public ImageFactory getImageFactory() {
-		return gui.getImageFactory();
-	}
-	
-	public GamePanel getGUI() {
-		return gui;
-	}
 	
 	/**
-	 * Retorna el EnemyBrian asociado al juego
-	 * @return EnemyBrain si existe uno, null si no existe
+	 * Inicia los hilos del juego.
 	 */
-	public EnemyBrain getEnemyBrain() {
-		return enemyBrain;
-	}
-	
 	public void start() {
 		gameThread.start();
 		brainThread.start();
 	}
 	
+	/**
+	 * Interrumpe los hilos del juego.
+	 */
 	public void stop() {
 		gameThread.interrupt();
 		brainThread.interrupt();
 	}
 	
+	@Override
 	public void run() {
 		while(!Thread.currentThread().isInterrupted()) {
 			synchronized (this) {
@@ -175,7 +193,6 @@ public class Game implements Runnable {
 				try {
 					Thread.sleep(1000 / CYCLES_PER_SECOND);
 				} catch (InterruptedException e) {
-//					e.printStackTrace();
 					Thread.currentThread().interrupt();	
 					System.out.println("gameThread Interrupted");
 				}
