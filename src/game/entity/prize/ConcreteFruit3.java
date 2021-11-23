@@ -1,6 +1,6 @@
 package game.entity.prize;
 
-import game.entity.GraphicStaticEntity;
+import game.entity.graphicentity.GraphicStaticEntity;
 import game.labyrinth.Zone;
 
 /**

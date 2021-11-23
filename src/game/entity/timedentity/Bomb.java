@@ -7,7 +7,7 @@ import java.util.Set;
 
 import game.Game;
 import game.entity.Entity;
-import game.entity.GraphicStaticEntity;
+import game.entity.graphicentity.GraphicStaticEntity;
 import game.entity.visitor.ExplosionVisitor;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;

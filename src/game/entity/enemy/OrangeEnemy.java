@@ -7,7 +7,7 @@ import static java.lang.Math.toIntExact;
 
 import exceptions.InvalidZoneException;
 import game.Game;
-import game.entity.GraphicEnemy;
+import game.entity.graphicentity.GraphicEnemy;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
 import game.labyrinth.Zone;

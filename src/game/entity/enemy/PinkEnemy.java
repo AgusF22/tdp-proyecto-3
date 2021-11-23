@@ -2,7 +2,7 @@ package game.entity.enemy;
 
 import exceptions.InvalidZoneException;
 import game.Game;
-import game.entity.GraphicEnemy;
+import game.entity.graphicentity.GraphicEnemy;
 import game.entity.player.Player;
 import game.labyrinth.Direction;
 import game.labyrinth.LabyrinthCursor;

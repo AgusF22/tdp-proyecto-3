@@ -1,6 +1,8 @@
-package game.entity;
+package game.entity.graphicentity;
 
 import javax.swing.Icon;
+
+import game.entity.Entity;
 
 /**
  * Modela una entidad grafica estatica.

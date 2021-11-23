@@ -1,7 +1,9 @@
-package game.entity;
+package game.entity.graphicentity;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
+
+import game.entity.Entity;
 
 /**
  * Modela un enemigo grafico.

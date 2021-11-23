@@ -1,6 +1,7 @@
 package game.entity;
 
 import exceptions.InvalidZoneException;
+import game.entity.graphicentity.GraphicEntity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Direction;
 import game.labyrinth.Labyrinth;

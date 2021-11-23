@@ -1,7 +1,7 @@
 package game.entity.timedentity;
 
 import game.entity.Entity;
-import game.entity.GraphicStaticEntity;
+import game.entity.graphicentity.GraphicStaticEntity;
 import game.entity.visitor.Visitor;
 import game.labyrinth.Zone;
 

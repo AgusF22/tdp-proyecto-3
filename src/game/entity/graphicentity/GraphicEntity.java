@@ -1,7 +1,8 @@
-package game.entity;
+package game.entity.graphicentity;
 
 import javax.swing.JLabel;
 
+import game.entity.Entity;
 import gui.GamePanel;
 
 /**
